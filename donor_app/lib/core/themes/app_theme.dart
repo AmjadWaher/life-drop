@@ -1,15 +1,16 @@
 import 'package:donor_app/core/helpers/extensions.dart';
-import 'package:donor_app/core/themes/app_colors_theme.dart';
+import 'package:donor_app/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-ThemeData lightTheme(BuildContext context) {
+ThemeData lightTheme() {
+  final colors = AppColors.light();
   return ThemeData(
-    scaffoldBackgroundColor: context.colors.background,
+    scaffoldBackgroundColor: colors.background,
     brightness: Brightness.light,
-    extensions: [lightColors],
+    extensions: [AppColors.light()],
     inputDecorationTheme: InputDecorationTheme(
-      fillColor: context.colors.surface,
+      fillColor: colors.surface,
       filled: true,
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       prefixIconConstraints: BoxConstraints(
@@ -20,23 +21,24 @@ ThemeData lightTheme(BuildContext context) {
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: context.colors.textError, width: 2),
+        borderSide: BorderSide(color: colors.textError, width: 2),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: context.colors.secondary, width: 2),
+        borderSide: BorderSide(color: colors.secondary, width: 2),
       ),
     ),
   );
 }
 
-ThemeData darkTheme(BuildContext context) {
+ThemeData darkTheme() {
+  final colors = AppColors.dark();
   return ThemeData(
-    scaffoldBackgroundColor: context.colors.background,
+    scaffoldBackgroundColor: colors.background,
     brightness: Brightness.dark,
-    extensions: [darkColors],
+    extensions: [AppColors.dark()],
     inputDecorationTheme: InputDecorationTheme(
-      fillColor: context.colors.surface,
+      fillColor: colors.surface,
       filled: true,
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       prefixIconConstraints: BoxConstraints(
@@ -47,11 +49,11 @@ ThemeData darkTheme(BuildContext context) {
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: context.colors.textError, width: 2),
+        borderSide: BorderSide(color: colors.textError, width: 2),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: context.colors.secondary, width: 2),
+        borderSide: BorderSide(color: colors.secondary, width: 2),
       ),
     ),
   );
