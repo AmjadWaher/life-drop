@@ -1,4 +1,3 @@
-import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
