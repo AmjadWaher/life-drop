@@ -35,6 +35,10 @@ jobs:
               with:
                   ruby-version: "3.2.3"
                   bundler-cache: true
+                  
+            - name: Install Ruby Gems
+              working-directory: donor_app/android
+              run: bundle install
 
             - name: Build and Distribute App
               env:
