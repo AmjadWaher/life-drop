@@ -1,0 +1,27 @@
+class ImagePaths {
+  static const String _imageBase = 'assets/images/';
+  static const String _svgBase = 'assets/svgs/';
+
+  // Images
+  // Onboarding Light
+  static const String onboarding1Light = '$_imageBase/onboarding-1-light.png';
+  static const String onboarding2Light = '$_imageBase/onboarding-2-light.png';
+  static const String onboarding3Light = '$_imageBase/onboarding-3-light.png';
+
+  // Onboarding Dark
+  static const String onboarding1Dark = '$_imageBase/onboarding-1-dark.png';
+  static const String onboarding2Dark = '$_imageBase/onboarding-2-dark.png';
+  static const String onboarding3Dark = '$_imageBase/onboarding-3-dark.png';
+
+  // SVGs
+  static const String logo = '$_svgBase/logo.svg';
+  static const String connectionLostIcon = '$_svgBase/connection-lost-icon.svg';
+  static const String donateIcon = '$_svgBase/donate-icon.svg';
+  static const String historyIcon = '$_svgBase/history-icon.svg';
+  static const String homeIcon = '$_svgBase/home-icon.svg';
+  static const String mapIcon = '$_svgBase/map-icon.svg';
+  static const String profileIcon = '$_svgBase/profile-icon.svg';
+  static const String redHeartIcon = '$_svgBase/red-heart-icon.svg';
+  static const String requestIcon = '$_svgBase/request-icon.svg';
+  static const String secureIcon = '$_svgBase/secure-icon.svg';
+}
