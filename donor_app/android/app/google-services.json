@@ -26,9 +26,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:410985759916:android:c343271e550cce96d30b09",
+        "mobilesdk_app_id": "1:410985759916:android:57c08c640a078aa1d30b09",
         "android_client_info": {
-          "package_name": "com.example.lifeDrop"
+          "package_name": "com.example.donor_app.dev"
         }
       },
       "oauth_client": [],
