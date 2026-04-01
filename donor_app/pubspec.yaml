@@ -47,6 +47,7 @@ dependencies:
   intl: ^0.20.2
   json_annotation: ^4.9.0
   json_serializable: ^6.9.5
+  package_info_plus: ^9.0.1
   pretty_dio_logger: ^1.4.0
   retrofit: ^4.9.2
   retrofit_generator: ^10.2.3

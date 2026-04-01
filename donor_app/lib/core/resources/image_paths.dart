@@ -1,6 +1,6 @@
 class ImagePaths {
-  static const String _imageBase = 'assets/images/';
-  static const String _svgBase = 'assets/svgs/';
+  static const String _imageBase = 'assets/images';
+  static const String _svgBase = 'assets/svgs';
 
   // Images
   // Onboarding Light
@@ -24,4 +24,6 @@ class ImagePaths {
   static const String redHeartIcon = '$_svgBase/red-heart-icon.svg';
   static const String requestIcon = '$_svgBase/request-icon.svg';
   static const String secureIcon = '$_svgBase/secure-icon.svg';
+  static const String splashLogoDark = '$_svgBase/splash-logo-dark.svg';
+  static const String splashLogoLight = '$_svgBase/splash-logo-light.svg';
 }

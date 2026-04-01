@@ -6,5 +6,5 @@ void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
 
-  runApp(App());
+  runApp(const App());
 }

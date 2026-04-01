@@ -11,7 +11,7 @@ class AppImages extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit fit;
-  final Color color;
+  final Color? color;
 
   const AppImages({
     super.key,
@@ -19,7 +19,7 @@ class AppImages extends StatelessWidget {
     required this.type,
     this.width,
     this.height,
-    this.color = Colors.grey,
+    this.color,
     this.fit = BoxFit.cover,
   });
 
@@ -43,7 +43,9 @@ class AppImages extends StatelessWidget {
         width: width,
         height: height,
         fit: fit,
-        colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+        colorFilter: color != null
+            ? ColorFilter.mode(color!, BlendMode.srcIn)
+            : null,
       );
     }
   }

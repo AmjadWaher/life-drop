@@ -7,6 +7,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color background;
   final Color errorContainer;
   final Color surface;
+  final Color mode;
   final Color tertiary;
   final Color neutral;
   final Color textPrimary;
@@ -23,6 +24,7 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.background,
     required this.errorContainer,
     required this.surface,
+    required this.mode,
     required this.tertiary,
     required this.neutral,
     required this.textPrimary,
@@ -34,12 +36,13 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.iconActiveBackground,
   });
 
-  factory AppColors.light() => AppColors(
+  factory AppColors.light() => const AppColors(
     primary: Color(0xFFB7102A),
     secondary: Color(0xFF2B6485),
     background: Color(0xFFF7F9FE),
     errorContainer: Color(0xFFFFDAD6),
     surface: Color(0xFFDFE3E8),
+    mode: Color(0xFFFFFFFF),
     tertiary: Color(0xFFA8DADC),
     neutral: Color(0xFFF1F4F9),
     textPrimary: Color(0xFF181C20),
@@ -50,16 +53,17 @@ class AppColors extends ThemeExtension<AppColors> {
     iconInactive: Color(0xFF181C20),
     iconActiveBackground: Color(0xFFFFDAD8),
   );
-  factory AppColors.dark() => AppColors(
-    primary: Color(0xFFE63946),
+  factory AppColors.dark() => const AppColors(
+    primary: Color(0xFFB7102A),
     secondary: Color(0xFF98CDF2),
     background: Color(0xFF0B0E11),
     errorContainer: Color(0x66410007),
     surface: Color(0xFF282D35),
+    mode: Color(0xFF0C0F12),
     tertiary: Color(0xFF2A9D8F),
     neutral: Color(0xFF121212),
     textPrimary: Color(0xFFE1E2E8),
-    textSecondary: Color(0xFFD7C2C1),
+    textSecondary: Color(0xFFD8C2C1),
     textError: Color(0xFFFFDAD6),
     textPlaceHolder: Color(0xFF94A3B8),
     iconActive: Color(0xFFFF4D4D),
@@ -74,6 +78,7 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? background,
     Color? errorContainer,
     Color? surface,
+    Color? mode,
     Color? neutral,
     Color? tertiary,
     Color? textPrimary,
@@ -90,6 +95,7 @@ class AppColors extends ThemeExtension<AppColors> {
       background: background ?? this.background,
       errorContainer: errorContainer ?? this.errorContainer,
       surface: surface ?? this.surface,
+      mode: mode ?? this.mode,
       neutral: neutral ?? this.neutral,
       tertiary: tertiary ?? this.tertiary,
       textPrimary: textPrimary ?? this.textPrimary,
@@ -114,6 +120,7 @@ class AppColors extends ThemeExtension<AppColors> {
       secondary: Color.lerp(secondary, other.secondary, t)!,
       errorContainer: Color.lerp(errorContainer, other.errorContainer, t)!,
       surface: Color.lerp(surface, other.surface, t)!,
+      mode: Color.lerp(mode, other.mode, t)!,
       neutral: Color.lerp(neutral, other.neutral, t)!,
       tertiary: Color.lerp(tertiary, other.tertiary, t)!,
       textPrimary: Color.lerp(textPrimary, other.textPrimary, t)!,
