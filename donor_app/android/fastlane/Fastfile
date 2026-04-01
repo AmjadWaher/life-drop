@@ -11,7 +11,7 @@ platform :android do
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       testers: "amjadwaher623@gmail.com",
-      release_notes: "Add app_images class for managing image paths"
+      release_notes: "Add Splash Screen with Logo and Version Info"
     )
   end
 end
