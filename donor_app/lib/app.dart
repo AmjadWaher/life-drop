@@ -1,4 +1,5 @@
 import 'package:donor_app/core/themes/app_theme.dart';
+import 'package:donor_app/features/splash/presentation/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
           theme: lightTheme(),
           darkTheme: darkTheme(),
           debugShowCheckedModeBanner: false,
-          home: const Scaffold(body: Center(child: Text('Hello World'))),
+          home: SplashScreen(),
         );
       },
     );

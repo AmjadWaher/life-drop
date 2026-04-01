@@ -4,49 +4,50 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextStyles {
+  final BuildContext context;
+
+  AppTextStyles(this.context);
+
   // ------------ 10 sp ------------
-  static TextStyle font10TextSecondaryRegular(BuildContext context) {
-    return TextStyle(
-      fontSize: 10.sp,
-      fontWeight: FontWeightHelper.regular,
-      color: context.colors.textSecondary,
-    );
-  }
 
-  static TextStyle font10TextSecondaryRegular60Faded(BuildContext context) =>
-      TextStyle(
-        fontSize: 10.sp,
-        fontWeight: FontWeightHelper.regular,
-        color: context.colors.textSecondary.withAlpha(153),
-      );
+  TextStyle get font10TextSecondaryRegular => TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: context.colors.textSecondary,
+  );
 
-  static TextStyle font10SecondaryBold(BuildContext context) => TextStyle(
+  TextStyle get font10TextSecondaryRegular60Faded => TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: context.colors.textSecondary.withAlpha(153),
+  );
+
+  TextStyle get font10SecondaryBold => TextStyle(
     fontSize: 10.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.secondary,
   );
-  static TextStyle font10TextPlaceHolderBold40Faded(BuildContext context) =>
-      TextStyle(
-        fontSize: 10.sp,
-        fontWeight: FontWeightHelper.bold,
-        color: context.colors.textPlaceHolder.withAlpha(102),
-      );
-  static TextStyle font10TextPlaceHolderBold(BuildContext context) => TextStyle(
+  TextStyle get font10TextPlaceHolderBold40Faded => TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: context.colors.textPlaceHolder.withAlpha(102),
+  );
+  TextStyle get font10TextPlaceHolderBold => TextStyle(
     fontSize: 10.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.textPlaceHolder,
   );
-  static TextStyle font10IconActiveBold(BuildContext context) => TextStyle(
+  TextStyle get font10IconActiveBold => TextStyle(
     fontSize: 10.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.iconActive,
   );
-  static TextStyle font10IconInactiveBold(BuildContext context) => TextStyle(
+  TextStyle get font10IconInactiveBold => TextStyle(
     fontSize: 10.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.iconInactive,
   );
-  static TextStyle font10PrimaryBold(BuildContext context) => TextStyle(
+  TextStyle get font10PrimaryBold => TextStyle(
     fontSize: 10.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.primary,
@@ -54,35 +55,32 @@ class AppTextStyles {
 
   // ------------ 12 sp ------------
 
-  static TextStyle font12TextSecondaryRegular(BuildContext context) =>
-      TextStyle(
-        fontSize: 12.sp,
-        fontWeight: FontWeightHelper.regular,
-        color: context.colors.textSecondary,
-      );
-  static TextStyle font12TextPlaceHolderRegular(BuildContext context) =>
-      TextStyle(
-        fontSize: 12.sp,
-        fontWeight: FontWeightHelper.regular,
-        color: context.colors.textPlaceHolder,
-      );
-  static TextStyle font12TextPlaceHolderMedium(BuildContext context) =>
-      TextStyle(
-        fontSize: 12.sp,
-        fontWeight: FontWeightHelper.medium,
-        color: context.colors.textPlaceHolder,
-      );
-  static TextStyle font12SecondarySemiBold(BuildContext context) => TextStyle(
+  TextStyle get font12TextSecondaryRegular => TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: context.colors.textSecondary,
+  );
+  TextStyle get font12TextPlaceHolderRegular => TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: context.colors.textPlaceHolder,
+  );
+  TextStyle get font12TextPlaceHolderMedium => TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: context.colors.textPlaceHolder,
+  );
+  TextStyle get font12SecondarySemiBold => TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.semiBold,
     color: context.colors.secondary,
   );
-  static TextStyle font12SecondaryBold(BuildContext context) => TextStyle(
+  TextStyle get font12SecondaryBold => TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.secondary,
   );
-  static TextStyle font12TextErrorBold(BuildContext context) => TextStyle(
+  TextStyle get font12TextErrorBold => TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.textError,
@@ -90,54 +88,52 @@ class AppTextStyles {
 
   // ------------ 14 sp ------------
 
-  static TextStyle font14SecondaryBold(BuildContext context) => TextStyle(
+  TextStyle get font14SecondaryBold => TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.secondary,
   );
-  static TextStyle font14PrimaryBold(BuildContext context) => TextStyle(
+  TextStyle get font14PrimaryBold => TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.primary,
   );
-  static TextStyle font14PrimaryRegular(BuildContext context) => TextStyle(
+  TextStyle get font14PrimaryRegular => TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.regular,
     color: context.colors.primary,
   );
-  static TextStyle font14WhiteBold(BuildContext context) => TextStyle(
+  TextStyle get font14WhiteBold => TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.bold,
     color: Colors.white,
   );
-  static TextStyle font14SecondarySemiBold(BuildContext context) => TextStyle(
+  TextStyle get font14SecondarySemiBold => TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.semiBold,
     color: context.colors.secondary,
   );
-  static TextStyle font14SecondaryMedium(BuildContext context) => TextStyle(
+  TextStyle get font14SecondaryMedium => TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.medium,
     color: context.colors.secondary,
   );
-  static TextStyle font14TextSecondaryRegular(BuildContext context) =>
-      TextStyle(
-        fontSize: 14.sp,
-        fontWeight: FontWeightHelper.regular,
-        color: context.colors.textSecondary,
-      );
-  static TextStyle font14TextPlaceHolderRegular(BuildContext context) =>
-      TextStyle(
-        fontSize: 14.sp,
-        fontWeight: FontWeightHelper.regular,
-        color: context.colors.textPlaceHolder,
-      );
-  static TextStyle font14TextPrimaryRegular(BuildContext context) => TextStyle(
+  TextStyle get font14TextSecondaryRegular => TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: context.colors.textSecondary,
+  );
+  TextStyle get font14TextPlaceHolderRegular => TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: context.colors.textPlaceHolder,
+  );
+  TextStyle get font14TextPrimaryRegular => TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.regular,
     color: context.colors.textPrimary,
   );
-  static TextStyle font14TextPrimaryBold(BuildContext context) => TextStyle(
+  TextStyle get font14TextPrimaryBold => TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.textPrimary,
@@ -145,23 +141,22 @@ class AppTextStyles {
 
   // ------------ 16 sp ------------
 
-  static TextStyle font16SecondaryMedium(BuildContext context) => TextStyle(
+  TextStyle get font16SecondaryMedium => TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.medium,
     color: context.colors.secondary,
   );
-  static TextStyle font16TextPlaceHolderMedium50Faded(BuildContext context) =>
-      TextStyle(
-        fontSize: 16.sp,
-        fontWeight: FontWeightHelper.medium,
-        color: context.colors.textPlaceHolder.withAlpha(125),
-      );
-  static TextStyle font16SecondaryBold(BuildContext context) => TextStyle(
+  TextStyle get font16TextPlaceHolderMedium50Faded => TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: context.colors.textPlaceHolder.withAlpha(125),
+  );
+  TextStyle get font16SecondaryBold => TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.secondary,
   );
-  static TextStyle font16WhiteBold(BuildContext context) => TextStyle(
+  TextStyle get font16WhiteBold => TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.bold,
     color: Colors.white,
@@ -169,12 +164,12 @@ class AppTextStyles {
 
   // ------------ 18 sp ------------
 
-  static TextStyle font18WhiteBold(BuildContext context) => TextStyle(
+  TextStyle get font18WhiteBold => TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.bold,
     color: Colors.white,
   );
-  static TextStyle font18TextPrimaryBold(BuildContext context) => TextStyle(
+  TextStyle get font18TextPrimaryBold => TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.textPrimary,
@@ -182,7 +177,7 @@ class AppTextStyles {
 
   // ------------ 20 sp ------------
 
-  static TextStyle font20TextPrimaryBold(BuildContext context) => TextStyle(
+  TextStyle get font20TextPrimaryBold => TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.textPrimary,
@@ -190,12 +185,12 @@ class AppTextStyles {
 
   // ------------ 24 sp ------------
 
-  static TextStyle font24TextPrimaryBold(BuildContext context) => TextStyle(
+  TextStyle get font24TextPrimaryBold => TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.textPrimary,
   );
-  static TextStyle font24PrimaryExtraBold(BuildContext context) => TextStyle(
+  TextStyle get font24PrimaryExtraBold => TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.extraBold,
     color: context.colors.primary,
@@ -203,33 +198,30 @@ class AppTextStyles {
 
   // ------------ 30 sp ------------
 
-  static TextStyle font30TextPrimaryExtraBold(BuildContext context) =>
-      TextStyle(
-        fontSize: 30.sp,
-        fontWeight: FontWeightHelper.extraBold,
-        color: context.colors.textPrimary,
-      );
+  TextStyle get font30TextPrimaryExtraBold => TextStyle(
+    fontSize: 30.sp,
+    fontWeight: FontWeightHelper.extraBold,
+    color: context.colors.textPrimary,
+  );
 
   // ------------ 36 sp ------------
 
-  static TextStyle font36TextPrimaryExtraBold(BuildContext context) =>
-      TextStyle(
-        fontSize: 36.sp,
-        fontWeight: FontWeightHelper.extraBold,
-        color: context.colors.textPrimary,
-      );
+  TextStyle get font36TextPrimaryExtraBold => TextStyle(
+    fontSize: 36.sp,
+    fontWeight: FontWeightHelper.extraBold,
+    color: context.colors.textPrimary,
+  );
 
   // ------------ 48 sp ------------
 
-  static TextStyle font48PrimaryExtraBold(BuildContext context) => TextStyle(
+  TextStyle get font48PrimaryExtraBold => TextStyle(
     fontSize: 48.sp,
     fontWeight: FontWeightHelper.extraBold,
     color: context.colors.primary,
   );
-  static TextStyle font48TextPrimaryExtraBold(BuildContext context) =>
-      TextStyle(
-        fontSize: 48.sp,
-        fontWeight: FontWeightHelper.extraBold,
-        color: context.colors.textPrimary,
-      );
+  TextStyle get font48TextPrimaryExtraBold => TextStyle(
+    fontSize: 48.sp,
+    fontWeight: FontWeightHelper.extraBold,
+    color: context.colors.textPrimary,
+  );
 }
