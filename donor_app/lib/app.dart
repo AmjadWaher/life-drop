@@ -1,6 +1,8 @@
 import 'package:donor_app/core/themes/app_theme.dart';
 import 'package:donor_app/features/splash/presentation/ui/splash_screen.dart';
+import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class App extends StatelessWidget {
@@ -16,8 +18,16 @@ class App extends StatelessWidget {
         return MaterialApp(
           theme: lightTheme(),
           darkTheme: darkTheme(),
+          supportedLocales: const [Locale('en'), Locale('ar')],
+          locale: const Locale('ar'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
           debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
+          home: const SplashScreen(),
         );
       },
     );
