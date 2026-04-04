@@ -1,4 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class WordmarkText extends StatelessWidget {
@@ -6,19 +7,33 @@ class WordmarkText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isArabic = AppLocalizations.of(context)!.localeName == 'ar';
+    final firstStyle = isArabic
+        ? context.textStyles.font48PrimaryExtraBold.copyWith(
+            letterSpacing: 2,
+            wordSpacing: -10,
+          )
+        : context.textStyles.font48TextPrimaryExtraBold.copyWith(
+            letterSpacing: 2,
+            wordSpacing: -10,
+          );
+    final secondStyle = isArabic
+        ? context.textStyles.font48TextPrimaryExtraBold.copyWith(
+            letterSpacing: 2,
+            wordSpacing: -10,
+          )
+        : context.textStyles.font48PrimaryExtraBold.copyWith(
+            letterSpacing: 1.2,
+          );
     return RichText(
+      textDirection: Directionality.of(context),
       text: TextSpan(
-        text: 'Life ',
-        style: context.textStyles.font48TextPrimaryExtraBold.copyWith(
-          letterSpacing: 2,
-          wordSpacing: -10,
-        ),
+        text: AppLocalizations.of(context)!.appFirstName,
+        style: firstStyle,
         children: [
           TextSpan(
-            text: 'Drop',
-            style: context.textStyles.font48PrimaryExtraBold.copyWith(
-              letterSpacing: 1.2,
-            ),
+            text: AppLocalizations.of(context)!.appLastName,
+            style: secondStyle,
           ),
         ],
       ),
