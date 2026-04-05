@@ -95,23 +95,23 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
-  /// No description provided for @appFirstName.
+  /// No description provided for @app_first_name.
   ///
   /// In en, this message translates to:
   /// **'Life'**
-  String get appFirstName;
+  String get app_first_name;
 
-  /// No description provided for @appLastName.
+  /// No description provided for @app_last_name.
   ///
   /// In en, this message translates to:
   /// **' Drop'**
-  String get appLastName;
+  String get app_last_name;
 
-  /// No description provided for @appTagline.
+  /// No description provided for @app_tagline.
   ///
   /// In en, this message translates to:
   /// **'LIFE IS IN YOUR BLOOD'**
-  String get appTagline;
+  String get app_tagline;
 
   /// No description provided for @splash_loading_text.
   ///
@@ -130,6 +130,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Built for Altruism'**
   String get app_build;
+
+  /// No description provided for @pulse.
+  ///
+  /// In en, this message translates to:
+  /// **'Pulse'**
+  String get pulse;
+
+  /// No description provided for @onboarding_title_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Save life with\nevery drop'**
+  String get onboarding_title_1;
+
+  /// No description provided for @onboarding_title_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved Donations'**
+  String get onboarding_title_2;
+
+  /// No description provided for @onboarding_title_3_part_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart'**
+  String get onboarding_title_3_part_1;
+
+  /// No description provided for @onboarding_title_3_part_2.
+  ///
+  /// In en, this message translates to:
+  /// **'\nNotifications'**
+  String get onboarding_title_3_part_2;
+
+  /// No description provided for @onboarding_subtitle_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Join a global network of altruistic heroes dedicated `to providing life-saving blood donations.'**
+  String get onboarding_subtitle_1;
+
+  /// No description provided for @onboarding_subtitle_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Every donation is clinically verified and tracked from your arm to the patient in need.'**
+  String get onboarding_subtitle_2;
+
+  /// No description provided for @onboarding_subtitle_3.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive instant alerts when your specific blood type is needed urgently in nearby hospitals.'**
+  String get onboarding_subtitle_3;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @get_started.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get get_started;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

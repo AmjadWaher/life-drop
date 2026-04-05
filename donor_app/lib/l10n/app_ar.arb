@@ -1,8 +1,18 @@
 {
-    "appFirstName": "قطرة ",
-    "appLastName": "حياة",
-    "appTagline": "الحياة تنبض في دمك",
+    "app_first_name": "قطرة ",
+    "app_last_name": "حياة",
+    "app_tagline": "الحياة تنبض في دمك",
     "splash_loading_text": "جار الآن المزامنة...",
     "app_version": "الإصدار",
-    "app_build": "صمم من أجل الإيثار"
+    "app_build": "صمم من أجل الإيثار",
+    "pulse": "نبض",
+    "onboarding_title_1": "أنقِذ حياة مع كل قطرة",
+    "onboarding_title_2": "تبرعات مُعتمدة",
+    "onboarding_title_3_part_1": "إشعارات ",
+    "onboarding_title_3_part_2": "ذكية",
+    "onboarding_subtitle_1": "انضم إلى شبكة عالمية من الأبطال المتطوعين لتقديم تبرعات دم تنقذ الحياة",
+    "onboarding_subtitle_2": "كل تبرع يتم التحقق منه طبيًا ويتم تتبعه من لحظة التبرع حتى وصوله للمريض المحتاج",
+    "onboarding_subtitle_3": "استقبل إشعارات فورية عند الحاجة العاجلة لفصيلة دمك في المستشفيات القريبة",
+    "next": "التالي",
+    "get_started": "ابدأ"
 }

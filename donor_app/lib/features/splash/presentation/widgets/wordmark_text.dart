@@ -28,11 +28,11 @@ class WordmarkText extends StatelessWidget {
     return RichText(
       textDirection: Directionality.of(context),
       text: TextSpan(
-        text: AppLocalizations.of(context)!.appFirstName,
+        text: AppLocalizations.of(context)!.app_first_name,
         style: firstStyle,
         children: [
           TextSpan(
-            text: AppLocalizations.of(context)!.appLastName,
+            text: AppLocalizations.of(context)!.app_last_name,
             style: secondStyle,
           ),
         ],

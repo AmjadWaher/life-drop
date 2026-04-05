@@ -211,6 +211,11 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.extraBold,
     color: context.colors.textPrimary,
   );
+  TextStyle get font36PrimaryExtraBold => TextStyle(
+    fontSize: 36.sp,
+    fontWeight: FontWeightHelper.extraBold,
+    color: context.colors.primary,
+  );
 
   // ------------ 48 sp ------------
 
