@@ -58,7 +58,7 @@ class AppColors extends ThemeExtension<AppColors> {
     secondary: Color(0xFF98CDF2),
     background: Color(0xFF0B0E11),
     errorContainer: Color(0x66410007),
-    surface: Color(0xFF282D35),
+    surface: Color(0xFF33353A),
     mode: Color(0xFF0C0F12),
     tertiary: Color(0xFF2A9D8F),
     neutral: Color(0xFF121212),

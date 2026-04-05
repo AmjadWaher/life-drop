@@ -8,7 +8,7 @@ class TaglineText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      AppLocalizations.of(context)!.appTagline,
+      AppLocalizations.of(context)!.app_tagline,
       style: context.textStyles.font14SecondaryBold.copyWith(
         letterSpacing: 2.8,
       ),

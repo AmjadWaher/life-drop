@@ -1,8 +1,18 @@
 {
-    "appFirstName": "Life",
-    "appLastName": " Drop",
-    "appTagline": "LIFE IS IN YOUR BLOOD",
+    "app_first_name": "Life",
+    "app_last_name": " Drop",
+    "app_tagline": "LIFE IS IN YOUR BLOOD",
     "splash_loading_text": "INITIALIZING SYNC...",
     "app_version": "Version",
-    "app_build": "Built for Altruism"
+    "app_build": "Built for Altruism",
+    "pulse": "Pulse",
+    "onboarding_title_1": "Save life with\nevery drop",
+    "onboarding_title_2": "Approved Donations",
+    "onboarding_title_3_part_1": "Smart",
+    "onboarding_title_3_part_2": "\nNotifications",
+    "onboarding_subtitle_1": "Join a global network of altruistic heroes dedicated `to providing life-saving blood donations.",
+    "onboarding_subtitle_2": "Every donation is clinically verified and tracked from your arm to the patient in need.",
+    "onboarding_subtitle_3": "Receive instant alerts when your specific blood type is needed urgently in nearby hospitals.",
+    "next": "Next",
+    "get_started": "Get Started"
 }
