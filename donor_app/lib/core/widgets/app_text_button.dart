@@ -14,6 +14,7 @@ class AppTextButton extends StatelessWidget {
     this.buttonWidth,
     this.buttonHeight,
     required this.onPressed,
+    this.isLoading = false,
   });
   final String buttonText;
   final double? horizontalPadding;
@@ -24,11 +25,12 @@ class AppTextButton extends StatelessWidget {
   final double? buttonWidth;
   final double? buttonHeight;
   final VoidCallback onPressed;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: onPressed,
+      onPressed: isLoading ? null : onPressed,
       style: ButtonStyle(
         padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
           EdgeInsets.symmetric(
@@ -46,10 +48,21 @@ class AppTextButton extends StatelessWidget {
           ),
         ),
         fixedSize: WidgetStateProperty.all<Size>(
-          Size(buttonWidth ?? double.maxFinite, buttonHeight ?? 68.h),
+          Size(buttonWidth ?? double.maxFinite, buttonHeight ?? 56.h),
         ),
       ),
-      child: Text(buttonText, style: textStyle),
+      child: isLoading
+          ? SizedBox(
+              height: 20.h,
+              width: 20.w,
+              child: CircularProgressIndicator(
+                strokeWidth: 2.w,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  textStyle.color ?? Colors.white,
+                ),
+              ),
+            )
+          : Text(buttonText, style: textStyle),
     );
   }
 }

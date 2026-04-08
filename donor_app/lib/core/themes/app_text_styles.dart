@@ -156,6 +156,11 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.bold,
     color: context.colors.secondary,
   );
+  TextStyle get font16TextPrimaryBold => TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: context.colors.textPrimary,
+  );
   TextStyle get font16WhiteBold => TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.bold,
@@ -173,6 +178,11 @@ class AppTextStyles {
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.textPrimary,
+  );
+  TextStyle get font18PrimaryBold => TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: context.colors.primary,
   );
 
   // ------------ 20 sp ------------

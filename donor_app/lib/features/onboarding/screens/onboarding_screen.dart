@@ -23,6 +23,7 @@ class OnboardingScreen extends StatelessWidget {
       child: Column(
         key: ValueKey(index),
         children: [
+          verticalSpace(20),
           OnboardingImage(image: image),
           verticalSpace(38),
           OnboardingTextContent(title: title, subtitle: subtitle, index: index),

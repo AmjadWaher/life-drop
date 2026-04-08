@@ -55,4 +55,88 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get get_started => 'ابدأ';
+
+  @override
+  String get login => 'تسجيل الدخول';
+
+  @override
+  String get welcome_back => 'مرحبًا بعودتك، جاهز لإنقاذ حياة؟';
+
+  @override
+  String get email => 'البريد الإلكتروني';
+
+  @override
+  String get password => 'كلمة المرور';
+
+  @override
+  String get register_now => 'سجل الآن';
+
+  @override
+  String get forgot_password => 'نسيت كلمة المرور؟';
+
+  @override
+  String get new_donor => 'متبرع جديد؟';
+
+  @override
+  String get register => 'تسجيل';
+
+  @override
+  String get become_donor => 'كن متبرعًا ينقذ الحياة';
+
+  @override
+  String get first_name => 'الاسم الأول';
+
+  @override
+  String get last_name => 'الاسم الأخير';
+
+  @override
+  String get confirm_password => 'تأكيد كلمة المرور';
+
+  @override
+  String get new_password => 'كلمة السر الجديدة';
+
+  @override
+  String get phone_number => 'رقم الهاتف';
+
+  @override
+  String get select_blood_type => 'اختر فصيلة الدم';
+
+  @override
+  String get already_have_an_account => 'هل لديك حساب بالفعل؟';
+
+  @override
+  String get forgot_password_subtitle => 'أدخل بريدك الإلكتروني أو رقم هاتفك المسجّل وسنرسل لك رمز تحقق.';
+
+  @override
+  String get back_to_login => 'العودة إلى تسجيل الدخول';
+
+  @override
+  String get send_otp => 'إرسال رمز التحقق';
+
+  @override
+  String get otp_verification => 'تأكيد رمز التحقق';
+
+  @override
+  String get otp_subtitle => 'تم إرسال رمز مكوّن من 6 أرقام إلى جهازك. أدخله للمتابعة.';
+
+  @override
+  String get verify_continue => 'تحقق وتابع';
+
+  @override
+  String get reset_password => 'تغيير كلمة السر';
+
+  @override
+  String get reset_subtitle => 'Ensure your new password is at least 8 characters long with clinical precision.';
+
+  @override
+  String get update_password => 'تحديث كلمة المرور';
+
+  @override
+  String get resend_code => 'لم تستلم الرمز؟';
+
+  @override
+  String get resend_timer => 'إعادة الإرسال بعد';
+
+  @override
+  String get required => 'مطلوب';
 }

@@ -1,4 +1,6 @@
+import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/resources/image_paths.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
@@ -44,6 +46,13 @@ class _OnboardingViewState extends State<OnboardingView> {
   ];
 
   @override
+  void dispose() {
+    _controller.dispose();
+    pageIndexNotifier.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -52,7 +61,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           child: Column(
             children: [
               const OnboardingHeader(),
-              verticalSpace(100),
+              verticalSpace(90),
               Expanded(
                 child: PageView(
                   controller: _controller,
@@ -91,6 +100,9 @@ class _OnboardingViewState extends State<OnboardingView> {
                         duration: const Duration(milliseconds: 400),
                         curve: Curves.easeInOut,
                       );
+                      if (pageIndexNotifier.value == 2) {
+                        SharedPrefHelper.setData(SharedPrefKeys.isFirst, false);
+                      }
                     },
                   );
                 },

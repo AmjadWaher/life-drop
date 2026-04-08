@@ -55,4 +55,88 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get get_started => 'Get Started';
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get welcome_back => 'WELCOME BACK, READY TO SAVE LIFE?';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get register_now => 'Register Now';
+
+  @override
+  String get forgot_password => 'Forgot Password?';
+
+  @override
+  String get new_donor => 'New Donor?';
+
+  @override
+  String get register => 'Register';
+
+  @override
+  String get become_donor => 'BECOME A LIFE-SAVING DONOR';
+
+  @override
+  String get first_name => 'First Name';
+
+  @override
+  String get last_name => 'Last Name';
+
+  @override
+  String get confirm_password => 'Confirm Password';
+
+  @override
+  String get new_password => 'New Password';
+
+  @override
+  String get phone_number => 'Phone Number';
+
+  @override
+  String get select_blood_type => 'SELECT BLOOD TYPE';
+
+  @override
+  String get already_have_an_account => 'Already have an account?';
+
+  @override
+  String get forgot_password_subtitle => 'Enter your registered email or phone number toreceive a verification code.';
+
+  @override
+  String get back_to_login => 'Back to Login';
+
+  @override
+  String get send_otp => 'Send OTP';
+
+  @override
+  String get otp_verification => 'OTP Verification';
+
+  @override
+  String get otp_subtitle => 'We\'ve sent a 6-digit code to your registered device. Enter it below to continue.';
+
+  @override
+  String get verify_continue => 'Verify & Continue';
+
+  @override
+  String get reset_password => 'Reset Password';
+
+  @override
+  String get reset_subtitle => 'Ensure your new password is at least 8 characters long with clinical precision.';
+
+  @override
+  String get update_password => 'Update Password';
+
+  @override
+  String get resend_code => 'Didn\'t receive code?';
+
+  @override
+  String get resend_timer => 'Resend in';
+
+  @override
+  String get required => 'REQUIRED';
 }

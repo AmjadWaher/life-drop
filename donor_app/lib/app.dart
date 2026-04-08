@@ -1,13 +1,14 @@
+import 'package:donor_app/core/routing/app_router.dart';
 import 'package:donor_app/core/themes/app_theme.dart';
-import 'package:donor_app/features/onboarding/screens/onboarding_view.dart';
-import 'package:donor_app/features/splash/presentation/screens/splash_screen.dart';
+import 'package:donor_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({super.key, required this.appRouter});
+  final AppRouter appRouter;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,9 @@ class App extends StatelessWidget {
         return MaterialApp(
           theme: lightTheme(),
           darkTheme: darkTheme(),
+          onGenerateRoute: appRouter.generateRoute,
           supportedLocales: const [Locale('en'), Locale('ar')],
-          locale: const Locale('ar'),
+          locale: const Locale('en'),
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -28,7 +30,7 @@ class App extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           debugShowCheckedModeBanner: false,
-          home: const OnboardingView(),
+          home: const LoginScreen(),
         );
       },
     );

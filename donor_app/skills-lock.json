@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "skills": {
+    "flutter-animating-apps": {
+      "source": "flutter/skills",
+      "sourceType": "github",
+      "computedHash": "217700e356dae9e3624a54543aa366aca3871aa3c0368856156715e211aeac4c"
+    },
+    "flutter-architecting-apps": {
+      "source": "flutter/skills",
+      "sourceType": "github",
+      "computedHash": "8d4c005971a6dc098557a5511cfd683de25aa88cb595c5bc8b306168c35bc7ab"
+    },
+    "flutter-bloc-development": {
+      "source": "abdelhakrazi/flutter-bloc-clean-architecture-skill",
+      "sourceType": "github",
+      "computedHash": "8ccbd47b4da6e192c6d49c52c7097ba1fcd06dca5e12fe3eddd43419cecd2354"
+    },
+    "flutter-managing-state": {
+      "source": "flutter/skills",
+      "sourceType": "github",
+      "computedHash": "14b60303535c07f900097f2054613f0835668f202c289b0429446aba28941576"
+    },
+    "flutter-testing-apps": {
+      "source": "flutter/skills",
+      "sourceType": "github",
+      "computedHash": "beb1d2de3a34745a13c066f06316150e5ab647f45922d5e5d86ee9c6c47c6cb4"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "516bd2154eb843a8240e43d5b285229129853114ad7075a5e141e1c08e408c84"
+    }
+  }
+}

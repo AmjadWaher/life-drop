@@ -190,6 +190,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Get Started'**
   String get get_started;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @welcome_back.
+  ///
+  /// In en, this message translates to:
+  /// **'WELCOME BACK, READY TO SAVE LIFE?'**
+  String get welcome_back;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @register_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Register Now'**
+  String get register_now;
+
+  /// No description provided for @forgot_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get forgot_password;
+
+  /// No description provided for @new_donor.
+  ///
+  /// In en, this message translates to:
+  /// **'New Donor?'**
+  String get new_donor;
+
+  /// No description provided for @register.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get register;
+
+  /// No description provided for @become_donor.
+  ///
+  /// In en, this message translates to:
+  /// **'BECOME A LIFE-SAVING DONOR'**
+  String get become_donor;
+
+  /// No description provided for @first_name.
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get first_name;
+
+  /// No description provided for @last_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get last_name;
+
+  /// No description provided for @confirm_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirm_password;
+
+  /// No description provided for @new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get new_password;
+
+  /// No description provided for @phone_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phone_number;
+
+  /// No description provided for @select_blood_type.
+  ///
+  /// In en, this message translates to:
+  /// **'SELECT BLOOD TYPE'**
+  String get select_blood_type;
+
+  /// No description provided for @already_have_an_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get already_have_an_account;
+
+  /// No description provided for @forgot_password_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your registered email or phone number toreceive a verification code.'**
+  String get forgot_password_subtitle;
+
+  /// No description provided for @back_to_login.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Login'**
+  String get back_to_login;
+
+  /// No description provided for @send_otp.
+  ///
+  /// In en, this message translates to:
+  /// **'Send OTP'**
+  String get send_otp;
+
+  /// No description provided for @otp_verification.
+  ///
+  /// In en, this message translates to:
+  /// **'OTP Verification'**
+  String get otp_verification;
+
+  /// No description provided for @otp_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ve sent a 6-digit code to your registered device. Enter it below to continue.'**
+  String get otp_subtitle;
+
+  /// No description provided for @verify_continue.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify & Continue'**
+  String get verify_continue;
+
+  /// No description provided for @reset_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get reset_password;
+
+  /// No description provided for @reset_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ensure your new password is at least 8 characters long with clinical precision.'**
+  String get reset_subtitle;
+
+  /// No description provided for @update_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Password'**
+  String get update_password;
+
+  /// No description provided for @resend_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t receive code?'**
+  String get resend_code;
+
+  /// No description provided for @resend_timer.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend in'**
+  String get resend_timer;
+
+  /// No description provided for @required.
+  ///
+  /// In en, this message translates to:
+  /// **'REQUIRED'**
+  String get required;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
