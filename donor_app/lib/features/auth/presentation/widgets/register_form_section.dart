@@ -4,7 +4,7 @@ import 'package:donor_app/core/resources/image_paths.dart';
 import 'package:donor_app/core/widgets/app_images.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:donor_app/features/auth/presentation/widgets/blood_type_selector.dart';
-import 'package:donor_app/features/auth/presentation/widgets/horizontal_Field.dart';
+import 'package:donor_app/features/auth/presentation/widgets/horizontal_field.dart';
 import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
