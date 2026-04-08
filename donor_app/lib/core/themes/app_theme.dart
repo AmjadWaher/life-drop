@@ -11,20 +11,24 @@ ThemeData lightTheme() {
     inputDecorationTheme: InputDecorationTheme(
       fillColor: colors.surface,
       filled: true,
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(width: 1, color: colors.neutral),
+      ),
       prefixIconConstraints: BoxConstraints(
         maxHeight: 40.h,
         maxWidth: 40.w,
-        minHeight: 30.h,
-        minWidth: 30.w,
+        minHeight: 16.h,
+        minWidth: 16.w,
       ),
+      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 18.h),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: colors.textError, width: 2),
+        borderSide: BorderSide(color: colors.textError.withAlpha(76), width: 1),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: colors.secondary, width: 2),
+        borderSide: BorderSide(color: colors.secondary.withAlpha(76), width: 1),
       ),
     ),
   );
@@ -39,20 +43,24 @@ ThemeData darkTheme() {
     inputDecorationTheme: InputDecorationTheme(
       fillColor: colors.surface,
       filled: true,
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(width: 1, color: colors.neutral),
+      ),
       prefixIconConstraints: BoxConstraints(
         maxHeight: 40.h,
         maxWidth: 40.w,
-        minHeight: 30.h,
-        minWidth: 30.w,
+        minHeight: 16.h,
+        minWidth: 16.w,
       ),
+      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 18.h),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: colors.textError, width: 2),
+        borderSide: BorderSide(color: colors.textError.withAlpha(76), width: 1),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: colors.secondary, width: 2),
+        borderSide: BorderSide(color: colors.secondary.withAlpha(76), width: 1),
       ),
     ),
   );

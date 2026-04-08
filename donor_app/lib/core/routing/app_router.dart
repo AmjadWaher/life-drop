@@ -1,11 +1,39 @@
+import 'package:donor_app/core/routing/routes.dart';
+import 'package:donor_app/features/auth/presentation/screens/forgot_password_screen.dart';
+import 'package:donor_app/features/auth/presentation/screens/login_screen.dart';
+import 'package:donor_app/features/auth/presentation/screens/otp_verification_screen.dart';
+import 'package:donor_app/features/auth/presentation/screens/register_screen.dart';
+import 'package:donor_app/features/auth/presentation/screens/reset_password_screen.dart';
+import 'package:donor_app/features/onboarding/screens/onboarding_view.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings setting) {
-    // This arguments to be passed in any screen like this (arguments as ClassName)
-    final arguments = setting.arguments;
-
     switch (setting.name) {
+      case Routes.onboarding:
+        return MaterialPageRoute(builder: (context) => const OnboardingView());
+      case Routes.login:
+        return MaterialPageRoute(builder: (context) => const LoginScreen());
+      case Routes.register:
+        return MaterialPageRoute(builder: (context) => const RegisterScreen());
+      case Routes.forgotPassword:
+        return MaterialPageRoute(
+          builder: (context) => const ForgotPasswordScreen(),
+        );
+      case Routes.otpVerification:
+        return MaterialPageRoute(
+          builder: (context) => const OTPVerificationScreen(),
+        );
+      case Routes.resetPassword:
+        return MaterialPageRoute(
+          builder: (context) => const ResetPasswordScreen(),
+        );
+      case Routes.home:
+        return MaterialPageRoute(
+          builder: (context) => const Scaffold(
+            body: Center(child: Text('Home Screen - To be implemented')),
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

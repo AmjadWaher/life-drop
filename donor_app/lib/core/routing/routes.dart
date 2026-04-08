@@ -1,1 +1,9 @@
-class Routes {}
+class Routes {
+  static const String onboarding = '/onboarding';
+  static const String login = '/login';
+  static const String register = '/register';
+  static const String forgotPassword = '/forgot-password';
+  static const String otpVerification = '/otp-verification';
+  static const String resetPassword = '/reset-password';
+  static const String home = '/home';
+}

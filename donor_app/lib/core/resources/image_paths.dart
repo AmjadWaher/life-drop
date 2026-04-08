@@ -26,4 +26,5 @@ class ImagePaths {
   static const String secureIcon = '$_svgBase/secure-icon.svg';
   static const String splashLogoDark = '$_svgBase/splash-logo-dark.svg';
   static const String splashLogoLight = '$_svgBase/splash-logo-light.svg';
+  static const String atSign = '$_svgBase/at-sign.svg';
 }
