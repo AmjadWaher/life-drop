@@ -5,7 +5,6 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color primary;
   final Color secondary;
   final Color background;
-  final Color errorContainer;
   final Color surface;
   final Color mode;
   final Color tertiary;
@@ -22,7 +21,6 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.primary,
     required this.secondary,
     required this.background,
-    required this.errorContainer,
     required this.surface,
     required this.mode,
     required this.tertiary,
@@ -40,14 +38,13 @@ class AppColors extends ThemeExtension<AppColors> {
     primary: Color(0xFFB7102A),
     secondary: Color(0xFF2B6485),
     background: Color(0xFFF7F9FE),
-    errorContainer: Color(0xFFFFDAD6),
     surface: Color(0xFFDFE3E8),
     mode: Color(0xFFFFFFFF),
     tertiary: Color(0xFFA8DADC),
     neutral: Color(0xFFF1F4F9),
     textPrimary: Color(0xFF181C20),
     textSecondary: Color(0xFF5B403F),
-    textError: Color(0xFF93000A),
+    textError: Color(0xFFFFDAD6),
     textPlaceHolder: Color(0x7D8F6F6E),
     iconActive: Color(0xFFE63946),
     iconInactive: Color(0xFF181C20),
@@ -57,7 +54,6 @@ class AppColors extends ThemeExtension<AppColors> {
     primary: Color(0xFFB7102A),
     secondary: Color(0xFF98CDF2),
     background: Color(0xFF0B0E11),
-    errorContainer: Color(0x66410007),
     surface: Color(0xFF33353A),
     mode: Color(0xFF0C0F12),
     tertiary: Color(0xFF2A9D8F),
@@ -76,7 +72,6 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? primary,
     Color? secondary,
     Color? background,
-    Color? errorContainer,
     Color? surface,
     Color? mode,
     Color? neutral,
@@ -93,7 +88,6 @@ class AppColors extends ThemeExtension<AppColors> {
       primary: primary ?? this.primary,
       secondary: secondary ?? this.secondary,
       background: background ?? this.background,
-      errorContainer: errorContainer ?? this.errorContainer,
       surface: surface ?? this.surface,
       mode: mode ?? this.mode,
       neutral: neutral ?? this.neutral,
@@ -118,7 +112,6 @@ class AppColors extends ThemeExtension<AppColors> {
     return AppColors(
       primary: Color.lerp(primary, other.primary, t)!,
       secondary: Color.lerp(secondary, other.secondary, t)!,
-      errorContainer: Color.lerp(errorContainer, other.errorContainer, t)!,
       surface: Color.lerp(surface, other.surface, t)!,
       mode: Color.lerp(mode, other.mode, t)!,
       neutral: Color.lerp(neutral, other.neutral, t)!,

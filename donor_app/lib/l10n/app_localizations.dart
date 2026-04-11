@@ -341,17 +341,23 @@ abstract class AppLocalizations {
   /// **'Update Password'**
   String get update_password;
 
-  /// No description provided for @resend_code.
+  /// No description provided for @didnt_receive_code.
   ///
   /// In en, this message translates to:
   /// **'Didn\'t receive code?'**
-  String get resend_code;
+  String get didnt_receive_code;
 
   /// No description provided for @resend_timer.
   ///
   /// In en, this message translates to:
   /// **'Resend in'**
   String get resend_timer;
+
+  /// No description provided for @resend_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend again'**
+  String get resend_again;
 
   /// No description provided for @required.
   ///

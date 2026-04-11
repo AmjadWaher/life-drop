@@ -132,10 +132,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get update_password => 'تحديث كلمة المرور';
 
   @override
-  String get resend_code => 'لم تستلم الرمز؟';
+  String get didnt_receive_code => 'لم تستلم الرمز؟';
 
   @override
   String get resend_timer => 'إعادة الإرسال بعد';
+
+  @override
+  String get resend_again => 'إعادة الإرسال';
 
   @override
   String get required => 'مطلوب';

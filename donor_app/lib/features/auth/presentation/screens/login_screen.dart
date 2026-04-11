@@ -1,5 +1,6 @@
 import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
@@ -25,6 +26,20 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
   AppLocalizations get localizations => AppLocalizations.of(context)!;
 
+  String? validateEmail(String email) {
+    if (email.isEmpty) return 'Email is required.';
+    if (!email.isValidEmail) return 'Invalid email.';
+    return null;
+  }
+
+  String? validatePassword(String password) {
+    if (password.isEmpty) return 'Password is required.';
+    if (!password.isValidPassword) {
+      return "Password must be more than 8 chars, include upper, lower, number, symbol, no spaces.";
+    }
+    return null;
+  }
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -39,16 +54,29 @@ class _LoginScreenState extends State<LoginScreen> {
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.status == AuthStatus.success) {
-            context.pushNamedAndRemoveUntil(
-              Routes.home,
-              predicate: (route) => false,
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+              snackBar(
+                context,
+                content: 'Success',
+                backgroundColor: Colors.green.withAlpha(150),
+              ),
             );
+            // context.pushNamedAndRemoveUntil(
+            //   Routes.home,
+            //   predicate: (route) => false,
+            // );
           } else if (state.status == AuthStatus.failure &&
               state.error != null) {
+            ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.error!.getAllErrorMessages()),
-                backgroundColor: Colors.red,
+              snackBar(
+                context,
+                icon: Icons.error_outline,
+                content:
+                    state.error?.getAllErrorMessages() ??
+                    'Something went wrong',
+                iconColor: context.colors.iconActive,
               ),
             );
           }
@@ -83,12 +111,30 @@ class _LoginScreenState extends State<LoginScreen> {
                             textStyle: context.textStyles.font16TextPrimaryBold,
                             isLoading: state.status == AuthStatus.loading,
                             onPressed: () {
-                              if (_emailController.text.trim().isNotEmpty &&
-                                  _passwordController.text.trim().isNotEmpty) {}
-                              // context.read<AuthCubit>().login(
-                              //   _emailController.text.trim(),
-                              //   _passwordController.text,
-                              // );
+                              final email = _emailController.text.trim();
+                              final password = _passwordController.text.trim();
+
+                              final emailError = validateEmail(email);
+                              final passwordError = validatePassword(password);
+                              if (emailError == null && passwordError == null) {
+                                context.read<AuthCubit>().login(
+                                  _emailController.text.trim(),
+                                  _passwordController.text.trim(),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).clearSnackBars();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  snackBar(
+                                    context,
+                                    icon: Icons.error_outline,
+                                    content:
+                                        emailError ??
+                                        passwordError ??
+                                        'Something went wrong',
+                                    iconColor: context.colors.iconActive,
+                                  ),
+                                );
+                              }
                             },
                           ),
                           verticalSpace(15),

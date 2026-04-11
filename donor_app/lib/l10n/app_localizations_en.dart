@@ -132,10 +132,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get update_password => 'Update Password';
 
   @override
-  String get resend_code => 'Didn\'t receive code?';
+  String get didnt_receive_code => 'Didn\'t receive code?';
 
   @override
   String get resend_timer => 'Resend in';
+
+  @override
+  String get resend_again => 'Resend again';
 
   @override
   String get required => 'REQUIRED';

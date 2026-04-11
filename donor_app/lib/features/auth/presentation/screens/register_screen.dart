@@ -1,8 +1,10 @@
 import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
+import 'package:donor_app/features/auth/domain/params/register_params.dart';
 import 'package:donor_app/features/auth/presentation/logic/auth_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/auth_state.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_switch_section.dart';
@@ -29,6 +31,53 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _phoneNumberController = TextEditingController();
   final _selectedBloodType = ValueNotifier<String?>(null);
 
+  bool validRegister() {
+    final firstName = _firstNameController.text.trim();
+    final lastName = _lastNameController.text.trim();
+    final email = _emailController.text.trim();
+    final phone = _phoneNumberController.text.trim();
+    final password = _passwordController.text;
+    final confirmPassword = _confirmPasswordController.text;
+
+    String? error;
+
+    if (firstName.isEmpty) {
+      error = "First name is required";
+    } else if (lastName.isEmpty) {
+      error = "Last name is required";
+    } else if (email.isEmpty) {
+      error = "Email is required";
+    } else if (!email.isValidEmail) {
+      error = "Invalid email";
+    } else if (phone.isEmpty) {
+      error = "Phone is required";
+    } else if (password.isEmpty) {
+      error = "Password is required";
+    } else if (!password.isValidPassword) {
+      error = "Weak password";
+    } else if (confirmPassword.isEmpty) {
+      error = "Confirm password is required";
+    } else if (password != confirmPassword) {
+      error = "Passwords do not match";
+    } else if (_selectedBloodType.value == null) {
+      error = "Select blood type";
+    }
+
+    if (error != null) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        snackBar(
+          context,
+          icon: Icons.error_outline,
+          content: error,
+          iconColor: context.colors.iconActive,
+        ),
+      );
+      return false;
+    }
+    return true;
+  }
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -47,13 +96,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.status == AuthStatus.success) {
-            context.pushNamed(Routes.otpVerification, arguments: state.email);
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+              snackBar(
+                context,
+                icon: Icons.info_outline,
+                content: 'Account created successfully',
+                backgroundColor: Colors.green.withAlpha(100),
+              ),
+            );
+
+            context.pushNamed(
+              Routes.otpVerification,
+              arguments: {
+                'email': _emailController.text,
+                'isFromRegister': true,
+              },
+            );
           } else if (state.status == AuthStatus.failure &&
               state.error != null) {
+            ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.error!.getAllErrorMessages()),
-                backgroundColor: Colors.red,
+              snackBar(
+                context,
+                content: state.error!.getAllErrorMessages(),
+                icon: Icons.error_outline,
               ),
             );
           }
@@ -98,18 +165,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           textStyle: context.textStyles.font16TextPrimaryBold,
                           isLoading: state.status == AuthStatus.loading,
                           onPressed: () {
-                            // context.read<AuthCubit>().register(
-                            //   RegisterParams(
-                            //     firstName: _firstNameController.text.trim(),
-                            //     lastName: _lastNameController.text.trim(),
-                            //     email: _emailController.text.trim(),
-                            //     phone: _phoneNumberController.text.trim(),
-                            //     password: _passwordController.text,
-                            //     confirmPassword:
-                            //         _confirmPasswordController.text,
-                            //     bloodType: _selectedBloodType!,
-                            //   ),
-                            // );
+                            if (validRegister()) {
+                              context.read<AuthCubit>().register(
+                                RegisterParams(
+                                  firstName: _firstNameController.text.trim(),
+                                  lastName: _lastNameController.text.trim(),
+                                  email: _emailController.text.trim(),
+                                  phone: _phoneNumberController.text.trim(),
+                                  password: _passwordController.text,
+                                  confirmPassword:
+                                      _confirmPasswordController.text,
+                                  bloodType: _selectedBloodType.value!,
+                                ),
+                              );
+                            }
                           },
                         ),
                         verticalSpace(15),
