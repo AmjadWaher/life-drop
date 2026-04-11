@@ -1,5 +1,6 @@
 import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
@@ -24,18 +25,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final _confirmPasswordController = TextEditingController();
   final _newPasswordNotifier = ValueNotifier(true);
   final _confirmPasswordNotifier = ValueNotifier(true);
-  String? _email;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final args = ModalRoute.of(context)?.settings.arguments;
-      if (args is Map<String, dynamic>) {
-        _email = args['email'] as String?;
-      }
-    });
-  }
 
   @override
   void dispose() {
@@ -53,10 +42,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.status == AuthStatus.success) {
+            ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Password updated successfully'),
-                backgroundColor: Colors.green,
+              snackBar(
+                context,
+                content: 'Password updated successfully',
+                backgroundColor: Colors.green.withAlpha(150),
               ),
             );
             context.pushNamedAndRemoveUntil(
@@ -65,10 +56,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             );
           } else if (state.status == AuthStatus.failure &&
               state.error != null) {
+            ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.error!.getAllErrorMessages()),
-                backgroundColor: Colors.red,
+              snackBar(
+                context,
+                content: state.error!.getAllErrorMessages(),
+                icon: Icons.error_outline,
               ),
             );
           }
@@ -157,18 +150,19 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       onPressed: () {
                         if (_newPasswordController.text !=
                             _confirmPasswordController.text) {
+                          ScaffoldMessenger.of(context).clearSnackBars();
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Passwords do not match'),
-                              backgroundColor: Colors.red,
+                            snackBar(
+                              context,
+                              content: 'Passwords do not match',
+                              icon: Icons.error_outline,
                             ),
                           );
                           return;
                         }
-                        // context.read<AuthCubit>().resetPassword(
-                        //   _email ?? '',
-                        //   _newPasswordController.text,
-                        // );
+                        context.read<AuthCubit>().resetPassword(
+                          _newPasswordController.text,
+                        );
                       },
                     ),
                   ],

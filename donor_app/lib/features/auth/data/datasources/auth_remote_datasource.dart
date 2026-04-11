@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:donor_app/core/networking/api_constants.dart';
+import 'package:donor_app/core/networking/api_response.dart';
 import 'package:donor_app/core/networking/api_result.dart';
 import 'package:donor_app/core/networking/api_error_handler.dart';
 import '../../domain/params/register_params.dart';
@@ -9,73 +11,72 @@ class AuthRemoteDataSource {
 
   AuthRemoteDataSource(this._dio);
 
-  Future<ApiResult<UserModel>> login(String email, String password) async {
+  Future<ApiResult<ApiResponse<UserModel>>> login(
+    String email,
+    String password,
+  ) async {
     try {
       final response = await _dio.post(
-        '/auth/login',
+        ApiConstants.login,
         data: {'email': email, 'password': password},
       );
-      final user = UserModel.fromJson(response.data['user']);
-      return ApiResult.success(user);
-    } catch (e) {
-      return ApiResult.failure(ApiErrorHandler.handle(e));
-    }
-  }
-
-  Future<ApiResult<UserModel>> register(RegisterParams params) async {
-    try {
-      final response = await _dio.post('/auth/register', data: params.toJson());
-      final user = UserModel.fromJson(response.data['user']);
-      return ApiResult.success(user);
-    } catch (e) {
-      return ApiResult.failure(ApiErrorHandler.handle(e));
-    }
-  }
-
-  Future<ApiResult<void>> verifyOtpForRegister(String email, String otp) async {
-    try {
-      await _dio.post(
-        '/auth/verify-register-otp',
-        data: {'email': email, 'otp': otp},
+      final user = ApiResponse<UserModel>.fromJson(
+        response.data,
+        (json) => UserModel.fromJson(json as Map<String, dynamic>),
       );
-      return ApiResult.success(null);
+      return ApiResult.success(user);
     } catch (e) {
       return ApiResult.failure(ApiErrorHandler.handle(e));
     }
   }
 
-  Future<ApiResult<void>> sendOtpForForgotPassword(String email) async {
+  Future<ApiResult<ApiResponse<void>>> register(RegisterParams params) async {
     try {
-      await _dio.post('/auth/forgot-password/send-otp', data: {'email': email});
-      return ApiResult.success(null);
+      final response = await _dio.post(
+        ApiConstants.register,
+        data: params.toJson(),
+      );
+      final data = ApiResponse.fromJson(response.data, (json) => null);
+      return ApiResult.success(data);
     } catch (e) {
       return ApiResult.failure(ApiErrorHandler.handle(e));
     }
   }
 
-  Future<ApiResult<void>> verifyOtpForForgotPassword(
+  Future<ApiResult<ApiResponse<void>>> verifyOtp(
     String email,
     String otp,
   ) async {
     try {
-      await _dio.post(
-        '/auth/forgot-password/verify-otp',
+      final response = await _dio.post(
+        ApiConstants.verifyOtp,
         data: {'email': email, 'otp': otp},
       );
-      return ApiResult.success(null);
+      final data = ApiResponse.fromJson(response.data, (json) => null);
+      return ApiResult.success(data);
     } catch (e) {
       return ApiResult.failure(ApiErrorHandler.handle(e));
     }
   }
 
-  Future<ApiResult<void>> resetPassword(
-    String email,
-    String newPassword,
-  ) async {
+  Future<ApiResult<ApiResponse<void>>> sendOtp(String email) async {
+    try {
+      final response = await _dio.post(
+        ApiConstants.sendOtp,
+        data: {'email': email},
+      );
+      final data = ApiResponse.fromJson(response.data, (json) => null);
+      return ApiResult.success(data);
+    } catch (e) {
+      return ApiResult.failure(ApiErrorHandler.handle(e));
+    }
+  }
+
+  Future<ApiResult<void>> resetPassword(String newPassword) async {
     try {
       await _dio.post(
-        '/auth/forgot-password/reset',
-        data: {'email': email, 'password': newPassword},
+        ApiConstants.resetPassword,
+        data: {'new_password': newPassword},
       );
       return ApiResult.success(null);
     } catch (e) {

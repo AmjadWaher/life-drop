@@ -21,42 +21,55 @@ class AuthRepositoryImpl implements AuthRepository {
     final result = await _remoteDataSource.login(email, password);
     return result.when(
       success: (user) async {
-        await _cacheUser(user);
-        return ApiResult.success(user);
+        await _cacheUser(user.data);
+        return ApiResult.success(user.data);
       },
       failure: (error) => ApiResult.failure(error),
     );
   }
 
   @override
-  Future<ApiResult<UserEntity>> register(RegisterParams params) async {
-    return await _remoteDataSource.register(params);
+  Future<ApiResult<void>> register(RegisterParams params) async {
+    final result = await _remoteDataSource.register(params);
+    return result.when(
+      success: (response) async {
+        return ApiResult.success(response.data);
+      },
+      failure: (error) => ApiResult.failure(error),
+    );
   }
 
   @override
-  Future<ApiResult<void>> verifyOtpForRegister(String email, String otp) async {
-    return await _remoteDataSource.verifyOtpForRegister(email, otp);
+  Future<ApiResult<void>> verifyOtp(String email, String otp) async {
+    final result = await _remoteDataSource.verifyOtp(email, otp);
+    return result.when(
+      success: (response) async {
+        return ApiResult.success(null);
+      },
+      failure: (error) => ApiResult.failure(error),
+    );
   }
 
   @override
-  Future<ApiResult<void>> sendOtpForForgotPassword(String email) async {
-    return await _remoteDataSource.sendOtpForForgotPassword(email);
+  Future<ApiResult<void>> sendOtp(String email) async {
+    final result = await _remoteDataSource.sendOtp(email);
+    return result.when(
+      success: (response) async {
+        return ApiResult.success(null);
+      },
+      failure: (error) => ApiResult.failure(error),
+    );
   }
 
   @override
-  Future<ApiResult<void>> verifyOtpForForgotPassword(
-    String email,
-    String otp,
-  ) async {
-    return await _remoteDataSource.verifyOtpForForgotPassword(email, otp);
-  }
-
-  @override
-  Future<ApiResult<void>> resetPassword(
-    String email,
-    String newPassword,
-  ) async {
-    return await _remoteDataSource.resetPassword(email, newPassword);
+  Future<ApiResult<void>> resetPassword(String newPassword) async {
+    final result = await _remoteDataSource.resetPassword(newPassword);
+    return result.when(
+      success: (response) async {
+        return ApiResult.success(null);
+      },
+      failure: (error) => ApiResult.failure(error),
+    );
   }
 
   @override

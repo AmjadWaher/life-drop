@@ -1,5 +1,6 @@
 import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/resources/image_paths.dart';
 import 'package:donor_app/core/routing/routes.dart';
@@ -37,6 +38,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.status == AuthStatus.success) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+              snackBar(
+                context,
+                content: 'Verification code has been sent.',
+                backgroundColor: Colors.green.withAlpha(150),
+              ),
+            );
             context.pushNamed(
               Routes.otpVerification,
               arguments: {
@@ -46,10 +55,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             );
           } else if (state.status == AuthStatus.failure &&
               state.error != null) {
+            ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.error!.getAllErrorMessages()),
-                backgroundColor: Colors.red,
+              snackBar(
+                context,
+                content: state.error!.getAllErrorMessages(),
+                icon: Icons.error_outline,
               ),
             );
           }
@@ -92,10 +103,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       textStyle: context.textStyles.font16TextPrimaryBold,
                       isLoading: state.status == AuthStatus.loading,
                       onPressed: () {
-                        // context.read<AuthCubit>().sendOtpForForgotPassword(
-                        //   _emailController.text.trim(),
-                        // );
-                        context.pushNamed(Routes.otpVerification);
+                        context.read<AuthCubit>().sendOtp(
+                          _emailController.text.trim(),
+                        );
                       },
                     ),
                     verticalSpace(30),

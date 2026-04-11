@@ -1,10 +1,19 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'register_params.g.dart';
+
+@JsonSerializable()
 class RegisterParams {
+  @JsonKey(name: 'first_name')
   final String firstName;
+  @JsonKey(name: 'last_name')
   final String lastName;
   final String email;
+  @JsonKey(name: 'phone_number')
   final String phone;
   final String password;
+  @JsonKey(name: 'confirm_password')
   final String confirmPassword;
+  @JsonKey(name: 'blood_type')
   final String bloodType;
 
   const RegisterParams({
@@ -17,13 +26,5 @@ class RegisterParams {
     required this.bloodType,
   });
 
-  Map<String, dynamic> toJson() => {
-    'first_name': firstName,
-    'last_name': lastName,
-    'email': email,
-    'phone': phone,
-    'password': password,
-    'password_confirmation': confirmPassword,
-    'blood_type': bloodType,
-  };
+  Map<String, dynamic> toJson() => _$RegisterParamsToJson(this);
 }

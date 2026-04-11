@@ -37,3 +37,12 @@ extension Navigation on BuildContext {
 
   void pop() => Navigator.of(this).pop();
 }
+
+extension Validations on String {
+  bool get isValidEmail =>
+      RegExp(r'^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]+$').hasMatch(this);
+
+  bool get isValidPassword => RegExp(
+    r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9])(?=\S+$).{8,}$',
+  ).hasMatch(this);
+}

@@ -40,7 +40,8 @@
     "reset_password": "تغيير كلمة السر",
     "reset_subtitle": "Ensure your new password is at least 8 characters long with clinical precision.",
     "update_password": "تحديث كلمة المرور",
-    "resend_code": "لم تستلم الرمز؟",
+    "didnt_receive_code": "لم تستلم الرمز؟",
     "resend_timer": "إعادة الإرسال بعد",
+    "resend_again": "إعادة الإرسال",
     "required": "مطلوب"
 }

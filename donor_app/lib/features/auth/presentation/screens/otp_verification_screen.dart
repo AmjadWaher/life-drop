@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
@@ -15,7 +16,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPVerificationScreen extends StatefulWidget {
-  const OTPVerificationScreen({super.key});
+  const OTPVerificationScreen({
+    super.key,
+    required this.email,
+    this.isFromRegister = true,
+  });
+  final String email;
+  final bool isFromRegister;
 
   @override
   State<OTPVerificationScreen> createState() => _OTPVerificationScreenState();
@@ -25,20 +32,11 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   final _pinController = PinInputController();
   final _timerNotifier = ValueNotifier(60);
   late Timer _timer;
-  String? _email;
-  bool _isFromRegister = true;
 
   @override
   void initState() {
     super.initState();
     _startTimer();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final args = ModalRoute.of(context)?.settings.arguments;
-      if (args is Map<String, dynamic>) {
-        _email = args['email'] as String?;
-        _isFromRegister = args['isFromRegister'] as bool? ?? true;
-      }
-    });
   }
 
   void _startTimer() {
@@ -65,24 +63,35 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
       create: (_) => getIt<AuthCubit>(),
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state.status == AuthStatus.success) {
-            if (_isFromRegister) {
+          if (state.status == AuthStatus.success &&
+              state.action == AuthAction.verifyOtp) {
+            if (widget.isFromRegister) {
+              ScaffoldMessenger.of(context).clearSnackBars();
+              ScaffoldMessenger.of(context).showSnackBar(
+                snackBar(
+                  context,
+                  content: 'Account has been verified successfully.',
+                  backgroundColor: Colors.green.withAlpha(150),
+                ),
+              );
               context.pushNamedAndRemoveUntil(
-                Routes.home,
+                Routes.login,
                 predicate: (route) => false,
               );
             } else {
               context.pushNamed(
                 Routes.resetPassword,
-                arguments: {'email': _email},
+                arguments: {'email': widget.email},
               );
             }
           } else if (state.status == AuthStatus.failure &&
               state.error != null) {
+            ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.error!.getAllErrorMessages()),
-                backgroundColor: Colors.red,
+              snackBar(
+                context,
+                content: state.error!.getAllErrorMessages(),
+                icon: Icons.error_outline,
               ),
             );
           }
@@ -138,11 +147,28 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                         final min = (value ~/ 60).toString().padLeft(2, '0');
                         final sec = (value % 60).toString().padLeft(2, '0');
                         return AuthSwitchSection(
-                          text: AppLocalizations.of(context)!.resend_code,
+                          text: AppLocalizations.of(
+                            context,
+                          )!.didnt_receive_code,
                           actionText: value > 0
                               ? '${AppLocalizations.of(context)!.resend_timer}: $min:$sec'
-                              : AppLocalizations.of(context)!.resend_code,
-                          onTap: () {},
+                              : AppLocalizations.of(context)!.resend_again,
+                          onTap: () {
+                            if (value == 0) {
+                              _timerNotifier.value = 60;
+                              _startTimer();
+                              ScaffoldMessenger.of(context).clearSnackBars();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                snackBar(
+                                  context,
+                                  content:
+                                      'Verification code has been sent again.',
+                                  backgroundColor: Colors.green.withAlpha(150),
+                                ),
+                              );
+                              context.read<AuthCubit>().sendOtp(widget.email);
+                            }
+                          },
                         );
                       },
                     ),
@@ -157,10 +183,6 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   }
 
   void _verifyOtp(BuildContext context, String otp) {
-    if (_isFromRegister) {
-      // context.read<AuthCubit>().verifyOtpForRegister(_email ?? '', otp);
-    } else {
-      // context.read<AuthCubit>().verifyOtpForForgotPassword(_email ?? '', otp);
-    }
+    context.read<AuthCubit>().verifyOtp(widget.email, otp);
   }
 }

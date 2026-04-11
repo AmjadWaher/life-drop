@@ -19,7 +19,7 @@ class AuthCubit extends Cubit<AuthState> {
           final userResult = await _authRepository.getCurrentUser();
           userResult.when(
             success: (user) =>
-                emit(state.copyWith(status: AuthStatus.success, user: user)),
+                emit(state.copyWith(status: AuthStatus.success, data: user)),
             failure: (error) =>
                 emit(state.copyWith(status: AuthStatus.failure, error: error)),
           );
@@ -33,33 +33,43 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> login(String email, String password) async {
-    emit(state.copyWith(status: AuthStatus.loading, email: email));
+    emit(
+      state.copyWith(
+        status: AuthStatus.loading,
+        action: AuthAction.login,
+        email: email,
+      ),
+    );
 
     final result = await _authRepository.login(email, password);
     result.when(
       success: (user) =>
-          emit(state.copyWith(status: AuthStatus.success, user: user)),
+          emit(state.copyWith(status: AuthStatus.success, data: user)),
       failure: (error) =>
           emit(state.copyWith(status: AuthStatus.failure, error: error)),
     );
   }
 
   Future<void> register(RegisterParams params) async {
-    emit(state.copyWith(status: AuthStatus.loading));
+    emit(
+      state.copyWith(status: AuthStatus.loading, action: AuthAction.register),
+    );
 
     final result = await _authRepository.register(params);
     result.when(
-      success: (user) =>
-          emit(state.copyWith(status: AuthStatus.success, user: user)),
+      success: (data) =>
+          emit(state.copyWith(status: AuthStatus.success, data: null)),
       failure: (error) =>
           emit(state.copyWith(status: AuthStatus.failure, error: error)),
     );
   }
 
-  Future<void> verifyOtpForRegister(String email, String otp) async {
-    emit(state.copyWith(status: AuthStatus.loading));
+  Future<void> verifyOtp(String email, String otp) async {
+    emit(
+      state.copyWith(status: AuthStatus.loading, action: AuthAction.verifyOtp),
+    );
 
-    final result = await _authRepository.verifyOtpForRegister(email, otp);
+    final result = await _authRepository.verifyOtp(email, otp);
     result.when(
       success: (_) => emit(state.copyWith(status: AuthStatus.success)),
       failure: (error) =>
@@ -67,10 +77,16 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  Future<void> sendOtpForForgotPassword(String email) async {
-    emit(state.copyWith(status: AuthStatus.loading, email: email));
+  Future<void> sendOtp(String email) async {
+    emit(
+      state.copyWith(
+        status: AuthStatus.loading,
+        email: email,
+        action: AuthAction.none,
+      ),
+    );
 
-    final result = await _authRepository.sendOtpForForgotPassword(email);
+    final result = await _authRepository.sendOtp(email);
     result.when(
       success: (_) => emit(state.copyWith(status: AuthStatus.success)),
       failure: (error) =>
@@ -78,21 +94,10 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  Future<void> verifyOtpForForgotPassword(String email, String otp) async {
+  Future<void> resetPassword(String newPassword) async {
     emit(state.copyWith(status: AuthStatus.loading));
 
-    final result = await _authRepository.verifyOtpForForgotPassword(email, otp);
-    result.when(
-      success: (_) => emit(state.copyWith(status: AuthStatus.success)),
-      failure: (error) =>
-          emit(state.copyWith(status: AuthStatus.failure, error: error)),
-    );
-  }
-
-  Future<void> resetPassword(String email, String newPassword) async {
-    emit(state.copyWith(status: AuthStatus.loading));
-
-    final result = await _authRepository.resetPassword(email, newPassword);
+    final result = await _authRepository.resetPassword(newPassword);
     result.when(
       success: (_) => emit(state.copyWith(status: AuthStatus.success)),
       failure: (error) =>

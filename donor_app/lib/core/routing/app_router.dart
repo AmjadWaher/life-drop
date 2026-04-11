@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings setting) {
+    final args = setting.arguments;
     switch (setting.name) {
       case Routes.onboarding:
         return MaterialPageRoute(builder: (context) => const OnboardingView());
@@ -22,7 +23,10 @@ class AppRouter {
         );
       case Routes.otpVerification:
         return MaterialPageRoute(
-          builder: (context) => const OTPVerificationScreen(),
+          builder: (context) => OTPVerificationScreen(
+            email: (args as Map<String, dynamic>)['email'] as String,
+            isFromRegister: args['isFromRegister'] as bool,
+          ),
         );
       case Routes.resetPassword:
         return MaterialPageRoute(
