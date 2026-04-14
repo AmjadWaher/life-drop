@@ -142,4 +142,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get required => 'مطلوب';
+
+  @override
+  String get quick_login => 'تسجيل دخول سريع';
+
+  @override
+  String get enable_biometric_login_message => 'استخدم بصمتك لتسجيل دخول أسرع وأكثر أمانًا في المرة القادمة';
+
+  @override
+  String get accounts => 'الحسابات';
 }

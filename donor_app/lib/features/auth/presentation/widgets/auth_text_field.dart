@@ -13,6 +13,7 @@ class AuthTextField extends StatelessWidget {
     this.suffixIcon,
     this.obscureText = false,
     required this.controller,
+    this.onTap,
   });
   final String hintText;
   final String title;
@@ -22,6 +23,7 @@ class AuthTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool obscureText;
   final TextEditingController controller;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class AuthTextField extends StatelessWidget {
         Text(title, style: titleStyle),
         verticalSpace(8),
         TextField(
+          onTap: onTap,
           obscureText: obscureText,
           controller: controller,
           decoration: InputDecoration(

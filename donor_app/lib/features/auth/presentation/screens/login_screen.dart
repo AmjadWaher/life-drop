@@ -1,5 +1,9 @@
 import 'package:donor_app/core/di/injection_container.dart';
+import 'package:donor_app/core/helpers/account_storage_helper.dart';
+import 'package:donor_app/core/helpers/biometric_helper.dart';
+import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/routing/routes.dart';
@@ -40,6 +44,27 @@ class _LoginScreenState extends State<LoginScreen> {
     return null;
   }
 
+  void _biometricLogin() async {
+    final isEnabled = await SharedPrefHelper.getBool(
+      SharedPrefKeys.biometricEnabled,
+    );
+    if (!isEnabled) return;
+
+    final success = await BiometricHelper().authenticate(
+      'Authenticate to Login',
+    );
+
+    if (success) {
+      if (mounted) context.pushReplacementNamed(Routes.home);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _biometricLogin();
+  }
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -62,10 +87,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 backgroundColor: Colors.green.withAlpha(150),
               ),
             );
-            // context.pushNamedAndRemoveUntil(
-            //   Routes.home,
-            //   predicate: (route) => false,
-            // );
+            AccountStorageHelper().addAccount(
+              _emailController.text,
+              _passwordController.text,
+            );
+            context.pushNamedAndRemoveUntil(
+              Routes.home,
+              predicate: (route) => false,
+            );
           } else if (state.status == AuthStatus.failure &&
               state.error != null) {
             ScaffoldMessenger.of(context).clearSnackBars();

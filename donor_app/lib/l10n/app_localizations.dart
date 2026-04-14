@@ -364,6 +364,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'REQUIRED'**
   String get required;
+
+  /// No description provided for @quick_login.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Login'**
+  String get quick_login;
+
+  /// No description provided for @enable_biometric_login_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Use your fingerprint for faster and secure login next time'**
+  String get enable_biometric_login_message;
+
+  /// No description provided for @accounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Accounts'**
+  String get accounts;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,8 +1,12 @@
+import 'dart:developer';
+
+import 'package:donor_app/core/helpers/account_storage_helper.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/resources/image_paths.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_images.dart';
+import 'package:donor_app/features/auth/presentation/widgets/accounts_sheet.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +27,36 @@ class LoginFormSection extends StatefulWidget {
 class _LoginFormSectionState extends State<LoginFormSection> {
   final passwordNotifier = ValueNotifier(true);
 
+  AppLocalizations get localizations => AppLocalizations.of(context)!;
+
+  void _autoFillFields() async {
+    final accounts = await AccountStorageHelper().getAccounts();
+
+    if (!mounted) return;
+
+    if (accounts.isNotEmpty) {
+      FocusScope.of(context).unfocus();
+      showModalBottomSheet(
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        backgroundColor: context.colors.background,
+        builder: (context) {
+          return AccountsSheet(
+            accounts: accounts,
+            onTap: (email, password) {
+              widget.emailController.text = email;
+              widget.passwordController.text = password;
+              context.pop();
+              FocusScope.of(context).unfocus();
+            },
+          );
+        },
+      );
+    }
+  }
+
   @override
   void dispose() {
     passwordNotifier.dispose();
@@ -36,7 +70,7 @@ class _LoginFormSectionState extends State<LoginFormSection> {
       children: [
         AuthTextField(
           controller: widget.emailController,
-          title: AppLocalizations.of(context)!.email,
+          title: localizations.email,
           titleStyle: context.textStyles.font12SecondaryBold,
           hintText: 'donor@pulse.com',
           prefixIcon: AppImages(
@@ -45,6 +79,14 @@ class _LoginFormSectionState extends State<LoginFormSection> {
             color: context.colors.textPlaceHolder,
           ),
           hintTextStyle: context.textStyles.font16TextPlaceHolderMedium50Faded,
+          onTap: () {
+            if (widget.emailController.text.isEmpty) {
+              Future.delayed(const Duration(milliseconds: 300), () {
+                FocusScope.of(context).unfocus();
+                _autoFillFields();
+              });
+            }
+          },
         ),
         verticalSpace(24),
         ValueListenableBuilder(
@@ -53,7 +95,7 @@ class _LoginFormSectionState extends State<LoginFormSection> {
             return AuthTextField(
               obscureText: value,
               controller: widget.passwordController,
-              title: AppLocalizations.of(context)!.password,
+              title: localizations.password,
               titleStyle: context.textStyles.font12SecondaryBold,
               hintText: '••••••••',
               prefixIcon: Icon(
@@ -82,7 +124,7 @@ class _LoginFormSectionState extends State<LoginFormSection> {
               context.pushNamed(Routes.forgotPassword);
             },
             child: Text(
-              AppLocalizations.of(context)!.forgot_password,
+              localizations.forgot_password,
               style: context.textStyles.font12SecondarySemiBold,
             ),
           ),

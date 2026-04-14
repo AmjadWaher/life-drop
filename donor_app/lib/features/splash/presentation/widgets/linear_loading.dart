@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LinearLoading extends StatelessWidget {
-  const LinearLoading({super.key});
+  const LinearLoading({super.key, required this.value});
+  final double value;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class LinearLoading extends StatelessWidget {
           ).createShader(bounds);
         },
         child: LinearProgressIndicator(
-          value: 0.5,
+          value: value,
           backgroundColor: Colors.transparent,
           minHeight: 6.h,
           borderRadius: BorderRadius.circular(30),

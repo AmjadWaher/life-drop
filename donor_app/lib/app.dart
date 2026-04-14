@@ -1,6 +1,9 @@
 import 'package:donor_app/core/routing/app_router.dart';
 import 'package:donor_app/core/themes/app_theme.dart';
-import 'package:donor_app/features/auth/presentation/screens/login_screen.dart';
+import 'package:donor_app/features/home/presentation/screens/home_screen.dart';
+// import 'package:donor_app/features/auth/presentation/screens/login_screen.dart';
+// import 'package:donor_app/features/home/presentation/screens/home_screen.dart';
+import 'package:donor_app/features/splash/presentation/screens/splash_screen.dart';
 import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -30,7 +33,7 @@ class App extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           debugShowCheckedModeBanner: false,
-          home: const LoginScreen(),
+          home: const SplashScreen(),
         );
       },
     );

@@ -142,4 +142,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get required => 'REQUIRED';
+
+  @override
+  String get quick_login => 'Quick Login';
+
+  @override
+  String get enable_biometric_login_message => 'Use your fingerprint for faster and secure login next time';
+
+  @override
+  String get accounts => 'Accounts';
 }
