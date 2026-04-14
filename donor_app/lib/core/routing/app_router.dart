@@ -4,6 +4,7 @@ import 'package:donor_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/register_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/reset_password_screen.dart';
+import 'package:donor_app/features/home/presentation/screens/home_screen.dart';
 import 'package:donor_app/features/onboarding/screens/onboarding_view.dart';
 import 'package:flutter/material.dart';
 
@@ -33,11 +34,7 @@ class AppRouter {
           builder: (context) => const ResetPasswordScreen(),
         );
       case Routes.home:
-        return MaterialPageRoute(
-          builder: (context) => const Scaffold(
-            body: Center(child: Text('Home Screen - To be implemented')),
-          ),
-        );
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

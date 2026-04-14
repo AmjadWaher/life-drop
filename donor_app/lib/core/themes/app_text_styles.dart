@@ -70,6 +70,7 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.medium,
     color: context.colors.textPlaceHolder,
   );
+
   TextStyle get font12SecondarySemiBold => TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.semiBold,
@@ -79,6 +80,11 @@ class AppTextStyles {
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.bold,
     color: context.colors.secondary,
+  );
+  TextStyle get font12TextPrimaryMedium => TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: context.colors.textPrimary,
   );
   TextStyle get font12TextErrorBold => TextStyle(
     fontSize: 12.sp,
@@ -136,6 +142,19 @@ class AppTextStyles {
   TextStyle get font14TextPrimaryBold => TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.bold,
+    color: context.colors.textPrimary,
+  );
+  TextStyle get font14TextPrimaryMedium => TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: context.colors.textPrimary,
+  );
+
+  // ------------ 15 sp ------------
+
+  TextStyle get font15TextPrimaryRegular => TextStyle(
+    fontSize: 15.sp,
+    fontWeight: FontWeightHelper.regular,
     color: context.colors.textPrimary,
   );
 

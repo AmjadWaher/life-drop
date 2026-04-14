@@ -1,3 +1,5 @@
+import 'package:donor_app/core/helpers/constants.dart';
+import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/networking/api_result.dart';
 import 'package:donor_app/features/auth/domain/params/register_params.dart';
 import 'package:donor_app/features/auth/domain/repositories/auth_repository.dart';
@@ -71,7 +73,10 @@ class AuthCubit extends Cubit<AuthState> {
 
     final result = await _authRepository.verifyOtp(email, otp);
     result.when(
-      success: (_) => emit(state.copyWith(status: AuthStatus.success)),
+      success: (_) {
+        SharedPrefHelper.setData(SharedPrefKeys.isLoggedIn, true);
+        emit(state.copyWith(status: AuthStatus.success));
+      },
       failure: (error) =>
           emit(state.copyWith(status: AuthStatus.failure, error: error)),
     );

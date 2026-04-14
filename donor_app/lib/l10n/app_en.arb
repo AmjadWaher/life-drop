@@ -43,5 +43,12 @@
     "didnt_receive_code": "Didn't receive code?",
     "resend_timer": "Resend in",
     "resend_again": "Resend again",
-    "required": "REQUIRED"
+    "required": "REQUIRED",
+    "quick_login": "Quick Login",
+    "enable_biometric_login_message": "Use your fingerprint for faster and secure login next time",
+    "accounts": "Accounts",
+    "authenticate_to_login": "Authenticate to Login",
+    "use_fingerprint_for_quick_secure_login": "Use your fingerprint to login quickly and securely",
+    "enable": "Enable",
+    "skip": "Skip"
 }

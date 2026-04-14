@@ -3,6 +3,7 @@ import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/resources/image_paths.dart';
+import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
 import 'package:donor_app/features/onboarding/screens/onboarding_screen.dart';
 import 'package:donor_app/features/onboarding/widgets/onboarding_header.dart';
@@ -101,7 +102,11 @@ class _OnboardingViewState extends State<OnboardingView> {
                         curve: Curves.easeInOut,
                       );
                       if (pageIndexNotifier.value == 2) {
-                        SharedPrefHelper.setData(SharedPrefKeys.isFirst, false);
+                        SharedPrefHelper.setData(
+                          SharedPrefKeys.hasSeenOnboarding,
+                          true,
+                        );
+                        context.pushReplacementNamed(Routes.login);
                       }
                     },
                   );

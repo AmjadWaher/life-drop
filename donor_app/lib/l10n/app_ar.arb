@@ -43,5 +43,12 @@
     "didnt_receive_code": "لم تستلم الرمز؟",
     "resend_timer": "إعادة الإرسال بعد",
     "resend_again": "إعادة الإرسال",
-    "required": "مطلوب"
+    "required": "مطلوب",
+    "quick_login": "تسجيل دخول سريع",
+    "enable_biometric_login_message": "استخدم بصمتك لتسجيل دخول أسرع وأكثر أمانًا في المرة القادمة",
+    "accounts": "الحسابات",
+    "authenticate_to_login": "المصادقة لتسجيل الدخول",
+    "use_fingerprint_for_quick_secure_login": "استخدم بصمتك لتسجيل الدخول بسرعة وأمان",
+    "enable": "تفعيل",
+    "skip": "تخطي"
 }
