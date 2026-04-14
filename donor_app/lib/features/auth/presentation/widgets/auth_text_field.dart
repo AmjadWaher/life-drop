@@ -14,6 +14,7 @@ class AuthTextField extends StatelessWidget {
     this.obscureText = false,
     required this.controller,
     this.onTap,
+    this.focusNode,
   });
   final String hintText;
   final String title;
@@ -24,6 +25,7 @@ class AuthTextField extends StatelessWidget {
   final bool obscureText;
   final TextEditingController controller;
   final void Function()? onTap;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class AuthTextField extends StatelessWidget {
         verticalSpace(8),
         TextField(
           onTap: onTap,
+          focusNode: focusNode,
           obscureText: obscureText,
           controller: controller,
           decoration: InputDecoration(

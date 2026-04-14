@@ -77,6 +77,19 @@ class AuthRemoteDataSource {
       );
       final data = ApiResponse.fromJson(response.data, (json) => null);
       return ApiResult.success(data);
+    } on DioException catch (e, stack) {
+      final error = ApiErrorHandler.handle(e);
+
+      FirebaseCrashlytics.instance.log("""
+      VerifyOTP API ERROR:
+      Endpoint: 'verifyOtp'
+      Status: ${error.code}
+      Errors: ${error.getAllErrorMessages()}
+      """);
+
+      FirebaseCrashlytics.instance.recordError(e, stack);
+
+      return ApiResult.failure(error);
     } catch (e, stack) {
       final error = ApiErrorHandler.handle(e);
 
