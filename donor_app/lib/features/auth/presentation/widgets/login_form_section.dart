@@ -24,6 +24,7 @@ class LoginFormSection extends StatefulWidget {
 
 class _LoginFormSectionState extends State<LoginFormSection> {
   final passwordNotifier = ValueNotifier(true);
+  final _emailFocusNode = FocusNode(canRequestFocus: false);
 
   AppLocalizations get localizations => AppLocalizations.of(context)!;
 
@@ -33,7 +34,6 @@ class _LoginFormSectionState extends State<LoginFormSection> {
     if (!mounted) return;
 
     if (accounts.isNotEmpty) {
-      FocusScope.of(context).unfocus();
       showModalBottomSheet(
         context: context,
         shape: const RoundedRectangleBorder(
@@ -58,6 +58,7 @@ class _LoginFormSectionState extends State<LoginFormSection> {
   @override
   void dispose() {
     passwordNotifier.dispose();
+    _emailFocusNode.dispose();
     super.dispose();
   }
 
@@ -68,6 +69,7 @@ class _LoginFormSectionState extends State<LoginFormSection> {
       children: [
         AuthTextField(
           controller: widget.emailController,
+          focusNode: _emailFocusNode,
           title: localizations.email,
           titleStyle: context.textStyles.font12SecondaryBold,
           hintText: 'donor@pulse.com',
@@ -77,14 +79,7 @@ class _LoginFormSectionState extends State<LoginFormSection> {
             color: context.colors.textPlaceHolder,
           ),
           hintTextStyle: context.textStyles.font16TextPlaceHolderMedium50Faded,
-          onTap: () {
-            if (widget.emailController.text.isEmpty) {
-              Future.delayed(const Duration(milliseconds: 300), () {
-                FocusScope.of(context).unfocus();
-                _autoFillFields();
-              });
-            }
-          },
+          onTap: _autoFillFields,
         ),
         verticalSpace(24),
         ValueListenableBuilder(
