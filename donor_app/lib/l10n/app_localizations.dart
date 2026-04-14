@@ -382,6 +382,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Accounts'**
   String get accounts;
+
+  /// No description provided for @authenticate_to_login.
+  ///
+  /// In en, this message translates to:
+  /// **'Authenticate to Login'**
+  String get authenticate_to_login;
+
+  /// No description provided for @use_fingerprint_for_quick_secure_login.
+  ///
+  /// In en, this message translates to:
+  /// **'Use your fingerprint to login quickly and securely'**
+  String get use_fingerprint_for_quick_secure_login;
+
+  /// No description provided for @enable.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable'**
+  String get enable;
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

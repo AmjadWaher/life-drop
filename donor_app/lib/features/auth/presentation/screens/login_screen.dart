@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!isEnabled) return;
 
     final success = await BiometricHelper().authenticate(
-      'Authenticate to Login',
+      localizations.authenticate_to_login,
     );
 
     if (success) {

@@ -151,4 +151,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get accounts => 'Accounts';
+
+  @override
+  String get authenticate_to_login => 'Authenticate to Login';
+
+  @override
+  String get use_fingerprint_for_quick_secure_login => 'Use your fingerprint to login quickly and securely';
+
+  @override
+  String get enable => 'Enable';
+
+  @override
+  String get skip => 'Skip';
 }
