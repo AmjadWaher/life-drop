@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
 
     if (success) {
-      if (mounted) context.pushReplacementNamed(Routes.home);
+      if (mounted) context.pushReplacementNamed(Routes.mainNavigation);
     }
   }
 
@@ -79,20 +79,12 @@ class _LoginScreenState extends State<LoginScreen> {
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.status == AuthStatus.success) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-              snackBar(
-                context,
-                content: 'Success',
-                backgroundColor: Colors.green.withAlpha(150),
-              ),
-            );
             AccountStorageHelper().addAccount(
               _emailController.text,
               _passwordController.text,
             );
             context.pushNamedAndRemoveUntil(
-              Routes.home,
+              Routes.mainNavigation,
               predicate: (route) => false,
             );
           } else if (state.status == AuthStatus.failure &&

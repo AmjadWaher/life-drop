@@ -7,7 +7,7 @@ extension ThemeExtension on BuildContext {
 }
 
 extension TextStyleExtension on BuildContext {
-  AppTextStyles get textStyles => AppTextStyles(this);
+  AppTextStyles get textStyles => AppTextStyles(colors);
 }
 
 extension ModeExtension on BuildContext {
