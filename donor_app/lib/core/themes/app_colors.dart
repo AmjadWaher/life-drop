@@ -40,7 +40,7 @@ class AppColors extends ThemeExtension<AppColors> {
     primary: Color(0xFFB7102A),
     secondary: Color(0xFF2B6485),
     background: Color(0xFFF7F9FE),
-    navigationBar: Color(0xFFF7F9FE),
+    navigationBar: Color(0xFFFFFFFF),
     surface: Color(0xFFDFE3E8),
     mode: Color(0xFFFFFFFF),
     tertiary: Color(0xFFA8DADC),
