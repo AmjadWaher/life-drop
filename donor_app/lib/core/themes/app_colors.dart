@@ -5,6 +5,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color primary;
   final Color secondary;
   final Color background;
+  final Color navigationBar;
   final Color surface;
   final Color mode;
   final Color tertiary;
@@ -21,6 +22,7 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.primary,
     required this.secondary,
     required this.background,
+    required this.navigationBar,
     required this.surface,
     required this.mode,
     required this.tertiary,
@@ -38,6 +40,7 @@ class AppColors extends ThemeExtension<AppColors> {
     primary: Color(0xFFB7102A),
     secondary: Color(0xFF2B6485),
     background: Color(0xFFF7F9FE),
+    navigationBar: Color(0xFFFFFFFF),
     surface: Color(0xFFDFE3E8),
     mode: Color(0xFFFFFFFF),
     tertiary: Color(0xFFA8DADC),
@@ -47,13 +50,14 @@ class AppColors extends ThemeExtension<AppColors> {
     textError: Color(0xFFFFDAD6),
     textPlaceHolder: Color(0x7D8F6F6E),
     iconActive: Color(0xFFE63946),
-    iconInactive: Color(0xFF181C20),
+    iconInactive: Color(0xFF64748B),
     iconActiveBackground: Color(0xFFFFDAD8),
   );
   factory AppColors.dark() => const AppColors(
     primary: Color(0xFFB7102A),
     secondary: Color(0xFF98CDF2),
     background: Color(0xFF0B0E11),
+    navigationBar: Color(0xFF0F172A),
     surface: Color(0xFF33353A),
     mode: Color(0xFF0C0F12),
     tertiary: Color(0xFF2A9D8F),
@@ -72,6 +76,7 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? primary,
     Color? secondary,
     Color? background,
+    Color? navigationBar,
     Color? surface,
     Color? mode,
     Color? neutral,
@@ -88,6 +93,7 @@ class AppColors extends ThemeExtension<AppColors> {
       primary: primary ?? this.primary,
       secondary: secondary ?? this.secondary,
       background: background ?? this.background,
+      navigationBar: navigationBar ?? this.navigationBar,
       surface: surface ?? this.surface,
       mode: mode ?? this.mode,
       neutral: neutral ?? this.neutral,
@@ -128,6 +134,7 @@ class AppColors extends ThemeExtension<AppColors> {
         t,
       )!,
       background: Color.lerp(background, other.background, t)!,
+      navigationBar: Color.lerp(navigationBar, other.navigationBar, t)!,
     );
   }
 }

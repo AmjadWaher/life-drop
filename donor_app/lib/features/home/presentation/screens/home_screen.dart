@@ -5,7 +5,8 @@ import 'package:donor_app/features/home/presentation/widgets/biometric_sheet.dar
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.index});
+  final int index;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -37,6 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Home Screen')));
+    return Scaffold(body: Center(child: Text(widget.index.toString())));
   }
 }
