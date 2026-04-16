@@ -1,0 +1,69 @@
+import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/helpers/spacing.dart';
+import 'package:donor_app/l10n/app_localizations.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class DonationSummary extends StatelessWidget {
+  const DonationSummary({super.key, required this.totalDonations});
+  final String totalDonations;
+
+  String donationsCount(BuildContext context, int count) {
+    if (count >= 3 && count <= 10) {
+      return AppLocalizations.of(context)!.tens_donation;
+    }
+    return AppLocalizations.of(context)!.donations;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: context.colors.neutral,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            right: -25.w,
+            bottom: -28.h,
+            child: Icon(
+              Icons.favorite,
+              size: 120,
+              color: Colors.grey.withAlpha(51),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
+            child: Column(
+              crossAxisAlignment: .start,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.total_contributions,
+                  style: context.textStyles.font12PrimaryBold.copyWith(
+                    letterSpacing: 0.6,
+                  ),
+                ),
+                verticalSpace(8),
+                RichText(
+                  text: TextSpan(
+                    text: totalDonations,
+                    style: context.textStyles.font60TextPrimaryExtraBold,
+                    children: [
+                      WidgetSpan(child: horizontalSpace(8)),
+                      TextSpan(
+                        text: donationsCount(context, 12),
+                        style: context.textStyles.font16TextSecondaryMedium,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -6,11 +6,9 @@ class NavigationItem extends StatelessWidget {
   const NavigationItem({
     super.key,
     required this.isSelected,
-    required this.label,
     required this.path,
   });
   final String path;
-  final String label;
   final bool isSelected;
 
   @override

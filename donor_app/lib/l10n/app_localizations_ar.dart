@@ -9,6 +9,9 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get life_drop => 'قطرة حياة';
+
+  @override
   String get app_first_name => 'قطرة ';
 
   @override
@@ -163,4 +166,32 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get skip => 'تخطي';
+
+  @override
+  String get welcome_back_home => 'مرحبا بعودتك،';
+
+  @override
+  String donationImpactMessage(Object hospital) {
+    return 'آخر تبرع لك أنقذ 3 أشخاص في $hospital';
+  }
+
+  @override
+  String nextDonationAvailability(Object days) {
+    return 'يمكنك التبرع مرة أخرى بعد $days يومًا';
+  }
+
+  @override
+  String get total_contributions => 'إجمالي التبرعات';
+
+  @override
+  String get donations => 'تبرع';
+
+  @override
+  String get tens_donation => 'تبرعات';
+
+  @override
+  String get active_requests => 'الطلبات النشطة';
+
+  @override
+  String get urgent_priority => 'حالة طارئة';
 }

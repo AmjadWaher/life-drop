@@ -9,6 +9,9 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get life_drop => 'Life Drop';
+
+  @override
   String get app_first_name => 'Life';
 
   @override
@@ -163,4 +166,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get skip => 'Skip';
+
+  @override
+  String get welcome_back_home => 'Welcome Back,';
+
+  @override
+  String donationImpactMessage(Object hospital) {
+    return 'Your last donation helped save 3 lives at $hospital.';
+  }
+
+  @override
+  String nextDonationAvailability(Object days) {
+    return ' You\'re eligible to donate again in $days days.';
+  }
+
+  @override
+  String get total_contributions => 'Total Contributions';
+
+  @override
+  String get donations => 'Donations';
+
+  @override
+  String get tens_donation => 'Donations';
+
+  @override
+  String get active_requests => 'Active Requests';
+
+  @override
+  String get urgent_priority => 'URGENT PRIORITY';
 }

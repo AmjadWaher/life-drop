@@ -12,7 +12,13 @@ class MainNavigationScreen extends StatefulWidget {
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   final indexNotifier = ValueNotifier(0);
-  // final List<Widget> screens = [const HomeScreen(), const HomeScreen()];
+  final List<Widget> screens = [
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +26,14 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       valueListenable: indexNotifier,
       builder: (context, currentIndex, child) {
         return Scaffold(
+          bottomNavigationBar: CustomNavigationBar(
+            currentIndex: currentIndex,
+            onTap: (index) => indexNotifier.value = index,
+          ),
           body: ValueListenableBuilder(
             valueListenable: indexNotifier,
             builder: (context, currentIndex, child) {
-              return Stack(
-                children: [
-                  HomeScreen(index: currentIndex),
-                  Positioned(
-                    bottom: 20.h,
-                    right: 20.w,
-                    left: 20.w,
-                    child: CustomNavigationBar(
-                      currentIndex: currentIndex,
-                      onTap: (index) => indexNotifier.value = index,
-                    ),
-                  ),
-                ],
-              );
+              return screens[currentIndex];
             },
           ),
         );
