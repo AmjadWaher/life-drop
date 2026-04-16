@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:donor_app/core/helpers/biometric_helper.dart';
 import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/extensions.dart';

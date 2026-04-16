@@ -95,6 +95,12 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @life_drop.
+  ///
+  /// In en, this message translates to:
+  /// **'Life Drop'**
+  String get life_drop;
+
   /// No description provided for @app_first_name.
   ///
   /// In en, this message translates to:
@@ -406,6 +412,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Skip'**
   String get skip;
+
+  /// No description provided for @welcome_back_home.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back,'**
+  String get welcome_back_home;
+
+  /// No description provided for @donationImpactMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your last donation helped save 3 lives at {hospital}.'**
+  String donationImpactMessage(Object hospital);
+
+  /// No description provided for @nextDonationAvailability.
+  ///
+  /// In en, this message translates to:
+  /// **' You\'re eligible to donate again in {days} days.'**
+  String nextDonationAvailability(Object days);
+
+  /// No description provided for @total_contributions.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Contributions'**
+  String get total_contributions;
+
+  /// No description provided for @donations.
+  ///
+  /// In en, this message translates to:
+  /// **'Donations'**
+  String get donations;
+
+  /// No description provided for @tens_donation.
+  ///
+  /// In en, this message translates to:
+  /// **'Donations'**
+  String get tens_donation;
+
+  /// No description provided for @active_requests.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Requests'**
+  String get active_requests;
+
+  /// No description provided for @urgent_priority.
+  ///
+  /// In en, this message translates to:
+  /// **'URGENT PRIORITY'**
+  String get urgent_priority;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -19,13 +19,6 @@ class CustomNavigationBar extends StatefulWidget {
 
 class _CustomNavigationBarState extends State<CustomNavigationBar> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-  List<String> get _labels => [
-    'Home',
-    'Requestes',
-    'Map',
-    'History',
-    'Profile',
-  ];
 
   List<String> get _paths => [
     ImagePaths.homeIcon,
@@ -47,7 +40,6 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
       onTap: widget.onTap,
       items: List.generate(5, (index) {
         return NavigationItem(
-          label: _labels[index],
           path: _paths[index],
           isSelected: widget.currentIndex == index,
         );

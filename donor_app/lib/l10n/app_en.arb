@@ -1,4 +1,5 @@
 {
+    "life_drop": "Life Drop",
     "app_first_name": "Life",
     "app_last_name": " Drop",
     "app_tagline": "LIFE IS IN YOUR BLOOD",
@@ -50,5 +51,13 @@
     "authenticate_to_login": "Authenticate to Login",
     "use_fingerprint_for_quick_secure_login": "Use your fingerprint to login quickly and securely",
     "enable": "Enable",
-    "skip": "Skip"
+    "skip": "Skip",
+    "welcome_back_home": "Welcome Back,",
+    "donationImpactMessage": "Your last donation helped save 3 lives at {hospital}.",
+    "nextDonationAvailability": " You're eligible to donate again in {days} days.",
+    "total_contributions": "Total Contributions",
+    "donations": "Donations",
+    "tens_donation": "Donations",
+    "active_requests": "Active Requests",
+    "urgent_priority": "URGENT PRIORITY"
 }
