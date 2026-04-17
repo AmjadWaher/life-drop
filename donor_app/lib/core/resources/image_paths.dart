@@ -3,6 +3,9 @@ class ImagePaths {
   static const String _svgBase = 'assets/svgs';
 
   // Images
+  static const String location = '$_imageBase/location.png';
+  static const String map = '$_imageBase/map.png';
+
   // Onboarding Light
   static const String onboarding1Light = '$_imageBase/onboarding-1-light.png';
   static const String onboarding2Light = '$_imageBase/onboarding-2-light.png';

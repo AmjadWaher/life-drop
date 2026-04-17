@@ -4,6 +4,8 @@ import 'package:donor_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/register_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/reset_password_screen.dart';
+import 'package:donor_app/features/donation_request/presentation/screens/request_accepted_screen.dart';
+import 'package:donor_app/features/donation_request/presentation/screens/request_details_screen.dart';
 import 'package:donor_app/features/home/presentation/screens/home_screen.dart';
 import 'package:donor_app/features/main_navigation/screens/main_navigation_screen.dart';
 import 'package:donor_app/features/onboarding/screens/onboarding_view.dart';
@@ -37,6 +39,14 @@ class AppRouter {
       case Routes.mainNavigation:
         return MaterialPageRoute(
           builder: (context) => const MainNavigationScreen(),
+        );
+      case Routes.requestDetails:
+        return MaterialPageRoute(
+          builder: (context) => const RequestDetailsScreen(),
+        );
+      case Routes.requestAccepted:
+        return MaterialPageRoute(
+          builder: (context) => const RequestAcceptedScreen(),
         );
       default:
         return MaterialPageRoute(

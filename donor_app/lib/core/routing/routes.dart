@@ -6,4 +6,6 @@ class Routes {
   static const String otpVerification = '/otp-verification';
   static const String resetPassword = '/reset-password';
   static const String mainNavigation = '/main-navigation';
+  static const String requestDetails = '/request-details';
+  static const String requestAccepted = '/request-accepted';
 }

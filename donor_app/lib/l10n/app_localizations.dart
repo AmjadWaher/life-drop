@@ -419,17 +419,17 @@ abstract class AppLocalizations {
   /// **'Welcome Back,'**
   String get welcome_back_home;
 
-  /// No description provided for @donationImpactMessage.
+  /// No description provided for @donation_impact_message.
   ///
   /// In en, this message translates to:
   /// **'Your last donation helped save 3 lives at {hospital}.'**
-  String donationImpactMessage(Object hospital);
+  String donation_impact_message(Object hospital);
 
-  /// No description provided for @nextDonationAvailability.
+  /// No description provided for @next_donation_availability.
   ///
   /// In en, this message translates to:
   /// **' You\'re eligible to donate again in {days} days.'**
-  String nextDonationAvailability(Object days);
+  String next_donation_availability(Object days);
 
   /// No description provided for @total_contributions.
   ///
@@ -460,6 +460,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'URGENT PRIORITY'**
   String get urgent_priority;
+
+  /// No description provided for @donation_progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation\nProgress'**
+  String get donation_progress;
+
+  /// No description provided for @donors_confirmed_progress.
+  ///
+  /// In en, this message translates to:
+  /// **'{confirmed}/{total} donors\nconfirmed'**
+  String donors_confirmed_progress(Object confirmed, Object total);
+
+  /// No description provided for @urgent_Donors_needed_message.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} more donors are required to fulfill this emergency request. Your contribution can save a life today.'**
+  String urgent_Donors_needed_message(Object count);
+
+  /// No description provided for @got_to_map.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Map'**
+  String get got_to_map;
+
+  /// No description provided for @accept_request.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept Request'**
+  String get accept_request;
+
+  /// No description provided for @request_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Request Details'**
+  String get request_details;
+
+  /// No description provided for @you_are_a_lifesaver.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re a lifesaver!'**
+  String get you_are_a_lifesaver;
+
+  /// No description provided for @request_accepted_hospital_waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Your request acceptance is confirmed.\nA hospital unit is expecting your arrival.'**
+  String get request_accepted_hospital_waiting;
+
+  /// No description provided for @hospital_location.
+  ///
+  /// In en, this message translates to:
+  /// **'Hospital Location'**
+  String get hospital_location;
+
+  /// No description provided for @bring_digital_id.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring your digital ID'**
+  String get bring_digital_id;
+
+  /// No description provided for @start_navigation.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Navigation'**
+  String get start_navigation;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -171,12 +171,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcome_back_home => 'Welcome Back,';
 
   @override
-  String donationImpactMessage(Object hospital) {
+  String donation_impact_message(Object hospital) {
     return 'Your last donation helped save 3 lives at $hospital.';
   }
 
   @override
-  String nextDonationAvailability(Object days) {
+  String next_donation_availability(Object days) {
     return ' You\'re eligible to donate again in $days days.';
   }
 
@@ -194,4 +194,41 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get urgent_priority => 'URGENT PRIORITY';
+
+  @override
+  String get donation_progress => 'Donation\nProgress';
+
+  @override
+  String donors_confirmed_progress(Object confirmed, Object total) {
+    return '$confirmed/$total donors\nconfirmed';
+  }
+
+  @override
+  String urgent_Donors_needed_message(Object count) {
+    return '$count more donors are required to fulfill this emergency request. Your contribution can save a life today.';
+  }
+
+  @override
+  String get got_to_map => 'Go to Map';
+
+  @override
+  String get accept_request => 'Accept Request';
+
+  @override
+  String get request_details => 'Request Details';
+
+  @override
+  String get you_are_a_lifesaver => 'You\'re a lifesaver!';
+
+  @override
+  String get request_accepted_hospital_waiting => 'Your request acceptance is confirmed.\nA hospital unit is expecting your arrival.';
+
+  @override
+  String get hospital_location => 'Hospital Location';
+
+  @override
+  String get bring_digital_id => 'Bring your digital ID';
+
+  @override
+  String get start_navigation => 'Start Navigation';
 }
