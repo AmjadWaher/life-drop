@@ -17,6 +17,7 @@ class DonationRequestCard extends StatelessWidget {
     required this.hospitalName,
     required this.description,
     required this.buttonTitle,
+    required this.onPressed,
     this.buttonStyle,
     this.isUrgent = true,
   });
@@ -28,6 +29,7 @@ class DonationRequestCard extends StatelessWidget {
   final String buttonTitle;
   final TextStyle? buttonStyle;
   final bool isUrgent;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class DonationRequestCard extends StatelessWidget {
               BloodTypeBadge(bloodType: bloodType, isUrgent: isUrgent),
               const Spacer(),
               UrgencyIndicator(
-                urgencyStatus: urgencyStatus,
+                urgencyStatus: urgencyStatus.toUpperCase(),
                 distanceAway: distanceAway,
                 statusStyle: isUrgent
                     ? context.textStyles.font10PrimaryBold.copyWith(
@@ -67,7 +69,7 @@ class DonationRequestCard extends StatelessWidget {
           verticalSpace(20),
           AppElevatedButton(
             isLoading: false,
-            onPressed: () {},
+            onPressed: onPressed,
             style: isUrgent ? null : context.textStyles.font16SecondaryBold,
             buttonColors: isUrgent ? null : context.colors.tertiary,
             title: buttonTitle,

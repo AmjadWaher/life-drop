@@ -25,7 +25,7 @@ class GreetingSection extends StatelessWidget {
         ),
         verticalSpace(12),
         Text(
-          '${AppLocalizations.of(context)!.donationImpactMessage('Central General')} ${AppLocalizations.of(context)!.nextDonationAvailability('14')}',
+          '${AppLocalizations.of(context)!.donation_impact_message('Central General')} ${AppLocalizations.of(context)!.next_donation_availability('14')}',
           style: context.textStyles.font18TextSecondaryRegular,
           maxLines: null,
         ),

@@ -5,10 +5,10 @@ import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/resources/image_paths.dart';
 import 'package:donor_app/core/widgets/app_header.dart';
 import 'package:donor_app/core/widgets/app_images.dart';
+import 'package:donor_app/features/home/domain/param/donation_request_param.dart';
 import 'package:donor_app/features/home/presentation/widgets/biometric_sheet.dart';
 import 'package:donor_app/features/home/presentation/widgets/donation_summary.dart';
 import 'package:donor_app/features/home/presentation/widgets/greeting_section.dart';
-import 'package:donor_app/features/home/presentation/widgets/donation_request_card.dart';
 import 'package:donor_app/features/home/presentation/widgets/request_cards_list.dart';
 import 'package:donor_app/features/home/presentation/widgets/requests_section.dart';
 import 'package:donor_app/l10n/app_localizations.dart';
@@ -23,24 +23,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final activeCards = [
-    const DonationRequestCard(
+  final requests = [
+    DonationRequestParam(
       bloodType: 'O+',
       urgencyStatus: 'HIGHT URGENCY',
       distanceAway: '2.4 Km away',
       hospitalName: 'St. Jude Medical',
       description: 'Emergency surgery requirement. Needs 3 units by tonight',
-      buttonTitle: 'Response Now',
     ),
-    const DonationRequestCard(
+    DonationRequestParam(
       bloodType: 'B-',
       urgencyStatus: 'Scheduled',
       distanceAway: '5.1 Km away',
       hospitalName: 'City Blood Bank',
       description:
           'Rare type inventory replenishment. Donor needed for Friday.',
-      buttonTitle: 'Schedule Appointment',
-      isUrgent: false,
     ),
   ];
   void showBiometricPrompt() async {
@@ -92,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 verticalSpace(38),
                 const RequestsSection(),
                 verticalSpace(24),
-                RequestCardsList(cards: activeCards),
+                RequestCardsList(requests: requests),
                 verticalSpace(20),
               ],
             ),

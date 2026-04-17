@@ -171,12 +171,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome_back_home => 'مرحبا بعودتك،';
 
   @override
-  String donationImpactMessage(Object hospital) {
+  String donation_impact_message(Object hospital) {
     return 'آخر تبرع لك أنقذ 3 أشخاص في $hospital';
   }
 
   @override
-  String nextDonationAvailability(Object days) {
+  String next_donation_availability(Object days) {
     return 'يمكنك التبرع مرة أخرى بعد $days يومًا';
   }
 
@@ -194,4 +194,41 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get urgent_priority => 'حالة طارئة';
+
+  @override
+  String get donation_progress => 'تقدم التبرع';
+
+  @override
+  String donors_confirmed_progress(Object confirmed, Object total) {
+    return 'تم تأكيد $confirmed/$total متبرعين';
+  }
+
+  @override
+  String urgent_Donors_needed_message(Object count) {
+    return 'نحتاج إلى $count متبرعين إضافيين لتلبية هذا الطلب الطارئ. تبرعك يمكن أن ينقذ حياة اليوم.';
+  }
+
+  @override
+  String get got_to_map => 'Go to Map';
+
+  @override
+  String get accept_request => 'قبول الطلب';
+
+  @override
+  String get request_details => 'تفاصيل الطلب';
+
+  @override
+  String get you_are_a_lifesaver => 'أنت تنقذ الأرواح!';
+
+  @override
+  String get request_accepted_hospital_waiting => 'تم تأكيد قبول طلبك.\nوحدة المستشفى بانتظار وصولك.';
+
+  @override
+  String get hospital_location => 'موقع المستشفى';
+
+  @override
+  String get bring_digital_id => 'أحضر هويتك الشخصية';
+
+  @override
+  String get start_navigation => 'ابدأ التنقل';
 }
