@@ -1,15 +1,15 @@
-import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
+import 'package:donor_app/core/helpers/validations.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
 import 'package:donor_app/features/auth/domain/params/register_params.dart';
 import 'package:donor_app/features/auth/presentation/logic/auth_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/auth_state.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_switch_section.dart';
-import 'package:donor_app/features/auth/presentation/widgets/auth_text_section.dart';
-import 'package:donor_app/features/auth/presentation/widgets/register_form_section.dart';
+import 'package:donor_app/features/auth/presentation/widgets/register_section_one.dart';
+import 'package:donor_app/features/auth/presentation/widgets/register_section_two.dart';
 import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,15 +23,69 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  AppLocalizations get localizations => AppLocalizations.of(context)!;
+  final _pageController = PageController();
+  final _pageIndex = ValueNotifier<int>(0);
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   final _phoneNumberController = TextEditingController();
-  final _selectedBloodType = ValueNotifier<String?>(null);
 
-  bool validRegister() {
+  final _selectedBloodType = ValueNotifier<String?>(null);
+  final _selectedBirthDate = ValueNotifier<String?>(null);
+  final _selectedGovernorateId = ValueNotifier<String?>(null);
+  final _selectedDistrictId = ValueNotifier<String?>(null);
+
+  Widget _bodySections() {
+    if (_pageIndex.value == 0) {
+      return RegisterSectionOne(
+        emailController: _emailController,
+        phoneNumberController: _phoneNumberController,
+        firstNameController: _firstNameController,
+        lastNameController: _lastNameController,
+        passwordController: _passwordController,
+        confirmPasswordController: _confirmPasswordController,
+      );
+    } else {
+      return RegisterSectionTwo(
+        selectedBirthDate: _selectedBirthDate,
+        selectedBloodType: _selectedBloodType,
+        selectedGovernorateId: _selectedGovernorateId,
+        selectedDistrictId: _selectedDistrictId,
+      );
+    }
+  }
+
+  void _register() {
+    FocusScope.of(context).unfocus();
+    if (validRegisterSectionOne()) {
+      if (_pageIndex.value == 0) {
+        _pageIndex.value++;
+      } else {
+        if (validRegisterSectionTwo()) {
+          context.read<AuthCubit>().register(
+            RegisterParams(
+              firstName: _firstNameController.text.trim(),
+              lastName: _lastNameController.text.trim(),
+              email: _emailController.text.trim(),
+              phoneNumber: _phoneNumberController.text.formatPhoneNumberJO(),
+              dateOfBirth: _selectedBirthDate.value!,
+              password: _passwordController.text,
+              confirmPassword: _confirmPasswordController.text,
+              governorateId: _selectedGovernorateId.value!,
+              districtId: _selectedDistrictId.value!,
+              bloodType: _selectedBloodType.value!,
+            ),
+          );
+        }
+      }
+    }
+  }
+
+  bool validRegisterSectionOne() {
     final firstName = _firstNameController.text.trim();
     final lastName = _lastNameController.text.trim();
     final email = _emailController.text.trim();
@@ -42,25 +96,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
     String? error;
 
     if (firstName.isEmpty) {
-      error = "First name is required";
+      error = localizations.first_name_required;
     } else if (lastName.isEmpty) {
-      error = "Last name is required";
-    } else if (email.isEmpty) {
-      error = "Email is required";
+      error = localizations.last_name_required;
     } else if (!email.isValidEmail) {
-      error = "Invalid email";
-    } else if (phone.isEmpty) {
-      error = "Phone is required";
-    } else if (password.isEmpty) {
-      error = "Password is required";
+      error = Validations.validateEmail(context, email);
+    } else if (!phone.isDigitsOnly) {
+      error = localizations.phone_number_digits_only;
+    } else if (phone.isEmpty || !phone.isValidJordanPhoneNumber) {
+      error = localizations.phone_required;
     } else if (!password.isValidPassword) {
-      error = "Weak password";
-    } else if (confirmPassword.isEmpty) {
-      error = "Confirm password is required";
+      error = Validations.validatePassword(context, password);
     } else if (password != confirmPassword) {
-      error = "Passwords do not match";
-    } else if (_selectedBloodType.value == null) {
-      error = "Select blood type";
+      error = localizations.passwords_do_not_match;
     }
 
     if (error != null) {
@@ -71,6 +119,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
           icon: Icons.error_outline,
           content: error,
           iconColor: context.colors.iconActive,
+          maxLines: null,
+        ),
+      );
+      return false;
+    }
+    return true;
+  }
+
+  bool validRegisterSectionTwo() {
+    final bloodType = _selectedBloodType.value;
+    final birthDate = _selectedBirthDate.value;
+    final governorateId = _selectedGovernorateId.value;
+    final districtId = _selectedDistrictId.value;
+
+    String? error;
+
+    if (birthDate == null) {
+      error = localizations.birth_date_required;
+    } else if (governorateId == null) {
+      error = localizations.governorate_required;
+    } else if (districtId == null) {
+      error = localizations.district_required;
+    } else if (bloodType == null) {
+      error = localizations.blood_type_required;
+    }
+
+    if (error != null) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        snackBar(
+          context,
+          icon: Icons.error_outline,
+          content: error,
+          iconColor: context.colors.iconActive,
+          maxLines: null,
         ),
       );
       return false;
@@ -80,124 +163,99 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
+    _pageController.dispose();
+    _pageIndex.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _firstNameController.dispose();
     _lastNameController.dispose();
     _confirmPasswordController.dispose();
     _phoneNumberController.dispose();
+    _selectedBirthDate.dispose();
+    _selectedBloodType.dispose();
+    _selectedDistrictId.dispose();
+    _selectedGovernorateId.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<AuthCubit>(),
-      child: BlocConsumer<AuthCubit, AuthState>(
-        listener: (context, state) {
-          if (state.status == AuthStatus.success) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-              snackBar(
-                context,
-                icon: Icons.info_outline,
-                content: 'Account created successfully',
-                backgroundColor: Colors.green.withAlpha(100),
-              ),
-            );
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state.status == AuthStatus.success &&
+            state.action == AuthAction.register) {
+          ScaffoldMessenger.of(context).clearSnackBars();
+          ScaffoldMessenger.of(context).showSnackBar(
+            snackBar(
+              context,
+              icon: Icons.info_outline,
+              content: localizations.verification_code_sent,
+              maxLines: null,
+              backgroundColor: Colors.green.withAlpha(100),
+            ),
+          );
 
-            context.pushNamed(
-              Routes.otpVerification,
-              arguments: {
-                'email': _emailController.text,
-                'isFromRegister': true,
-              },
-            );
-          } else if (state.status == AuthStatus.failure &&
-              state.error != null) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-              snackBar(
-                context,
-                content: state.error!.getAllErrorMessages(),
-                icon: Icons.error_outline,
-              ),
-            );
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
-            body: GestureDetector(
-              onTap: () {
-                FocusScope.of(context).unfocus();
-              },
-              behavior: HitTestBehavior.opaque,
-              child: SafeArea(
+          context.pushReplacementNamed(
+            Routes.otpVerification,
+            arguments: {'email': _emailController.text, 'isFromRegister': true},
+          );
+        } else if (state.status == AuthStatus.failure && state.error != null) {
+          ScaffoldMessenger.of(context).clearSnackBars();
+          ScaffoldMessenger.of(context).showSnackBar(
+            snackBar(
+              context,
+              content: state.error!.getAllErrorMessages(),
+              icon: Icons.error_outline,
+            ),
+          );
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            behavior: HitTestBehavior.opaque,
+            child: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 10.h),
                 child: SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      left: 24.w,
-                      right: 24.w,
-                      top: 10.h,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: .start,
-                      children: [
-                        AuthTextSection(
-                          title: AppLocalizations.of(context)!.register,
-                          subtitle: AppLocalizations.of(context)!.become_donor,
-                        ),
-                        verticalSpace(35),
-                        RegisterFormSection(
-                          emailController: _emailController,
-                          passwordController: _passwordController,
-                          firstNameController: _firstNameController,
-                          lastNameController: _lastNameController,
-                          confirmPasswordController: _confirmPasswordController,
-                          phoneNumberController: _phoneNumberController,
-                          onBloodTypeSelected: (bloodType) {
-                            _selectedBloodType.value = bloodType;
-                          },
-                        ),
-                        verticalSpace(40),
-                        AppTextButton(
-                          buttonText: AppLocalizations.of(context)!.register,
-                          textStyle: context.textStyles.font16TextPrimaryBold,
-                          isLoading: state.status == AuthStatus.loading,
-                          onPressed: () {
-                            if (validRegister()) {
-                              context.read<AuthCubit>().register(
-                                RegisterParams(
-                                  firstName: _firstNameController.text.trim(),
-                                  lastName: _lastNameController.text.trim(),
-                                  email: _emailController.text.trim(),
-                                  phone: _phoneNumberController.text.trim(),
-                                  password: _passwordController.text,
-                                  confirmPassword:
-                                      _confirmPasswordController.text,
-                                  bloodType: _selectedBloodType.value!,
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                        verticalSpace(15),
-                        AuthSwitchSection(
-                          text: AppLocalizations.of(
-                            context,
-                          )!.already_have_an_account,
-                          actionText: AppLocalizations.of(context)!.login,
-                          onTap: () => context.pop(),
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    children: [
+                      _bodySections(),
+                      verticalSpace(20),
+                      ValueListenableBuilder(
+                        valueListenable: _pageIndex,
+                        builder: (context, index, child) {
+                          return AppTextButton(
+                            buttonText: index == 0
+                                ? AppLocalizations.of(context)!.next
+                                : AppLocalizations.of(context)!.register,
+                            textStyle: context.textStyles.font16TextPrimaryBold,
+                            isLoading: state.status == AuthStatus.loading,
+                            onPressed: _register,
+                          );
+                        },
+                      ),
+
+                      verticalSpace(15),
+                      AuthSwitchSection(
+                        text: AppLocalizations.of(
+                          context,
+                        )!.already_have_an_account,
+                        actionText: AppLocalizations.of(context)!.login,
+                        onTap: () => context.pop(),
+                      ),
+                      verticalSpace(30),
+                    ],
                   ),
                 ),
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

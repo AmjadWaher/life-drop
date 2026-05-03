@@ -1,5 +1,6 @@
 import 'package:donor_app/core/themes/app_colors.dart';
 import 'package:donor_app/core/themes/app_text_styles.dart';
+import 'package:donor_app/features/auth/domain/enums/blood_type.dart';
 import 'package:flutter/material.dart';
 
 extension ThemeExtension on BuildContext {
@@ -12,6 +13,10 @@ extension TextStyleExtension on BuildContext {
 
 extension ModeExtension on BuildContext {
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
+}
+
+extension Direc on BuildContext {
+  bool get isRTL => Directionality.of(this) == TextDirection.rtl;
 }
 
 extension Navigation on BuildContext {
@@ -38,11 +43,55 @@ extension Navigation on BuildContext {
   void pop() => Navigator.of(this).pop();
 }
 
-extension Validations on String {
+extension ValidationsString on String {
   bool get isValidEmail =>
       RegExp(r'^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]+$').hasMatch(this);
 
   bool get isValidPassword => RegExp(
     r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9])(?=\S+$).{8,}$',
   ).hasMatch(this);
+
+  bool get isDigitsOnly => RegExp(r'^\d+$').hasMatch(this);
+
+  bool get isValidJordanPhoneNumber =>
+      RegExp(r'^0?7[789]\d{7}$').hasMatch(this);
+}
+
+extension FormatString on String {
+  String formatPhoneNumberJO() {
+    String phone = trim();
+
+    phone = phone.replaceAll(RegExp(r'\D'), '');
+
+    if (phone.startsWith('962')) {
+      phone = phone.substring(3);
+    }
+    if (phone.startsWith('0')) {
+      phone = phone.substring(1);
+    }
+    return '+962$phone';
+  }
+}
+
+extension BloodTypeDisplay on BloodType {
+  String get label {
+    switch (this) {
+      case BloodType.O_Positive:
+        return 'O+';
+      case BloodType.O_Negative:
+        return 'O-';
+      case BloodType.A_Positive:
+        return 'A+';
+      case BloodType.A_Negative:
+        return 'A-';
+      case BloodType.B_Positive:
+        return 'B+';
+      case BloodType.B_Negative:
+        return 'B-';
+      case BloodType.AB_Positive:
+        return 'AB+';
+      case BloodType.AB_Negative:
+        return 'AB-';
+    }
+  }
 }

@@ -3,26 +3,27 @@ part 'register_params.g.dart';
 
 @JsonSerializable()
 class RegisterParams {
-  @JsonKey(name: 'first_name')
   final String firstName;
-  @JsonKey(name: 'last_name')
   final String lastName;
   final String email;
-  @JsonKey(name: 'phone_number')
-  final String phone;
+  final String phoneNumber;
+  final String dateOfBirth;
   final String password;
-  @JsonKey(name: 'confirm_password')
   final String confirmPassword;
-  @JsonKey(name: 'blood_type')
+  final String governorateId;
+  final String districtId;
   final String bloodType;
 
   const RegisterParams({
     required this.firstName,
     required this.lastName,
     required this.email,
-    required this.phone,
+    required this.phoneNumber,
+    required this.dateOfBirth,
     required this.password,
     required this.confirmPassword,
+    required this.governorateId,
+    required this.districtId,
     required this.bloodType,
   });
 

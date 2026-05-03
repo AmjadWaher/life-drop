@@ -16,7 +16,7 @@ class ApiErrorModel {
   Map<String, dynamic> toJson() => _$ApiErrorModelToJson(this);
 
   String getAllErrorMessages() {
-    if (errors == null && errors!.isEmpty) {
+    if (errors == null || errors!.isEmpty) {
       return message ?? 'Unknown Error accurred';
     }
 

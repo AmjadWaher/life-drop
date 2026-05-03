@@ -11,29 +11,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit(this._authRepository) : super(const AuthState());
 
-  Future<void> checkAuthStatus() async {
-    emit(state.copyWith(status: AuthStatus.loading));
-
-    final result = await _authRepository.isLoggedIn();
-    result.when(
-      success: (isLoggedIn) async {
-        if (isLoggedIn) {
-          final userResult = await _authRepository.getCurrentUser();
-          userResult.when(
-            success: (user) =>
-                emit(state.copyWith(status: AuthStatus.success, data: user)),
-            failure: (error) =>
-                emit(state.copyWith(status: AuthStatus.failure, error: error)),
-          );
-        } else {
-          emit(state.copyWith(status: AuthStatus.failure));
-        }
-      },
-      failure: (error) =>
-          emit(state.copyWith(status: AuthStatus.failure, error: error)),
-    );
-  }
-
   Future<void> login(String email, String password) async {
     emit(
       state.copyWith(
@@ -45,8 +22,10 @@ class AuthCubit extends Cubit<AuthState> {
 
     final result = await _authRepository.login(email, password);
     result.when(
-      success: (user) =>
-          emit(state.copyWith(status: AuthStatus.success, data: user)),
+      success: (data) {
+        SharedPrefHelper.setData(SharedPrefKeys.isLoggedIn, true);
+        emit(state.copyWith(status: AuthStatus.success, data: data));
+      },
       failure: (error) =>
           emit(state.copyWith(status: AuthStatus.failure, error: error)),
     );
@@ -73,10 +52,23 @@ class AuthCubit extends Cubit<AuthState> {
 
     final result = await _authRepository.verifyOtp(email, otp);
     result.when(
-      success: (_) {
-        SharedPrefHelper.setData(SharedPrefKeys.isLoggedIn, true);
-        emit(state.copyWith(status: AuthStatus.success));
-      },
+      success: (_) => emit(state.copyWith(status: AuthStatus.success)),
+      failure: (error) =>
+          emit(state.copyWith(status: AuthStatus.failure, error: error)),
+    );
+  }
+
+  Future<void> verifyRegistration(String email, String code) async {
+    emit(
+      state.copyWith(
+        status: AuthStatus.loading,
+        action: AuthAction.verifyRegistration,
+      ),
+    );
+
+    final result = await _authRepository.verifyRegistration(email, code);
+    result.when(
+      success: (_) => emit(state.copyWith(status: AuthStatus.success)),
       failure: (error) =>
           emit(state.copyWith(status: AuthStatus.failure, error: error)),
     );
@@ -99,10 +91,16 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  Future<void> resetPassword(String newPassword) async {
-    emit(state.copyWith(status: AuthStatus.loading));
+  Future<void> resendOtp(String email) async {
+    emit(
+      state.copyWith(
+        status: AuthStatus.loading,
+        email: email,
+        action: AuthAction.none,
+      ),
+    );
 
-    final result = await _authRepository.resetPassword(newPassword);
+    final result = await _authRepository.resendOtp(email);
     result.when(
       success: (_) => emit(state.copyWith(status: AuthStatus.success)),
       failure: (error) =>
@@ -110,13 +108,71 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  Future<void> logout() async {
+  Future<void> resetPassword(
+    String email,
+    String code,
+    String newPassword,
+  ) async {
     emit(state.copyWith(status: AuthStatus.loading));
-    await _authRepository.logout();
-    emit(const AuthState(status: AuthStatus.failure));
+
+    final result = await _authRepository.resetPassword(
+      email,
+      code,
+      newPassword,
+    );
+    result.when(
+      success: (_) => emit(state.copyWith(status: AuthStatus.success)),
+      failure: (error) =>
+          emit(state.copyWith(status: AuthStatus.failure, error: error)),
+    );
   }
 
-  void clearError() {
-    emit(state.copyWith(status: AuthStatus.initial, error: null));
+  Future<void> getGovernorates() async {
+    emit(state.copyWith(governoratesStatus: GovernoratesStatus.loading));
+
+    final result = await _authRepository.getGovernorates();
+    result.when(
+      success: (governorates) => emit(
+        state.copyWith(
+          governoratesStatus: GovernoratesStatus.success,
+          governorates: governorates,
+        ),
+      ),
+      failure: (error) => emit(
+        state.copyWith(
+          governoratesStatus: GovernoratesStatus.failure,
+          error: error,
+        ),
+      ),
+    );
+  }
+
+  Future<void> getDistrictsByGovernorateId(String governorateId) async {
+    emit(state.copyWith(districtsStatus: DistrictsStatus.loading));
+
+    if (governorateId == '-1') {
+      emit(
+        state.copyWith(
+          districtsStatus: DistrictsStatus.success,
+          districts: const [],
+        ),
+      );
+      return;
+    }
+
+    final result = await _authRepository.getDistrictsByGovernorate(
+      governorateId,
+    );
+    result.when(
+      success: (districts) => emit(
+        state.copyWith(
+          districtsStatus: DistrictsStatus.success,
+          districts: districts,
+        ),
+      ),
+      failure: (error) => emit(
+        state.copyWith(districtsStatus: DistrictsStatus.failure, error: error),
+      ),
+    );
   }
 }
