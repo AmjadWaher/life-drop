@@ -176,6 +176,29 @@ class AuthRemoteDataSource {
     }
   }
 
+  Future<ApiResult<void>> resendRegistrationOtp(String email) async {
+    try {
+      await _dio.post(
+        ApiConstants.resendRegistrationOtp,
+        data: {'email': email},
+      );
+      return ApiResult.success(null);
+    } catch (e, stack) {
+      final error = ApiErrorHandler.handle(e);
+
+      FirebaseCrashlytics.instance.log("""
+      ResendRegistrationOTP API ERROR:
+      Endpoint: 'resendRegistrationOtp'
+      Status: ${error.code}
+      Errors: ${error.getAllErrorMessages()}
+      """);
+
+      FirebaseCrashlytics.instance.recordError(e, stack);
+
+      return ApiResult.failure(error);
+    }
+  }
+
   Future<ApiResult<void>> resetPassword({
     required String email,
     required String code,

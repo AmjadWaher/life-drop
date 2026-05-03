@@ -108,6 +108,23 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
+  Future<void> resendRegistrationOtp(String email) async {
+    emit(
+      state.copyWith(
+        status: AuthStatus.loading,
+        email: email,
+        action: AuthAction.none,
+      ),
+    );
+
+    final result = await _authRepository.resendRegistrationOtp(email);
+    result.when(
+      success: (_) => emit(state.copyWith(status: AuthStatus.success)),
+      failure: (error) =>
+          emit(state.copyWith(status: AuthStatus.failure, error: error)),
+    );
+  }
+
   Future<void> resetPassword(
     String email,
     String code,
