@@ -15,6 +15,7 @@ abstract class AuthRepository {
   Future<ApiResult<void>> verifyRegistration(String email, String code);
   Future<ApiResult<void>> sendOtp(String email);
   Future<ApiResult<void>> resendOtp(String email);
+  Future<ApiResult<void>> resendRegistrationOtp(String email);
   Future<ApiResult<void>> resetPassword(
     String email,
     String code,

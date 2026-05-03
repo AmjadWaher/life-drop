@@ -84,6 +84,17 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<ApiResult<void>> resendRegistrationOtp(String email) async {
+    final result = await _remoteDataSource.resendRegistrationOtp(email);
+    return result.when(
+      success: (response) async {
+        return ApiResult.success(null);
+      },
+      failure: (error) => ApiResult.failure(error),
+    );
+  }
+
+  @override
   Future<ApiResult<void>> resetPassword(
     String email,
     String code,

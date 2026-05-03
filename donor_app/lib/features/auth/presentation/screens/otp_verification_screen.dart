@@ -180,9 +180,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                                     ),
                                   ),
                                 );
-                                context.read<AuthCubit>().resendOtp(
-                                  widget.email,
-                                );
+                                _resendOtp(context);
                               }
                             },
                           );
@@ -204,6 +202,14 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
       context.read<AuthCubit>().verifyRegistration(widget.email, otp);
     } else {
       context.read<AuthCubit>().verifyOtp(widget.email, otp);
+    }
+  }
+
+  void _resendOtp(BuildContext context) {
+    if (widget.isFromRegister) {
+      context.read<AuthCubit>().resendRegistrationOtp(widget.email);
+    } else {
+      context.read<AuthCubit>().resendOtp(widget.email);
     }
   }
 }
