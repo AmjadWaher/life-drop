@@ -1,11 +1,9 @@
 import 'package:donor_app/core/themes/app_colors.dart';
-import 'package:donor_app/core/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ThemeData lightTheme() {
   final colors = AppColors.light();
-  final textStyles = AppTextStyles(colors);
   return ThemeData(
     scaffoldBackgroundColor: colors.background,
     brightness: Brightness.light,
@@ -19,11 +17,11 @@ ThemeData lightTheme() {
       ),
       prefixIconConstraints: BoxConstraints(
         maxHeight: 40.h,
-        maxWidth: 40.w,
+        maxWidth: 90.w,
         minHeight: 16.h,
         minWidth: 16.w,
       ),
-      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 18.h),
+      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 15.h),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(color: colors.textError.withAlpha(76), width: 1),
@@ -33,21 +31,11 @@ ThemeData lightTheme() {
         borderSide: BorderSide(color: colors.secondary.withAlpha(76), width: 1),
       ),
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedIconTheme: IconThemeData(color: colors.iconActive),
-      unselectedIconTheme: IconThemeData(color: colors.iconInactive),
-      selectedLabelStyle: textStyles.font10IconActiveBold,
-      selectedItemColor: colors.iconActive,
-      unselectedLabelStyle: textStyles.font10IconInactiveBold,
-      unselectedItemColor: colors.iconInactive,
-      backgroundColor: colors.navigationBar,
-    ),
   );
 }
 
 ThemeData darkTheme() {
   final colors = AppColors.dark();
-  final textStyles = AppTextStyles(colors);
   return ThemeData(
     scaffoldBackgroundColor: colors.background,
     brightness: Brightness.dark,
@@ -61,11 +49,11 @@ ThemeData darkTheme() {
       ),
       prefixIconConstraints: BoxConstraints(
         maxHeight: 40.h,
-        maxWidth: 40.w,
+        maxWidth: 90.w,
         minHeight: 16.h,
         minWidth: 16.w,
       ),
-      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 18.h),
+      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(color: colors.textError.withAlpha(76), width: 1),
@@ -74,15 +62,6 @@ ThemeData darkTheme() {
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(color: colors.secondary.withAlpha(76), width: 1),
       ),
-    ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedIconTheme: IconThemeData(color: colors.iconActive),
-      unselectedIconTheme: IconThemeData(color: colors.iconInactive),
-      selectedLabelStyle: textStyles.font10IconActiveBold,
-      selectedItemColor: colors.iconActive,
-      unselectedLabelStyle: textStyles.font10IconInactiveBold,
-      unselectedItemColor: colors.iconInactive,
-      backgroundColor: colors.navigationBar,
     ),
   );
 }

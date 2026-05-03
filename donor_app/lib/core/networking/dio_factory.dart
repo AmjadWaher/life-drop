@@ -42,7 +42,7 @@ class DioFactory {
 
   static void addDioHeaders() async {
     final token = await SharedPrefHelper.getSecuredString(
-      SharedPrefKeys.userToken,
+      SharedPrefKeys.accessToken,
     );
 
     dio?.options.headers = {

@@ -12,6 +12,7 @@ SnackBar snackBar(
   EdgeInsetsGeometry? padding,
   Color? backgroundColor,
   Color? iconColor,
+  int? maxLines = 2,
 }) {
   return SnackBar(
     duration: const Duration(seconds: 4),
@@ -35,6 +36,7 @@ SnackBar snackBar(
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: .min,
               children: [
                 if (title != null)
                   Text(title, style: context.textStyles.font12TextErrorBold),
@@ -42,8 +44,9 @@ SnackBar snackBar(
                 Text(
                   content,
                   style: context.textStyles.font12TextErrorBold,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
+                  overflow: maxLines != null ? TextOverflow.ellipsis : null,
+                  maxLines: maxLines,
+                  softWrap: true,
                 ),
               ],
             ),

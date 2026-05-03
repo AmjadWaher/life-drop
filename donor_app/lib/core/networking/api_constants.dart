@@ -1,13 +1,15 @@
 class ApiConstants {
-  static const String baseUrl =
-      "https://mock.apidog.com/m1/1250879-1248012-default";
-  static const String login = "$baseUrl/32754377";
-  static const String register =
-      "https://mock.apidog.com/m2/1250879-1248012-default/32756007";
-  static const String verifyOtp =
-      "https://mock.apidog.com/m2/1250879-1248012-default/32910870?apidogApiId=32910870";
-  static const String sendOtp =
-      "https://mock.apidog.com/m2/1250879-1248012-default/32997160?apidogApiId=32997160";
-  static const String resetPassword =
-      "https://mock.apidog.com/m2/1250879-1248012-default/33001814?apidogApiId=33001814";
+  static const String baseUrl = 'http://192.168.1.221:7894/api';
+  static const String auth = '$baseUrl/auth';
+  static const String donors = '$baseUrl/Donors';
+  static const String login = '$auth/login';
+  static const String register = '$donors/register';
+  static const String verifyRegistration = '$donors/verify-registration';
+  static const String governorates = '$baseUrl/locations/governorates';
+  static String districts(String governorateId) =>
+      '$governorates/$governorateId/districts';
+  static const String verifyOtp = '$auth/verify-otp';
+  static const String sendOtp = '$auth/forgot-password';
+  static const String resetPassword = '$auth/reset-password';
+  static const String resendOtp = '$auth/resend-otp';
 }

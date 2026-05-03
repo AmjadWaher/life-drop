@@ -29,6 +29,8 @@ class OTPVerificationScreen extends StatefulWidget {
 }
 
 class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
+  AppLocalizations get localizations => AppLocalizations.of(context)!;
+
   final _pinController = PinInputController();
   final _timerNotifier = ValueNotifier(60);
   late Timer _timer;
@@ -64,13 +66,14 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state.status == AuthStatus.success &&
-              state.action == AuthAction.verifyOtp) {
+              (state.action == AuthAction.verifyOtp ||
+                  state.action == AuthAction.verifyRegistration)) {
             if (widget.isFromRegister) {
               ScaffoldMessenger.of(context).clearSnackBars();
               ScaffoldMessenger.of(context).showSnackBar(
                 snackBar(
                   context,
-                  content: 'Account has been verified successfully.',
+                  content: localizations.account_acreated_message,
                   backgroundColor: Colors.green.withAlpha(150),
                 ),
               );
@@ -81,7 +84,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
             } else {
               context.pushNamed(
                 Routes.resetPassword,
-                arguments: {'email': widget.email},
+                arguments: {'email': widget.email, 'code': _pinController.text},
               );
             }
           } else if (state.status == AuthStatus.failure &&
@@ -99,80 +102,94 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
         builder: (context, state) {
           return Scaffold(
             body: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
-                child: Column(
-                  mainAxisAlignment: .center,
-                  crossAxisAlignment: .start,
-                  children: [
-                    AuthTextSection(
-                      title: AppLocalizations.of(context)!.otp_verification,
-                      titleStyle: context.textStyles.font30TextPrimaryExtraBold,
-                      subtitle: AppLocalizations.of(context)!.otp_subtitle,
-                      subtitleStyle:
-                          context.textStyles.font14TextPrimaryRegular,
-                    ),
-                    verticalSpace(32),
-                    MaterialPinField(
-                      length: 6,
-                      pinController: _pinController,
-                      onCompleted: (pin) => _verifyOtp(context, pin),
-                      theme: MaterialPinTheme(
-                        shape: MaterialPinShape.outlined,
-                        filledFillColor: context.colors.surface,
-                        focusedFillColor: context.colors.secondary.withAlpha(
-                          100,
-                        ),
-                        focusedBorderColor: context.colors.secondary,
-                        cursorColor: context.colors.textPrimary,
-                        cellSize: const Size(45, 64),
-                        borderRadius: BorderRadius.circular(8),
+              child: GestureDetector(
+                onTap: () => FocusScope.of(context).unfocus(),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  child: Column(
+                    mainAxisAlignment: .center,
+                    crossAxisAlignment: .start,
+                    children: [
+                      AuthTextSection(
+                        title: localizations.otp_verification,
+                        titleStyle:
+                            context.textStyles.font30TextPrimaryExtraBold,
+                        subtitle: widget.isFromRegister
+                            ? AppLocalizations.of(
+                                context,
+                              )!.otp_from_register_subtitle
+                            : AppLocalizations.of(
+                                context,
+                              )!.otp_from_forgot_password_subtitle,
+                        subtitleStyle:
+                            context.textStyles.font14TextPrimaryRegular,
                       ),
-                    ),
-                    verticalSpace(24),
-                    AppTextButton(
-                      buttonText: AppLocalizations.of(context)!.verify_continue,
-                      textStyle: context.textStyles.font16TextPrimaryBold,
-                      isLoading: state.status == AuthStatus.loading,
-                      onPressed: () {
-                        if (_pinController.text.length == 6) {
-                          _verifyOtp(context, _pinController.text);
-                        }
-                      },
-                    ),
-                    verticalSpace(30),
-                    ValueListenableBuilder(
-                      valueListenable: _timerNotifier,
-                      builder: (context, value, child) {
-                        final min = (value ~/ 60).toString().padLeft(2, '0');
-                        final sec = (value % 60).toString().padLeft(2, '0');
-                        return AuthSwitchSection(
-                          text: AppLocalizations.of(
-                            context,
-                          )!.didnt_receive_code,
-                          actionText: value > 0
-                              ? '${AppLocalizations.of(context)!.resend_timer}: $min:$sec'
-                              : AppLocalizations.of(context)!.resend_again,
-                          onTap: () {
-                            if (value == 0) {
-                              _timerNotifier.value = 60;
-                              _startTimer();
-                              ScaffoldMessenger.of(context).clearSnackBars();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                snackBar(
-                                  context,
-                                  content:
-                                      'Verification code has been sent again.',
-                                  backgroundColor: Colors.green.withAlpha(150),
-                                ),
-                              );
-                              context.read<AuthCubit>().sendOtp(widget.email);
-                            }
-                          },
-                        );
-                      },
-                    ),
-                  ],
+                      verticalSpace(32),
+                      MaterialPinField(
+                        length: 6,
+                        pinController: _pinController,
+                        onCompleted: (pin) => _verifyOtp(context, pin),
+                        theme: MaterialPinTheme(
+                          shape: MaterialPinShape.outlined,
+                          filledFillColor: context.colors.surface,
+                          focusedFillColor: context.colors.secondary.withAlpha(
+                            100,
+                          ),
+                          focusedBorderColor: context.colors.secondary,
+                          cursorColor: context.colors.textPrimary,
+                          cellSize: const Size(45, 64),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      verticalSpace(24),
+                      AppTextButton(
+                        buttonText: localizations.verify_continue,
+                        textStyle: context.textStyles.font16TextPrimaryBold,
+                        isLoading: state.status == AuthStatus.loading,
+                        onPressed: () {
+                          FocusScope.of(context).unfocus();
+                          if (_pinController.text.length == 6) {
+                            _verifyOtp(context, _pinController.text);
+                          }
+                        },
+                      ),
+                      verticalSpace(30),
+                      ValueListenableBuilder(
+                        valueListenable: _timerNotifier,
+                        builder: (context, value, child) {
+                          final min = (value ~/ 60).toString().padLeft(2, '0');
+                          final sec = (value % 60).toString().padLeft(2, '0');
+                          return AuthSwitchSection(
+                            text: AppLocalizations.of(
+                              context,
+                            )!.didnt_receive_code,
+                            actionText: value > 0
+                                ? '${localizations.resend_timer}: $min:$sec'
+                                : localizations.resend_again,
+                            onTap: () {
+                              if (value == 0) {
+                                _timerNotifier.value = 60;
+                                _startTimer();
+                                ScaffoldMessenger.of(context).clearSnackBars();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  snackBar(
+                                    context,
+                                    content: localizations.resend_code_message,
+                                    backgroundColor: Colors.green.withAlpha(
+                                      150,
+                                    ),
+                                  ),
+                                );
+                                context.read<AuthCubit>().resendOtp(
+                                  widget.email,
+                                );
+                              }
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -183,6 +200,10 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   }
 
   void _verifyOtp(BuildContext context, String otp) {
-    context.read<AuthCubit>().verifyOtp(widget.email, otp);
+    if (widget.isFromRegister) {
+      context.read<AuthCubit>().verifyRegistration(widget.email, otp);
+    } else {
+      context.read<AuthCubit>().verifyOtp(widget.email, otp);
+    }
   }
 }

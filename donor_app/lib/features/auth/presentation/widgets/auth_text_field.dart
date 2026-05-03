@@ -1,3 +1,4 @@
+import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,41 +8,46 @@ class AuthTextField extends StatelessWidget {
     super.key,
     required this.hintText,
     required this.title,
-    required this.hintTextStyle,
-    required this.titleStyle,
+    this.hintTextStyle,
+    this.titleStyle,
     required this.prefixIcon,
     this.suffixIcon,
     this.obscureText = false,
     required this.controller,
-    this.onTap,
-    this.focusNode,
+    this.keyboardType = TextInputType.text,
+    this.autofillHints = const [],
   });
   final String hintText;
   final String title;
-  final TextStyle hintTextStyle;
-  final TextStyle titleStyle;
+  final TextStyle? hintTextStyle;
+  final TextStyle? titleStyle;
   final Widget prefixIcon;
   final Widget? suffixIcon;
   final bool obscureText;
   final TextEditingController controller;
-  final void Function()? onTap;
-  final FocusNode? focusNode;
+  final TextInputType? keyboardType;
+  final Iterable<String>? autofillHints;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: .start,
       children: [
-        Text(title, style: titleStyle),
+        Text(
+          title,
+          style: titleStyle ?? context.textStyles.font12SecondaryBold,
+        ),
         verticalSpace(8),
         TextField(
-          onTap: onTap,
-          focusNode: focusNode,
           obscureText: obscureText,
           controller: controller,
+          keyboardType: keyboardType,
+          autofillHints: autofillHints,
           decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: hintTextStyle,
+            hintStyle:
+                hintTextStyle ??
+                context.textStyles.font16TextPlaceHolderMedium50Faded,
             suffixIcon: suffixIcon != null
                 ? Padding(
                     padding: EdgeInsets.only(right: 12.w, left: 10.w),

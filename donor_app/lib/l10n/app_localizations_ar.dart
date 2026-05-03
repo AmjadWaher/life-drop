@@ -120,7 +120,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get otp_verification => 'تأكيد رمز التحقق';
 
   @override
-  String get otp_subtitle => 'تم إرسال رمز مكوّن من 6 أرقام إلى جهازك. أدخله للمتابعة.';
+  String get otp_from_forgot_password_subtitle => 'تم إرسال رمز مكوّن من 6 أرقام إلى بريدك الألكتروني. أدخله للمتابعة.';
+
+  @override
+  String get otp_from_register_subtitle => 'تم إرسال رمز مكوّن من 6 أرقام إلى بريدك الألكتروني. أدخله لإنشاء الحساب.';
 
   @override
   String get verify_continue => 'تحقق وتابع';
@@ -231,4 +234,70 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get start_navigation => 'ابدأ التنقل';
+
+  @override
+  String get birth_date => 'تاريخ الميلاد';
+
+  @override
+  String get governorate => 'المحافظة';
+
+  @override
+  String get district => 'المنطقة';
+
+  @override
+  String get more_info => 'معلومات إضافية';
+
+  @override
+  String get first_name_required => 'الاسم الأول مطلوب.';
+
+  @override
+  String get last_name_required => 'اسم العائلة مطلوب.';
+
+  @override
+  String get email_required => 'يرجى إدخال بريد إلكتروني صحيح.';
+
+  @override
+  String get phone_required => 'رقم هاتف غير صالح.\nيجب أن يبدأ بـ 77 أو 78 أو 79.';
+
+  @override
+  String get phone_number_digits_only => 'يجب أن يحتوي رقم الهاتف على أرقام فقط.';
+
+  @override
+  String get password_required => 'يجب أن تكون كلمة المرور أكثر من 8 أحرف، وتحتوي على أحرف كبيرة وصغيرة، رقم، رمز، وبدون مسافات.';
+
+  @override
+  String get passwords_do_not_match => 'كلمة المرور غير متطابقة.';
+
+  @override
+  String get birth_date_required => 'يرجى إدخال تاريخ الميلاد.';
+
+  @override
+  String get governorate_required => 'يرجى اختيار المحافظة.';
+
+  @override
+  String get district_required => 'يرجى اختيار المنطقة.';
+
+  @override
+  String get blood_type_required => 'يرجى اختيار فصيلة الدم.';
+
+  @override
+  String get response_now_button => 'استجابة الآن';
+
+  @override
+  String get schedule_appointment_button => 'جدولة موعد';
+
+  @override
+  String get send_code_message => 'تم إرسال رمز التحقق.';
+
+  @override
+  String get resend_code_message => 'تم إرسال رمز التحقق مرة أخرى.';
+
+  @override
+  String get account_acreated_message => 'Account has been created successfully.';
+
+  @override
+  String get verification_code_sent => 'تم إرسال رمز التحقق بنجاح.\nيرجى التحقق من بريدك الإلكتروني للمتابعة.';
+
+  @override
+  String get password_updated_message => 'تم تحديث كلمة المرور بنجاح.';
 }

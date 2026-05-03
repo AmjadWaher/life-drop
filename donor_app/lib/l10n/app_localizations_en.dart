@@ -120,7 +120,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get otp_verification => 'OTP Verification';
 
   @override
-  String get otp_subtitle => 'We\'ve sent a 6-digit code to your registered device. Enter it below to continue.';
+  String get otp_from_forgot_password_subtitle => 'We\'ve sent a 6-digit code to your email. Enter it below to continue.';
+
+  @override
+  String get otp_from_register_subtitle => 'We\'ve sent a 6-digit code to your email. Enter it below to create an account.';
 
   @override
   String get verify_continue => 'Verify & Continue';
@@ -231,4 +234,70 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get start_navigation => 'Start Navigation';
+
+  @override
+  String get birth_date => 'Birth Date';
+
+  @override
+  String get governorate => 'Governorate';
+
+  @override
+  String get district => 'District';
+
+  @override
+  String get more_info => 'MORE INFO';
+
+  @override
+  String get first_name_required => 'First name is required.';
+
+  @override
+  String get last_name_required => 'Last name is required.';
+
+  @override
+  String get email_required => 'Please enter a valid email address.';
+
+  @override
+  String get phone_required => 'Invalid phone number.\nMust start with 77, 78 and 79.';
+
+  @override
+  String get phone_number_digits_only => 'Phone number must contain digits only.';
+
+  @override
+  String get password_required => 'Password must be more than 8 chars, include uppercase and lowercase letters, number, symbol, no spaces.';
+
+  @override
+  String get passwords_do_not_match => 'Passwords do not match.';
+
+  @override
+  String get birth_date_required => 'Please enter birth date.';
+
+  @override
+  String get governorate_required => 'Please select governorate.';
+
+  @override
+  String get district_required => 'Please select district.';
+
+  @override
+  String get blood_type_required => 'Please select blood type.';
+
+  @override
+  String get response_now_button => 'Response Now';
+
+  @override
+  String get schedule_appointment_button => 'Schedule Appointment';
+
+  @override
+  String get send_code_message => 'Verification code has been sent.';
+
+  @override
+  String get resend_code_message => 'Verification code has been sent again.';
+
+  @override
+  String get account_acreated_message => 'Account has been created successfully.';
+
+  @override
+  String get verification_code_sent => 'Verification code sent successfully.\nPlease check your email to continue.';
+
+  @override
+  String get password_updated_message => 'Password updated successfully.';
 }

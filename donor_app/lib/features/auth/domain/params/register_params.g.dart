@@ -8,22 +8,28 @@ part of 'register_params.dart';
 
 RegisterParams _$RegisterParamsFromJson(Map<String, dynamic> json) =>
     RegisterParams(
-      firstName: json['first_name'] as String,
-      lastName: json['last_name'] as String,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
       email: json['email'] as String,
-      phone: json['phone_number'] as String,
+      phoneNumber: json['phoneNumber'] as String,
+      dateOfBirth: json['dateOfBirth'] as String,
       password: json['password'] as String,
-      confirmPassword: json['confirm_password'] as String,
-      bloodType: json['blood_type'] as String,
+      confirmPassword: json['confirmPassword'] as String,
+      governorateId: json['governorateId'] as String,
+      districtId: json['districtId'] as String,
+      bloodType: json['bloodType'] as String,
     );
 
 Map<String, dynamic> _$RegisterParamsToJson(RegisterParams instance) =>
     <String, dynamic>{
-      'first_name': instance.firstName,
-      'last_name': instance.lastName,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
       'email': instance.email,
-      'phone_number': instance.phone,
+      'phoneNumber': instance.phoneNumber,
+      'dateOfBirth': instance.dateOfBirth,
       'password': instance.password,
-      'confirm_password': instance.confirmPassword,
-      'blood_type': instance.bloodType,
+      'confirmPassword': instance.confirmPassword,
+      'governorateId': instance.governorateId,
+      'districtId': instance.districtId,
+      'bloodType': instance.bloodType,
     };

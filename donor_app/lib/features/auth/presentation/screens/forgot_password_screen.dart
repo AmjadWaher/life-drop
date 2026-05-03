@@ -23,6 +23,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  AppLocalizations get localizations => AppLocalizations.of(context)!;
   final _emailController = TextEditingController();
 
   @override
@@ -42,7 +43,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             ScaffoldMessenger.of(context).showSnackBar(
               snackBar(
                 context,
-                content: 'Verification code has been sent.',
+                content: localizations.send_code_message,
                 backgroundColor: Colors.green.withAlpha(150),
               ),
             );
@@ -68,66 +69,70 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         builder: (context, state) {
           return Scaffold(
             body: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
-                child: Column(
-                  mainAxisAlignment: .center,
-                  crossAxisAlignment: .start,
-                  children: [
-                    AuthTextSection(
-                      title: AppLocalizations.of(context)!.forgot_password,
-                      titleStyle: context.textStyles.font30TextPrimaryExtraBold,
-                      subtitle: AppLocalizations.of(
-                        context,
-                      )!.forgot_password_subtitle,
-                      subtitleStyle:
-                          context.textStyles.font14TextPrimaryRegular,
-                    ),
-                    verticalSpace(32),
-                    AuthTextField(
-                      controller: _emailController,
-                      title: AppLocalizations.of(context)!.email,
-                      titleStyle: context.textStyles.font12SecondaryBold,
-                      hintText: 'donor@pulse.com',
-                      prefixIcon: AppImages(
-                        path: ImagePaths.atSign,
-                        type: ImageType.svg,
-                        color: context.colors.textPlaceHolder,
+              child: GestureDetector(
+                onTap: () => FocusScope.of(context).unfocus(),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  child: Column(
+                    mainAxisAlignment: .center,
+                    crossAxisAlignment: .start,
+                    children: [
+                      AuthTextSection(
+                        title: localizations.forgot_password,
+                        titleStyle:
+                            context.textStyles.font30TextPrimaryExtraBold,
+                        subtitle: localizations.forgot_password_subtitle,
+                        subtitleStyle:
+                            context.textStyles.font14TextPrimaryRegular,
                       ),
-                      hintTextStyle:
-                          context.textStyles.font16TextPlaceHolderMedium50Faded,
-                    ),
-                    verticalSpace(24),
-                    AppTextButton(
-                      buttonText: AppLocalizations.of(context)!.send_otp,
-                      textStyle: context.textStyles.font16TextPrimaryBold,
-                      isLoading: state.status == AuthStatus.loading,
-                      onPressed: () {
-                        context.read<AuthCubit>().sendOtp(
-                          _emailController.text.trim(),
-                        );
-                      },
-                    ),
-                    verticalSpace(30),
-                    GestureDetector(
-                      onTap: () => context.pop(),
-                      child: Row(
-                        mainAxisAlignment: .center,
-                        children: [
-                          Icon(
-                            Icons.arrow_back_ios,
-                            color: context.colors.textPrimary,
-                            size: 15.w,
-                          ),
-                          horizontalSpace(2),
-                          Text(
-                            AppLocalizations.of(context)!.back_to_login,
-                            style: context.textStyles.font14TextPrimaryBold,
-                          ),
-                        ],
+                      verticalSpace(32),
+                      AuthTextField(
+                        controller: _emailController,
+                        title: localizations.email,
+                        titleStyle: context.textStyles.font12SecondaryBold,
+                        hintText: 'donor@pulse.com',
+                        prefixIcon: AppImages(
+                          path: ImagePaths.atSign,
+                          type: ImageType.svg,
+                          color: context.colors.textPlaceHolder,
+                        ),
+                        hintTextStyle: context
+                            .textStyles
+                            .font16TextPlaceHolderMedium50Faded,
                       ),
-                    ),
-                  ],
+                      verticalSpace(24),
+                      AppTextButton(
+                        buttonText: localizations.send_otp,
+                        textStyle: context.textStyles.font16TextPrimaryBold,
+                        isLoading: state.status == AuthStatus.loading,
+                        onPressed: () {
+                          FocusScope.of(context).unfocus();
+                          context.read<AuthCubit>().sendOtp(
+                            _emailController.text.trim(),
+                          );
+                        },
+                      ),
+                      verticalSpace(30),
+                      GestureDetector(
+                        onTap: () => context.pop(),
+                        child: Row(
+                          mainAxisAlignment: .center,
+                          children: [
+                            Icon(
+                              Icons.arrow_back_ios,
+                              color: context.colors.textPrimary,
+                              size: 15.w,
+                            ),
+                            horizontalSpace(2),
+                            Text(
+                              localizations.back_to_login,
+                              style: context.textStyles.font14TextPrimaryBold,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

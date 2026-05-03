@@ -1,11 +1,10 @@
-import 'package:donor_app/core/helpers/account_storage_helper.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/resources/image_paths.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_images.dart';
-import 'package:donor_app/features/auth/presentation/widgets/accounts_sheet.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_field.dart';
+import 'package:donor_app/features/auth/presentation/widgets/password_section.dart';
 import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
@@ -24,105 +23,60 @@ class LoginFormSection extends StatefulWidget {
 
 class _LoginFormSectionState extends State<LoginFormSection> {
   final passwordNotifier = ValueNotifier(true);
-  final _emailFocusNode = FocusNode(canRequestFocus: false);
 
   AppLocalizations get localizations => AppLocalizations.of(context)!;
-
-  void _autoFillFields() async {
-    final accounts = await AccountStorageHelper().getAccounts();
-
-    if (!mounted) return;
-
-    if (accounts.isNotEmpty) {
-      showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        backgroundColor: context.colors.background,
-        builder: (context) {
-          return AccountsSheet(
-            accounts: accounts,
-            onTap: (email, password) {
-              widget.emailController.text = email;
-              widget.passwordController.text = password;
-              context.pop();
-              FocusScope.of(context).unfocus();
-            },
-          );
-        },
-      );
-    }
-  }
 
   @override
   void dispose() {
     passwordNotifier.dispose();
-    _emailFocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: .start,
-      children: [
-        AuthTextField(
-          controller: widget.emailController,
-          focusNode: _emailFocusNode,
-          title: localizations.email,
-          titleStyle: context.textStyles.font12SecondaryBold,
-          hintText: 'donor@pulse.com',
-          prefixIcon: AppImages(
-            path: ImagePaths.atSign,
-            type: ImageType.svg,
-            color: context.colors.textPlaceHolder,
+    return AutofillGroup(
+      child: Column(
+        crossAxisAlignment: .start,
+        children: [
+          AuthTextField(
+            autofillHints: const [AutofillHints.email],
+            controller: widget.emailController,
+            title: localizations.email,
+            titleStyle: context.textStyles.font12SecondaryBold,
+            hintText: 'donor@pulse.com',
+            keyboardType: TextInputType.emailAddress,
+            prefixIcon: AppImages(
+              path: ImagePaths.atSign,
+              type: ImageType.svg,
+              color: context.colors.textPlaceHolder,
+            ),
+            hintTextStyle:
+                context.textStyles.font16TextPlaceHolderMedium50Faded,
+            // onTap: _autoFillFields,
           ),
-          hintTextStyle: context.textStyles.font16TextPlaceHolderMedium50Faded,
-          onTap: _autoFillFields,
-        ),
-        verticalSpace(24),
-        ValueListenableBuilder(
-          valueListenable: passwordNotifier,
-          builder: (context, value, child) {
-            return AuthTextField(
-              obscureText: value,
-              controller: widget.passwordController,
-              title: localizations.password,
-              titleStyle: context.textStyles.font12SecondaryBold,
-              hintText: '••••••••',
-              prefixIcon: Icon(
-                Icons.lock_outlined,
-                color: context.colors.textPlaceHolder,
+          verticalSpace(24),
+          PasswordSection(
+            autofillHints: const [AutofillHints.password],
+            notifier: passwordNotifier,
+            controller: widget.passwordController,
+            title: localizations.password,
+            hintText: '••••••••',
+          ),
+          verticalSpace(12),
+          Align(
+            alignment: Alignment.centerRight,
+            child: GestureDetector(
+              onTap: () {
+                context.pushNamed(Routes.forgotPassword);
+              },
+              child: Text(
+                localizations.forgot_password,
+                style: context.textStyles.font12SecondarySemiBold,
               ),
-              suffixIcon: GestureDetector(
-                onTap: () => passwordNotifier.value = !passwordNotifier.value,
-                child: Icon(
-                  value
-                      ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined,
-                  color: context.colors.textPlaceHolder,
-                ),
-              ),
-              hintTextStyle:
-                  context.textStyles.font16TextPlaceHolderMedium50Faded,
-            );
-          },
-        ),
-        verticalSpace(12),
-        Align(
-          alignment: Alignment.centerRight,
-          child: GestureDetector(
-            onTap: () {
-              context.pushNamed(Routes.forgotPassword);
-            },
-            child: Text(
-              localizations.forgot_password,
-              style: context.textStyles.font12SecondarySemiBold,
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

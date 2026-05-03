@@ -317,11 +317,17 @@ abstract class AppLocalizations {
   /// **'OTP Verification'**
   String get otp_verification;
 
-  /// No description provided for @otp_subtitle.
+  /// No description provided for @otp_from_forgot_password_subtitle.
   ///
   /// In en, this message translates to:
-  /// **'We\'ve sent a 6-digit code to your registered device. Enter it below to continue.'**
-  String get otp_subtitle;
+  /// **'We\'ve sent a 6-digit code to your email. Enter it below to continue.'**
+  String get otp_from_forgot_password_subtitle;
+
+  /// No description provided for @otp_from_register_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ve sent a 6-digit code to your email. Enter it below to create an account.'**
+  String get otp_from_register_subtitle;
 
   /// No description provided for @verify_continue.
   ///
@@ -526,6 +532,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start Navigation'**
   String get start_navigation;
+
+  /// No description provided for @birth_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Birth Date'**
+  String get birth_date;
+
+  /// No description provided for @governorate.
+  ///
+  /// In en, this message translates to:
+  /// **'Governorate'**
+  String get governorate;
+
+  /// No description provided for @district.
+  ///
+  /// In en, this message translates to:
+  /// **'District'**
+  String get district;
+
+  /// No description provided for @more_info.
+  ///
+  /// In en, this message translates to:
+  /// **'MORE INFO'**
+  String get more_info;
+
+  /// No description provided for @first_name_required.
+  ///
+  /// In en, this message translates to:
+  /// **'First name is required.'**
+  String get first_name_required;
+
+  /// No description provided for @last_name_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Last name is required.'**
+  String get last_name_required;
+
+  /// No description provided for @email_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address.'**
+  String get email_required;
+
+  /// No description provided for @phone_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid phone number.\nMust start with 77, 78 and 79.'**
+  String get phone_required;
+
+  /// No description provided for @phone_number_digits_only.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number must contain digits only.'**
+  String get phone_number_digits_only;
+
+  /// No description provided for @password_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be more than 8 chars, include uppercase and lowercase letters, number, symbol, no spaces.'**
+  String get password_required;
+
+  /// No description provided for @passwords_do_not_match.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match.'**
+  String get passwords_do_not_match;
+
+  /// No description provided for @birth_date_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter birth date.'**
+  String get birth_date_required;
+
+  /// No description provided for @governorate_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select governorate.'**
+  String get governorate_required;
+
+  /// No description provided for @district_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select district.'**
+  String get district_required;
+
+  /// No description provided for @blood_type_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select blood type.'**
+  String get blood_type_required;
+
+  /// No description provided for @response_now_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Response Now'**
+  String get response_now_button;
+
+  /// No description provided for @schedule_appointment_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule Appointment'**
+  String get schedule_appointment_button;
+
+  /// No description provided for @send_code_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code has been sent.'**
+  String get send_code_message;
+
+  /// No description provided for @resend_code_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code has been sent again.'**
+  String get resend_code_message;
+
+  /// No description provided for @account_acreated_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Account has been created successfully.'**
+  String get account_acreated_message;
+
+  /// No description provided for @verification_code_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code sent successfully.\nPlease check your email to continue.'**
+  String get verification_code_sent;
+
+  /// No description provided for @password_updated_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Password updated successfully.'**
+  String get password_updated_message;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

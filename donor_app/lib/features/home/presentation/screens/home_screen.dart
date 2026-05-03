@@ -41,11 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   ];
   void showBiometricPrompt() async {
-    if (!await SharedPrefHelper.getBool(SharedPrefKeys.biometricEnabled)) {
+    if (!await SharedPrefHelper.getBool(SharedPrefKeys.biometricPromptShown)) {
       Future.delayed(const Duration(seconds: 3), () {
         if (mounted) {
           showModalBottomSheet(
             context: context,
+            enableDrag: false,
+            isDismissible: false,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
@@ -85,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 verticalSpace(15),
                 const GreetingSection(),
                 verticalSpace(18),
-                const DonationSummary(totalDonations: '12'),
+                const DonationSummary(totalDonations: 3),
                 verticalSpace(38),
                 const RequestsSection(),
                 verticalSpace(24),

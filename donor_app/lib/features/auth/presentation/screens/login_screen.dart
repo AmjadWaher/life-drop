@@ -1,5 +1,3 @@
-import 'package:donor_app/core/di/injection_container.dart';
-import 'package:donor_app/core/helpers/account_storage_helper.dart';
 import 'package:donor_app/core/helpers/biometric_helper.dart';
 import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
@@ -15,6 +13,7 @@ import 'package:donor_app/features/auth/presentation/widgets/auth_switch_section
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_section.dart';
 import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,20 +28,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   AppLocalizations get localizations => AppLocalizations.of(context)!;
-
-  String? validateEmail(String email) {
-    if (email.isEmpty) return 'Email is required.';
-    if (!email.isValidEmail) return 'Invalid email.';
-    return null;
-  }
-
-  String? validatePassword(String password) {
-    if (password.isEmpty) return 'Password is required.';
-    if (!password.isValidPassword) {
-      return "Password must be more than 8 chars, include upper, lower, number, symbol, no spaces.";
-    }
-    return null;
-  }
 
   void _biometricLogin() async {
     final isEnabled = await SharedPrefHelper.getBool(
@@ -74,37 +59,36 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<AuthCubit>(),
-      child: BlocConsumer<AuthCubit, AuthState>(
-        listener: (context, state) {
-          if (state.status == AuthStatus.success) {
-            AccountStorageHelper().addAccount(
-              _emailController.text,
-              _passwordController.text,
-            );
-            context.pushNamedAndRemoveUntil(
-              Routes.mainNavigation,
-              predicate: (route) => false,
-            );
-          } else if (state.status == AuthStatus.failure &&
-              state.error != null) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-              snackBar(
-                context,
-                icon: Icons.error_outline,
-                content:
-                    state.error?.getAllErrorMessages() ??
-                    'Something went wrong',
-                iconColor: context.colors.iconActive,
-              ),
-            );
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
-            body: SafeArea(
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state.status == AuthStatus.success &&
+            state.action == AuthAction.login) {
+          TextInput.finishAutofillContext();
+          context.pushNamedAndRemoveUntil(
+            Routes.mainNavigation,
+            predicate: (route) => false,
+          );
+        } else if (state.status == AuthStatus.failure && state.error != null) {
+          ScaffoldMessenger.of(context).clearSnackBars();
+          ScaffoldMessenger.of(context).showSnackBar(
+            snackBar(
+              context,
+              icon: Icons.error_outline,
+              content:
+                  state.error?.getAllErrorMessages() ?? 'Something went wrong',
+              iconColor: context.colors.iconActive,
+            ),
+          );
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            behavior: HitTestBehavior.opaque,
+            child: SafeArea(
               child: CustomScrollView(
                 slivers: [
                   SliverFillRemaining(
@@ -132,28 +116,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             textStyle: context.textStyles.font16TextPrimaryBold,
                             isLoading: state.status == AuthStatus.loading,
                             onPressed: () {
+                              FocusScope.of(context).unfocus();
                               final email = _emailController.text.trim();
                               final password = _passwordController.text.trim();
 
-                              final emailError = validateEmail(email);
-                              final passwordError = validatePassword(password);
-                              if (emailError == null && passwordError == null) {
+                              if (email.isNotEmpty && password.isNotEmpty) {
                                 context.read<AuthCubit>().login(
                                   _emailController.text.trim(),
                                   _passwordController.text.trim(),
-                                );
-                              } else {
-                                ScaffoldMessenger.of(context).clearSnackBars();
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  snackBar(
-                                    context,
-                                    icon: Icons.error_outline,
-                                    content:
-                                        emailError ??
-                                        passwordError ??
-                                        'Something went wrong',
-                                    iconColor: context.colors.iconActive,
-                                  ),
                                 );
                               }
                             },
@@ -164,7 +134,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             actionText: AppLocalizations.of(
                               context,
                             )!.register_now,
-                            onTap: () => context.pushNamed(Routes.register),
+                            onTap: () => context.pushNamed(
+                              Routes.register,
+                              arguments: {
+                                'authCubit': context.read<AuthCubit>(),
+                              },
+                            ),
                           ),
                         ],
                       ),
@@ -173,9 +148,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

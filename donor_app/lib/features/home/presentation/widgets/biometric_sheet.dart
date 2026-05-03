@@ -38,7 +38,6 @@ class BiometricSheet extends StatelessWidget {
                   backgroundColor: context.colors.primary,
                 ),
                 onPressed: () async {
-                  context.pop();
                   final success = await BiometricHelper().authenticate(
                     localizations.use_fingerprint_for_quick_secure_login,
                   );
@@ -47,6 +46,11 @@ class BiometricSheet extends StatelessWidget {
                       SharedPrefKeys.biometricEnabled,
                       true,
                     );
+                    await SharedPrefHelper.setData(
+                      SharedPrefKeys.biometricPromptShown,
+                      true,
+                    );
+                    if (context.mounted) context.pop();
                   }
                 },
                 child: Text(
@@ -56,7 +60,17 @@ class BiometricSheet extends StatelessWidget {
               ),
               horizontalSpace(5),
               TextButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await SharedPrefHelper.setData(
+                    SharedPrefKeys.biometricPromptShown,
+                    false,
+                  );
+                  await SharedPrefHelper.setData(
+                    SharedPrefKeys.biometricPromptShown,
+                    true,
+                  );
+                  if (context.mounted) context.pop();
+                },
                 child: Text(
                   localizations.skip,
                   style: context.textStyles.font14TextPrimaryMedium,

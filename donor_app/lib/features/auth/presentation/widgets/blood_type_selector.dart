@@ -1,42 +1,32 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
+import 'package:donor_app/features/auth/domain/enums/blood_type.dart';
 import 'package:donor_app/features/auth/presentation/widgets/blood_type_option.dart';
 import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BloodTypeSelector extends StatefulWidget {
-  const BloodTypeSelector({
-    super.key,
-    this.onBloodTypeSelected,
-    this.initialBloodType,
-  });
+  const BloodTypeSelector({super.key, this.onBloodTypeSelected});
 
   final ValueChanged<String>? onBloodTypeSelected;
-  final String? initialBloodType;
 
   @override
   State<BloodTypeSelector> createState() => _BloodTypeSelectorState();
 }
 
 class _BloodTypeSelectorState extends State<BloodTypeSelector> {
-  String? selectedType;
-  final List<String> bloodTypes = [
-    'A+',
-    'A-',
-    'B+',
-    'B-',
-    'O+',
-    'O-',
-    'AB+',
-    'AB-',
+  BloodType? selectedType;
+  final List<BloodType> bloodTypes = [
+    BloodType.O_Positive,
+    BloodType.O_Negative,
+    BloodType.A_Positive,
+    BloodType.A_Negative,
+    BloodType.B_Positive,
+    BloodType.B_Negative,
+    BloodType.AB_Positive,
+    BloodType.AB_Negative,
   ];
-
-  @override
-  void initState() {
-    super.initState();
-    selectedType = widget.initialBloodType;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +49,7 @@ class _BloodTypeSelectorState extends State<BloodTypeSelector> {
             ),
           ],
         ),
-        verticalSpace(16),
+        verticalSpace(12),
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -73,12 +63,12 @@ class _BloodTypeSelectorState extends State<BloodTypeSelector> {
             final type = bloodTypes[index];
             return BloodTypeOption(
               isSelected: selectedType == type,
-              title: type,
+              title: type.label,
               onTap: () {
                 setState(() {
                   selectedType = type;
                 });
-                widget.onBloodTypeSelected?.call(type);
+                widget.onBloodTypeSelected?.call(type.name);
               },
             );
           },

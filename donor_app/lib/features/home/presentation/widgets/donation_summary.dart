@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DonationSummary extends StatelessWidget {
   const DonationSummary({super.key, required this.totalDonations});
-  final String totalDonations;
+  final int totalDonations;
 
   String donationsCount(BuildContext context, int count) {
     if (count >= 3 && count <= 10) {
@@ -26,7 +26,8 @@ class DonationSummary extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            right: -25.w,
+            right: context.isRTL ? null : -25.w,
+            left: context.isRTL ? -25.w : null,
             bottom: -28.h,
             child: Icon(
               Icons.favorite,
@@ -48,12 +49,12 @@ class DonationSummary extends StatelessWidget {
                 verticalSpace(8),
                 RichText(
                   text: TextSpan(
-                    text: totalDonations,
+                    text: totalDonations.toString(),
                     style: context.textStyles.font60TextPrimaryExtraBold,
                     children: [
                       WidgetSpan(child: horizontalSpace(8)),
                       TextSpan(
-                        text: donationsCount(context, 12),
+                        text: donationsCount(context, totalDonations),
                         style: context.textStyles.font16TextSecondaryMedium,
                       ),
                     ],
