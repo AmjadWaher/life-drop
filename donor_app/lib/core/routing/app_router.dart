@@ -1,6 +1,10 @@
 import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/routing/routes.dart';
-import 'package:donor_app/features/auth/presentation/logic/auth_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/forgot_password/forgot_password_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/login/login_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/otp/otp_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/register/register_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/reset_password/reset_password_cubit.dart';
 import 'package:donor_app/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/otp_verification_screen.dart';
@@ -22,33 +26,42 @@ class AppRouter {
       case Routes.login:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => getIt<AuthCubit>(),
+            create: (context) => getIt<LoginCubit>(),
             child: const LoginScreen(),
           ),
         );
       case Routes.register:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider.value(
-            value: (args as Map<String, dynamic>)['authCubit'] as AuthCubit,
+          builder: (context) => BlocProvider(
+            create: (context) => getIt<RegisterCubit>(),
             child: const RegisterScreen(),
           ),
         );
       case Routes.forgotPassword:
         return MaterialPageRoute(
-          builder: (context) => const ForgotPasswordScreen(),
+          builder: (context) => BlocProvider(
+            create: (context) => getIt<ForgotPasswordCubit>(),
+            child: const ForgotPasswordScreen(),
+          ),
         );
       case Routes.otpVerification:
         return MaterialPageRoute(
-          builder: (context) => OTPVerificationScreen(
-            email: (args as Map<String, dynamic>)['email'] as String,
-            isFromRegister: args['isFromRegister'] as bool,
+          builder: (context) => BlocProvider(
+            create: (context) => getIt<OtpCubit>(),
+            child: OTPVerificationScreen(
+              email: (args as Map<String, dynamic>)['email'] as String,
+              isFromRegister: args['isFromRegister'] as bool,
+            ),
           ),
         );
       case Routes.resetPassword:
         return MaterialPageRoute(
-          builder: (context) => ResetPasswordScreen(
-            email: (args as Map<String, dynamic>)['email'],
-            code: args['code'],
+          builder: (context) => BlocProvider(
+            create: (context) => getIt<ResetPasswordCubit>(),
+            child: ResetPasswordScreen(
+              email: (args as Map<String, dynamic>)['email'],
+              code: args['code'],
+            ),
           ),
         );
       case Routes.mainNavigation:

@@ -12,7 +12,7 @@ platform :android do
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       # testers: "amjadwaher623@gmail.com",
       groups: "team",
-      release_notes: "Updated in all Auth Screens and Auth Api and fixed some bugs.",
+      release_notes: "Architecture Improvements & UI",
     )
   end
 end

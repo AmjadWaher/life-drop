@@ -6,18 +6,12 @@ import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BloodTypeSelector extends StatefulWidget {
-  const BloodTypeSelector({super.key, this.onBloodTypeSelected});
+class BloodTypeSelector extends StatelessWidget {
+  const BloodTypeSelector({super.key, required this.selectedBloodType});
 
-  final ValueChanged<String>? onBloodTypeSelected;
+  final ValueNotifier<String?> selectedBloodType;
 
-  @override
-  State<BloodTypeSelector> createState() => _BloodTypeSelectorState();
-}
-
-class _BloodTypeSelectorState extends State<BloodTypeSelector> {
-  BloodType? selectedType;
-  final List<BloodType> bloodTypes = [
+  final List<BloodType> bloodTypes = const [
     BloodType.O_Positive,
     BloodType.O_Negative,
     BloodType.A_Positive,
@@ -50,25 +44,27 @@ class _BloodTypeSelectorState extends State<BloodTypeSelector> {
           ],
         ),
         verticalSpace(12),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            mainAxisSpacing: 10.h,
-            crossAxisSpacing: 10.w,
-          ),
-          itemCount: bloodTypes.length,
-          itemBuilder: (context, index) {
-            final type = bloodTypes[index];
-            return BloodTypeOption(
-              isSelected: selectedType == type,
-              title: type.label,
-              onTap: () {
-                setState(() {
-                  selectedType = type;
-                });
-                widget.onBloodTypeSelected?.call(type.name);
+        ValueListenableBuilder<String?>(
+          valueListenable: selectedBloodType,
+          builder: (context, selectedValue, _) {
+            return GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                mainAxisSpacing: 10.h,
+                crossAxisSpacing: 10.w,
+              ),
+              itemCount: bloodTypes.length,
+              itemBuilder: (context, index) {
+                final type = bloodTypes[index];
+                return BloodTypeOption(
+                  isSelected: selectedValue == type.name,
+                  title: type.label,
+                  onTap: () {
+                    selectedBloodType.value = type.name;
+                  },
+                );
               },
             );
           },
