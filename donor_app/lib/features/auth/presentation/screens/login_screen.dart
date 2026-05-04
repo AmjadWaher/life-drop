@@ -6,8 +6,8 @@ import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
-import 'package:donor_app/features/auth/presentation/logic/auth_cubit.dart';
-import 'package:donor_app/features/auth/presentation/logic/auth_state.dart';
+import 'package:donor_app/features/auth/presentation/logic/login/login_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/login/login_state.dart';
 import 'package:donor_app/features/auth/presentation/widgets/login_form_section.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_switch_section.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_section.dart';
@@ -59,16 +59,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
+    return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
-        if (state.status == AuthStatus.success &&
-            state.action == AuthAction.login) {
+        if (state.status == LoginStatus.success) {
           TextInput.finishAutofillContext();
           context.pushNamedAndRemoveUntil(
             Routes.mainNavigation,
             predicate: (route) => false,
           );
-        } else if (state.status == AuthStatus.failure && state.error != null) {
+        } else if (state.status == LoginStatus.failure && state.error != null) {
           ScaffoldMessenger.of(context).clearSnackBars();
           ScaffoldMessenger.of(context).showSnackBar(
             snackBar(
@@ -114,14 +113,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           AppTextButton(
                             buttonText: localizations.login,
                             textStyle: context.textStyles.font16TextPrimaryBold,
-                            isLoading: state.status == AuthStatus.loading,
+                            isLoading: state.status == LoginStatus.loading,
                             onPressed: () {
                               FocusScope.of(context).unfocus();
                               final email = _emailController.text.trim();
                               final password = _passwordController.text.trim();
 
                               if (email.isNotEmpty && password.isNotEmpty) {
-                                context.read<AuthCubit>().login(
+                                context.read<LoginCubit>().login(
                                   _emailController.text.trim(),
                                   _passwordController.text.trim(),
                                 );
@@ -134,12 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             actionText: AppLocalizations.of(
                               context,
                             )!.register_now,
-                            onTap: () => context.pushNamed(
-                              Routes.register,
-                              arguments: {
-                                'authCubit': context.read<AuthCubit>(),
-                              },
-                            ),
+                            onTap: () => context.pushNamed(Routes.register),
                           ),
                         ],
                       ),

@@ -14,11 +14,35 @@ class AuthRemoteDataSource {
 
   AuthRemoteDataSource(this._dio);
 
+  /// Wraps every API call with unified error handling and Crashlytics logging.
+  Future<ApiResult<T>> _safeApiCall<T>(
+    String endpoint,
+    Future<T> Function() apiCall,
+  ) async {
+    try {
+      final result = await apiCall();
+      return ApiResult.success(result);
+    } catch (e, stack) {
+      final error = ApiErrorHandler.handle(e);
+
+      FirebaseCrashlytics.instance.log("""
+      $endpoint API ERROR:
+      Endpoint: '$endpoint'
+      Status: ${error.code}
+      Errors: ${error.getAllErrorMessages()}
+      """);
+
+      FirebaseCrashlytics.instance.recordError(e, stack);
+
+      return ApiResult.failure(error);
+    }
+  }
+
   Future<ApiResult<LoginResponseModel>> login(
     String email,
     String password,
-  ) async {
-    try {
+  ) {
+    return _safeApiCall('login', () async {
       final response = await _dio.post(
         ApiConstants.login,
         data: {'email': email, 'password': password},
@@ -27,237 +51,88 @@ class AuthRemoteDataSource {
         response.data,
         (json) => LoginResponseModel.fromJson(json as Map<String, dynamic>),
       );
-      return ApiResult.success(data.data);
-    } catch (e, stack) {
-      final error = ApiErrorHandler.handle(e);
-
-      FirebaseCrashlytics.instance.log("""
-      LOGIN API ERROR:
-      Endpoint: 'login'
-      Status: ${error.code}
-      Errors: ${error.getAllErrorMessages()}
-      """);
-
-      FirebaseCrashlytics.instance.recordError(e, stack);
-
-      return ApiResult.failure(error);
-    }
+      return data.data;
+    });
   }
 
-  Future<ApiResult<void>> register(RegisterParams params) async {
-    try {
+  Future<ApiResult<void>> register(RegisterParams params) {
+    return _safeApiCall('register', () async {
       await _dio.post(ApiConstants.register, data: params.toJson());
-      return ApiResult.success(null);
-    } catch (e, stack) {
-      final error = ApiErrorHandler.handle(e);
-
-      FirebaseCrashlytics.instance.log("""
-      Register API ERROR:
-      Endpoint: 'register'
-      Status: ${error.code}
-      Errors: ${error.getAllErrorMessages()}
-      """);
-
-      FirebaseCrashlytics.instance.recordError(e, stack);
-
-      return ApiResult.failure(error);
-    }
+    });
   }
 
-  Future<ApiResult<void>> verifyOtp(String email, String code) async {
-    try {
+  Future<ApiResult<void>> verifyOtp(String email, String code) {
+    return _safeApiCall('verifyOtp', () async {
       await _dio.post(
         ApiConstants.verifyOtp,
         data: {'email': email, 'code': code},
       );
-      return ApiResult.success(null);
-    } on DioException catch (e, stack) {
-      final error = ApiErrorHandler.handle(e);
-
-      FirebaseCrashlytics.instance.log("""
-      VerifyOTP API ERROR:
-      Endpoint: 'verifyOtp'
-      Status: ${error.code}
-      Errors: ${error.getAllErrorMessages()}
-      """);
-
-      FirebaseCrashlytics.instance.recordError(e, stack);
-
-      return ApiResult.failure(error);
-    } catch (e, stack) {
-      final error = ApiErrorHandler.handle(e);
-
-      FirebaseCrashlytics.instance.log("""
-      VerifyOTP API ERROR:
-      Endpoint: 'verifyOtp'
-      Status: ${error.code}
-      Errors: ${error.getAllErrorMessages()}
-      """);
-
-      FirebaseCrashlytics.instance.recordError(e, stack);
-
-      return ApiResult.failure(error);
-    }
+    });
   }
 
-  Future<ApiResult<void>> verifyRegistration(String email, String code) async {
-    try {
+  Future<ApiResult<void>> verifyRegistration(String email, String code) {
+    return _safeApiCall('verifyRegistration', () async {
       await _dio.post(
         ApiConstants.verifyRegistration,
         data: {'email': email, 'code': code},
       );
-      return ApiResult.success(null);
-    } on DioException catch (e, stack) {
-      final error = ApiErrorHandler.handle(e);
-
-      FirebaseCrashlytics.instance.log("""
-      VerifyRegistration API ERROR:
-      Endpoint: 'verifyRegistration'
-      Status: ${error.code}
-      Errors: ${error.getAllErrorMessages()}
-      """);
-
-      FirebaseCrashlytics.instance.recordError(e, stack);
-
-      return ApiResult.failure(error);
-    } catch (e, stack) {
-      final error = ApiErrorHandler.handle(e);
-
-      FirebaseCrashlytics.instance.log("""
-      VerifyRegistration API ERROR:
-      Endpoint: 'verifyRegistration'
-      Status: ${error.code}
-      Errors: ${error.getAllErrorMessages()}
-      """);
-
-      FirebaseCrashlytics.instance.recordError(e, stack);
-
-      return ApiResult.failure(error);
-    }
+    });
   }
 
-  Future<ApiResult<void>> sendOtp(String email) async {
-    try {
+  Future<ApiResult<void>> sendOtp(String email) {
+    return _safeApiCall('sendOtp', () async {
       await _dio.post(ApiConstants.sendOtp, data: {'email': email});
-      return ApiResult.success(null);
-    } catch (e, stack) {
-      final error = ApiErrorHandler.handle(e);
-
-      FirebaseCrashlytics.instance.log("""
-      SendOTP API ERROR:
-      Endpoint: 'sendOtp'
-      Status: ${error.code}
-      Errors: ${error.getAllErrorMessages()}
-      """);
-
-      FirebaseCrashlytics.instance.recordError(e, stack);
-
-      return ApiResult.failure(error);
-    }
+    });
   }
 
-  Future<ApiResult<void>> resendOtp(String email) async {
-    try {
+  Future<ApiResult<void>> resendOtp(String email) {
+    return _safeApiCall('resendOtp', () async {
       await _dio.post(ApiConstants.resendOtp, data: {'email': email});
-      return ApiResult.success(null);
-    } catch (e, stack) {
-      final error = ApiErrorHandler.handle(e);
-
-      FirebaseCrashlytics.instance.log("""
-      ResendOTP API ERROR:
-      Endpoint: 'resendOtp'
-      Status: ${error.code}
-      Errors: ${error.getAllErrorMessages()}
-      """);
-
-      FirebaseCrashlytics.instance.recordError(e, stack);
-
-      return ApiResult.failure(error);
-    }
+    });
   }
 
-  Future<ApiResult<void>> resendRegistrationOtp(String email) async {
-    try {
+  Future<ApiResult<void>> resendRegistrationOtp(String email) {
+    return _safeApiCall('resendRegistrationOtp', () async {
       await _dio.post(
         ApiConstants.resendRegistrationOtp,
         data: {'email': email},
       );
-      return ApiResult.success(null);
-    } catch (e, stack) {
-      final error = ApiErrorHandler.handle(e);
-
-      FirebaseCrashlytics.instance.log("""
-      ResendRegistrationOTP API ERROR:
-      Endpoint: 'resendRegistrationOtp'
-      Status: ${error.code}
-      Errors: ${error.getAllErrorMessages()}
-      """);
-
-      FirebaseCrashlytics.instance.recordError(e, stack);
-
-      return ApiResult.failure(error);
-    }
+    });
   }
 
   Future<ApiResult<void>> resetPassword({
     required String email,
     required String code,
     required String newPassword,
-  }) async {
-    try {
+  }) {
+    return _safeApiCall('resetPassword', () async {
       await _dio.post(
         ApiConstants.resetPassword,
         data: {'email': email, 'code': code, 'newPassword': newPassword},
       );
-      return ApiResult.success(null);
-    } catch (e, stack) {
-      final error = ApiErrorHandler.handle(e);
-
-      FirebaseCrashlytics.instance.log("""
-      ResetPassword API ERROR:
-      Endpoint: 'resetPassword'
-      Status: ${error.code}
-      Errors: ${error.getAllErrorMessages()}
-      """);
-
-      FirebaseCrashlytics.instance.recordError(e, stack);
-
-      return ApiResult.failure(error);
-    }
+    });
   }
 
-  Future<ApiResult<List<GovernorateModel>>> getGovernorates() async {
-    try {
+  Future<ApiResult<List<GovernorateModel>>> getGovernorates() {
+    return _safeApiCall('getGovernorates', () async {
       final response = await _dio.get(ApiConstants.governorates);
       final data = ApiResponse<List<GovernorateModel>>.fromJson(
         response.data,
         (data) => List.from(data as List)
             .map(
-              (json) => GovernorateModel.fromJson(json as Map<String, dynamic>),
+              (json) =>
+                  GovernorateModel.fromJson(json as Map<String, dynamic>),
             )
             .toList(),
       );
-      return ApiResult.success(data.data);
-    } catch (e, stack) {
-      final error = ApiErrorHandler.handle(e);
-
-      FirebaseCrashlytics.instance.log("""
-      GetGovernorates API ERROR:
-      Endpoint: 'getGovernorates'
-      Status: ${error.code}
-      Errors: ${error.getAllErrorMessages()}
-      """);
-
-      FirebaseCrashlytics.instance.recordError(e, stack);
-
-      return ApiResult.failure(error);
-    }
+      return data.data;
+    });
   }
 
   Future<ApiResult<List<DistrictsModel>>> getDistrictsByGovernorateId(
     String governorateId,
-  ) async {
-    try {
+  ) {
+    return _safeApiCall('getDistrictsByGovernorateId', () async {
       final response = await _dio.get(ApiConstants.districts(governorateId));
       final data = ApiResponse<List<DistrictsModel>>.fromJson(
         response.data,
@@ -265,20 +140,7 @@ class AuthRemoteDataSource {
           data as List,
         ).map((json) => DistrictsModel.fromJson(json)).toList(),
       );
-      return ApiResult.success(data.data);
-    } catch (e, stack) {
-      final error = ApiErrorHandler.handle(e);
-
-      FirebaseCrashlytics.instance.log("""
-      GetDistricts API ERROR:
-      Endpoint: 'getDistrictsByGovernorateId'
-      Status: ${error.code}
-      Errors: ${error.getAllErrorMessages()}
-      """);
-
-      FirebaseCrashlytics.instance.recordError(e, stack);
-
-      return ApiResult.failure(error);
-    }
+      return data.data;
+    });
   }
 }

@@ -3,8 +3,8 @@ import 'package:donor_app/core/widgets/app_drop_down_button_field.dart';
 import 'package:donor_app/core/widgets/app_slide_fade_animation.dart';
 import 'package:donor_app/features/auth/domain/entities/districts_entity.dart';
 import 'package:donor_app/features/auth/domain/entities/governorate_entity.dart';
-import 'package:donor_app/features/auth/presentation/logic/auth_cubit.dart';
-import 'package:donor_app/features/auth/presentation/logic/auth_state.dart';
+import 'package:donor_app/features/auth/presentation/logic/register/register_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/register/register_state.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_section.dart';
 import 'package:donor_app/features/auth/presentation/widgets/blood_type_selector.dart';
 import 'package:donor_app/features/auth/presentation/widgets/date_picker_field.dart';
@@ -31,12 +31,10 @@ class RegisterSectionTwo extends StatefulWidget {
 
 class _RegisterSectionTwoState extends State<RegisterSectionTwo> {
   AppLocalizations get localization => AppLocalizations.of(context)!;
-  void _init() async {
-    Future.delayed(const Duration(milliseconds: 400), () {
-      if (mounted) {
-        context.read<AuthCubit>().getGovernorates();
-      }
-    });
+  void _init() {
+    if (mounted) {
+      context.read<RegisterCubit>().getGovernorates();
+    }
   }
 
   @override
@@ -48,7 +46,7 @@ class _RegisterSectionTwoState extends State<RegisterSectionTwo> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
+    return BlocBuilder<RegisterCubit, RegisterState>(
       builder: (context, state) {
         return Column(
           crossAxisAlignment: .start,
@@ -82,7 +80,7 @@ class _RegisterSectionTwoState extends State<RegisterSectionTwo> {
                     // reset district selection
                     widget.selectedDistrictId.value = null;
 
-                    context.read<AuthCubit>().getDistrictsByGovernorateId(
+                    context.read<RegisterCubit>().getDistrictsByGovernorateId(
                       value,
                     );
                   }
@@ -111,8 +109,7 @@ class _RegisterSectionTwoState extends State<RegisterSectionTwo> {
             AppSlideFadeAnimation(
               delay: 300,
               child: BloodTypeSelector(
-                onBloodTypeSelected: (value) =>
-                    widget.selectedBloodType.value = value,
+                selectedBloodType: widget.selectedBloodType,
               ),
             ),
           ],

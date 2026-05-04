@@ -5,8 +5,8 @@ import 'package:donor_app/core/helpers/validations.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
 import 'package:donor_app/features/auth/domain/params/register_params.dart';
-import 'package:donor_app/features/auth/presentation/logic/auth_cubit.dart';
-import 'package:donor_app/features/auth/presentation/logic/auth_state.dart';
+import 'package:donor_app/features/auth/presentation/logic/register/register_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/register/register_state.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_switch_section.dart';
 import 'package:donor_app/features/auth/presentation/widgets/register_section_one.dart';
 import 'package:donor_app/features/auth/presentation/widgets/register_section_two.dart';
@@ -24,7 +24,6 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   AppLocalizations get localizations => AppLocalizations.of(context)!;
-  final _pageController = PageController();
   final _pageIndex = ValueNotifier<int>(0);
 
   final _emailController = TextEditingController();
@@ -66,7 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _pageIndex.value++;
       } else {
         if (validRegisterSectionTwo()) {
-          context.read<AuthCubit>().register(
+          context.read<RegisterCubit>().register(
             RegisterParams(
               firstName: _firstNameController.text.trim(),
               lastName: _lastNameController.text.trim(),
@@ -163,7 +162,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
-    _pageController.dispose();
     _pageIndex.dispose();
     _emailController.dispose();
     _passwordController.dispose();
@@ -180,10 +178,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
+    return BlocConsumer<RegisterCubit, RegisterState>(
       listener: (context, state) {
-        if (state.status == AuthStatus.success &&
-            state.action == AuthAction.register) {
+        if (state.status == RegisterStatus.success) {
           ScaffoldMessenger.of(context).clearSnackBars();
           ScaffoldMessenger.of(context).showSnackBar(
             snackBar(
@@ -199,7 +196,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Routes.otpVerification,
             arguments: {'email': _emailController.text, 'isFromRegister': true},
           );
-        } else if (state.status == AuthStatus.failure && state.error != null) {
+        } else if (state.status == RegisterStatus.failure && state.error != null) {
           ScaffoldMessenger.of(context).clearSnackBars();
           ScaffoldMessenger.of(context).showSnackBar(
             snackBar(
@@ -233,7 +230,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ? AppLocalizations.of(context)!.next
                                 : AppLocalizations.of(context)!.register,
                             textStyle: context.textStyles.font16TextPrimaryBold,
-                            isLoading: state.status == AuthStatus.loading,
+                            isLoading: state.status == RegisterStatus.loading,
                             onPressed: _register,
                           );
                         },

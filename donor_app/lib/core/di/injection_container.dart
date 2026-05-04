@@ -3,7 +3,11 @@ import 'package:donor_app/core/networking/dio_factory.dart';
 import 'package:donor_app/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:donor_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:donor_app/features/auth/domain/repositories/auth_repository.dart';
-import 'package:donor_app/features/auth/presentation/logic/auth_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/forgot_password/forgot_password_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/login/login_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/otp/otp_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/register/register_cubit.dart';
+import 'package:donor_app/features/auth/presentation/logic/reset_password/reset_password_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -21,5 +25,15 @@ Future<void> initDependencies() async {
     () => AuthRepositoryImpl(getIt<AuthRemoteDataSource>()),
   );
 
-  getIt.registerFactory<AuthCubit>(() => AuthCubit(getIt<AuthRepository>()));
+  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt<AuthRepository>()));
+  getIt.registerFactory<RegisterCubit>(
+    () => RegisterCubit(getIt<AuthRepository>()),
+  );
+  getIt.registerFactory<OtpCubit>(() => OtpCubit(getIt<AuthRepository>()));
+  getIt.registerFactory<ForgotPasswordCubit>(
+    () => ForgotPasswordCubit(getIt<AuthRepository>()),
+  );
+  getIt.registerFactory<ResetPasswordCubit>(
+    () => ResetPasswordCubit(getIt<AuthRepository>()),
+  );
 }
