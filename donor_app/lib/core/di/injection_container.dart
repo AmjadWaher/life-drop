@@ -17,12 +17,12 @@ Future<void> initDependencies() async {
 
   getIt.registerLazySingleton<Dio>(() => dio);
 
-  getIt.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthRemoteDataSource(getIt<Dio>()),
+  getIt.registerLazySingleton<AuthRemoteDataSourceImpl>(
+    () => AuthRemoteDataSourceImpl(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(getIt<AuthRemoteDataSource>()),
+    () => AuthRepositoryImpl(getIt<AuthRemoteDataSourceImpl>()),
   );
 
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt<AuthRepository>()));
