@@ -9,16 +9,16 @@ import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_datasource.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthRemoteDataSource _remoteDataSource;
+  final AuthRemoteDataSourceImpl _remoteDataSourceImpl;
 
-  AuthRepositoryImpl(this._remoteDataSource);
+  AuthRepositoryImpl(this._remoteDataSourceImpl);
 
   @override
   Future<ApiResult<LoginResponseEntity>> login(
     String email,
     String password,
   ) async {
-    final result = await _remoteDataSource.login(email, password);
+    final result = await _remoteDataSourceImpl.login(email, password);
     return result.when(
       success: (response) async {
         await _cacheAccess(response.accessToken, response.refreshToken);
@@ -30,7 +30,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<ApiResult<void>> register(RegisterParams params) async {
-    final result = await _remoteDataSource.register(params);
+    final result = await _remoteDataSourceImpl.register(params);
     return result.when(
       success: (response) async {
         return ApiResult.success(response);
@@ -41,7 +41,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<ApiResult<void>> verifyOtp(String email, String otp) async {
-    final result = await _remoteDataSource.verifyOtp(email, otp);
+    final result = await _remoteDataSourceImpl.verifyOtp(email, otp);
     return result.when(
       success: (response) async {
         return ApiResult.success(null);
@@ -52,7 +52,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<ApiResult<void>> verifyRegistration(String email, String code) async {
-    final result = await _remoteDataSource.verifyRegistration(email, code);
+    final result = await _remoteDataSourceImpl.verifyRegistration(email, code);
     return result.when(
       success: (response) async {
         return ApiResult.success(null);
@@ -63,7 +63,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<ApiResult<void>> sendOtp(String email) async {
-    final result = await _remoteDataSource.sendOtp(email);
+    final result = await _remoteDataSourceImpl.sendOtp(email);
     return result.when(
       success: (response) async {
         return ApiResult.success(null);
@@ -74,7 +74,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<ApiResult<void>> resendOtp(String email) async {
-    final result = await _remoteDataSource.resendOtp(email);
+    final result = await _remoteDataSourceImpl.resendOtp(email);
     return result.when(
       success: (response) async {
         return ApiResult.success(null);
@@ -85,7 +85,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<ApiResult<void>> resendRegistrationOtp(String email) async {
-    final result = await _remoteDataSource.resendRegistrationOtp(email);
+    final result = await _remoteDataSourceImpl.resendRegistrationOtp(email);
     return result.when(
       success: (response) async {
         return ApiResult.success(null);
@@ -100,7 +100,7 @@ class AuthRepositoryImpl implements AuthRepository {
     String code,
     String newPassword,
   ) async {
-    final result = await _remoteDataSource.resetPassword(
+    final result = await _remoteDataSourceImpl.resetPassword(
       email: email,
       code: code,
       newPassword: newPassword,
@@ -128,7 +128,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<ApiResult<List<DistrictsEntity>>> getDistrictsByGovernorate(
     String governorateId,
   ) async {
-    final result = await _remoteDataSource.getDistrictsByGovernorateId(
+    final result = await _remoteDataSourceImpl.getDistrictsByGovernorateId(
       governorateId,
     );
     return result.when(
@@ -141,7 +141,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<ApiResult<List<GovernorateEntity>>> getGovernorates() async {
-    final result = await _remoteDataSource.getGovernorates();
+    final result = await _remoteDataSourceImpl.getGovernorates();
     return result.when(
       success: (response) async {
         return ApiResult.success(response);
