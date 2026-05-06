@@ -1,10 +1,10 @@
-import 'package:donor_app/core/helpers/map_helper.dart';
+import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/helpers/location_helper.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/widgets/app_elevated_button.dart';
 import 'package:donor_app/features/donation_request/presentation/widgets/destination_card.dart';
 import 'package:donor_app/features/donation_request/presentation/widgets/success_icon.dart';
 import 'package:donor_app/features/donation_request/presentation/widgets/success_text_section.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -32,9 +32,9 @@ class RequestAcceptedScreen extends StatelessWidget {
                 isLoading: false,
                 onPressed: () {
                   // TODO:: must change lat and lng values to be dynamic
-                  MapHelper.openDirections(32.5556, 35.8500);
+                  LocationHelper.openDirections(32.5556, 35.8500);
                 },
-                title: AppLocalizations.of(context)!.start_navigation,
+                title: context.localizations.start_navigation,
               ),
             ],
           ),

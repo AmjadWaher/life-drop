@@ -5,7 +5,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MapHelper {
+class LocationHelper {
   static Future<void> openCoordinates(double lat, double lng) async {
     final Uri url = Uri.parse(
       'https://www.google.com/maps/search/?api=1&query=$lat,$lng',
@@ -86,6 +86,17 @@ class MapHelper {
 
       FirebaseCrashlytics.instance.recordError(e, stack);
       return '0 km away';
+    }
+  }
+
+  static Future<void> requestLocationPermission() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+    if (permission == LocationPermission.deniedForever) {
+      await Geolocator.openAppSettings();
     }
   }
 }

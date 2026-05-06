@@ -9,7 +9,6 @@ import 'package:donor_app/features/auth/presentation/logic/forgot_password/forgo
 import 'package:donor_app/features/auth/presentation/logic/forgot_password/forgot_password_state.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_section.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +21,6 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  AppLocalizations get localizations => AppLocalizations.of(context)!;
   final _emailController = TextEditingController();
 
   @override
@@ -40,7 +38,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             snackBar(
               context,
-              content: localizations.send_code_message,
+              content: context.localizations.send_code_message,
               backgroundColor: Colors.green.withAlpha(150),
             ),
           );
@@ -75,16 +73,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   crossAxisAlignment: .start,
                   children: [
                     AuthTextSection(
-                      title: localizations.forgot_password,
+                      title: context.localizations.forgot_password,
                       titleStyle: context.textStyles.font30TextPrimaryExtraBold,
-                      subtitle: localizations.forgot_password_subtitle,
+                      subtitle: context.localizations.forgot_password_subtitle,
                       subtitleStyle:
                           context.textStyles.font14TextPrimaryRegular,
                     ),
                     verticalSpace(32),
                     AuthTextField(
                       controller: _emailController,
-                      title: localizations.email,
+                      title: context.localizations.email,
                       titleStyle: context.textStyles.font12SecondaryBold,
                       hintText: 'donor@pulse.com',
                       prefixIcon: AppImages(
@@ -97,7 +95,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     ),
                     verticalSpace(24),
                     AppTextButton(
-                      buttonText: localizations.send_otp,
+                      buttonText: context.localizations.send_otp,
                       textStyle: context.textStyles.font16TextPrimaryBold,
                       isLoading: state.status == ForgotPasswordStatus.loading,
                       onPressed: () {
@@ -120,7 +118,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           ),
                           horizontalSpace(2),
                           Text(
-                            localizations.back_to_login,
+                            context.localizations.back_to_login,
                             style: context.textStyles.font14TextPrimaryBold,
                           ),
                         ],

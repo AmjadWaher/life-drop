@@ -7,7 +7,6 @@ import 'package:donor_app/features/auth/presentation/logic/reset_password/reset_
 import 'package:donor_app/features/auth/presentation/logic/reset_password/reset_password_state.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_section.dart';
 import 'package:donor_app/features/auth/presentation/widgets/password_section.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,8 +26,6 @@ class ResetPasswordScreen extends StatefulWidget {
 }
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
-  AppLocalizations get localizations => AppLocalizations.of(context)!;
-
   final _newPasswordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   final _newPasswordNotifier = ValueNotifier(true);
@@ -54,7 +51,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             snackBar(
               context,
-              content: localizations.password_updated_message,
+              content: context.localizations.password_updated_message,
               backgroundColor: Colors.green.withAlpha(150),
             ),
           );
@@ -87,10 +84,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     crossAxisAlignment: .start,
                     children: [
                       AuthTextSection(
-                        title: localizations.reset_password,
+                        title: context.localizations.reset_password,
                         titleStyle:
                             context.textStyles.font30TextPrimaryExtraBold,
-                        subtitle: localizations.reset_subtitle,
+                        subtitle: context.localizations.reset_subtitle,
                         subtitleStyle:
                             context.textStyles.font14TextPrimaryRegular,
                       ),
@@ -98,7 +95,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       PasswordSection(
                         notifier: _newPasswordNotifier,
                         controller: _newPasswordController,
-                        title: localizations.new_password,
+                        title: context.localizations.new_password,
                         hintText: '••••••••',
                         autofillHints: const [AutofillHints.newPassword],
                       ),
@@ -107,13 +104,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       PasswordSection(
                         notifier: _confirmPasswordNotifier,
                         controller: _confirmPasswordController,
-                        title: localizations.confirm_password,
+                        title: context.localizations.confirm_password,
                         hintText: '••••••••',
                         autofillHints: const [AutofillHints.newPassword],
                       ),
                       verticalSpace(24),
                       AppTextButton(
-                        buttonText: localizations.update_password,
+                        buttonText: context.localizations.update_password,
                         textStyle: context.textStyles.font16TextPrimaryBold,
                         isLoading: state.status == ResetPasswordStatus.loading,
                         onPressed: () {
@@ -124,7 +121,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               snackBar(
                                 context,
-                                content: localizations.passwords_do_not_match,
+                                content: context
+                                    .localizations
+                                    .passwords_do_not_match,
                                 icon: Icons.error_outline,
                               ),
                             );

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:donor_app/core/helpers/biometric_helper.dart';
 import 'package:donor_app/core/networking/dio_factory.dart';
 import 'package:donor_app/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:donor_app/features/auth/data/repositories/auth_repository_impl.dart';
@@ -8,6 +9,7 @@ import 'package:donor_app/features/auth/presentation/logic/login/login_cubit.dar
 import 'package:donor_app/features/auth/presentation/logic/otp/otp_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/register/register_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/reset_password/reset_password_cubit.dart';
+import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -16,6 +18,8 @@ Future<void> initDependencies() async {
   final dio = await DioFactory.getDio();
 
   getIt.registerLazySingleton<Dio>(() => dio);
+
+  getIt.registerLazySingleton<BiometricHelper>(() => BiometricHelper());
 
   getIt.registerLazySingleton<AuthRemoteDataSourceImpl>(
     () => AuthRemoteDataSourceImpl(getIt<Dio>()),
@@ -35,5 +39,9 @@ Future<void> initDependencies() async {
   );
   getIt.registerFactory<ResetPasswordCubit>(
     () => ResetPasswordCubit(getIt<AuthRepository>()),
+  );
+
+  getIt.registerFactory<HomeCubit>(
+    () => HomeCubit(biometricHelper: getIt<BiometricHelper>()),
   );
 }

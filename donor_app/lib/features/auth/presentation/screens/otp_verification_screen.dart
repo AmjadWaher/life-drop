@@ -9,7 +9,6 @@ import 'package:donor_app/features/auth/presentation/logic/otp/otp_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/otp/otp_state.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_switch_section.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_section.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,8 +28,6 @@ class OTPVerificationScreen extends StatefulWidget {
 }
 
 class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
-  AppLocalizations get localizations => AppLocalizations.of(context)!;
-
   final _pinController = PinInputController();
   final _timerNotifier = ValueNotifier(60);
   late Timer _timer;
@@ -69,7 +66,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
             ScaffoldMessenger.of(context).showSnackBar(
               snackBar(
                 context,
-                content: localizations.account_acreated_message,
+                content: context.localizations.account_acreated_message,
                 backgroundColor: Colors.green.withAlpha(150),
               ),
             );
@@ -106,11 +103,13 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                   crossAxisAlignment: .start,
                   children: [
                     AuthTextSection(
-                      title: localizations.otp_verification,
+                      title: context.localizations.otp_verification,
                       titleStyle: context.textStyles.font30TextPrimaryExtraBold,
                       subtitle: widget.isFromRegister
-                          ? localizations.otp_from_register_subtitle
-                          : localizations.otp_from_forgot_password_subtitle,
+                          ? context.localizations.otp_from_register_subtitle
+                          : context
+                                .localizations
+                                .otp_from_forgot_password_subtitle,
                       subtitleStyle:
                           context.textStyles.font14TextPrimaryRegular,
                     ),
@@ -133,7 +132,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                     ),
                     verticalSpace(24),
                     AppTextButton(
-                      buttonText: localizations.verify_continue,
+                      buttonText: context.localizations.verify_continue,
                       textStyle: context.textStyles.font16TextPrimaryBold,
                       isLoading: state.status == OtpStatus.loading,
                       onPressed: () {
@@ -150,12 +149,10 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                         final min = (value ~/ 60).toString().padLeft(2, '0');
                         final sec = (value % 60).toString().padLeft(2, '0');
                         return AuthSwitchSection(
-                          text: AppLocalizations.of(
-                            context,
-                          )!.didnt_receive_code,
+                          text: context.localizations.didnt_receive_code,
                           actionText: value > 0
-                              ? '${localizations.resend_timer}: $min:$sec'
-                              : localizations.resend_again,
+                              ? '${context.localizations.resend_timer}: $min:$sec'
+                              : context.localizations.resend_again,
                           onTap: () {
                             if (value == 0) {
                               _timerNotifier.value = 60;
@@ -164,7 +161,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 snackBar(
                                   context,
-                                  content: localizations.resend_code_message,
+                                  content:
+                                      context.localizations.resend_code_message,
                                   backgroundColor: Colors.green.withAlpha(150),
                                 ),
                               );

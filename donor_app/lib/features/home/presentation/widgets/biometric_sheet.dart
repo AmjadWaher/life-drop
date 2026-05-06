@@ -1,9 +1,9 @@
+import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/helpers/biometric_helper.dart';
 import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class BiometricSheet extends StatelessWidget {
@@ -11,7 +11,6 @@ class BiometricSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsetsGeometry.all(20),
       child: Column(
@@ -20,12 +19,12 @@ class BiometricSheet extends StatelessWidget {
           const Icon(Icons.fingerprint, size: 60),
           verticalSpace(16),
           Text(
-            localizations.quick_login,
+            context.localizations.quick_login,
             style: context.textStyles.font20TextPrimaryBold,
           ),
           verticalSpace(10),
           Text(
-            localizations.enable_biometric_login_message,
+            context.localizations.enable_biometric_login_message,
             style: context.textStyles.font15TextPrimaryRegular,
             textAlign: TextAlign.center,
           ),
@@ -38,8 +37,10 @@ class BiometricSheet extends StatelessWidget {
                   backgroundColor: context.colors.primary,
                 ),
                 onPressed: () async {
-                  final success = await BiometricHelper().authenticate(
-                    localizations.use_fingerprint_for_quick_secure_login,
+                  final success = await getIt<BiometricHelper>().authenticate(
+                    context
+                        .localizations
+                        .use_fingerprint_for_quick_secure_login,
                   );
                   if (success) {
                     await SharedPrefHelper.setData(
@@ -54,7 +55,7 @@ class BiometricSheet extends StatelessWidget {
                   }
                 },
                 child: Text(
-                  localizations.enable,
+                  context.localizations.enable,
                   style: context.textStyles.font14TextPrimaryMedium,
                 ),
               ),
@@ -62,7 +63,7 @@ class BiometricSheet extends StatelessWidget {
               TextButton(
                 onPressed: () async {
                   await SharedPrefHelper.setData(
-                    SharedPrefKeys.biometricPromptShown,
+                    SharedPrefKeys.biometricEnabled,
                     false,
                   );
                   await SharedPrefHelper.setData(
@@ -72,7 +73,7 @@ class BiometricSheet extends StatelessWidget {
                   if (context.mounted) context.pop();
                 },
                 child: Text(
-                  localizations.skip,
+                  context.localizations.skip,
                   style: context.textStyles.font14TextPrimaryMedium,
                 ),
               ),

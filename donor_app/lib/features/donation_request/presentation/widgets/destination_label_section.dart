@@ -1,5 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
-import 'package:donor_app/core/helpers/map_helper.dart';
+import 'package:donor_app/core/helpers/location_helper.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class DestinationLabelSection extends StatelessWidget {
   final double lng;
 
   Future<String> getAddress() async {
-    return await MapHelper.getAddressFromLatLng(lat, lng);
+    return await LocationHelper.getAddressFromLatLng(lat, lng);
   }
 
   @override

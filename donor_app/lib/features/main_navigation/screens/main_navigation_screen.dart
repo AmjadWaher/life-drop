@@ -1,7 +1,6 @@
 import 'package:donor_app/features/home/presentation/screens/home_screen.dart';
 import 'package:donor_app/features/main_navigation/widgets/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});

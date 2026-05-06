@@ -6,7 +6,6 @@ import 'package:donor_app/core/widgets/app_slide_fade_animation.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_section.dart';
 import 'package:donor_app/features/auth/presentation/widgets/password_section.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class RegisterSectionOne extends StatefulWidget {
@@ -33,7 +32,6 @@ class RegisterSectionOne extends StatefulWidget {
 class _RegisterSectionOneState extends State<RegisterSectionOne> {
   final passwordNotifier = ValueNotifier(true);
   final confirmPasswordNotifier = ValueNotifier(true);
-  AppLocalizations get localizations => AppLocalizations.of(context)!;
 
   @override
   void dispose() {
@@ -50,8 +48,8 @@ class _RegisterSectionOneState extends State<RegisterSectionOne> {
         AppSlideFadeAnimation(
           delay: 0,
           child: AuthTextSection(
-            title: localizations.register,
-            subtitle: localizations.become_donor,
+            title: context.localizations.register,
+            subtitle: context.localizations.become_donor,
           ),
         ),
         verticalSpace(35),
@@ -59,8 +57,8 @@ class _RegisterSectionOneState extends State<RegisterSectionOne> {
           delay: 100,
           child: AuthTextField(
             controller: widget.firstNameController,
-            hintText: localizations.first_name,
-            title: localizations.first_name,
+            hintText: context.localizations.first_name,
+            title: context.localizations.first_name,
             prefixIcon: const Icon(Icons.person_outline),
           ),
         ),
@@ -69,8 +67,8 @@ class _RegisterSectionOneState extends State<RegisterSectionOne> {
           delay: 150,
           child: AuthTextField(
             controller: widget.lastNameController,
-            hintText: localizations.last_name,
-            title: localizations.last_name,
+            hintText: context.localizations.last_name,
+            title: context.localizations.last_name,
             prefixIcon: const Icon(Icons.person_outline),
           ),
         ),
@@ -79,7 +77,7 @@ class _RegisterSectionOneState extends State<RegisterSectionOne> {
           delay: 200,
           child: AuthTextField(
             controller: widget.emailController,
-            title: localizations.email,
+            title: context.localizations.email,
             hintText: 'donor@pulse.com',
             keyboardType: TextInputType.emailAddress,
             prefixIcon: AppImages(
@@ -95,7 +93,7 @@ class _RegisterSectionOneState extends State<RegisterSectionOne> {
           child: AuthTextField(
             controller: widget.phoneNumberController,
             hintText: '7XXXXXXXX',
-            title: localizations.phone_number,
+            title: context.localizations.phone_number,
             keyboardType: TextInputType.phone,
             prefixIcon: Row(
               children: [
@@ -118,7 +116,7 @@ class _RegisterSectionOneState extends State<RegisterSectionOne> {
           child: PasswordSection(
             notifier: passwordNotifier,
             controller: widget.passwordController,
-            title: localizations.password,
+            title: context.localizations.password,
             hintText: '••••••••',
           ),
         ),
@@ -128,7 +126,7 @@ class _RegisterSectionOneState extends State<RegisterSectionOne> {
           child: PasswordSection(
             notifier: confirmPasswordNotifier,
             controller: widget.confirmPasswordController,
-            title: localizations.confirm_password,
+            title: context.localizations.confirm_password,
             hintText: '••••••••',
           ),
         ),

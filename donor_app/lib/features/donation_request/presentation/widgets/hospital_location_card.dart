@@ -1,5 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
-import 'package:donor_app/core/helpers/map_helper.dart';
+import 'package:donor_app/core/helpers/location_helper.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/resources/image_paths.dart';
 import 'package:donor_app/core/widgets/app_images.dart';
@@ -26,7 +26,7 @@ class HospitalLocationCard extends StatelessWidget {
           const AppImages(path: ImagePaths.location, type: ImageType.asset),
           DirectionButton(
             onTap: () {
-              MapHelper.openDirections(lat, lng);
+              LocationHelper.openDirections(lat, lng);
             },
           ),
         ],

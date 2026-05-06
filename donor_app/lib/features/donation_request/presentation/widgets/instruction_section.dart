@@ -1,6 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +19,7 @@ class InstructionSection extends StatelessWidget {
           Icon(Icons.info_outline, color: context.colors.primary),
           horizontalSpace(12),
           Text(
-            AppLocalizations.of(context)!.bring_digital_id,
+            context.localizations.bring_digital_id,
             style: context.textStyles.font14TextPrimaryMedium,
           ),
         ],

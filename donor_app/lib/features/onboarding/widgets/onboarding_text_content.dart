@@ -1,6 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingTextContent extends StatelessWidget {
@@ -17,7 +16,7 @@ class OnboardingTextContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isArabic = AppLocalizations.of(context)!.localeName == 'ar';
+    final bool isArabic = context.isArabic;
     final firstStyle = isArabic
         ? context.textStyles.font36PrimaryExtraBold.copyWith(letterSpacing: 2)
         : context.textStyles.font36TextPrimaryExtraBold.copyWith(
@@ -36,11 +35,11 @@ class OnboardingTextContent extends StatelessWidget {
           RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-              text: AppLocalizations.of(context)!.onboarding_title_3_part_1,
+              text: context.localizations.onboarding_title_3_part_1,
               style: firstStyle,
               children: [
                 TextSpan(
-                  text: AppLocalizations.of(context)!.onboarding_title_3_part_2,
+                  text: context.localizations.onboarding_title_3_part_2,
                   style: secondStyle,
                 ),
               ],

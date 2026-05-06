@@ -1,5 +1,6 @@
 import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/helpers/location_helper.dart';
 import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/routing/routes.dart';
@@ -43,10 +44,14 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 
+  Future<void> requestLocationPermission() async {
+    await LocationHelper.requestLocationPermission();
+  }
+
   @override
   void initState() {
     super.initState();
-
+    requestLocationPermission();
     _startLoading();
   }
 

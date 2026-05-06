@@ -1,6 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class TitleSection extends StatelessWidget {
@@ -11,13 +10,13 @@ class TitleSection extends StatelessWidget {
     return Row(
       children: [
         Text(
-          AppLocalizations.of(context)!.donation_progress,
+          context.localizations.donation_progress,
           style: context.textStyles.font20TextPrimaryBold,
         ),
         horizontalSpace(53),
         Expanded(
           child: Text(
-            AppLocalizations.of(context)!.donors_confirmed_progress(2, 5),
+            context.localizations.donors_confirmed_progress(2, 5),
             style: context.textStyles.font16PrimaryBold,
           ),
         ),

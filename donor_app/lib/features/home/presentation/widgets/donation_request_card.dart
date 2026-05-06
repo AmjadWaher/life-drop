@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -68,7 +67,7 @@ class DonationRequestCard extends StatelessWidget {
           ),
           verticalSpace(20),
           AppElevatedButton(
-            isLoading: false, // TODO:: handle loading state
+            isLoading: false,
             onPressed: onPressed,
             style: isUrgent ? null : context.textStyles.font16SecondaryBold,
             buttonColors: isUrgent ? null : context.colors.tertiary,

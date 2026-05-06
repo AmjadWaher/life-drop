@@ -1,6 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -27,7 +26,7 @@ class DatePickerField extends StatelessWidget {
         crossAxisAlignment: .start,
         children: [
           Text(
-            AppLocalizations.of(context)!.birth_date,
+            context.localizations.birth_date,
             style: context.textStyles.font12SecondaryBold,
           ),
           verticalSpace(6),

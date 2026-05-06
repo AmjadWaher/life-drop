@@ -1,6 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,9 +9,9 @@ class DonationSummary extends StatelessWidget {
 
   String donationsCount(BuildContext context, int count) {
     if (count >= 3 && count <= 10) {
-      return AppLocalizations.of(context)!.tens_donation;
+      return context.localizations.tens_donation;
     }
-    return AppLocalizations.of(context)!.donations;
+    return context.localizations.donations;
   }
 
   @override
@@ -41,7 +40,7 @@ class DonationSummary extends StatelessWidget {
               crossAxisAlignment: .start,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.total_contributions,
+                  context.localizations.total_contributions,
                   style: context.textStyles.font12PrimaryBold.copyWith(
                     letterSpacing: 0.6,
                   ),
