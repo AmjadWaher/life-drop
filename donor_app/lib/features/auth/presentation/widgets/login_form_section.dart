@@ -5,7 +5,6 @@ import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_images.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:donor_app/features/auth/presentation/widgets/password_section.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class LoginFormSection extends StatefulWidget {
@@ -24,8 +23,6 @@ class LoginFormSection extends StatefulWidget {
 class _LoginFormSectionState extends State<LoginFormSection> {
   final passwordNotifier = ValueNotifier(true);
 
-  AppLocalizations get localizations => AppLocalizations.of(context)!;
-
   @override
   void dispose() {
     passwordNotifier.dispose();
@@ -41,7 +38,7 @@ class _LoginFormSectionState extends State<LoginFormSection> {
           AuthTextField(
             autofillHints: const [AutofillHints.email],
             controller: widget.emailController,
-            title: localizations.email,
+            title: context.localizations.email,
             titleStyle: context.textStyles.font12SecondaryBold,
             hintText: 'donor@pulse.com',
             keyboardType: TextInputType.emailAddress,
@@ -59,7 +56,7 @@ class _LoginFormSectionState extends State<LoginFormSection> {
             autofillHints: const [AutofillHints.password],
             notifier: passwordNotifier,
             controller: widget.passwordController,
-            title: localizations.password,
+            title: context.localizations.password,
             hintText: '••••••••',
           ),
           verticalSpace(12),
@@ -70,7 +67,7 @@ class _LoginFormSectionState extends State<LoginFormSection> {
                 context.pushNamed(Routes.forgotPassword);
               },
               child: Text(
-                localizations.forgot_password,
+                context.localizations.forgot_password,
                 style: context.textStyles.font12SecondarySemiBold,
               ),
             ),

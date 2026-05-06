@@ -1,3 +1,4 @@
+import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/widgets/app_drop_down_button_field.dart';
 import 'package:donor_app/core/widgets/app_slide_fade_animation.dart';
@@ -8,7 +9,6 @@ import 'package:donor_app/features/auth/presentation/logic/register/register_sta
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_section.dart';
 import 'package:donor_app/features/auth/presentation/widgets/blood_type_selector.dart';
 import 'package:donor_app/features/auth/presentation/widgets/date_picker_field.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,7 +30,6 @@ class RegisterSectionTwo extends StatefulWidget {
 }
 
 class _RegisterSectionTwoState extends State<RegisterSectionTwo> {
-  AppLocalizations get localization => AppLocalizations.of(context)!;
   void _init() {
     if (mounted) {
       context.read<RegisterCubit>().getGovernorates();
@@ -54,8 +53,8 @@ class _RegisterSectionTwoState extends State<RegisterSectionTwo> {
             AppSlideFadeAnimation(
               delay: 0,
               child: AuthTextSection(
-                title: localization.register,
-                subtitle: localization.more_info,
+                title: context.localizations.register,
+                subtitle: context.localizations.more_info,
               ),
             ),
             verticalSpace(35),
@@ -74,7 +73,7 @@ class _RegisterSectionTwoState extends State<RegisterSectionTwo> {
                 valueBuilder: (item) => item.id,
                 labelBuilder: (item) => item.name,
                 hintText: 'Select Governorate',
-                title: localization.governorate,
+                title: context.localizations.governorate,
                 onChanged: (value) {
                   if (value != null) {
                     // reset district selection
@@ -97,7 +96,7 @@ class _RegisterSectionTwoState extends State<RegisterSectionTwo> {
                 valueBuilder: (item) => item.id,
                 labelBuilder: (item) => item.name,
                 hintText: 'Select District',
-                title: localization.district,
+                title: context.localizations.district,
                 onChanged: (value) {
                   if (value != null) {
                     widget.selectedDistrictId.value = value;

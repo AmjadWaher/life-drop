@@ -1,6 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,7 +17,7 @@ class DirectionButton extends StatelessWidget {
           mainAxisAlignment: .end,
           children: [
             Text(
-              AppLocalizations.of(context)!.got_to_map,
+              context.localizations.got_to_map,
               style: context.textStyles.font14PrimaryBold,
             ),
             horizontalSpace(4),

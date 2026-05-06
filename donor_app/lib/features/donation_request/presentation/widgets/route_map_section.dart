@@ -1,5 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
-import 'package:donor_app/core/helpers/map_helper.dart';
+import 'package:donor_app/core/helpers/location_helper.dart';
 import 'package:donor_app/core/resources/image_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +10,7 @@ class RouteMapSection extends StatelessWidget {
   final double lng;
 
   Future<String> getDistance() async {
-    return await MapHelper.getDistance(lat, lng);
+    return await LocationHelper.getDistance(lat, lng);
   }
 
   @override

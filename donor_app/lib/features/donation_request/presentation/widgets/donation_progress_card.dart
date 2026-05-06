@@ -1,7 +1,6 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/features/donation_request/presentation/widgets/title_section.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -71,7 +70,7 @@ class _DonationProgressCardState extends State<DonationProgressCard>
           ),
           verticalSpace(16),
           Text(
-            AppLocalizations.of(context)!.urgent_Donors_needed_message(
+            context.localizations.urgent_Donors_needed_message(
               widget.totalDonors - widget.confirmedDonors,
             ),
             style: context.textStyles.font14TextSecondaryRegular,

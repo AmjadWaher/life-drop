@@ -10,7 +10,6 @@ import 'package:donor_app/features/auth/presentation/logic/register/register_sta
 import 'package:donor_app/features/auth/presentation/widgets/auth_switch_section.dart';
 import 'package:donor_app/features/auth/presentation/widgets/register_section_one.dart';
 import 'package:donor_app/features/auth/presentation/widgets/register_section_two.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +22,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  AppLocalizations get localizations => AppLocalizations.of(context)!;
   final _pageIndex = ValueNotifier<int>(0);
 
   final _emailController = TextEditingController();
@@ -95,19 +93,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
     String? error;
 
     if (firstName.isEmpty) {
-      error = localizations.first_name_required;
+      error = context.localizations.first_name_required;
     } else if (lastName.isEmpty) {
-      error = localizations.last_name_required;
+      error = context.localizations.last_name_required;
     } else if (!email.isValidEmail) {
       error = Validations.validateEmail(context, email);
     } else if (!phone.isDigitsOnly) {
-      error = localizations.phone_number_digits_only;
+      error = context.localizations.phone_number_digits_only;
     } else if (phone.isEmpty || !phone.isValidJordanPhoneNumber) {
-      error = localizations.phone_required;
+      error = context.localizations.phone_required;
     } else if (!password.isValidPassword) {
       error = Validations.validatePassword(context, password);
     } else if (password != confirmPassword) {
-      error = localizations.passwords_do_not_match;
+      error = context.localizations.passwords_do_not_match;
     }
 
     if (error != null) {
@@ -135,13 +133,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
     String? error;
 
     if (birthDate == null) {
-      error = localizations.birth_date_required;
+      error = context.localizations.birth_date_required;
     } else if (governorateId == null) {
-      error = localizations.governorate_required;
+      error = context.localizations.governorate_required;
     } else if (districtId == null) {
-      error = localizations.district_required;
+      error = context.localizations.district_required;
     } else if (bloodType == null) {
-      error = localizations.blood_type_required;
+      error = context.localizations.blood_type_required;
     }
 
     if (error != null) {
@@ -186,7 +184,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             snackBar(
               context,
               icon: Icons.info_outline,
-              content: localizations.verification_code_sent,
+              content: context.localizations.verification_code_sent,
               maxLines: null,
               backgroundColor: Colors.green.withAlpha(100),
             ),
@@ -196,7 +194,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Routes.otpVerification,
             arguments: {'email': _emailController.text, 'isFromRegister': true},
           );
-        } else if (state.status == RegisterStatus.failure && state.error != null) {
+        } else if (state.status == RegisterStatus.failure &&
+            state.error != null) {
           ScaffoldMessenger.of(context).clearSnackBars();
           ScaffoldMessenger.of(context).showSnackBar(
             snackBar(
@@ -227,8 +226,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         builder: (context, index, child) {
                           return AppTextButton(
                             buttonText: index == 0
-                                ? AppLocalizations.of(context)!.next
-                                : AppLocalizations.of(context)!.register,
+                                ? context.localizations.next
+                                : context.localizations.register,
                             textStyle: context.textStyles.font16TextPrimaryBold,
                             isLoading: state.status == RegisterStatus.loading,
                             onPressed: _register,
@@ -238,10 +237,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       verticalSpace(15),
                       AuthSwitchSection(
-                        text: AppLocalizations.of(
-                          context,
-                        )!.already_have_an_account,
-                        actionText: AppLocalizations.of(context)!.login,
+                        text: context.localizations.already_have_an_account,
+                        actionText: context.localizations.login,
                         onTap: () => context.pop(),
                       ),
                       verticalSpace(30),

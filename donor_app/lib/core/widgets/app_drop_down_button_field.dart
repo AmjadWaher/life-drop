@@ -1,6 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -51,7 +50,7 @@ class AppDropdownButtonField<V, T> extends StatelessWidget {
       crossAxisAlignment: .start,
       children: [
         Text(
-          AppLocalizations.of(context)!.governorate,
+          context.localizations.governorate,
           style: context.textStyles.font12SecondaryBold,
         ),
         verticalSpace(6),

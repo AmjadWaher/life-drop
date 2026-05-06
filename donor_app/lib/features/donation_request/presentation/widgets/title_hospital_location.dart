@@ -1,7 +1,6 @@
 import 'package:donor_app/core/helpers/extensions.dart';
-import 'package:donor_app/core/helpers/map_helper.dart';
+import 'package:donor_app/core/helpers/location_helper.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,7 +14,7 @@ class TitleHospitalLocation extends StatelessWidget {
   final double lng;
 
   Future<String> getAddress() async {
-    return await MapHelper.getAddressFromLatLng(lat, lng);
+    return await LocationHelper.getAddressFromLatLng(lat, lng);
   }
 
   @override
@@ -26,7 +25,7 @@ class TitleHospitalLocation extends StatelessWidget {
         crossAxisAlignment: .start,
         children: [
           Text(
-            AppLocalizations.of(context)!.hospital_location,
+            context.localizations.hospital_location,
             style: context.textStyles.font18TextPrimaryBold,
           ),
           verticalSpace(4),

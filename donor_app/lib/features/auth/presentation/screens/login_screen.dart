@@ -11,7 +11,6 @@ import 'package:donor_app/features/auth/presentation/logic/login/login_state.dar
 import 'package:donor_app/features/auth/presentation/widgets/login_form_section.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_switch_section.dart';
 import 'package:donor_app/features/auth/presentation/widgets/auth_text_section.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +26,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  AppLocalizations get localizations => AppLocalizations.of(context)!;
 
   void _biometricLogin() async {
     final isEnabled = await SharedPrefHelper.getBool(
@@ -36,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!isEnabled) return;
 
     final success = await BiometricHelper().authenticate(
-      localizations.authenticate_to_login,
+      context.localizations.authenticate_to_login,
     );
 
     if (success) {
@@ -99,10 +97,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         crossAxisAlignment: .start,
                         children: [
                           AuthTextSection(
-                            title: localizations.login,
-                            subtitle: AppLocalizations.of(
-                              context,
-                            )!.welcome_back,
+                            title: context.localizations.login,
+                            subtitle: context.localizations.welcome_back,
                           ),
                           verticalSpace(48),
                           LoginFormSection(
@@ -111,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           verticalSpace(40),
                           AppTextButton(
-                            buttonText: localizations.login,
+                            buttonText: context.localizations.login,
                             textStyle: context.textStyles.font16TextPrimaryBold,
                             isLoading: state.status == LoginStatus.loading,
                             onPressed: () {
@@ -129,10 +125,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           verticalSpace(15),
                           AuthSwitchSection(
-                            text: localizations.new_donor,
-                            actionText: AppLocalizations.of(
-                              context,
-                            )!.register_now,
+                            text: context.localizations.new_donor,
+                            actionText: context.localizations.register_now,
                             onTap: () => context.pushNamed(Routes.register),
                           ),
                         ],

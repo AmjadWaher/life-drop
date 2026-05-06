@@ -2,7 +2,6 @@ import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/features/auth/domain/enums/blood_type.dart';
 import 'package:donor_app/features/auth/presentation/widgets/blood_type_option.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,14 +28,14 @@ class BloodTypeSelector extends StatelessWidget {
         Row(
           children: [
             Text(
-              AppLocalizations.of(context)!.select_blood_type,
+              context.localizations.select_blood_type,
               style: context.textStyles.font12SecondaryBold.copyWith(
                 letterSpacing: 1.2,
               ),
             ),
             const Spacer(),
             Text(
-              AppLocalizations.of(context)!.required,
+              context.localizations.required,
               style: context.textStyles.font10PrimaryBold.copyWith(
                 letterSpacing: -0.5,
               ),

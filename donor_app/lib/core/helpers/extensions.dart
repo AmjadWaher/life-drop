@@ -1,6 +1,7 @@
 import 'package:donor_app/core/themes/app_colors.dart';
 import 'package:donor_app/core/themes/app_text_styles.dart';
 import 'package:donor_app/features/auth/domain/enums/blood_type.dart';
+import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 extension ThemeExtension on BuildContext {
@@ -15,8 +16,13 @@ extension ModeExtension on BuildContext {
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
 }
 
-extension Direc on BuildContext {
+extension Direction on BuildContext {
   bool get isRTL => Directionality.of(this) == TextDirection.rtl;
+}
+
+extension Localizations on BuildContext {
+  AppLocalizations get localizations => AppLocalizations.of(this)!;
+  bool get isArabic => localizations.localeName == 'ar';
 }
 
 extension Navigation on BuildContext {

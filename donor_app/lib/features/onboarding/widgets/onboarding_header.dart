@@ -2,7 +2,6 @@ import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/resources/image_paths.dart';
 import 'package:donor_app/core/widgets/app_images.dart';
-import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingHeader extends StatelessWidget {
@@ -19,7 +18,7 @@ class OnboardingHeader extends StatelessWidget {
         ),
         horizontalSpace(8),
         Text(
-          AppLocalizations.of(context)!.pulse,
+          context.localizations.pulse,
           style: context.textStyles.font24TextPrimaryBold,
         ),
       ],
