@@ -6,7 +6,7 @@ import 'package:donor_app/features/auth/domain/entities/governorate_entity.dart'
 import '../../domain/entities/login_response_entity.dart';
 import '../../domain/params/register_params.dart';
 import '../../domain/repositories/auth_repository.dart';
-import '../datasources/auth_remote_datasource.dart';
+import '../datasources/auth_remote_datasource_impl.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSourceImpl _remoteDataSourceImpl;
@@ -32,7 +32,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<ApiResult<void>> register(RegisterParams params) async {
     final result = await _remoteDataSourceImpl.register(params);
     return result.when(
-      success: (response) async {
+      success: (response) {
         return ApiResult.success(response);
       },
       failure: (error) => ApiResult.failure(error),
@@ -43,7 +43,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<ApiResult<void>> verifyOtp(String email, String otp) async {
     final result = await _remoteDataSourceImpl.verifyOtp(email, otp);
     return result.when(
-      success: (response) async {
+      success: (response) {
         return ApiResult.success(null);
       },
       failure: (error) => ApiResult.failure(error),
@@ -54,7 +54,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<ApiResult<void>> verifyRegistration(String email, String code) async {
     final result = await _remoteDataSourceImpl.verifyRegistration(email, code);
     return result.when(
-      success: (response) async {
+      success: (response) {
         return ApiResult.success(null);
       },
       failure: (error) => ApiResult.failure(error),
@@ -65,7 +65,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<ApiResult<void>> sendOtp(String email) async {
     final result = await _remoteDataSourceImpl.sendOtp(email);
     return result.when(
-      success: (response) async {
+      success: (response) {
         return ApiResult.success(null);
       },
       failure: (error) => ApiResult.failure(error),
@@ -76,7 +76,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<ApiResult<void>> resendOtp(String email) async {
     final result = await _remoteDataSourceImpl.resendOtp(email);
     return result.when(
-      success: (response) async {
+      success: (response) {
         return ApiResult.success(null);
       },
       failure: (error) => ApiResult.failure(error),
@@ -87,7 +87,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<ApiResult<void>> resendRegistrationOtp(String email) async {
     final result = await _remoteDataSourceImpl.resendRegistrationOtp(email);
     return result.when(
-      success: (response) async {
+      success: (response) {
         return ApiResult.success(null);
       },
       failure: (error) => ApiResult.failure(error),
@@ -106,7 +106,7 @@ class AuthRepositoryImpl implements AuthRepository {
       newPassword: newPassword,
     );
     return result.when(
-      success: (response) async {
+      success: (response) {
         return ApiResult.success(null);
       },
       failure: (error) => ApiResult.failure(error),
@@ -132,7 +132,7 @@ class AuthRepositoryImpl implements AuthRepository {
       governorateId,
     );
     return result.when(
-      success: (response) async {
+      success: (response) {
         return ApiResult.success(response);
       },
       failure: (error) => ApiResult.failure(error),
@@ -143,7 +143,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<ApiResult<List<GovernorateEntity>>> getGovernorates() async {
     final result = await _remoteDataSourceImpl.getGovernorates();
     return result.when(
-      success: (response) async {
+      success: (response) {
         return ApiResult.success(response);
       },
       failure: (error) => ApiResult.failure(error),

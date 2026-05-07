@@ -1,6 +1,8 @@
 import 'package:donor_app/core/networking/api_constants.dart';
 
 class AuthConstants {
+  AuthConstants._();
+
   //-------------- Auth --------------
 
   static const String login = '${ApiConstants.auth}/login';
