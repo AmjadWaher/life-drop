@@ -12,7 +12,21 @@ platform :android do
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       # testers: "amjadwaher623@gmail.com",
       groups: "team",
-      release_notes: "This update is an architectural refactoring only.\nUI should look exactly the same as previous version.",
+      release_notes: """🚀 New Features:
+• Donation Requests System - View and manage active donation requests
+• Active Donation Tracking - Monitor current accepted donations with hospital details
+• Cancellation Management - Cancel donations with predefined reasons and notes
+• Enhanced Blood Type Handling - Improved blood type selection across the app
+
+🔧 Improvements:
+• Unified API Error Handling - Better error logging and user feedback
+• Code Organization - Moved shared enums to core module
+• Dependency Injection Updates - Cleaner service registration
+• Performance - Removed unused development files and examples
+
+🐛 Bug Fixes:
+• Fixed blood type import paths after enum relocation
+• Updated authentication datasource references""",
     )
   end
 end

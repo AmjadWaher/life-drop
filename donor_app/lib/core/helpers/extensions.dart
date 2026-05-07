@@ -1,6 +1,6 @@
 import 'package:donor_app/core/themes/app_colors.dart';
 import 'package:donor_app/core/themes/app_text_styles.dart';
-import 'package:donor_app/features/auth/domain/enums/blood_type.dart';
+import 'package:donor_app/core/enums/blood_type.dart';
 import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
