@@ -8,9 +8,9 @@ import 'package:donor_app/features/requests/data/models/reasons_cancellation_don
 import 'package:donor_app/features/requests/data/requests/cancel_acceptance_request.dart';
 
 abstract class _RequestsRemoteDatasource {
-  Future<ApiResult<ActiveDonationModel>> getCurrentActiveDonation();
+  Future<ApiResult<ActiveDonationModel?>> getCurrentActiveDonation();
   Future<ApiResult<List<ReasonsCancellationDonationModel>>>
-  getReasonsCancellationDonation();
+  getDonationCancellationReasons();
   Future<ApiResult<void>> cancelDonationAcceptance(
     String requestId,
     CancelAcceptanceRequest request,
@@ -24,7 +24,7 @@ class RequestsRemoteDatasourceImpl extends _RequestsRemoteDatasource
   RequestsRemoteDatasourceImpl(this._dio);
 
   @override
-  Future<ApiResult<ActiveDonationModel>> getCurrentActiveDonation() async {
+  Future<ApiResult<ActiveDonationModel?>> getCurrentActiveDonation() async {
     return safeApiCall('getCurrentActiveDonation', () async {
       final response = await _dio.get(RequestsConstants.activeDonation);
 
@@ -52,8 +52,8 @@ class RequestsRemoteDatasourceImpl extends _RequestsRemoteDatasource
 
   @override
   Future<ApiResult<List<ReasonsCancellationDonationModel>>>
-  getReasonsCancellationDonation() {
-    return safeApiCall('getReasonsCancellationDonation', () async {
+  getDonationCancellationReasons() {
+    return safeApiCall('getDonationCancellationReasons', () async {
       final response = await _dio.get(RequestsConstants.reasonsCancellation);
       final result =
           ApiResponse<List<ReasonsCancellationDonationModel>>.fromJson(

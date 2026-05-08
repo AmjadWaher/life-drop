@@ -4,9 +4,9 @@ import 'package:donor_app/features/requests/domain/entities/active_donation_enti
 import 'package:donor_app/features/requests/domain/entities/reasons_cancellation_donation_entity.dart';
 
 abstract class RequestsRepository {
-  Future<ApiResult<ActiveDonationEntity>> getCurrentActiveDonation();
+  Future<ApiResult<ActiveDonationEntity?>> getCurrentActiveDonation();
   Future<ApiResult<List<ReasonsCancellationDonationEntity>>>
-  getReasonsCancellationDonation();
+  getDonationCancellationReasons();
   Future<ApiResult<void>> cancelDonationAcceptance(
     String requestId,
     CancelAcceptanceRequest request,

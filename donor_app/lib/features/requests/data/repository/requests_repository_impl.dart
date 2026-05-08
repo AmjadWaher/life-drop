@@ -26,7 +26,7 @@ class RequestsRepositoryImpl extends RequestsRepository {
   }
 
   @override
-  Future<ApiResult<ActiveDonationEntity>> getCurrentActiveDonation() async {
+  Future<ApiResult<ActiveDonationEntity?>> getCurrentActiveDonation() async {
     final result = await _remoteDatasourceImpl.getCurrentActiveDonation();
 
     return result.when(
@@ -37,8 +37,8 @@ class RequestsRepositoryImpl extends RequestsRepository {
 
   @override
   Future<ApiResult<List<ReasonsCancellationDonationEntity>>>
-  getReasonsCancellationDonation() async {
-    final result = await _remoteDatasourceImpl.getReasonsCancellationDonation();
+  getDonationCancellationReasons() async {
+    final result = await _remoteDatasourceImpl.getDonationCancellationReasons();
 
     return result.when(
       success: (data) => ApiResult.success(data),
