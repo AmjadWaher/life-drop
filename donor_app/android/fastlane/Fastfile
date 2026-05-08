@@ -12,7 +12,15 @@ platform :android do
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       # testers: "amjadwaher623@gmail.com",
       groups: "team",
-      release_notes: "Add Cubits to Requests feature.",
+      release_notes: """✨ New Features
+Active Donation Tracking Screen
+
+New dedicated tab in main navigation to view active donation requests in real-time
+Live countdown timer showing request expiration with visual progress bar
+Map integration displaying hospital location with glassmorphic ETA overlay
+Quick-access buttons: "Contact Hospital" and "Cancel Donation"
+Hospital summary card showing blood type, units needed, and urgency level
+Real-time status header with "Donation in Progress" display""",
     )
   end
 end

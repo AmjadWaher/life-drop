@@ -1,4 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,7 +16,9 @@ class AppTextButton extends StatelessWidget {
     this.buttonHeight,
     required this.onPressed,
     this.isLoading = false,
+    this.icon,
   });
+  final Widget? icon;
   final String buttonText;
   final double? horizontalPadding;
   final double? verticalPadding;
@@ -54,7 +57,14 @@ class AppTextButton extends StatelessWidget {
                 ),
               ),
             )
-          : Text(buttonText, style: textStyle),
+          : Row(
+              mainAxisAlignment: .center,
+              children: [
+                ?icon,
+                if (icon != null) horizontalSpace(12),
+                Text(buttonText, style: textStyle),
+              ],
+            ),
     );
   }
 }

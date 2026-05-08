@@ -8,4 +8,5 @@ class Routes {
   static const String mainNavigation = '/main-navigation';
   static const String requestDetails = '/request-details';
   static const String requestAccepted = '/request-accepted';
+  static const String requests = '/requests';
 }

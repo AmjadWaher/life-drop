@@ -13,8 +13,8 @@ ActiveDonationModel _$ActiveDonationModelFromJson(Map<String, dynamic> json) =>
       hospitalName: json['hospitalName'] as String,
       hospitalAddress: json['hospitalAddress'] as String,
       hospitalPhoneNumber: json['hospitalPhoneNumber'] as String,
-      hospitalLatitude: (json['hospitalLatitude'] as num).toInt(),
-      hospitalLongitude: (json['hospitalLongitude'] as num).toInt(),
+      hospitalLatitude: (json['hospitalLatitude'] as num).toDouble(),
+      hospitalLongitude: (json['hospitalLongitude'] as num).toDouble(),
       requiredBloodType: $enumDecode(
         _$BloodTypeEnumMap,
         json['requiredBloodType'],
@@ -38,15 +38,15 @@ const _$BloodTypeEnumMap = {
 };
 
 const _$UrgencyStatusEnumMap = {
-  UrgencyStatus.normal: 'normal',
-  UrgencyStatus.urgent: 'urgent',
-  UrgencyStatus.critical: 'critical',
+  UrgencyStatus.Normal: 'Normal',
+  UrgencyStatus.Urgent: 'Urgent',
+  UrgencyStatus.Critical: 'Critical',
 };
 
 const _$DonationStatusEnumMap = {
-  DonationStatus.accepted: 'accepted',
-  DonationStatus.fulfilled: 'fulfilled',
-  DonationStatus.cancelledByDonor: 'cancelledByDonor',
-  DonationStatus.cancelledByHospital: 'cancelledByHospital',
-  DonationStatus.noShow: 'noShow',
+  DonationStatus.Accepted: 'Accepted',
+  DonationStatus.Fulfilled: 'Fulfilled',
+  DonationStatus.CancelledByDonor: 'CancelledByDonor',
+  DonationStatus.CancelledByHospital: 'CancelledByHospital',
+  DonationStatus.NoShow: 'NoShow',
 };

@@ -15,6 +15,7 @@ import 'package:donor_app/features/donation_request/presentation/screens/request
 import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
 import 'package:donor_app/features/main_navigation/screens/main_navigation_screen.dart';
 import 'package:donor_app/features/onboarding/screens/onboarding_view.dart';
+import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -67,8 +68,14 @@ class AppRouter {
         );
       case Routes.mainNavigation:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => getIt<HomeCubit>()..loadHome(),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => getIt<HomeCubit>()..loadHome()),
+              BlocProvider(
+                create: (context) =>
+                    getIt<ActiveDonationCubit>()..getCurrentActiveDonation(),
+              ),
+            ],
             child: const MainNavigationScreen(),
           ),
         );
@@ -80,6 +87,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const RequestAcceptedScreen(),
         );
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

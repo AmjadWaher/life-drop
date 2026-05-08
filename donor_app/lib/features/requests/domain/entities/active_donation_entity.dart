@@ -1,15 +1,7 @@
 import 'package:donor_app/core/enums/blood_type.dart';
+import 'package:donor_app/core/enums/donation_status.dart';
+import 'package:donor_app/core/enums/urgency_status.dart';
 import 'package:equatable/equatable.dart';
-
-enum DonationStatus {
-  accepted,
-  fulfilled,
-  cancelledByDonor,
-  cancelledByHospital,
-  noShow,
-}
-
-enum UrgencyStatus { normal, urgent, critical }
 
 class ActiveDonationEntity extends Equatable {
   final String acceptanceId;
@@ -17,8 +9,8 @@ class ActiveDonationEntity extends Equatable {
   final String hospitalName;
   final String hospitalAddress;
   final String hospitalPhoneNumber;
-  final int hospitalLatitude;
-  final int hospitalLongitude;
+  final double hospitalLatitude;
+  final double hospitalLongitude;
   final BloodType requiredBloodType;
   final UrgencyStatus urgency;
   final int unitsRequested;

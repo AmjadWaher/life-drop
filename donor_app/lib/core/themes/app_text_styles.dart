@@ -15,6 +15,11 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.regular,
     color: colors.textSecondary,
   );
+  TextStyle get font10TextSecondaryBold => TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: colors.textSecondary,
+  );
 
   TextStyle get font10TextSecondaryRegular60Faded => TextStyle(
     fontSize: 10.sp,
@@ -204,6 +209,11 @@ class AppTextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.bold,
     color: colors.textPrimary,
+  );
+  TextStyle get font16TextSecondaryBold => TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: colors.textSecondary,
   );
   TextStyle get font16PrimaryBold => TextStyle(
     fontSize: 16.sp,
