@@ -13,6 +13,9 @@ import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
 import 'package:donor_app/features/requests/data/datasource/requests_remote_datasource_impl.dart';
 import 'package:donor_app/features/requests/data/repository/requests_repository_impl.dart';
 import 'package:donor_app/features/requests/domain/repository/requests_repository.dart';
+import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
+import 'package:donor_app/features/requests/presentation/logic/cancel_donation/cancel_donation_cubit.dart';
+import 'package:donor_app/features/requests/presentation/logic/cancellation_reasons/cancellation_reasons_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -64,5 +67,15 @@ Future<void> initDependencies() async {
 
   getIt.registerLazySingleton<RequestsRepository>(
     () => RequestsRepositoryImpl(getIt<RequestsRemoteDatasourceImpl>()),
+  );
+
+  getIt.registerFactory<ActiveDonationCubit>(
+    () => ActiveDonationCubit(getIt<RequestsRepository>()),
+  );
+  getIt.registerFactory<CancelDonationCubit>(
+    () => CancelDonationCubit(getIt<RequestsRepository>()),
+  );
+  getIt.registerFactory<CancellationReasonsCubit>(
+    () => CancellationReasonsCubit(getIt<RequestsRepository>()),
   );
 }
