@@ -2,7 +2,7 @@ import 'package:donor_app/core/enums/blood_type.dart';
 import 'package:donor_app/core/enums/urgency_status.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/features/requests/presentation/widgets/clinical_data_cell.dart';
+import 'package:donor_app/features/requests/presentation/widgets/active_donation/clinical_data_cell.dart';
 import 'package:flutter/material.dart';
 
 class ClinicalDataGrid extends StatelessWidget {
@@ -25,15 +25,15 @@ class ClinicalDataGrid extends StatelessWidget {
           child: Column(
             children: [
               ClinicalDataCell(
-                label: 'BLOOD TYPE',
+                label: context.localizations.blood_type_label,
                 icon: Icons.water_drop_outlined,
                 value: bloodType.label,
               ),
               verticalSpace(16),
               ClinicalDataCell(
-                label: 'UNITS REQUESTED',
+                label: context.localizations.units_requested_label,
                 icon: Icons.science_outlined,
-                value: '$unitsRequested Units',
+                value: context.localizations.units(unitsRequested),
               ),
             ],
           ),
@@ -43,16 +43,16 @@ class ClinicalDataGrid extends StatelessWidget {
           child: Column(
             children: [
               ClinicalDataCell(
-                label: 'PRIORITY',
+                label: context.localizations.priority_label,
                 icon: Icons.priority_high,
                 value: urgency.name,
                 valueColor: context.colors.primary,
               ),
               verticalSpace(16),
-              const ClinicalDataCell(
-                label: 'IMPACT',
+              ClinicalDataCell(
+                label: context.localizations.impact_label,
                 icon: Icons.favorite_border,
-                value: 'Saves 3 Lives',
+                value: context.localizations.saves_lives_value,
               ),
             ],
           ),

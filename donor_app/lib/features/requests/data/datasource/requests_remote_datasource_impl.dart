@@ -1,15 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:donor_app/core/networking/api_response.dart';
 import 'package:donor_app/core/networking/api_result.dart';
-import 'package:donor_app/core/networking/safe_api_call.dart';
+import 'package:donor_app/core/mixins/safe_api_call_mixin.dart';
 import 'package:donor_app/features/requests/data/datasource/requests_constants.dart';
 import 'package:donor_app/features/requests/data/models/active_donation_model.dart';
-import 'package:donor_app/features/requests/data/models/reasons_cancellation_donation_model.dart';
+import 'package:donor_app/features/requests/data/models/donation_cancellation_reasons_model.dart';
 import 'package:donor_app/features/requests/data/requests/cancel_acceptance_request.dart';
 
 abstract class _RequestsRemoteDatasource {
   Future<ApiResult<ActiveDonationModel?>> getCurrentActiveDonation();
-  Future<ApiResult<List<ReasonsCancellationDonationModel>>>
+  Future<ApiResult<List<DonationCancellationReasonsModel>>>
   getDonationCancellationReasons();
   Future<ApiResult<void>> cancelDonationAcceptance(
     String requestId,
@@ -51,16 +51,16 @@ class RequestsRemoteDatasourceImpl extends _RequestsRemoteDatasource
   }
 
   @override
-  Future<ApiResult<List<ReasonsCancellationDonationModel>>>
+  Future<ApiResult<List<DonationCancellationReasonsModel>>>
   getDonationCancellationReasons() {
     return safeApiCall('getDonationCancellationReasons', () async {
       final response = await _dio.get(RequestsConstants.reasonsCancellation);
       final result =
-          ApiResponse<List<ReasonsCancellationDonationModel>>.fromJson(
+          ApiResponse<List<DonationCancellationReasonsModel>>.fromJson(
             response.data,
             (data) => List.from(data as List)
                 .map(
-                  (json) => ReasonsCancellationDonationModel.fromJson(
+                  (json) => DonationCancellationReasonsModel.fromJson(
                     json as Map<String, dynamic>,
                   ),
                 )

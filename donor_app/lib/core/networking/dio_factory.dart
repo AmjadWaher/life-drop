@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/shared_pref_helper.dart';
+import 'package:donor_app/core/networking/auth_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
@@ -57,12 +58,13 @@ class DioFactory {
   }
 
   static void addDioInterceptor() {
-    dio?.interceptors.add(
+    dio?.interceptors.addAll([
+      AuthInterceptor(dio!),
       PrettyDioLogger(
         requestBody: true,
         requestHeader: true,
         responseHeader: true,
       ),
-    );
+    ]);
   }
 }

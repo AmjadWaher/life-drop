@@ -2,15 +2,14 @@ import 'dart:async';
 
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/features/requests/presentation/widgets/countdown_numbers.dart';
-import 'package:donor_app/features/requests/presentation/widgets/timer_progress_bar.dart';
+import 'package:donor_app/features/requests/presentation/widgets/active_donation/countdown_numbers.dart';
+import 'package:donor_app/features/requests/presentation/widgets/active_donation/timer_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExpirationCountdownCard extends StatefulWidget {
-  const ExpirationCountdownCard({super.key, required this.totalMinutes});
-
-  final int totalMinutes;
+  const ExpirationCountdownCard({super.key, required this.acceptedAt});
+  final DateTime acceptedAt;
 
   @override
   State<ExpirationCountdownCard> createState() =>
@@ -18,9 +17,11 @@ class ExpirationCountdownCard extends StatefulWidget {
 }
 
 class _ExpirationCountdownCardState extends State<ExpirationCountdownCard> {
+  // total minutes 120 because donation request expires 2 hours after acceptance.
+  final int _totalSeconds = 120 * 60;
   late Timer _timer;
   late int _remainingSeconds;
-  late int _totalSeconds;
+  late DateTime _expiresAt;
 
   int get _hours => _remainingSeconds ~/ 3600;
   int get _minutes => (_remainingSeconds % 3600) ~/ 60;
@@ -29,18 +30,24 @@ class _ExpirationCountdownCardState extends State<ExpirationCountdownCard> {
       _totalSeconds > 0 ? _remainingSeconds / _totalSeconds : 0;
   bool get _isExpired => _remainingSeconds <= 0;
 
+  int _calcRemaining() {
+    final diff = _expiresAt.difference(DateTime.now().toUtc()).inSeconds;
+    return diff < 0 ? 0 : diff;
+  }
+
   @override
   void initState() {
     super.initState();
-    _totalSeconds = widget.totalMinutes * 60;
-    _remainingSeconds = _totalSeconds;
+    _expiresAt = widget.acceptedAt.add(Duration(seconds: _totalSeconds));
+    _remainingSeconds = _calcRemaining();
+
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      if (_remainingSeconds == 0) {
+      final remaining = _calcRemaining();
+      setState(() {
+        _remainingSeconds = remaining;
+      });
+      if (remaining == 0) {
         _timer.cancel();
-      } else {
-        setState(() {
-          _remainingSeconds -= 1;
-        });
       }
     });
   }
@@ -64,7 +71,9 @@ class _ExpirationCountdownCardState extends State<ExpirationCountdownCard> {
       child: Column(
         children: [
           Text(
-            _isExpired ? 'REQUEST EXPIRED' : 'REQUEST EXPIRES IN',
+            _isExpired
+                ? context.localizations.request_expired_heading
+                : context.localizations.request_expires_in_heading,
             style: context.textStyles.font10TextSecondaryRegular.copyWith(
               fontWeight: FontWeight.w700,
               letterSpacing: 1,
@@ -78,8 +87,8 @@ class _ExpirationCountdownCardState extends State<ExpirationCountdownCard> {
           verticalSpace(16),
           Text(
             _isExpired
-                ? 'The request has expired.\nPlease check for new requests.'
-                : 'Please arrive before the timer reaches zero to\nensure your donation is processed.',
+                ? context.localizations.request_expired_message
+                : context.localizations.arrive_before_timer_message,
             textAlign: TextAlign.center,
             style: context.textStyles.font12TextSecondaryRegular.copyWith(
               height: 1.33,

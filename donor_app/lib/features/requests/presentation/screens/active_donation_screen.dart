@@ -1,13 +1,14 @@
+import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_state.dart';
-import 'package:donor_app/features/requests/presentation/widgets/action_buttons_section.dart';
-import 'package:donor_app/features/requests/presentation/widgets/active_donation_loading_screen.dart';
-import 'package:donor_app/features/requests/presentation/widgets/expiration_countdown_card.dart';
-import 'package:donor_app/features/requests/presentation/widgets/help_support_footer.dart';
-import 'package:donor_app/features/requests/presentation/widgets/hospital_summary_card.dart';
-import 'package:donor_app/features/requests/presentation/widgets/map_bento_card.dart';
-import 'package:donor_app/features/requests/presentation/widgets/status_header_section.dart';
+import 'package:donor_app/features/requests/presentation/widgets/active_donation/action_buttons_section.dart';
+import 'package:donor_app/features/requests/presentation/widgets/active_donation/active_donation_loading_screen.dart';
+import 'package:donor_app/features/requests/presentation/widgets/active_donation/expiration_countdown_card.dart';
+import 'package:donor_app/features/requests/presentation/widgets/active_donation/hospital_summary_card.dart';
+import 'package:donor_app/features/requests/presentation/widgets/active_donation/instruction_card.dart';
+import 'package:donor_app/features/requests/presentation/widgets/active_donation/map_bento_card.dart';
+import 'package:donor_app/features/requests/presentation/widgets/active_donation/status_header_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,33 +36,24 @@ class ActiveDonationScreen extends StatelessWidget {
                     crossAxisAlignment: .start,
                     children: [
                       const StatusHeaderSection(),
-                      verticalSpace(8),
+                      verticalSpace(12),
                       MapBentoCard(
-                        hospitalLat: donation.hospitalLatitude.toDouble(),
-                        hospitalLng: donation.hospitalLongitude.toDouble(),
+                        hospitalLat: donation.hospitalLatitude,
+                        hospitalLng: donation.hospitalLongitude,
                       ),
                       verticalSpace(32),
-                      const ActionButtonsSection(),
+                      ActionButtonsSection(requestId: donation.requestId),
                       verticalSpace(32),
-                      ExpirationCountdownCard(
-                        totalMinutes: donation.remainingMinutes,
-                      ),
+                      ExpirationCountdownCard(acceptedAt: donation.acceptedAt),
                       verticalSpace(32),
-                      HospitalSummaryCard(
-                        bloodType: donation.requiredBloodType,
-                        hospitalLatitude: donation.hospitalLatitude,
-                        hospitalLongitude: donation.hospitalLongitude,
-                        hospitalName: donation.hospitalName,
-                        unitsRequested: donation.unitsRequested,
-                        urgency: donation.urgency,
-                      ),
+                      HospitalSummaryCard(donation: donation),
                       verticalSpace(32),
-                      const HelpSupportFooter(),
+                      const InstructionCard(),
                     ],
                   );
                 } else if (state is ActiveDonationEmpty) {
-                  return const Center(
-                    child: Text('Not Found Active Donation Now.'),
+                  return Center(
+                    child: Text(context.localizations.no_active_donation_found),
                   );
                 } else if (state is ActiveDonationError) {
                   return Center(child: Text(state.error.getAllErrorMessages()));

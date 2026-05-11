@@ -174,6 +174,16 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.medium,
     color: colors.textPrimary,
   );
+  TextStyle get font14WhiteRegular => TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: Colors.white,
+  );
+  TextStyle get font14BlackRegular => TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: Colors.black,
+  );
 
   // ------------ 15 sp ------------
 
@@ -193,6 +203,11 @@ class AppTextStyles {
   TextStyle get font16TextSecondaryMedium => TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.medium,
+    color: colors.textSecondary,
+  );
+  TextStyle get font16TextSecondaryRegular => TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
     color: colors.textSecondary,
   );
   TextStyle get font16TextPlaceHolderMedium50Faded => TextStyle(

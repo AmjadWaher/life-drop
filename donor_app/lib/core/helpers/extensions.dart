@@ -46,7 +46,7 @@ extension Navigation on BuildContext {
     ).pushNamedAndRemoveUntil(routeName, predicate, arguments: arguments);
   }
 
-  void pop() => Navigator.of(this).pop();
+  void pop<T>({T? value}) => Navigator.of(this).pop<T?>(value);
 }
 
 extension ValidationsString on String {

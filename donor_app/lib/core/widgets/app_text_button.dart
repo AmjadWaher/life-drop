@@ -61,7 +61,7 @@ class AppTextButton extends StatelessWidget {
               mainAxisAlignment: .center,
               children: [
                 ?icon,
-                if (icon != null) horizontalSpace(12),
+                if (icon != null) horizontalSpace(8),
                 Text(buttonText, style: textStyle),
               ],
             ),

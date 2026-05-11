@@ -1,15 +1,19 @@
 import 'package:dio/dio.dart';
-import 'package:donor_app/core/networking/safe_api_call.dart';
+import 'package:donor_app/core/mixins/safe_api_call_mixin.dart';
 import 'package:donor_app/features/auth/data/datasources/auth_constants.dart';
 import 'package:donor_app/core/networking/api_response.dart';
 import 'package:donor_app/core/networking/api_result.dart';
 import 'package:donor_app/features/auth/data/models/districts_model.dart';
 import 'package:donor_app/features/auth/data/models/governorate_model.dart';
 import '../../domain/params/register_params.dart';
-import '../models/login_response_model.dart';
+import '../models/token_model.dart';
 
 abstract class _AuthRemoteDataSource {
-  Future<ApiResult<LoginResponseModel>> login(String email, String password);
+  Future<ApiResult<TokenModel>> login(String email, String password);
+  Future<ApiResult<TokenModel>> refreshToken(
+    String accessToken,
+    String refreshToken,
+  );
   Future<ApiResult<void>> register(RegisterParams params);
   Future<ApiResult<void>> verifyOtp(String email, String code);
   Future<ApiResult<void>> verifyRegistration(String email, String code);
@@ -34,17 +38,17 @@ class AuthRemoteDataSourceImpl extends _AuthRemoteDataSource
   AuthRemoteDataSourceImpl(this._dio);
 
   @override
-  Future<ApiResult<LoginResponseModel>> login(String email, String password) {
+  Future<ApiResult<TokenModel>> login(String email, String password) {
     return safeApiCall('login', () async {
       final response = await _dio.post(
         AuthConstants.login,
         data: {'email': email, 'password': password},
       );
-      final data = ApiResponse<LoginResponseModel>.fromJson(
+      final result = ApiResponse<TokenModel>.fromJson(
         response.data,
-        (json) => LoginResponseModel.fromJson(json as Map<String, dynamic>),
+        (json) => TokenModel.fromJson(json as Map<String, dynamic>),
       );
-      return data.data;
+      return result.data;
     });
   }
 
@@ -90,6 +94,24 @@ class AuthRemoteDataSourceImpl extends _AuthRemoteDataSource
   }
 
   @override
+  Future<ApiResult<TokenModel>> refreshToken(
+    String accessToken,
+    String refreshToken,
+  ) {
+    return safeApiCall('refreshToken', () async {
+      final response = await _dio.post(
+        AuthConstants.refreshToken,
+        data: {'accessToken': accessToken, 'refreshToken': refreshToken},
+      );
+      final result = ApiResponse<TokenModel>.fromJson(
+        response.data,
+        (json) => TokenModel.fromJson(json as Map<String, dynamic>),
+      );
+      return result.data;
+    });
+  }
+
+  @override
   Future<ApiResult<void>> resendRegistrationOtp(String email) {
     return safeApiCall('resendRegistrationOtp', () async {
       await _dio.post(
@@ -117,7 +139,7 @@ class AuthRemoteDataSourceImpl extends _AuthRemoteDataSource
   Future<ApiResult<List<GovernorateModel>>> getGovernorates() {
     return safeApiCall('getGovernorates', () async {
       final response = await _dio.get(AuthConstants.governorates);
-      final data = ApiResponse<List<GovernorateModel>>.fromJson(
+      final result = ApiResponse<List<GovernorateModel>>.fromJson(
         response.data,
         (data) => List.from(data as List)
             .map(
@@ -125,7 +147,7 @@ class AuthRemoteDataSourceImpl extends _AuthRemoteDataSource
             )
             .toList(),
       );
-      return data.data;
+      return result.data;
     });
   }
 
@@ -135,13 +157,13 @@ class AuthRemoteDataSourceImpl extends _AuthRemoteDataSource
   ) {
     return safeApiCall('getDistrictsByGovernorateId', () async {
       final response = await _dio.get(AuthConstants.districts(governorateId));
-      final data = ApiResponse<List<DistrictsModel>>.fromJson(
+      final result = ApiResponse<List<DistrictsModel>>.fromJson(
         response.data,
         (data) => List.from(
           data as List,
         ).map((json) => DistrictsModel.fromJson(json)).toList(),
       );
-      return data.data;
+      return result.data;
     });
   }
 }

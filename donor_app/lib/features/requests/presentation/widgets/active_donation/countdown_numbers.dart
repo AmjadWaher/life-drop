@@ -18,16 +18,19 @@ class CountdownNumbers extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _CountdownUnit(value: hours.toString().padLeft(2, '0'), label: 'HRS'),
+        _CountdownUnit(
+          value: hours.toString().padLeft(2, '0'),
+          label: context.localizations.hours_abbreviation,
+        ),
         _ColonSeparator(),
         _CountdownUnit(
           value: minutes.toString().padLeft(2, '0'),
-          label: 'MINS',
+          label: context.localizations.minutes_abbreviation,
         ),
         _ColonSeparator(),
         _CountdownUnit(
           value: seconds.toString().padLeft(2, '0'),
-          label: 'SECS',
+          label: context.localizations.seconds_abbreviation,
         ),
       ],
     );

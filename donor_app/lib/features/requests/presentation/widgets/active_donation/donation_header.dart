@@ -24,7 +24,7 @@ class DonationHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'DESTINATION',
+          context.localizations.destination_label,
           style: context.textStyles.font10SecondaryBold.copyWith(
             letterSpacing: 1,
           ),

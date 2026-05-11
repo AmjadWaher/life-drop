@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:donor_app/core/helpers/extensions.dart';
-import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
+import 'package:donor_app/core/mixins/snack_bar_mixin.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
 import 'package:donor_app/features/auth/presentation/logic/otp/otp_cubit.dart';
@@ -27,7 +27,8 @@ class OTPVerificationScreen extends StatefulWidget {
   State<OTPVerificationScreen> createState() => _OTPVerificationScreenState();
 }
 
-class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
+class _OTPVerificationScreenState extends State<OTPVerificationScreen>
+    with SnackBarMixin {
   final _pinController = PinInputController();
   final _timerNotifier = ValueNotifier(60);
   late Timer _timer;
@@ -62,13 +63,9 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
       listener: (context, state) {
         if (state.status == OtpStatus.verified) {
           if (widget.isFromRegister) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-              snackBar(
-                context,
-                content: context.localizations.account_acreated_message,
-                backgroundColor: Colors.green.withAlpha(150),
-              ),
+            showSuccessSnackBar(
+              context,
+              message: context.localizations.account_acreated_message,
             );
             context.pushNamedAndRemoveUntil(
               Routes.login,
@@ -81,13 +78,9 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
             );
           }
         } else if (state.status == OtpStatus.failure && state.error != null) {
-          ScaffoldMessenger.of(context).clearSnackBars();
-          ScaffoldMessenger.of(context).showSnackBar(
-            snackBar(
-              context,
-              content: state.error!.getAllErrorMessages(),
-              icon: Icons.error_outline,
-            ),
+          showErrorSnackBar(
+            context,
+            message: state.error!.getAllErrorMessages(),
           );
         }
       },
@@ -157,14 +150,11 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                             if (value == 0) {
                               _timerNotifier.value = 60;
                               _startTimer();
-                              ScaffoldMessenger.of(context).clearSnackBars();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                snackBar(
-                                  context,
-                                  content:
-                                      context.localizations.resend_code_message,
-                                  backgroundColor: Colors.green.withAlpha(150),
-                                ),
+
+                              showSuccessSnackBar(
+                                context,
+                                message:
+                                    context.localizations.resend_code_message,
                               );
                               _resendOtp(context);
                             }

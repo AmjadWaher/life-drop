@@ -1,11 +1,15 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
+import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
+import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ActionButtonsSection extends StatelessWidget {
-  const ActionButtonsSection({super.key});
+  const ActionButtonsSection({super.key, required this.requestId});
+  final String requestId;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +17,7 @@ class ActionButtonsSection extends StatelessWidget {
       children: [
         AppTextButton(
           icon: Icon(Icons.phone, color: Colors.white, size: 18.sp),
-          buttonText: 'Contact Hospital',
+          buttonText: context.localizations.contact_hospital_button,
           textStyle: context.textStyles.font16WhiteBold,
           onPressed: () {
             // TODO: Implement contact hospital action
@@ -26,10 +30,18 @@ class ActionButtonsSection extends StatelessWidget {
             color: context.colors.textSecondary,
             size: 20.sp,
           ),
-          buttonText: 'Cancel Donation',
+          buttonText: context.localizations.cancel_donation_button,
           textStyle: context.textStyles.font16TextSecondaryBold,
-          onPressed: () {
-            // TODO: Navigate to Cancel Screen
+          backgroundColor: context.colors.surface,
+          onPressed: () async {
+            final bool shouldRefresh = await context.pushNamed(
+              Routes.cancelRequests,
+              arguments: {'requestId': requestId},
+            );
+
+            if (shouldRefresh && context.mounted) {
+              context.read<ActiveDonationCubit>().getCurrentActiveDonation();
+            }
           },
         ),
       ],

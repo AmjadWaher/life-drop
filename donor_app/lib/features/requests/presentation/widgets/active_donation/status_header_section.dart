@@ -12,7 +12,7 @@ class _StatusHeaderSectionState extends State<StatusHeaderSection> {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Donation in\nProgress',
+      context.localizations.donation_progress,
       style: context.textStyles.font36TextPrimaryExtraBold.copyWith(
         letterSpacing: -0.9,
       ),

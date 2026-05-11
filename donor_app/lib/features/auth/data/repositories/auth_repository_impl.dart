@@ -1,9 +1,10 @@
 import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/networking/api_result.dart';
+import 'package:donor_app/core/networking/dio_factory.dart';
 import 'package:donor_app/features/auth/domain/entities/districts_entity.dart';
 import 'package:donor_app/features/auth/domain/entities/governorate_entity.dart';
-import '../../domain/entities/login_response_entity.dart';
+import '../../domain/entities/token_entity.dart';
 import '../../domain/params/register_params.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_datasource_impl.dart';
@@ -14,10 +15,7 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._remoteDataSourceImpl);
 
   @override
-  Future<ApiResult<LoginResponseEntity>> login(
-    String email,
-    String password,
-  ) async {
+  Future<ApiResult<TokenEntity>> login(String email, String password) async {
     final result = await _remoteDataSourceImpl.login(email, password);
     return result.when(
       success: (response) async {
@@ -122,6 +120,7 @@ class AuthRepositoryImpl implements AuthRepository {
       SharedPrefKeys.refreshToken,
       refreshToken,
     );
+    DioFactory.setTokenIntoHeaderAfterLogin(accessToken);
   }
 
   @override
@@ -146,6 +145,21 @@ class AuthRepositoryImpl implements AuthRepository {
       success: (response) {
         return ApiResult.success(response);
       },
+      failure: (error) => ApiResult.failure(error),
+    );
+  }
+
+  @override
+  Future<ApiResult<TokenEntity>> refreshToken(
+    String accessToken,
+    String refreshToken,
+  ) async {
+    final result = await _remoteDataSourceImpl.refreshToken(
+      accessToken,
+      refreshToken,
+    );
+    return result.when(
+      success: (data) => ApiResult.success(data),
       failure: (error) => ApiResult.failure(error),
     );
   }

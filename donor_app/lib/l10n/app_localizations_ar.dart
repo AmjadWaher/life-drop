@@ -132,7 +132,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reset_password => 'تغيير كلمة السر';
 
   @override
-  String get reset_subtitle => 'Ensure your new password is at least 8 characters long with clinical precision.';
+  String get reset_subtitle => 'تأكد من أن كلمة المرور الجديدة تتكون من 8 أحرف على الأقل وتحتوي على أحرف كبيرة وصغيرة وأرقام ورموز.';
 
   @override
   String get update_password => 'تحديث كلمة المرور';
@@ -300,4 +300,123 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get password_updated_message => 'تم تحديث كلمة المرور بنجاح.';
+
+  @override
+  String get donation_cancelled_success => 'تم إلغاء التبرع بنجاح.';
+
+  @override
+  String get no_active_donation_found => 'لا توجد طلبات تبرع نشطة حالياً.';
+
+  @override
+  String get go_back_label => 'العودة';
+
+  @override
+  String get select_cancellation_reason_title => 'اختر سبب الإلغاء';
+
+  @override
+  String get select_reason_hint => 'اختر السبب';
+
+  @override
+  String get reason_required_error => 'يجب اختيار سبب لإلغاء التبرع';
+
+  @override
+  String get cancellation_health_warning => '* ملاحظة: بالنسبة للإلغاءات المتعلقة بالصحة، قد يتم تأجيل التبرع مؤقتاً لضمان سلامتك الصحية.';
+
+  @override
+  String get optional_note_label => 'ملاحظة (اختياري)';
+
+  @override
+  String get confirm_cancellation_button => 'تأكيد الإلغاء';
+
+  @override
+  String get go_back_button => 'العودة';
+
+  @override
+  String get review_heading => 'مراجعة ';
+
+  @override
+  String get cancellation_heading => 'الإلغاء';
+
+  @override
+  String get cancellation_description => 'نفهم أن الخطط قد تتغير. يرجى إخبارنا بسبب الحاجة لإلغاء طلب التبرع هذا.';
+
+  @override
+  String get blood_type_label => 'فصيلة الدم';
+
+  @override
+  String get units_requested_label => 'الوحدات المطلوبة';
+
+  @override
+  String get priority_label => 'الأولوية';
+
+  @override
+  String get impact_label => 'التأثير';
+
+  @override
+  String get saves_lives_value => 'ينقذ 3 أرواح';
+
+  @override
+  String get hours_abbreviation => 'ساعات';
+
+  @override
+  String get minutes_abbreviation => 'دقائق';
+
+  @override
+  String get seconds_abbreviation => 'ثوان';
+
+  @override
+  String get request_expired_heading => 'انتهت صلاحية الطلب';
+
+  @override
+  String get request_expires_in_heading => 'ينتهي الطلب بعد';
+
+  @override
+  String get request_expired_message => 'لقد انتهت صلاحية الطلب.\nيرجى البحث عن طلبات جديدة.';
+
+  @override
+  String get arrive_before_timer_message => 'يرجى الحضور قبل انتهاء الوقت\nللتأكد من معالجة تبرعك.';
+
+  @override
+  String get help_support_text => 'هل تحتاج إلى مساعدة؟ استخدم زر الاتصال\nأعلاه أو ';
+
+  @override
+  String get view_guidelines_link => 'اعرض إرشادات التبرع';
+
+  @override
+  String get destination_label => 'الوجهة';
+
+  @override
+  String get contact_hospital_button => 'اتصل بالمستشفى';
+
+  @override
+  String get cancel_donation_button => 'إلغاء التبرع';
+
+  @override
+  String get emergency_blood_needed_headline => 'الدم المستعجل مطلوب';
+
+  @override
+  String get critical_tag => 'حرج';
+
+  @override
+  String get km_away_suffix => 'كم بعيد';
+
+  @override
+  String get select_governorate_hint => 'اختر المحافظة';
+
+  @override
+  String get select_district_hint => 'اختر المنطقة';
+
+  @override
+  String get date_of_birth_placeholder => 'اختر تاريخ الميلاد';
+
+  @override
+  String get cancellation_impact_message => 'قد يؤثر إلغاء هذا الطلب على درجة موثوقيتك كمتبرع.\nيساعد الالتزام بالتبرع المستمر المستشفيات على التخطيط للإجراءات المنقذة للحياة بشكل أكثر فعالية.';
+
+  @override
+  String get impact_on_reliability => 'التأثير على الموثوقية';
+
+  @override
+  String units(Object value) {
+    return '$value وحدات دم';
+  }
 }

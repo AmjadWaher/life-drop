@@ -1,6 +1,6 @@
 import 'package:donor_app/core/helpers/extensions.dart';
-import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
+import 'package:donor_app/core/mixins/snack_bar_mixin.dart';
 import 'package:donor_app/core/resources/image_paths.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_images.dart';
@@ -20,7 +20,8 @@ class ForgotPasswordScreen extends StatefulWidget {
   State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
+    with SnackBarMixin {
   final _emailController = TextEditingController();
 
   @override
@@ -34,13 +35,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
       listener: (context, state) {
         if (state.status == ForgotPasswordStatus.success) {
-          ScaffoldMessenger.of(context).clearSnackBars();
-          ScaffoldMessenger.of(context).showSnackBar(
-            snackBar(
-              context,
-              content: context.localizations.send_code_message,
-              backgroundColor: Colors.green.withAlpha(150),
-            ),
+          showSuccessSnackBar(
+            context,
+            message: context.localizations.send_code_message,
           );
           context.pushNamed(
             Routes.otpVerification,
@@ -51,13 +48,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           );
         } else if (state.status == ForgotPasswordStatus.failure &&
             state.error != null) {
-          ScaffoldMessenger.of(context).clearSnackBars();
-          ScaffoldMessenger.of(context).showSnackBar(
-            snackBar(
-              context,
-              content: state.error!.getAllErrorMessages(),
-              icon: Icons.error_outline,
-            ),
+          showErrorSnackBar(
+            context,
+            message: state.error!.getAllErrorMessages(),
           );
         }
       },

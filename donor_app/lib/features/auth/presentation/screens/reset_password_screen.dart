@@ -1,6 +1,6 @@
 import 'package:donor_app/core/helpers/extensions.dart';
-import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
+import 'package:donor_app/core/mixins/snack_bar_mixin.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
 import 'package:donor_app/features/auth/presentation/logic/reset_password/reset_password_cubit.dart';
@@ -25,7 +25,8 @@ class ResetPasswordScreen extends StatefulWidget {
   State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen>
+    with SnackBarMixin {
   final _newPasswordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   final _newPasswordNotifier = ValueNotifier(true);
@@ -47,13 +48,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         if (state.status == ResetPasswordStatus.success) {
           TextInput.finishAutofillContext(shouldSave: true);
 
-          ScaffoldMessenger.of(context).clearSnackBars();
-          ScaffoldMessenger.of(context).showSnackBar(
-            snackBar(
-              context,
-              content: context.localizations.password_updated_message,
-              backgroundColor: Colors.green.withAlpha(150),
-            ),
+          showSuccessSnackBar(
+            context,
+            message: context.localizations.password_updated_message,
           );
           context.pushNamedAndRemoveUntil(
             Routes.login,
@@ -61,13 +58,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           );
         } else if (state.status == ResetPasswordStatus.failure &&
             state.error != null) {
-          ScaffoldMessenger.of(context).clearSnackBars();
-          ScaffoldMessenger.of(context).showSnackBar(
-            snackBar(
-              context,
-              content: state.error!.getAllErrorMessages(),
-              icon: Icons.error_outline,
-            ),
+          showErrorSnackBar(
+            context,
+            message: state.error!.getAllErrorMessages(),
           );
         }
       },
@@ -117,15 +110,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           FocusScope.of(context).unfocus();
                           if (_newPasswordController.text !=
                               _confirmPasswordController.text) {
-                            ScaffoldMessenger.of(context).clearSnackBars();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              snackBar(
-                                context,
-                                content: context
-                                    .localizations
-                                    .passwords_do_not_match,
-                                icon: Icons.error_outline,
-                              ),
+                            showErrorSnackBar(
+                              context,
+                              message:
+                                  context.localizations.passwords_do_not_match,
                             );
                             return;
                           }

@@ -132,7 +132,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reset_password => 'Reset Password';
 
   @override
-  String get reset_subtitle => 'Ensure your new password is at least 8 characters long with clinical precision.';
+  String get reset_subtitle => 'Ensure your new password is at least 8 characters long with Uppercase, Lowercase, Digits and symbols.';
 
   @override
   String get update_password => 'Update Password';
@@ -300,4 +300,123 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get password_updated_message => 'Password updated successfully.';
+
+  @override
+  String get donation_cancelled_success => 'The donation was successfully cancelled.';
+
+  @override
+  String get no_active_donation_found => 'Not Found Active Donation Now.';
+
+  @override
+  String get go_back_label => 'Go Back';
+
+  @override
+  String get select_cancellation_reason_title => 'Select Reason for Cancellation';
+
+  @override
+  String get select_reason_hint => 'Select a reason';
+
+  @override
+  String get reason_required_error => 'Must select reason to cancel donation';
+
+  @override
+  String get cancellation_health_warning => '* Note: For health-related cancellations, you may be temporarily deferred from donating to ensure your own safety.';
+
+  @override
+  String get optional_note_label => 'Note (optionally)';
+
+  @override
+  String get confirm_cancellation_button => 'Confirm Cancellation';
+
+  @override
+  String get go_back_button => 'Go Back';
+
+  @override
+  String get review_heading => 'Review\n';
+
+  @override
+  String get cancellation_heading => 'Cancellation';
+
+  @override
+  String get cancellation_description => 'We understand that plans change. Please let us know why you need to cancel this donation request.';
+
+  @override
+  String get blood_type_label => 'BLOOD TYPE';
+
+  @override
+  String get units_requested_label => 'UNITS REQUESTED';
+
+  @override
+  String get priority_label => 'PRIORITY';
+
+  @override
+  String get impact_label => 'IMPACT';
+
+  @override
+  String get saves_lives_value => 'Saves 3 Lives';
+
+  @override
+  String get hours_abbreviation => 'HRS';
+
+  @override
+  String get minutes_abbreviation => 'MINS';
+
+  @override
+  String get seconds_abbreviation => 'SECS';
+
+  @override
+  String get request_expired_heading => 'REQUEST EXPIRED';
+
+  @override
+  String get request_expires_in_heading => 'REQUEST EXPIRES IN';
+
+  @override
+  String get request_expired_message => 'The request has expired.\nPlease check for new requests.';
+
+  @override
+  String get arrive_before_timer_message => 'Please arrive before the timer reaches zero to\nensure your donation is processed.';
+
+  @override
+  String get help_support_text => 'Need assistance? Use the contact button\nabove or ';
+
+  @override
+  String get view_guidelines_link => 'view donation guidelines';
+
+  @override
+  String get destination_label => 'DESTINATION';
+
+  @override
+  String get contact_hospital_button => 'Contact Hospital';
+
+  @override
+  String get cancel_donation_button => 'Cancel Donation';
+
+  @override
+  String get emergency_blood_needed_headline => 'Emergency Blood Needed';
+
+  @override
+  String get critical_tag => 'CRITICAL';
+
+  @override
+  String get km_away_suffix => 'Km away';
+
+  @override
+  String get select_governorate_hint => 'Select Governorate';
+
+  @override
+  String get select_district_hint => 'Select District';
+
+  @override
+  String get date_of_birth_placeholder => 'Select Date of Birth';
+
+  @override
+  String get cancellation_impact_message => 'Canceling this request may affect your donor reliability score.\nConsistent donations help hospitals plan life-saving procedures more effectively.';
+
+  @override
+  String get impact_on_reliability => 'Impact on Reliability';
+
+  @override
+  String units(Object value) {
+    return '$value Units';
+  }
 }

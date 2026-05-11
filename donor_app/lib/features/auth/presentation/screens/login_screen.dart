@@ -2,8 +2,8 @@ import 'package:donor_app/core/helpers/biometric_helper.dart';
 import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/shared_pref_helper.dart';
-import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
+import 'package:donor_app/core/mixins/snack_bar_mixin.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
 import 'package:donor_app/features/auth/presentation/logic/login/login_cubit.dart';
@@ -23,7 +23,7 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen> with SnackBarMixin {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -31,7 +31,10 @@ class _LoginScreenState extends State<LoginScreen> {
     final isEnabled = await SharedPrefHelper.getBool(
       SharedPrefKeys.biometricEnabled,
     );
-    if (!isEnabled) return;
+    final isTokensSaved = await SharedPrefHelper.getSecuredString(
+      SharedPrefKeys.accessToken,
+    );
+    if (!isEnabled || isTokensSaved.isEmpty) return;
 
     final success = await BiometricHelper().authenticate(
       context.localizations.authenticate_to_login,
@@ -66,15 +69,10 @@ class _LoginScreenState extends State<LoginScreen> {
             predicate: (route) => false,
           );
         } else if (state.status == LoginStatus.failure && state.error != null) {
-          ScaffoldMessenger.of(context).clearSnackBars();
-          ScaffoldMessenger.of(context).showSnackBar(
-            snackBar(
-              context,
-              icon: Icons.error_outline,
-              content:
-                  state.error?.getAllErrorMessages() ?? 'Something went wrong',
-              iconColor: context.colors.iconActive,
-            ),
+          showErrorSnackBar(
+            context,
+            message:
+                state.error?.getAllErrorMessages() ?? 'Something went wrong',
           );
         }
       },

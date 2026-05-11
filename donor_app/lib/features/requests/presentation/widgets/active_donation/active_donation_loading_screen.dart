@@ -1,3 +1,4 @@
+import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -8,29 +9,30 @@ class ActiveDonationLoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey.shade300,
-      highlightColor: Colors.grey.shade100,
+      baseColor: Colors.white.withAlpha(150),
+      highlightColor: Colors.white70,
+      direction: context.isArabic ? ShimmerDirection.rtl : ShimmerDirection.ltr,
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _box(height: 50, width: 180),
-            verticalSpace(32),
+            verticalSpace(25),
 
             // Map card
             _box(height: 190, width: double.infinity, radius: 16),
-            verticalSpace(28),
+            verticalSpace(20),
 
             // Buttons
             _box(height: 64, width: double.infinity, radius: 12),
             verticalSpace(12),
             _box(height: 64, width: double.infinity, radius: 12),
-            verticalSpace(28),
+            verticalSpace(25),
 
             // Timer card
             _box(height: 210, width: double.infinity, radius: 16),
-            verticalSpace(28),
+            verticalSpace(25),
 
             // Info card
             _box(height: 310, width: double.infinity, radius: 16),
@@ -49,7 +51,7 @@ class ActiveDonationLoadingScreen extends StatelessWidget {
       height: height,
       width: width == double.infinity ? double.infinity : width,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.white.withAlpha(100),
         borderRadius: BorderRadius.circular(radius),
       ),
     );

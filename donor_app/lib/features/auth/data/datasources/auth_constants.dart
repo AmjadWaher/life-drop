@@ -10,6 +10,7 @@ class AuthConstants {
   static const String sendOtp = '${ApiConstants.auth}/forgot-password';
   static const String resetPassword = '${ApiConstants.auth}/reset-password';
   static const String resendOtp = '${ApiConstants.auth}/resend-otp';
+  static const String refreshToken = '${ApiConstants.auth}/refresh';
 
   //-------------- Location --------------
 

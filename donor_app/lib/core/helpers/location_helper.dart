@@ -72,7 +72,6 @@ class LocationHelper {
         hospitalLng,
       );
 
-      // 👇 Better formatting
       if (distanceInMeters < 1000) {
         return "${distanceInMeters.toInt()} m away";
       } else {
