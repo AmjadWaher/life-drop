@@ -48,6 +48,7 @@ class _ExpirationCountdownCardState extends State<ExpirationCountdownCard> {
       });
       if (remaining == 0) {
         _timer.cancel();
+        context.pop<bool>(value: true);
       }
     });
   }
