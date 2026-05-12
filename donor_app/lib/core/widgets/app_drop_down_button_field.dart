@@ -31,6 +31,7 @@ class AppDropdownButtonField<V, T> extends StatelessWidget {
     this.hintStyle,
     required this.hintText,
     this.onChanged,
+    this.isDense = true,
   });
   final ValueNotifier<V?> controller;
   final List<T> items;
@@ -42,6 +43,7 @@ class AppDropdownButtonField<V, T> extends StatelessWidget {
   final String title;
   final TextStyle? hintStyle;
   final TextStyle? itemStyle;
+  final bool isDense;
   final bool isLoading;
 
   @override
@@ -50,8 +52,10 @@ class AppDropdownButtonField<V, T> extends StatelessWidget {
       crossAxisAlignment: .start,
       children: [
         Text(
-          context.localizations.governorate,
-          style: context.textStyles.font12SecondaryBold,
+          title,
+          style: context.textStyles.font12SecondaryBold.copyWith(
+            letterSpacing: 0.5,
+          ),
         ),
         verticalSpace(6),
         isLoading
@@ -79,8 +83,10 @@ class AppDropdownButtonField<V, T> extends StatelessWidget {
                 valueListenable: controller,
                 builder: (context, selectedValue, child) {
                   return DropdownButtonFormField<V?>(
+                    isExpanded: true,
                     initialValue: selectedValue,
                     borderRadius: BorderRadius.circular(12),
+                    isDense: isDense ? true : selectedValue == null,
                     hint: Text(
                       hintText,
                       style:
@@ -93,14 +99,17 @@ class AppDropdownButtonField<V, T> extends StatelessWidget {
                             value: valueBuilder(item),
                             child: Text(
                               labelBuilder(item),
+                              maxLines: null,
+                              softWrap: true,
+                              overflow: TextOverflow.visible,
+                              textAlign: TextAlign.start,
                               style:
                                   itemStyle ??
-                                  context.textStyles.font16TextPrimaryBold,
+                                  context.textStyles.font14TextPrimaryBold,
                             ),
                           ),
                         )
                         .toList(),
-
                     onChanged: (value) {
                       if (value != selectedValue) {
                         controller.value = value;

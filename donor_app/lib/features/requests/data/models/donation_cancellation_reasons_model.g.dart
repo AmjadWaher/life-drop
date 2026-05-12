@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'reasons_cancellation_donation_model.dart';
+part of 'donation_cancellation_reasons_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ReasonsCancellationDonationModel _$ReasonsCancellationDonationModelFromJson(
+DonationCancellationReasonsModel _$DonationCancellationReasonsModelFromJson(
   Map<String, dynamic> json,
-) => ReasonsCancellationDonationModel(
+) => DonationCancellationReasonsModel(
   id: json['id'] as String,
   displayName: json['displayName'] as String,
   displayNameAr: json['displayNameAr'] as String,

@@ -1,5 +1,6 @@
 import 'package:donor_app/features/home/presentation/screens/home_screen.dart';
 import 'package:donor_app/features/main_navigation/widgets/custom_navigation_bar.dart';
+import 'package:donor_app/features/requests/presentation/screens/active_donation_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainNavigationScreen extends StatefulWidget {
@@ -13,7 +14,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   final indexNotifier = ValueNotifier(0);
   final List<Widget> screens = [
     const HomeScreen(),
-    const HomeScreen(),
+    const ActiveDonationScreen(),
     const HomeScreen(),
     const HomeScreen(),
     const HomeScreen(),

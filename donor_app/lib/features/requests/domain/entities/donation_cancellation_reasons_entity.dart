@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-class ReasonsCancellationDonationEntity extends Equatable {
+class DonationCancellationReasonsEntity extends Equatable {
   final String id;
   final String displayName;
   final String displayNameAr;
   final String displayNameEn;
 
-  const ReasonsCancellationDonationEntity({
+  const DonationCancellationReasonsEntity({
     required this.id,
     required this.displayName,
     required this.displayNameAr,

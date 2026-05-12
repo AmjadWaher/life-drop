@@ -1,17 +1,24 @@
-import 'package:donor_app/core/networking/api_error_model.dart';
-import 'package:donor_app/features/requests/domain/entities/reasons_cancellation_donation_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:donor_app/core/networking/api_error_model.dart';
+import 'package:donor_app/features/requests/domain/entities/donation_cancellation_reasons_entity.dart';
 
 part 'cancellation_reasons_state.freezed.dart';
 
+enum CancellationReasonsStatus { initial, loading, success, failure }
+
 @freezed
 class CancellationReasonsState with _$CancellationReasonsState {
-  const factory CancellationReasonsState.initial() =
-      _CancellationReasonsInitial;
-  const factory CancellationReasonsState.loading() = CancellationReasonsLoading;
-  const factory CancellationReasonsState.success(
-    List<ReasonsCancellationDonationEntity> reasons,
-  ) = CancellationReasonsSuccess;
-  const factory CancellationReasonsState.error(ApiErrorModel error) =
-      CancellationReasonsError;
+  @override
+  final CancellationReasonsStatus status;
+  @override
+  final List<DonationCancellationReasonsEntity> reasons;
+  @override
+  final ApiErrorModel? error;
+
+  CancellationReasonsState({
+    this.status = CancellationReasonsStatus.initial,
+    this.reasons = const [],
+    this.error,
+  });
 }

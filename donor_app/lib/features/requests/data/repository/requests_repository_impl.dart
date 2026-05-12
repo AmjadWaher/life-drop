@@ -2,7 +2,7 @@ import 'package:donor_app/core/networking/api_result.dart';
 import 'package:donor_app/features/requests/data/datasource/requests_remote_datasource_impl.dart';
 import 'package:donor_app/features/requests/data/requests/cancel_acceptance_request.dart';
 import 'package:donor_app/features/requests/domain/entities/active_donation_entity.dart';
-import 'package:donor_app/features/requests/domain/entities/reasons_cancellation_donation_entity.dart';
+import 'package:donor_app/features/requests/domain/entities/donation_cancellation_reasons_entity.dart';
 import 'package:donor_app/features/requests/domain/repository/requests_repository.dart';
 
 class RequestsRepositoryImpl extends RequestsRepository {
@@ -36,7 +36,7 @@ class RequestsRepositoryImpl extends RequestsRepository {
   }
 
   @override
-  Future<ApiResult<List<ReasonsCancellationDonationEntity>>>
+  Future<ApiResult<List<DonationCancellationReasonsEntity>>>
   getDonationCancellationReasons() async {
     final result = await _remoteDatasourceImpl.getDonationCancellationReasons();
 

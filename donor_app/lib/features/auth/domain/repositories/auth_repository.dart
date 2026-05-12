@@ -1,11 +1,15 @@
 import 'package:donor_app/core/networking/api_result.dart';
 import 'package:donor_app/features/auth/domain/entities/districts_entity.dart';
 import 'package:donor_app/features/auth/domain/entities/governorate_entity.dart';
-import '../entities/login_response_entity.dart';
+import '../entities/token_entity.dart';
 import '../params/register_params.dart';
 
 abstract class AuthRepository {
-  Future<ApiResult<LoginResponseEntity>> login(String email, String password);
+  Future<ApiResult<TokenEntity>> login(String email, String password);
+  Future<ApiResult<TokenEntity>> refreshToken(
+    String accessToken,
+    String refreshToken,
+  );
   Future<ApiResult<void>> register(RegisterParams params);
   Future<ApiResult<List<GovernorateEntity>>> getGovernorates();
   Future<ApiResult<List<DistrictsEntity>>> getDistrictsByGovernorate(

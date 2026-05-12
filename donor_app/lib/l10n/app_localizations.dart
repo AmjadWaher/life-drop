@@ -344,7 +344,7 @@ abstract class AppLocalizations {
   /// No description provided for @reset_subtitle.
   ///
   /// In en, this message translates to:
-  /// **'Ensure your new password is at least 8 characters long with clinical precision.'**
+  /// **'Ensure your new password is at least 8 characters long with Uppercase, Lowercase, Digits and symbols.'**
   String get reset_subtitle;
 
   /// No description provided for @update_password.
@@ -664,6 +664,240 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Password updated successfully.'**
   String get password_updated_message;
+
+  /// No description provided for @donation_cancelled_success.
+  ///
+  /// In en, this message translates to:
+  /// **'The donation was successfully cancelled.'**
+  String get donation_cancelled_success;
+
+  /// No description provided for @no_active_donation_found.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Found Active Donation Now.'**
+  String get no_active_donation_found;
+
+  /// No description provided for @go_back_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Go Back'**
+  String get go_back_label;
+
+  /// No description provided for @select_cancellation_reason_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Reason for Cancellation'**
+  String get select_cancellation_reason_title;
+
+  /// No description provided for @select_reason_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a reason'**
+  String get select_reason_hint;
+
+  /// No description provided for @reason_required_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Must select reason to cancel donation'**
+  String get reason_required_error;
+
+  /// No description provided for @cancellation_health_warning.
+  ///
+  /// In en, this message translates to:
+  /// **'* Note: For health-related cancellations, you may be temporarily deferred from donating to ensure your own safety.'**
+  String get cancellation_health_warning;
+
+  /// No description provided for @optional_note_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optionally)'**
+  String get optional_note_label;
+
+  /// No description provided for @confirm_cancellation_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Cancellation'**
+  String get confirm_cancellation_button;
+
+  /// No description provided for @go_back_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Go Back'**
+  String get go_back_button;
+
+  /// No description provided for @review_heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Review\n'**
+  String get review_heading;
+
+  /// No description provided for @cancellation_heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancellation'**
+  String get cancellation_heading;
+
+  /// No description provided for @cancellation_description.
+  ///
+  /// In en, this message translates to:
+  /// **'We understand that plans change. Please let us know why you need to cancel this donation request.'**
+  String get cancellation_description;
+
+  /// No description provided for @blood_type_label.
+  ///
+  /// In en, this message translates to:
+  /// **'BLOOD TYPE'**
+  String get blood_type_label;
+
+  /// No description provided for @units_requested_label.
+  ///
+  /// In en, this message translates to:
+  /// **'UNITS REQUESTED'**
+  String get units_requested_label;
+
+  /// No description provided for @priority_label.
+  ///
+  /// In en, this message translates to:
+  /// **'PRIORITY'**
+  String get priority_label;
+
+  /// No description provided for @impact_label.
+  ///
+  /// In en, this message translates to:
+  /// **'IMPACT'**
+  String get impact_label;
+
+  /// No description provided for @saves_lives_value.
+  ///
+  /// In en, this message translates to:
+  /// **'Saves 3 Lives'**
+  String get saves_lives_value;
+
+  /// No description provided for @hours_abbreviation.
+  ///
+  /// In en, this message translates to:
+  /// **'HRS'**
+  String get hours_abbreviation;
+
+  /// No description provided for @minutes_abbreviation.
+  ///
+  /// In en, this message translates to:
+  /// **'MINS'**
+  String get minutes_abbreviation;
+
+  /// No description provided for @seconds_abbreviation.
+  ///
+  /// In en, this message translates to:
+  /// **'SECS'**
+  String get seconds_abbreviation;
+
+  /// No description provided for @request_expired_heading.
+  ///
+  /// In en, this message translates to:
+  /// **'REQUEST EXPIRED'**
+  String get request_expired_heading;
+
+  /// No description provided for @request_expires_in_heading.
+  ///
+  /// In en, this message translates to:
+  /// **'REQUEST EXPIRES IN'**
+  String get request_expires_in_heading;
+
+  /// No description provided for @request_expired_message.
+  ///
+  /// In en, this message translates to:
+  /// **'The request has expired.\nPlease check for new requests.'**
+  String get request_expired_message;
+
+  /// No description provided for @arrive_before_timer_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Please arrive before the timer reaches zero to\nensure your donation is processed.'**
+  String get arrive_before_timer_message;
+
+  /// No description provided for @help_support_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Need assistance? Use the contact button\nabove or '**
+  String get help_support_text;
+
+  /// No description provided for @view_guidelines_link.
+  ///
+  /// In en, this message translates to:
+  /// **'view donation guidelines'**
+  String get view_guidelines_link;
+
+  /// No description provided for @destination_label.
+  ///
+  /// In en, this message translates to:
+  /// **'DESTINATION'**
+  String get destination_label;
+
+  /// No description provided for @contact_hospital_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Hospital'**
+  String get contact_hospital_button;
+
+  /// No description provided for @cancel_donation_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel Donation'**
+  String get cancel_donation_button;
+
+  /// No description provided for @emergency_blood_needed_headline.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Blood Needed'**
+  String get emergency_blood_needed_headline;
+
+  /// No description provided for @critical_tag.
+  ///
+  /// In en, this message translates to:
+  /// **'CRITICAL'**
+  String get critical_tag;
+
+  /// No description provided for @km_away_suffix.
+  ///
+  /// In en, this message translates to:
+  /// **'Km away'**
+  String get km_away_suffix;
+
+  /// No description provided for @select_governorate_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Governorate'**
+  String get select_governorate_hint;
+
+  /// No description provided for @select_district_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select District'**
+  String get select_district_hint;
+
+  /// No description provided for @date_of_birth_placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Date of Birth'**
+  String get date_of_birth_placeholder;
+
+  /// No description provided for @cancellation_impact_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Canceling this request may affect your donor reliability score.\nConsistent donations help hospitals plan life-saving procedures more effectively.'**
+  String get cancellation_impact_message;
+
+  /// No description provided for @impact_on_reliability.
+  ///
+  /// In en, this message translates to:
+  /// **'Impact on Reliability'**
+  String get impact_on_reliability;
+
+  /// No description provided for @units.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} Units'**
+  String units(Object value);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,7 +1,7 @@
 import 'package:donor_app/core/helpers/extensions.dart';
-import 'package:donor_app/core/helpers/snack_bar.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/helpers/validations.dart';
+import 'package:donor_app/core/mixins/snack_bar_mixin.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
 import 'package:donor_app/features/auth/domain/params/register_params.dart';
@@ -21,7 +21,7 @@ class RegisterScreen extends StatefulWidget {
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterScreenState extends State<RegisterScreen> with SnackBarMixin {
   final _pageIndex = ValueNotifier<int>(0);
 
   final _emailController = TextEditingController();
@@ -109,16 +109,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
 
     if (error != null) {
-      ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context).showSnackBar(
-        snackBar(
-          context,
-          icon: Icons.error_outline,
-          content: error,
-          iconColor: context.colors.iconActive,
-          maxLines: null,
-        ),
-      );
+      showErrorSnackBar(context, message: error, maxLines: null);
       return false;
     }
     return true;
@@ -143,16 +134,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
 
     if (error != null) {
-      ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context).showSnackBar(
-        snackBar(
-          context,
-          icon: Icons.error_outline,
-          content: error,
-          iconColor: context.colors.iconActive,
-          maxLines: null,
-        ),
-      );
+      showErrorSnackBar(context, message: error, maxLines: null);
       return false;
     }
     return true;
@@ -179,15 +161,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return BlocConsumer<RegisterCubit, RegisterState>(
       listener: (context, state) {
         if (state.status == RegisterStatus.success) {
-          ScaffoldMessenger.of(context).clearSnackBars();
-          ScaffoldMessenger.of(context).showSnackBar(
-            snackBar(
-              context,
-              icon: Icons.info_outline,
-              content: context.localizations.verification_code_sent,
-              maxLines: null,
-              backgroundColor: Colors.green.withAlpha(100),
-            ),
+          showSuccessSnackBar(
+            context,
+            message: context.localizations.verification_code_sent,
+            maxLines: null,
           );
 
           context.pushReplacementNamed(
@@ -196,13 +173,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           );
         } else if (state.status == RegisterStatus.failure &&
             state.error != null) {
-          ScaffoldMessenger.of(context).clearSnackBars();
-          ScaffoldMessenger.of(context).showSnackBar(
-            snackBar(
-              context,
-              content: state.error!.getAllErrorMessages(),
-              icon: Icons.error_outline,
-            ),
+          showErrorSnackBar(
+            context,
+            message: state.error!.getAllErrorMessages(),
           );
         }
       },

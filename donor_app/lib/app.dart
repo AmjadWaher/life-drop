@@ -1,3 +1,4 @@
+import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/routing/app_router.dart';
 import 'package:donor_app/core/themes/app_theme.dart';
 import 'package:donor_app/features/splash/presentation/screens/splash_screen.dart';
@@ -18,11 +19,12 @@ class App extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
+          navigatorKey: navigatorKey,
           theme: lightTheme(),
           darkTheme: darkTheme(),
           onGenerateRoute: appRouter.generateRoute,
           supportedLocales: const [Locale('en'), Locale('ar')],
-          locale: const Locale('en'),
+          locale: const Locale('ar'),
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

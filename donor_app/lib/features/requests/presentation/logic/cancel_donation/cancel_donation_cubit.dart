@@ -9,15 +9,15 @@ class CancelDonationCubit extends Cubit<CancelDonationState> {
   CancelDonationCubit(this._repository)
     : super(const CancelDonationState.initial());
 
-  Future<void> cancelDonation(
-    String requestId,
-    String reasonId,
-    String note,
-  ) async {
+  Future<void> cancelDonation({
+    required String requestId,
+    required String reasonId,
+    required String note,
+  }) async {
     emit(const CancelDonationState.loading());
     final result = await _repository.cancelDonationAcceptance(
       requestId,
-      CancelAcceptanceRequest(cancellationReasonId: requestId, note: note),
+      CancelAcceptanceRequest(cancellationReasonId: reasonId, note: note),
     );
 
     result.when(

@@ -12,7 +12,26 @@ platform :android do
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       # testers: "amjadwaher623@gmail.com",
       groups: "team",
-      release_notes: "Add Cubits to Requests feature.",
+      release_notes: """
+✨ New Features
+• Donation Cancellation: Users can now cancel active donations with reason selection, optional notes, and impact warnings.Includes a new cancel donation screen and full UI flow.
+• Automatic Token Refresh: Added interceptor for seamless token renewal on 401 errors, improving auth reliability.
+• Enhanced UI Components: Refactored active donation widgets for better organization and responsiveness. Added localized labels and improved dropdowns.
+
+🔧 Improvements
+• Networking: Migrated to token-based auth models for better security. Unified API error handling with mixins.
+• Localization: Added comprehensive strings for cancellation flows, UI elements, and error messages in Arabic and English.
+• Code Quality: Replaced direct snack bar calls with reusable mixins. Moved widgets to subfolders for cleaner architecture.
+• User Experience: Improved loading states, error messages, and form validations.
+
+🐛 Bug Fixes
+• Fixed biometric login checks to ensure tokens are saved before enabling.
+• Resolved issues with widget imports and state management in donation screens.
+
+⚙️ Technical Changes
+• Removed deprecated SafeApiCallMixin and old login models.
+• Updated dependencies and routing for new features.
+• Enhanced Crashlytics logging for better error tracking.""",
     )
   end
 end

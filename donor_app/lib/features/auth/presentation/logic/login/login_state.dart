@@ -1,22 +1,18 @@
 import 'package:donor_app/core/networking/api_error_model.dart';
-import 'package:donor_app/features/auth/domain/entities/login_response_entity.dart';
+import 'package:donor_app/features/auth/domain/entities/token_entity.dart';
 
 enum LoginStatus { initial, loading, success, failure }
 
 class LoginState {
   final LoginStatus status;
-  final LoginResponseEntity? data;
+  final TokenEntity? data;
   final ApiErrorModel? error;
 
-  const LoginState({
-    this.status = LoginStatus.initial,
-    this.data,
-    this.error,
-  });
+  const LoginState({this.status = LoginStatus.initial, this.data, this.error});
 
   LoginState copyWith({
     LoginStatus? status,
-    LoginResponseEntity? data,
+    TokenEntity? data,
     ApiErrorModel? error,
   }) {
     return LoginState(
