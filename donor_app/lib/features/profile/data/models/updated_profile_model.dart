@@ -1,11 +1,11 @@
-import 'package:donor_app/features/profile/domain/entities/updated_profile_entity.dart';
+import 'package:donor_app/features/profile/domain/entities/updated_profile_response_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'updated_profile_model.g.dart';
 
 @JsonSerializable(createToJson: false)
-class UpdatedProfileModel extends UpdatedProfileEntity {
-  const UpdatedProfileModel({
+class UpdatedProfileResponseModel extends UpdatedProfileResponseEntity {
+  const UpdatedProfileResponseModel({
     required super.userId,
     required super.isAvailable,
     required super.governorateName,
@@ -15,6 +15,6 @@ class UpdatedProfileModel extends UpdatedProfileEntity {
     required super.receiveNormalNotifications,
   });
 
-  factory UpdatedProfileModel.fromJson(Map<String, dynamic> json) =>
-      _$UpdatedProfileModelFromJson(json);
+  factory UpdatedProfileResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$UpdatedProfileResponseModelFromJson(json);
 }

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class UpdatedProfileEntity extends Equatable {
+class UpdatedProfileResponseEntity extends Equatable {
   final String userId;
   final bool isAvailable;
   final String governorateName;
@@ -9,7 +9,7 @@ class UpdatedProfileEntity extends Equatable {
   final bool receiveUrgentNotifications;
   final bool receiveNormalNotifications;
 
-  const UpdatedProfileEntity({
+  const UpdatedProfileResponseEntity({
     required this.userId,
     required this.isAvailable,
     required this.governorateName,

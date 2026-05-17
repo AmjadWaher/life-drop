@@ -6,14 +6,14 @@ part of 'updated_profile_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UpdatedProfileModel _$UpdatedProfileModelFromJson(Map<String, dynamic> json) =>
-    UpdatedProfileModel(
-      userId: json['userId'] as String,
-      isAvailable: json['isAvailable'] as bool,
-      governorateName: json['governorateName'] as String,
-      districtName: json['districtName'] as String,
-      receiveCriticalNotifications:
-          json['receiveCriticalNotifications'] as bool,
-      receiveUrgentNotifications: json['receiveUrgentNotifications'] as bool,
-      receiveNormalNotifications: json['receiveNormalNotifications'] as bool,
-    );
+UpdatedProfileResponseModel _$UpdatedProfileResponseModelFromJson(
+  Map<String, dynamic> json,
+) => UpdatedProfileResponseModel(
+  userId: json['userId'] as String,
+  isAvailable: json['isAvailable'] as bool,
+  governorateName: json['governorateName'] as String,
+  districtName: json['districtName'] as String,
+  receiveCriticalNotifications: json['receiveCriticalNotifications'] as bool,
+  receiveUrgentNotifications: json['receiveUrgentNotifications'] as bool,
+  receiveNormalNotifications: json['receiveNormalNotifications'] as bool,
+);

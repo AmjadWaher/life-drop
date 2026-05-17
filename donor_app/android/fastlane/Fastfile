@@ -12,7 +12,7 @@ platform :android do
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       # testers: "amjadwaher623@gmail.com",
       groups: "team",
-      release_notes: "add profile feature with repository pattern and pagination support",
+      release_notes: "add Profile cubit and Cooldown cubit",
     )
   end
 end
