@@ -11,7 +11,7 @@ import 'package:donor_app/features/profile/data/requests/update_profile_request.
 abstract class ProfileRemoteDatasource {
   Future<ApiResult<UserModel>> getProfile();
   Future<ApiResult<CooldownModel>> getCooldownStatus();
-  Future<ApiResult<UpdatedProfileModel>> updateProfile(
+  Future<ApiResult<UpdatedProfileResponseModel>> updateProfile(
     UpdateProfileRequest request,
   );
 }
@@ -37,7 +37,7 @@ class ProfileRemoteDatasourceImpl extends ProfileRemoteDatasource
   }
 
   @override
-  Future<ApiResult<UpdatedProfileModel>> updateProfile(
+  Future<ApiResult<UpdatedProfileResponseModel>> updateProfile(
     UpdateProfileRequest request,
   ) {
     return safeApiCall('updateProfile', () async {
@@ -46,9 +46,10 @@ class ProfileRemoteDatasourceImpl extends ProfileRemoteDatasource
         data: request.toJson(),
       );
 
-      final result = ApiResponse<UpdatedProfileModel>.fromJson(
+      final result = ApiResponse<UpdatedProfileResponseModel>.fromJson(
         response.data,
-        (json) => UpdatedProfileModel.fromJson(json as Map<String, dynamic>),
+        (json) =>
+            UpdatedProfileResponseModel.fromJson(json as Map<String, dynamic>),
       );
 
       return result.data;
