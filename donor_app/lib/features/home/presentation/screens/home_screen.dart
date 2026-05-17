@@ -19,8 +19,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<HomeCubit>().checkBiometricPrompt();
-
     return BlocListener<HomeCubit, HomeState>(
       listenWhen: (previous, current) => current is HomeBiometricPromptRequired,
       listener: (context, state) {

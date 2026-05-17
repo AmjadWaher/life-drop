@@ -73,7 +73,11 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => getIt<HomeCubit>()..loadHome()),
+              BlocProvider(
+                create: (context) => getIt<HomeCubit>()
+                  ..loadHome()
+                  ..checkBiometricPrompt(),
+              ),
               BlocProvider(
                 create: (context) =>
                     getIt<ActiveDonationCubit>()..getCurrentActiveDonation(),
