@@ -55,14 +55,15 @@ extension ProfileStatePatterns on ProfileState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _ProfileInitial value)?  initial,TResult Function( ProfileLoading value)?  loading,TResult Function( GetProfileSuccess value)?  getProfileSuccess,TResult Function( UpdateProfileSuccess value)?  updateProfileSuccess,TResult Function( ProfileError value)?  error,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _ProfileInitial value)?  initial,TResult Function( ProfileLoading value)?  loading,TResult Function( ProfileSuccess value)?  success,TResult Function( ProfileUpdating value)?  updating,TResult Function( ProfileUpdateSuccess value)?  updateSuccess,TResult Function( ProfileError value)?  error,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _ProfileInitial() when initial != null:
 return initial(_that);case ProfileLoading() when loading != null:
-return loading(_that);case GetProfileSuccess() when getProfileSuccess != null:
-return getProfileSuccess(_that);case UpdateProfileSuccess() when updateProfileSuccess != null:
-return updateProfileSuccess(_that);case ProfileError() when error != null:
+return loading(_that);case ProfileSuccess() when success != null:
+return success(_that);case ProfileUpdating() when updating != null:
+return updating(_that);case ProfileUpdateSuccess() when updateSuccess != null:
+return updateSuccess(_that);case ProfileError() when error != null:
 return error(_that);case _:
   return orElse();
 
@@ -81,14 +82,15 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _ProfileInitial value)  initial,required TResult Function( ProfileLoading value)  loading,required TResult Function( GetProfileSuccess value)  getProfileSuccess,required TResult Function( UpdateProfileSuccess value)  updateProfileSuccess,required TResult Function( ProfileError value)  error,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _ProfileInitial value)  initial,required TResult Function( ProfileLoading value)  loading,required TResult Function( ProfileSuccess value)  success,required TResult Function( ProfileUpdating value)  updating,required TResult Function( ProfileUpdateSuccess value)  updateSuccess,required TResult Function( ProfileError value)  error,}){
 final _that = this;
 switch (_that) {
 case _ProfileInitial():
 return initial(_that);case ProfileLoading():
-return loading(_that);case GetProfileSuccess():
-return getProfileSuccess(_that);case UpdateProfileSuccess():
-return updateProfileSuccess(_that);case ProfileError():
+return loading(_that);case ProfileSuccess():
+return success(_that);case ProfileUpdating():
+return updating(_that);case ProfileUpdateSuccess():
+return updateSuccess(_that);case ProfileError():
 return error(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -106,14 +108,15 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _ProfileInitial value)?  initial,TResult? Function( ProfileLoading value)?  loading,TResult? Function( GetProfileSuccess value)?  getProfileSuccess,TResult? Function( UpdateProfileSuccess value)?  updateProfileSuccess,TResult? Function( ProfileError value)?  error,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _ProfileInitial value)?  initial,TResult? Function( ProfileLoading value)?  loading,TResult? Function( ProfileSuccess value)?  success,TResult? Function( ProfileUpdating value)?  updating,TResult? Function( ProfileUpdateSuccess value)?  updateSuccess,TResult? Function( ProfileError value)?  error,}){
 final _that = this;
 switch (_that) {
 case _ProfileInitial() when initial != null:
 return initial(_that);case ProfileLoading() when loading != null:
-return loading(_that);case GetProfileSuccess() when getProfileSuccess != null:
-return getProfileSuccess(_that);case UpdateProfileSuccess() when updateProfileSuccess != null:
-return updateProfileSuccess(_that);case ProfileError() when error != null:
+return loading(_that);case ProfileSuccess() when success != null:
+return success(_that);case ProfileUpdating() when updating != null:
+return updating(_that);case ProfileUpdateSuccess() when updateSuccess != null:
+return updateSuccess(_that);case ProfileError() when error != null:
 return error(_that);case _:
   return null;
 
@@ -131,13 +134,14 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( UserEntity user)?  getProfileSuccess,TResult Function( UpdatedProfileResponseEntity response)?  updateProfileSuccess,TResult Function( ApiErrorModel error)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( UserEntity user)?  success,TResult Function( UserEntity user)?  updating,TResult Function( UserEntity user,  UpdatedProfileResponseEntity response)?  updateSuccess,TResult Function( ApiErrorModel error)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProfileInitial() when initial != null:
 return initial();case ProfileLoading() when loading != null:
-return loading();case GetProfileSuccess() when getProfileSuccess != null:
-return getProfileSuccess(_that.user);case UpdateProfileSuccess() when updateProfileSuccess != null:
-return updateProfileSuccess(_that.response);case ProfileError() when error != null:
+return loading();case ProfileSuccess() when success != null:
+return success(_that.user);case ProfileUpdating() when updating != null:
+return updating(_that.user);case ProfileUpdateSuccess() when updateSuccess != null:
+return updateSuccess(_that.user,_that.response);case ProfileError() when error != null:
 return error(_that.error);case _:
   return orElse();
 
@@ -156,13 +160,14 @@ return error(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( UserEntity user)  getProfileSuccess,required TResult Function( UpdatedProfileResponseEntity response)  updateProfileSuccess,required TResult Function( ApiErrorModel error)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( UserEntity user)  success,required TResult Function( UserEntity user)  updating,required TResult Function( UserEntity user,  UpdatedProfileResponseEntity response)  updateSuccess,required TResult Function( ApiErrorModel error)  error,}) {final _that = this;
 switch (_that) {
 case _ProfileInitial():
 return initial();case ProfileLoading():
-return loading();case GetProfileSuccess():
-return getProfileSuccess(_that.user);case UpdateProfileSuccess():
-return updateProfileSuccess(_that.response);case ProfileError():
+return loading();case ProfileSuccess():
+return success(_that.user);case ProfileUpdating():
+return updating(_that.user);case ProfileUpdateSuccess():
+return updateSuccess(_that.user,_that.response);case ProfileError():
 return error(_that.error);case _:
   throw StateError('Unexpected subclass');
 
@@ -180,13 +185,14 @@ return error(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( UserEntity user)?  getProfileSuccess,TResult? Function( UpdatedProfileResponseEntity response)?  updateProfileSuccess,TResult? Function( ApiErrorModel error)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( UserEntity user)?  success,TResult? Function( UserEntity user)?  updating,TResult? Function( UserEntity user,  UpdatedProfileResponseEntity response)?  updateSuccess,TResult? Function( ApiErrorModel error)?  error,}) {final _that = this;
 switch (_that) {
 case _ProfileInitial() when initial != null:
 return initial();case ProfileLoading() when loading != null:
-return loading();case GetProfileSuccess() when getProfileSuccess != null:
-return getProfileSuccess(_that.user);case UpdateProfileSuccess() when updateProfileSuccess != null:
-return updateProfileSuccess(_that.response);case ProfileError() when error != null:
+return loading();case ProfileSuccess() when success != null:
+return success(_that.user);case ProfileUpdating() when updating != null:
+return updating(_that.user);case ProfileUpdateSuccess() when updateSuccess != null:
+return updateSuccess(_that.user,_that.response);case ProfileError() when error != null:
 return error(_that.error);case _:
   return null;
 
@@ -262,8 +268,8 @@ String toString() {
 /// @nodoc
 
 
-class GetProfileSuccess implements ProfileState {
-  const GetProfileSuccess(this.user);
+class ProfileSuccess implements ProfileState {
+  const ProfileSuccess(this.user);
   
 
  final  UserEntity user;
@@ -272,13 +278,13 @@ class GetProfileSuccess implements ProfileState {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$GetProfileSuccessCopyWith<GetProfileSuccess> get copyWith => _$GetProfileSuccessCopyWithImpl<GetProfileSuccess>(this, _$identity);
+$ProfileSuccessCopyWith<ProfileSuccess> get copyWith => _$ProfileSuccessCopyWithImpl<ProfileSuccess>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetProfileSuccess&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileSuccess&&(identical(other.user, user) || other.user == user));
 }
 
 
@@ -287,15 +293,15 @@ int get hashCode => Object.hash(runtimeType,user);
 
 @override
 String toString() {
-  return 'ProfileState.getProfileSuccess(user: $user)';
+  return 'ProfileState.success(user: $user)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $GetProfileSuccessCopyWith<$Res> implements $ProfileStateCopyWith<$Res> {
-  factory $GetProfileSuccessCopyWith(GetProfileSuccess value, $Res Function(GetProfileSuccess) _then) = _$GetProfileSuccessCopyWithImpl;
+abstract mixin class $ProfileSuccessCopyWith<$Res> implements $ProfileStateCopyWith<$Res> {
+  factory $ProfileSuccessCopyWith(ProfileSuccess value, $Res Function(ProfileSuccess) _then) = _$ProfileSuccessCopyWithImpl;
 @useResult
 $Res call({
  UserEntity user
@@ -306,17 +312,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$GetProfileSuccessCopyWithImpl<$Res>
-    implements $GetProfileSuccessCopyWith<$Res> {
-  _$GetProfileSuccessCopyWithImpl(this._self, this._then);
+class _$ProfileSuccessCopyWithImpl<$Res>
+    implements $ProfileSuccessCopyWith<$Res> {
+  _$ProfileSuccessCopyWithImpl(this._self, this._then);
 
-  final GetProfileSuccess _self;
-  final $Res Function(GetProfileSuccess) _then;
+  final ProfileSuccess _self;
+  final $Res Function(ProfileSuccess) _then;
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? user = null,}) {
-  return _then(GetProfileSuccess(
+  return _then(ProfileSuccess(
 null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
 as UserEntity,
   ));
@@ -328,43 +334,43 @@ as UserEntity,
 /// @nodoc
 
 
-class UpdateProfileSuccess implements ProfileState {
-  const UpdateProfileSuccess(this.response);
+class ProfileUpdating implements ProfileState {
+  const ProfileUpdating(this.user);
   
 
- final  UpdatedProfileResponseEntity response;
+ final  UserEntity user;
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$UpdateProfileSuccessCopyWith<UpdateProfileSuccess> get copyWith => _$UpdateProfileSuccessCopyWithImpl<UpdateProfileSuccess>(this, _$identity);
+$ProfileUpdatingCopyWith<ProfileUpdating> get copyWith => _$ProfileUpdatingCopyWithImpl<ProfileUpdating>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateProfileSuccess&&(identical(other.response, response) || other.response == response));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileUpdating&&(identical(other.user, user) || other.user == user));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,response);
+int get hashCode => Object.hash(runtimeType,user);
 
 @override
 String toString() {
-  return 'ProfileState.updateProfileSuccess(response: $response)';
+  return 'ProfileState.updating(user: $user)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $UpdateProfileSuccessCopyWith<$Res> implements $ProfileStateCopyWith<$Res> {
-  factory $UpdateProfileSuccessCopyWith(UpdateProfileSuccess value, $Res Function(UpdateProfileSuccess) _then) = _$UpdateProfileSuccessCopyWithImpl;
+abstract mixin class $ProfileUpdatingCopyWith<$Res> implements $ProfileStateCopyWith<$Res> {
+  factory $ProfileUpdatingCopyWith(ProfileUpdating value, $Res Function(ProfileUpdating) _then) = _$ProfileUpdatingCopyWithImpl;
 @useResult
 $Res call({
- UpdatedProfileResponseEntity response
+ UserEntity user
 });
 
 
@@ -372,18 +378,86 @@ $Res call({
 
 }
 /// @nodoc
-class _$UpdateProfileSuccessCopyWithImpl<$Res>
-    implements $UpdateProfileSuccessCopyWith<$Res> {
-  _$UpdateProfileSuccessCopyWithImpl(this._self, this._then);
+class _$ProfileUpdatingCopyWithImpl<$Res>
+    implements $ProfileUpdatingCopyWith<$Res> {
+  _$ProfileUpdatingCopyWithImpl(this._self, this._then);
 
-  final UpdateProfileSuccess _self;
-  final $Res Function(UpdateProfileSuccess) _then;
+  final ProfileUpdating _self;
+  final $Res Function(ProfileUpdating) _then;
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? response = null,}) {
-  return _then(UpdateProfileSuccess(
-null == response ? _self.response : response // ignore: cast_nullable_to_non_nullable
+@pragma('vm:prefer-inline') $Res call({Object? user = null,}) {
+  return _then(ProfileUpdating(
+null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserEntity,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class ProfileUpdateSuccess implements ProfileState {
+  const ProfileUpdateSuccess(this.user, this.response);
+  
+
+ final  UserEntity user;
+ final  UpdatedProfileResponseEntity response;
+
+/// Create a copy of ProfileState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ProfileUpdateSuccessCopyWith<ProfileUpdateSuccess> get copyWith => _$ProfileUpdateSuccessCopyWithImpl<ProfileUpdateSuccess>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileUpdateSuccess&&(identical(other.user, user) || other.user == user)&&(identical(other.response, response) || other.response == response));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,user,response);
+
+@override
+String toString() {
+  return 'ProfileState.updateSuccess(user: $user, response: $response)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ProfileUpdateSuccessCopyWith<$Res> implements $ProfileStateCopyWith<$Res> {
+  factory $ProfileUpdateSuccessCopyWith(ProfileUpdateSuccess value, $Res Function(ProfileUpdateSuccess) _then) = _$ProfileUpdateSuccessCopyWithImpl;
+@useResult
+$Res call({
+ UserEntity user, UpdatedProfileResponseEntity response
+});
+
+
+
+
+}
+/// @nodoc
+class _$ProfileUpdateSuccessCopyWithImpl<$Res>
+    implements $ProfileUpdateSuccessCopyWith<$Res> {
+  _$ProfileUpdateSuccessCopyWithImpl(this._self, this._then);
+
+  final ProfileUpdateSuccess _self;
+  final $Res Function(ProfileUpdateSuccess) _then;
+
+/// Create a copy of ProfileState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? user = null,Object? response = null,}) {
+  return _then(ProfileUpdateSuccess(
+null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserEntity,null == response ? _self.response : response // ignore: cast_nullable_to_non_nullable
 as UpdatedProfileResponseEntity,
   ));
 }

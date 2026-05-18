@@ -13,18 +13,34 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(const ProfileState.loading());
 
     final result = await _repository.getProfile();
+    if (isClosed) return;
+
     result.when(
-      success: (data) => emit(ProfileState.getProfileSuccess(data)),
+      success: (data) => emit(ProfileState.success(data)),
       failure: (error) => emit(ProfileState.error(error)),
     );
   }
 
   Future<void> updateUserProfile(UpdateProfileRequest request) async {
-    emit(const ProfileState.loading());
+    final currentUser = state.mapOrNull(
+      success: (value) => value.user,
+      updateSuccess: (value) => value.user,
+    );
+
+    if (currentUser != null) {
+      emit(ProfileState.updating(currentUser));
+    } else {
+      emit(const ProfileState.loading());
+    }
 
     final result = await _repository.updateProfile(request);
+    if (isClosed) return;
+
     result.when(
-      success: (data) => emit(ProfileState.updateProfileSuccess(data)),
+      success: (data) {
+        // re-fetch profile data
+        getUserProfile();
+      },
       failure: (error) => emit(ProfileState.error(error)),
     );
   }

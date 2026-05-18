@@ -2,14 +2,23 @@ import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LinearLoading extends StatelessWidget {
-  const LinearLoading({super.key, required this.value});
+class AppLinearProgress extends StatelessWidget {
+  const AppLinearProgress({
+    super.key,
+    required this.value,
+    this.width = 192,
+    this.height = 6,
+    this.isReverse = false,
+  });
   final double value;
+  final double height;
+  final double width;
+  final bool isReverse;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 192.w,
+      width: width.w,
       decoration: BoxDecoration(
         color: context.isDarkMode
             ? const Color.fromARGB(255, 49, 53, 59)
@@ -31,9 +40,9 @@ class LinearLoading extends StatelessWidget {
           ).createShader(bounds);
         },
         child: LinearProgressIndicator(
-          value: value,
+          value: isReverse ? 1 - value : value,
           backgroundColor: Colors.transparent,
-          minHeight: 6.h,
+          minHeight: height.h,
           borderRadius: BorderRadius.circular(30),
           color: Colors.white,
         ),

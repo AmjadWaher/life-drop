@@ -4,7 +4,7 @@ import 'package:donor_app/core/helpers/location_helper.dart';
 import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/routing/routes.dart';
-import 'package:donor_app/features/splash/presentation/widgets/linear_loading.dart';
+import 'package:donor_app/core/widgets/app_linear_progress.dart';
 import 'package:donor_app/features/splash/presentation/widgets/loading_text.dart';
 import 'package:donor_app/features/splash/presentation/widgets/splash_logo_circle.dart';
 import 'package:donor_app/features/splash/presentation/widgets/tagline_text.dart';
@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
             verticalSpace(12),
             const TaglineText(),
             verticalSpace(197),
-            LinearLoading(value: value),
+            AppLinearProgress(value: value),
             verticalSpace(12),
             const LoadingText(),
             const Spacer(),

@@ -12,7 +12,7 @@ platform :android do
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       # testers: "amjadwaher623@gmail.com",
       groups: "team",
-      release_notes: "add Profile cubit and Cooldown cubit",
+      release_notes: "add Profile screen, fix Profile State management with cubit and add shimmer effect to profile screen.",
     )
   end
 end
