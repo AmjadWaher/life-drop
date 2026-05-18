@@ -1,5 +1,6 @@
 import 'package:donor_app/features/home/presentation/screens/home_screen.dart';
 import 'package:donor_app/features/main_navigation/widgets/custom_navigation_bar.dart';
+import 'package:donor_app/features/profile/presentation/screens/profile_screen.dart';
 import 'package:donor_app/features/requests/presentation/screens/active_donation_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     const ActiveDonationScreen(),
     const HomeScreen(),
     const HomeScreen(),
-    const HomeScreen(),
+    const ProfileScreen(),
   ];
 
   @override

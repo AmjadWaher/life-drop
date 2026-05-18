@@ -10,6 +10,7 @@ class CooldownCubit extends Cubit<CooldownState> {
   Future<void> getCooldownStatus() async {
     emit(const CooldownState.loading());
     final result = await _repository.getCooldownStatus();
+    if (isClosed) return;
 
     result.when(
       success: (data) => emit(CooldownState.success(data)),

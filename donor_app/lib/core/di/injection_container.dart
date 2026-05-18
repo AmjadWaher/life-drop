@@ -10,6 +10,11 @@ import 'package:donor_app/features/auth/presentation/logic/otp/otp_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/register/register_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/reset_password/reset_password_cubit.dart';
 import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
+import 'package:donor_app/features/profile/data/datasources/profile_remote_datasource_impl.dart';
+import 'package:donor_app/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:donor_app/features/profile/domain/repositories/profile_repository.dart';
+import 'package:donor_app/features/profile/presentation/logic/cooldown/cooldown_cubit.dart';
+import 'package:donor_app/features/profile/presentation/logic/profile/profile_cubit.dart';
 import 'package:donor_app/features/requests/data/datasource/requests_remote_datasource_impl.dart';
 import 'package:donor_app/features/requests/data/repository/requests_repository_impl.dart';
 import 'package:donor_app/features/requests/domain/repository/requests_repository.dart';
@@ -79,5 +84,22 @@ Future<void> initDependencies() async {
   );
   getIt.registerFactory<CancellationReasonsCubit>(
     () => CancellationReasonsCubit(getIt<RequestsRepository>()),
+  );
+
+  // --------------- Profile ---------------
+
+  getIt.registerLazySingleton<ProfileRemoteDatasource>(
+    () => ProfileRemoteDatasourceImpl(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepositoryImpl(getIt<ProfileRemoteDatasource>()),
+  );
+
+  getIt.registerFactory<ProfileCubit>(
+    () => ProfileCubit(getIt<ProfileRepository>()),
+  );
+  getIt.registerFactory<CooldownCubit>(
+    () => CooldownCubit(getIt<ProfileRepository>()),
   );
 }

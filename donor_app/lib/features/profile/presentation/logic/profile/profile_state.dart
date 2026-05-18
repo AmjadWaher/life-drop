@@ -9,10 +9,11 @@ part 'profile_state.freezed.dart';
 class ProfileState with _$ProfileState {
   const factory ProfileState.initial() = _ProfileInitial;
   const factory ProfileState.loading() = ProfileLoading;
-  const factory ProfileState.getProfileSuccess(UserEntity user) =
-      GetProfileSuccess;
-  const factory ProfileState.updateProfileSuccess(
+  const factory ProfileState.success(UserEntity user) = ProfileSuccess;
+  const factory ProfileState.updating(UserEntity user) = ProfileUpdating;
+  const factory ProfileState.updateSuccess(
+    UserEntity user,
     UpdatedProfileResponseEntity response,
-  ) = UpdateProfileSuccess;
+  ) = ProfileUpdateSuccess;
   const factory ProfileState.error(ApiErrorModel error) = ProfileError;
 }

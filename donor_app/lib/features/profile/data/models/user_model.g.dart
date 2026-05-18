@@ -20,7 +20,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
   reliabilityScore: (json['reliabilityScore'] as num).toInt(),
   gamificationPoints: (json['gamificationPoints'] as num).toInt(),
   isEligibleToDonate: json['isEligibleToDonate'] as bool,
-  totalDonations: json['totalDonations'] as bool,
+  totalDonations: (json['totalDonations'] as num).toInt(),
 );
 
 const _$BloodTypeEnumMap = {

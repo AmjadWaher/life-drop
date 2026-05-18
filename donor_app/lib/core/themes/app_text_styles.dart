@@ -225,6 +225,11 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.bold,
     color: colors.textPrimary,
   );
+  TextStyle get font16TextPrimaryMedium => TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: colors.textPrimary,
+  );
   TextStyle get font16TextSecondaryBold => TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.bold,
@@ -293,6 +298,16 @@ class AppTextStyles {
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.extraBold,
     color: colors.primary,
+  );
+  TextStyle get font24SecondaryExtraBold => TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeightHelper.extraBold,
+    color: colors.secondary,
+  );
+  TextStyle get font24SecondaryBold => TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: colors.secondary,
   );
 
   // ------------ 30 sp ------------

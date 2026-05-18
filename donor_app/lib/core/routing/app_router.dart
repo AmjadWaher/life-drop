@@ -15,6 +15,8 @@ import 'package:donor_app/features/donation_request/presentation/screens/request
 import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
 import 'package:donor_app/features/main_navigation/screens/main_navigation_screen.dart';
 import 'package:donor_app/features/onboarding/screens/onboarding_view.dart';
+import 'package:donor_app/features/profile/presentation/logic/cooldown/cooldown_cubit.dart';
+import 'package:donor_app/features/profile/presentation/logic/profile/profile_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/cancel_donation/cancel_donation_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/cancellation_reasons/cancellation_reasons_cubit.dart';
@@ -81,6 +83,13 @@ class AppRouter {
               BlocProvider(
                 create: (context) =>
                     getIt<ActiveDonationCubit>()..getCurrentActiveDonation(),
+              ),
+              BlocProvider(
+                create: (context) => getIt<ProfileCubit>()..getUserProfile(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    getIt<CooldownCubit>()..getCooldownStatus(),
               ),
             ],
             child: const MainNavigationScreen(),

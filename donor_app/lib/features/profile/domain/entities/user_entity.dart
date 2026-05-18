@@ -15,7 +15,7 @@ class UserEntity extends Equatable {
   final int reliabilityScore;
   final int gamificationPoints;
   final bool isEligibleToDonate;
-  final bool totalDonations;
+  final int totalDonations;
 
   const UserEntity({
     required this.userId,
