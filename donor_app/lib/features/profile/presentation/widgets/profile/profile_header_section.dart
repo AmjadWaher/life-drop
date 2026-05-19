@@ -1,3 +1,4 @@
+import 'package:donor_app/core/enums/blood_type.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/widgets/box.dart';
@@ -6,61 +7,85 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class ProfileHeaderSection extends StatelessWidget {
-  const ProfileHeaderSection({super.key, required this.isVerified});
+  const ProfileHeaderSection({
+    super.key,
+    required this.isVerified,
+    required this.firstName,
+    required this.lastName,
+    required this.bloodType,
+  });
+  final String? firstName;
+  final String? lastName;
+  final BloodType? bloodType;
   final bool? isVerified;
 
   @override
   Widget build(BuildContext context) {
-    if (isVerified == null) {
-      return Column(
-        crossAxisAlignment: .start,
+    if (isVerified == null &&
+        firstName == null &&
+        lastName == null &&
+        bloodType == null) {
+      return Row(
         children: [
-          const Box(height: 30, width: 170),
-          verticalSpace(5),
-          const Box(height: 35, width: 270),
-          verticalSpace(5),
-          const Box(height: 35, width: double.infinity, radius: 12),
+          const Box(height: 100, width: 100, radius: 100),
+          horizontalSpace(24),
+          Column(
+            crossAxisAlignment: .start,
+            children: [
+              const Box(height: 20, width: 150, radius: 12),
+              verticalSpace(4),
+              const Box(height: 16, width: 130, radius: 12),
+            ],
+          ),
         ],
       );
     }
-    return Column(
-      crossAxisAlignment: .start,
+    return Row(
       children: [
-        Text(
-          'My Profile',
-          style: context.textStyles.font36TextPrimaryExtraBold.copyWith(
-            letterSpacing: -0.9,
-          ),
-        ),
-        verticalSpace(8),
-        Text(
-          'Manage your donor identity and impact history.',
-          style: context.textStyles.font16SecondaryMedium,
-        ),
-        verticalSpace(10),
-
         Container(
           decoration: BoxDecoration(
-            color: context.colors.tertiary,
-            borderRadius: BorderRadius.circular(12),
+            color: context.colors.primary.withAlpha(
+              context.isDarkMode ? 100 : 50,
+            ),
+            shape: BoxShape.circle,
           ),
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-          child: Row(
-            children: [
-              TwoToneIcon.varied(
-                isVerified! ? Symbols.verified : Symbols.verified_off,
-                color: context.colors.tertiary,
-                color2: context.colors.secondary,
+          padding: EdgeInsets.all(30.w),
+          child: Center(
+            child: Text(
+              bloodType!.label,
+              style: context.textStyles.font36PrimaryExtraBold,
+            ),
+          ),
+        ),
+        horizontalSpace(24),
+        Column(
+          crossAxisAlignment: .start,
+          children: [
+            Text(
+              '$firstName $lastName',
+              style: context.textStyles.font24TextPrimaryExtraBold.copyWith(
+                letterSpacing: 0,
               ),
-              horizontalSpace(12),
-              Text(
-                isVerified! ? 'Verified' : 'Unverified',
-                style: context.textStyles.font14TextPrimaryBold.copyWith(
-                  letterSpacing: 0.7,
+            ),
+            verticalSpace(4),
+            Row(
+              children: [
+                TwoToneIcon.varied(
+                  isVerified! ? Symbols.verified : Symbols.verified_off,
+                  size: 16,
+                  color: context.colors.background,
+                  color2: context.colors.secondary,
                 ),
-              ),
-            ],
-          ),
+                horizontalSpace(4),
+                Text(
+                  isVerified! ? context.localizations.verified_donor : context.localizations.unverified_donor,
+                  style: context.textStyles.font12SecondarySemiBold.copyWith(
+                    letterSpacing: 1.2,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     );

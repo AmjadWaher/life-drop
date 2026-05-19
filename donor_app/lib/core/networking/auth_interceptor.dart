@@ -9,7 +9,7 @@ import 'package:donor_app/core/networking/dio_factory.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/features/auth/domain/repositories/auth_repository.dart';
 
-class AuthInterceptor extends Interceptor {
+class AuthInterceptor extends QueuedInterceptor {
   final Dio _dio;
   bool isRefreshing = false;
 
@@ -17,26 +17,35 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
-    if (err.response?.statusCode == 401 && !isRefreshing) {
-      isRefreshing = true;
+    if (err.response?.statusCode == 401) {
       try {
-        final newAccessToken = await _refreshToken();
-        if (newAccessToken != null) {
-          // Update header for future requests
+        if (!isRefreshing) {
+          isRefreshing = true;
+
+          final newAccessToken = await _refreshToken();
+          if (newAccessToken == null) {
+            await _clearTokensAndLogout();
+            return handler.reject(err);
+          }
+
           DioFactory.setTokenIntoHeaderAfterLogin(newAccessToken);
-
-          // Update header for the current failed request
-          err.requestOptions.headers['Authorization'] =
-              'Bearer $newAccessToken';
-
-          // Retry original request
-          final response = await _dio.fetch(err.requestOptions);
-          handler.resolve(response);
+          isRefreshing = false;
         } else {
-          await _clearTokensAndLogout();
-          handler.reject(err);
+          while (isRefreshing) {
+            await Future.delayed(const Duration(milliseconds: 100));
+          }
         }
+
+        final token = await SharedPrefHelper.getSecuredString(
+          SharedPrefKeys.accessToken,
+        );
+        // Update header for the current failed request
+        err.requestOptions.headers['Authorization'] = 'Bearer $token';
+
+        final response = await _dio.fetch(err.requestOptions);
+        return handler.resolve(response);
       } catch (e) {
+        isRefreshing = false;
         // Refresh itself failed
         await _clearTokensAndLogout();
         handler.reject(err);
@@ -46,7 +55,6 @@ class AuthInterceptor extends Interceptor {
     } else {
       handler.next(err); // not 401, pass error normally
     }
-    super.onError(err, handler);
   }
 
   Future<String?> _refreshToken() async {

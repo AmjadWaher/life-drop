@@ -10,4 +10,6 @@ class Routes {
   static const String requestAccepted = '/request-accepted';
   static const String requests = '/requests';
   static const String cancelRequests = '/cancel-requests';
+  static const String accountSettings = '/account-settings';
+  static const String languageSettings = '/language-settings';
 }

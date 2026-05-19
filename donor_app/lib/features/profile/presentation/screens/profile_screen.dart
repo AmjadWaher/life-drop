@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12),
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 15.h),
             child: BlocBuilder<ProfileCubit, ProfileState>(
               builder: (context, state) {
                 return state.when(
@@ -51,8 +51,13 @@ class ProfileScreen extends StatelessWidget {
   Widget _buildProfileContent(UserEntity? user) {
     return Column(
       children: [
-        ProfileHeaderSection(isVerified: user?.isMedicallyVerified),
-        verticalSpace(48),
+        ProfileHeaderSection(
+          isVerified: user?.isMedicallyVerified,
+          firstName: user?.firstName,
+          lastName: user?.lastName,
+          bloodType: user?.bloodType,
+        ),
+        verticalSpace(28),
         const CooldownCard(),
         verticalSpace(24),
         IdentitySubGrid(
@@ -60,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
           totalDonations: user?.totalDonations,
         ),
         verticalSpace(24),
-        AccountLinksSection(isLoading: user == null),
+        AccountLinksSection(isVerified: user?.isMedicallyVerified),
       ],
     );
   }

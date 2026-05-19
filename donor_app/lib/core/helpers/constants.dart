@@ -10,5 +10,6 @@ class SharedPrefKeys {
   static const String isLoggedIn = 'isLoggedIn';
   static const String biometricEnabled = 'biometricEnabled';
   static const String biometricPromptShown = 'biometricPromptShown';
-  static const String accounts = 'accounts';
+  static const String pushNotification = 'pushNotification';
+  static const String appLanguage = 'appLanguage';
 }

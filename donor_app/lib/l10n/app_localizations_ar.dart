@@ -419,4 +419,106 @@ class AppLocalizationsAr extends AppLocalizations {
   String units(Object value) {
     return '$value وحدات دم';
   }
+
+  @override
+  String get language_settings => 'اللغة';
+
+  @override
+  String get language_settings_subtitle => 'اختر لغتك المفضلة';
+
+  @override
+  String get language_english => 'English';
+
+  @override
+  String get language_arabic => 'العربية';
+
+  @override
+  String get current_language_label => 'اللغة الحالية';
+
+  @override
+  String get available_languages_label => 'اللغات المتاحة';
+
+  @override
+  String get language_changed_message => 'تم تغيير اللغة بنجاح';
+
+  @override
+  String get account_settings_title => 'إعدادات الحساب';
+
+  @override
+  String get personal_information_label => 'المعلومات الشخصية';
+
+  @override
+  String get edit_profile => 'تعديل الملف الشخصي';
+
+  @override
+  String get verification_status => 'حالة التحقق';
+
+  @override
+  String get verified_badge => 'موثق';
+
+  @override
+  String get unverified_badge => 'غير موثق';
+
+  @override
+  String get verified_donor => 'متبرع موثق';
+
+  @override
+  String get unverified_donor => 'متبرع غير موثق';
+
+  @override
+  String get security_access_label => 'الأمان والوصول';
+
+  @override
+  String get change_password => 'تغيير كلمة المرور';
+
+  @override
+  String get enable_fingerprint => 'تفعيل بصمة الإصبع';
+
+  @override
+  String get notifications_label => 'الإشعارات';
+
+  @override
+  String get push_notifications => 'الإشعارات الفورية';
+
+  @override
+  String get email_alerts => 'تنبيهات البريد الإلكتروني';
+
+  @override
+  String get sms_alerts => 'تنبيهات الرسائل النصية';
+
+  @override
+  String get preferences_label => 'التفضيلات';
+
+  @override
+  String get language_label => 'اللغة';
+
+  @override
+  String get theme_label => 'المظهر';
+
+  @override
+  String get theme_dark => 'داكن';
+
+  @override
+  String get theme_light => 'فاتح';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get app_footer => 'VITALFLOW V2.4.0 • CLINICAL SANCTUARY';
+
+  @override
+  String get next_eligible_donation => 'التبرع المؤهل التالي';
+
+  @override
+  String get days_label => 'يوم';
+
+  @override
+  String get cooldown_recovery_message => 'بروتوكول التعافي نشط. استمر في شرب الماء.';
+
+  @override
+  String get retry => 'إعادة المحاولة';
+
+  @override
+  String get donations_label => 'التبرعات';
 }

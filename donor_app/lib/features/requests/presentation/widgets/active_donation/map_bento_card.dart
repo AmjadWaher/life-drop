@@ -6,7 +6,6 @@ import 'package:donor_app/core/resources/image_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-/// Map card with glassmorphism ETA overlay and donor avatar marker.
 class MapBentoCard extends StatelessWidget {
   const MapBentoCard({
     super.key,
