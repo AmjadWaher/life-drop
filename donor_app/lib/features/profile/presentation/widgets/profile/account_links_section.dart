@@ -1,16 +1,17 @@
 import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class AccountLinksSection extends StatelessWidget {
-  const AccountLinksSection({super.key, this.isLoading = false});
-  final bool isLoading;
+  const AccountLinksSection({super.key, this.isVerified});
+  final bool? isVerified;
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) {
+    if (isVerified == null) {
       return const Box(height: 60, width: double.infinity, radius: 12);
     }
     return Container(
@@ -27,7 +28,7 @@ class AccountLinksSection extends StatelessWidget {
               color: context.colors.secondary,
             ),
             title: Text(
-              'Account Settings',
+              context.localizations.account_settings_title,
               style: context.textStyles.font16TextPrimaryMedium,
             ),
             trailing: Icon(
@@ -36,7 +37,10 @@ class AccountLinksSection extends StatelessWidget {
               size: 20,
             ),
             onTap: () {
-              // TODO:: Navigate to account settings screen
+              context.pushNamed(
+                Routes.accountSettings,
+                arguments: {'isVerified': isVerified},
+              );
             },
           ),
         ],

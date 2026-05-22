@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:donor_app/core/helpers/biometric_helper.dart';
+import 'package:donor_app/core/logic/biometric/biometric_cubit.dart';
+import 'package:donor_app/core/logic/language/language_cubit.dart';
+import 'package:donor_app/core/logic/theme/theme_cubit.dart';
 import 'package:donor_app/core/networking/dio_factory.dart';
 import 'package:donor_app/features/auth/data/datasources/auth_remote_datasource_impl.dart';
 import 'package:donor_app/features/auth/data/repositories/auth_repository_impl.dart';
@@ -33,6 +36,12 @@ Future<void> initDependencies() async {
   getIt.registerLazySingleton<Dio>(() => dio);
 
   getIt.registerLazySingleton<BiometricHelper>(() => BiometricHelper());
+
+  // --------------- Settings ---------------
+
+  getIt.registerLazySingleton<LanguageCubit>(() => LanguageCubit());
+  getIt.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
+  getIt.registerLazySingleton<BiometricCubit>(() => BiometricCubit());
 
   // --------------- Auth ---------------
 

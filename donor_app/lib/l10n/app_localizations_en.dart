@@ -419,4 +419,124 @@ class AppLocalizationsEn extends AppLocalizations {
   String units(Object value) {
     return '$value Units';
   }
+
+  @override
+  String get language_settings => 'Language Settings';
+
+  @override
+  String get language_settings_subtitle => 'Select your preferred language';
+
+  @override
+  String get language_english => 'English';
+
+  @override
+  String get language_arabic => 'العربية';
+
+  @override
+  String get current_language_label => 'CURRENT LANGUAGE';
+
+  @override
+  String get available_languages_label => 'AVAILABLE LANGUAGES';
+
+  @override
+  String get language_changed_message => 'Language changed successfully';
+
+  @override
+  String get account_settings_title => 'Account Settings';
+
+  @override
+  String get personal_information_label => 'PERSONAL INFORMATION';
+
+  @override
+  String get edit_profile => 'Edit Profile';
+
+  @override
+  String get verification_status => 'Verification Status';
+
+  @override
+  String get verified_badge => 'VERIFIED';
+
+  @override
+  String get unverified_badge => 'UNVERIFIED';
+
+  @override
+  String get verified_donor => 'VERIFIED DONOR';
+
+  @override
+  String get unverified_donor => 'UNVERIFIED DONOR';
+
+  @override
+  String get security_access_label => 'SECURITY & ACCESS';
+
+  @override
+  String get change_password => 'Change Password';
+
+  @override
+  String get enable_fingerprint => 'Enable Fingerprint';
+
+  @override
+  String get notifications_label => 'NOTIFICATIONS';
+
+  @override
+  String get push_notifications => 'Push Notifications';
+
+  @override
+  String get email_alerts => 'Email Alerts';
+
+  @override
+  String get sms_alerts => 'SMS Alerts';
+
+  @override
+  String get preferences_label => 'PREFERENCES';
+
+  @override
+  String get language_label => 'LANGUAGE';
+
+  @override
+  String get theme_label => 'THEME';
+
+  @override
+  String get theme_dark => 'Dark';
+
+  @override
+  String get theme_light => 'Light';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get next_eligible_donation => 'NEXT ELIGIBLE DONATION';
+
+  @override
+  String get days_label => 'Days';
+
+  @override
+  String get cooldown_recovery_message => 'Recovery protocol active. Keep staying hydrated.';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get donations_label => 'DONATIONS';
+
+  @override
+  String get theme_settings_title => 'Theme Settings';
+
+  @override
+  String get theme_system_default => 'System Default';
+
+  @override
+  String get theme_system_description => 'Automatically sync with your device settings.';
+
+  @override
+  String get theme_light_mode => 'Light Mode';
+
+  @override
+  String get theme_light_description => 'Optimal for high-clarity clinical environments.';
+
+  @override
+  String get theme_dark_mode => 'Dark Mode';
+
+  @override
+  String get theme_dark_description => 'Reduced glare for comfortable nighttime use.';
 }

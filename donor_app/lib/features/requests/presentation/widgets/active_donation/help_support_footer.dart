@@ -4,7 +4,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-/// Help/support footer with info icon and "view donation guidelines" link.
 class HelpSupportFooter extends StatelessWidget {
   const HelpSupportFooter({super.key});
 

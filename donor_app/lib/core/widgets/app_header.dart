@@ -9,15 +9,17 @@ class AppHeader extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.style,
+    this.padding,
   });
   final Widget icon;
   final String title;
   final TextStyle style;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.h),
+      padding: padding ?? EdgeInsets.symmetric(vertical: 16.h),
       child: Row(
         children: [
           icon,

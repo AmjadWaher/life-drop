@@ -46,7 +46,7 @@ class CooldownCard extends StatelessWidget {
         child: TextButton.icon(
           onPressed: () => context.read<CooldownCubit>()..getCooldownStatus(),
           icon: const Icon(Icons.refresh),
-          label: const Text('Retry'),
+          label: Text(context.localizations.retry),
         ),
       ),
     );
@@ -78,7 +78,7 @@ class CooldownCard extends StatelessWidget {
             crossAxisAlignment: .start,
             children: [
               Text(
-                'NEXT ELIGIBLE DONATION',
+                context.localizations.next_eligible_donation,
                 style: context.textStyles.font10PrimaryBold.copyWith(
                   letterSpacing: 1,
                 ),
@@ -93,7 +93,7 @@ class CooldownCard extends StatelessWidget {
                   ),
                   horizontalSpace(8),
                   Text(
-                    'Days',
+                    context.localizations.days_label,
                     style: context.textStyles.font24SecondaryBold.copyWith(
                       letterSpacing: 0,
                     ),
@@ -120,7 +120,7 @@ class CooldownCard extends StatelessWidget {
                   horizontalSpace(8),
                   Flexible(
                     child: Text(
-                      'Recovery protocol active. Keep staying hydrated.',
+                      context.localizations.cooldown_recovery_message,
                       style: context.textStyles.font14TextSecondaryRegular
                           .copyWith(letterSpacing: 0),
                     ),

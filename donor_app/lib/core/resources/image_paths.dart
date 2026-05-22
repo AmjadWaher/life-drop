@@ -16,6 +16,11 @@ class ImagePaths {
   static const String onboarding2Dark = '$_imageBase/onboarding-2-dark.png';
   static const String onboarding3Dark = '$_imageBase/onboarding-3-dark.png';
 
+  // Theme
+  static const String darkTheme = '$_imageBase/dark-theme.png';
+  static const String lightTheme = '$_imageBase/light-theme.png';
+  static const String systemTheme = '$_imageBase/system-theme.png';
+
   // SVGs
   static const String logo = '$_svgBase/logo.svg';
   static const String connectionLostIcon = '$_svgBase/connection-lost-icon.svg';

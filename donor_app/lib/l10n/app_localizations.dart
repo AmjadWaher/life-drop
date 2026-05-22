@@ -898,6 +898,246 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{value} Units'**
   String units(Object value);
+
+  /// No description provided for @language_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Language Settings'**
+  String get language_settings;
+
+  /// No description provided for @language_settings_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your preferred language'**
+  String get language_settings_subtitle;
+
+  /// No description provided for @language_english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get language_english;
+
+  /// No description provided for @language_arabic.
+  ///
+  /// In en, this message translates to:
+  /// **'العربية'**
+  String get language_arabic;
+
+  /// No description provided for @current_language_label.
+  ///
+  /// In en, this message translates to:
+  /// **'CURRENT LANGUAGE'**
+  String get current_language_label;
+
+  /// No description provided for @available_languages_label.
+  ///
+  /// In en, this message translates to:
+  /// **'AVAILABLE LANGUAGES'**
+  String get available_languages_label;
+
+  /// No description provided for @language_changed_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Language changed successfully'**
+  String get language_changed_message;
+
+  /// No description provided for @account_settings_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Settings'**
+  String get account_settings_title;
+
+  /// No description provided for @personal_information_label.
+  ///
+  /// In en, this message translates to:
+  /// **'PERSONAL INFORMATION'**
+  String get personal_information_label;
+
+  /// No description provided for @edit_profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get edit_profile;
+
+  /// No description provided for @verification_status.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification Status'**
+  String get verification_status;
+
+  /// No description provided for @verified_badge.
+  ///
+  /// In en, this message translates to:
+  /// **'VERIFIED'**
+  String get verified_badge;
+
+  /// No description provided for @unverified_badge.
+  ///
+  /// In en, this message translates to:
+  /// **'UNVERIFIED'**
+  String get unverified_badge;
+
+  /// No description provided for @verified_donor.
+  ///
+  /// In en, this message translates to:
+  /// **'VERIFIED DONOR'**
+  String get verified_donor;
+
+  /// No description provided for @unverified_donor.
+  ///
+  /// In en, this message translates to:
+  /// **'UNVERIFIED DONOR'**
+  String get unverified_donor;
+
+  /// No description provided for @security_access_label.
+  ///
+  /// In en, this message translates to:
+  /// **'SECURITY & ACCESS'**
+  String get security_access_label;
+
+  /// No description provided for @change_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get change_password;
+
+  /// No description provided for @enable_fingerprint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Fingerprint'**
+  String get enable_fingerprint;
+
+  /// No description provided for @notifications_label.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTIFICATIONS'**
+  String get notifications_label;
+
+  /// No description provided for @push_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Push Notifications'**
+  String get push_notifications;
+
+  /// No description provided for @email_alerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Alerts'**
+  String get email_alerts;
+
+  /// No description provided for @sms_alerts.
+  ///
+  /// In en, this message translates to:
+  /// **'SMS Alerts'**
+  String get sms_alerts;
+
+  /// No description provided for @preferences_label.
+  ///
+  /// In en, this message translates to:
+  /// **'PREFERENCES'**
+  String get preferences_label;
+
+  /// No description provided for @language_label.
+  ///
+  /// In en, this message translates to:
+  /// **'LANGUAGE'**
+  String get language_label;
+
+  /// No description provided for @theme_label.
+  ///
+  /// In en, this message translates to:
+  /// **'THEME'**
+  String get theme_label;
+
+  /// No description provided for @theme_dark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get theme_dark;
+
+  /// No description provided for @theme_light.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get theme_light;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @next_eligible_donation.
+  ///
+  /// In en, this message translates to:
+  /// **'NEXT ELIGIBLE DONATION'**
+  String get next_eligible_donation;
+
+  /// No description provided for @days_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Days'**
+  String get days_label;
+
+  /// No description provided for @cooldown_recovery_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Recovery protocol active. Keep staying hydrated.'**
+  String get cooldown_recovery_message;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @donations_label.
+  ///
+  /// In en, this message translates to:
+  /// **'DONATIONS'**
+  String get donations_label;
+
+  /// No description provided for @theme_settings_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme Settings'**
+  String get theme_settings_title;
+
+  /// No description provided for @theme_system_default.
+  ///
+  /// In en, this message translates to:
+  /// **'System Default'**
+  String get theme_system_default;
+
+  /// No description provided for @theme_system_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically sync with your device settings.'**
+  String get theme_system_description;
+
+  /// No description provided for @theme_light_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Mode'**
+  String get theme_light_mode;
+
+  /// No description provided for @theme_light_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Optimal for high-clarity clinical environments.'**
+  String get theme_light_description;
+
+  /// No description provided for @theme_dark_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get theme_dark_mode;
+
+  /// No description provided for @theme_dark_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Reduced glare for comfortable nighttime use.'**
+  String get theme_dark_description;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -32,6 +32,11 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.bold,
     color: colors.secondary,
   );
+  TextStyle get font10SecondarySemiBold => TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: colors.secondary,
+  );
   TextStyle get font10TextPlaceHolderBold40Faded => TextStyle(
     fontSize: 10.sp,
     fontWeight: FontWeightHelper.bold,
@@ -73,6 +78,11 @@ class AppTextStyles {
   TextStyle get font12TextSecondaryMedium => TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.medium,
+    color: colors.textSecondary,
+  );
+  TextStyle get font12TextSecondaryBold => TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.bold,
     color: colors.textSecondary,
   );
   TextStyle get font12TextPlaceHolderRegular => TextStyle(
@@ -292,6 +302,11 @@ class AppTextStyles {
   TextStyle get font24TextPrimaryBold => TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.bold,
+    color: colors.textPrimary,
+  );
+  TextStyle get font24TextPrimaryExtraBold => TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeightHelper.extraBold,
     color: colors.textPrimary,
   );
   TextStyle get font24PrimaryExtraBold => TextStyle(
