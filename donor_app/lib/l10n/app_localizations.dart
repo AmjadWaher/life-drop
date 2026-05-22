@@ -1138,6 +1138,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reduced glare for comfortable nighttime use.'**
   String get theme_dark_description;
+
+  /// No description provided for @edit_profile_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get edit_profile_title;
+
+  /// No description provided for @save_changes.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get save_changes;
+
+  /// No description provided for @critical_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Critical Notifications'**
+  String get critical_notifications;
+
+  /// No description provided for @urgent_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent Notifications'**
+  String get urgent_notifications;
+
+  /// No description provided for @normal_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Normal Notifications'**
+  String get normal_notifications;
+
+  /// No description provided for @profile_updated_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated successfully.'**
+  String get profile_updated_message;
+
+  /// No description provided for @available_for_donation.
+  ///
+  /// In en, this message translates to:
+  /// **'Available for Donation'**
+  String get available_for_donation;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

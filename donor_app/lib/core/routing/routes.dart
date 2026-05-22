@@ -13,4 +13,5 @@ class Routes {
   static const String accountSettings = '/account-settings';
   static const String languageSettings = '/language-settings';
   static const String themeSettings = '/theme-settings';
+  static const String editProfile = '/edit-profile';
 }

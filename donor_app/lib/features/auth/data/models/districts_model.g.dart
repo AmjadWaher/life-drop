@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'districts_model.dart';
+part of '../../../../core/models/districts_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

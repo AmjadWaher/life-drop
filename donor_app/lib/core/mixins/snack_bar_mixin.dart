@@ -14,6 +14,7 @@ mixin SnackBarMixin {
       content: message,
       maxLines: maxLines,
       backgroundColor: Colors.green.withAlpha(150),
+      style: context.textStyles.font12TextPrimaryBold,
       icon: Icons.info_outline,
     );
   }
@@ -72,6 +73,7 @@ mixin SnackBarMixin {
     required Color backgroundColor,
     Color? iconColor,
     int? maxLines = 2,
+    TextStyle? style,
   }) {
     ScaffoldMessenger.of(context)
       ..clearSnackBars()
@@ -104,7 +106,7 @@ mixin SnackBarMixin {
                       if (title != null) verticalSpace(4),
                       Text(
                         content,
-                        style: context.textStyles.font12TextErrorBold,
+                        style: style ?? context.textStyles.font12TextErrorBold,
                         overflow: maxLines != null
                             ? TextOverflow.ellipsis
                             : null,

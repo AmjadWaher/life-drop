@@ -1,17 +1,20 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/box.dart';
+import 'package:donor_app/features/profile/domain/entities/user_entity.dart';
+import 'package:donor_app/features/profile/presentation/logic/profile/profile_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class AccountLinksSection extends StatelessWidget {
-  const AccountLinksSection({super.key, this.isVerified});
-  final bool? isVerified;
+  const AccountLinksSection({super.key, this.user});
+  final UserEntity? user;
 
   @override
   Widget build(BuildContext context) {
-    if (isVerified == null) {
+    if (user == null) {
       return const Box(height: 60, width: double.infinity, radius: 12);
     }
     return Container(
@@ -39,7 +42,10 @@ class AccountLinksSection extends StatelessWidget {
             onTap: () {
               context.pushNamed(
                 Routes.accountSettings,
-                arguments: {'isVerified': isVerified},
+                arguments: {
+                  'user': user,
+                  'profileCubit': context.read<ProfileCubit>(),
+                },
               );
             },
           ),

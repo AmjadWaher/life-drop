@@ -116,6 +116,11 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.bold,
     color: colors.textError,
   );
+  TextStyle get font12TextPrimaryBold => TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: colors.textPrimary,
+  );
   TextStyle get font12PrimaryBold => TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.bold,
@@ -177,6 +182,11 @@ class AppTextStyles {
   TextStyle get font14TextPrimaryBold => TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.bold,
+    color: colors.textPrimary,
+  );
+  TextStyle get font14TextPrimarySemiBold => TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.semiBold,
     color: colors.textPrimary,
   );
   TextStyle get font14TextPrimaryMedium => TextStyle(

@@ -1,6 +1,6 @@
 import 'package:donor_app/core/networking/api_result.dart';
-import 'package:donor_app/features/auth/domain/entities/districts_entity.dart';
-import 'package:donor_app/features/auth/domain/entities/governorate_entity.dart';
+import 'package:donor_app/core/entities/districts_entity.dart';
+import 'package:donor_app/core/entities/governorate_entity.dart';
 import '../entities/token_entity.dart';
 import '../params/register_params.dart';
 

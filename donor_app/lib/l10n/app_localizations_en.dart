@@ -539,4 +539,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get theme_dark_description => 'Reduced glare for comfortable nighttime use.';
+
+  @override
+  String get edit_profile_title => 'Edit Profile';
+
+  @override
+  String get save_changes => 'Save Changes';
+
+  @override
+  String get critical_notifications => 'Critical Notifications';
+
+  @override
+  String get urgent_notifications => 'Urgent Notifications';
+
+  @override
+  String get normal_notifications => 'Normal Notifications';
+
+  @override
+  String get profile_updated_message => 'Profile updated successfully.';
+
+  @override
+  String get available_for_donation => 'Available for Donation';
 }

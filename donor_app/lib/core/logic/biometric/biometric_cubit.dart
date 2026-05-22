@@ -12,6 +12,8 @@ class BiometricCubit extends Cubit<BiometricState> {
       SharedPrefKeys.biometricEnabled,
     );
 
+    if (isClosed) return;
+
     emit(state.copyWith(isEnabled: isEnabled));
   }
 
@@ -24,6 +26,9 @@ class BiometricCubit extends Cubit<BiometricState> {
       if (!didAuth) return;
     }
     await SharedPrefHelper.setData(SharedPrefKeys.biometricEnabled, value);
+
+    if (isClosed) return;
+
     emit(state.copyWith(isEnabled: value));
   }
 }

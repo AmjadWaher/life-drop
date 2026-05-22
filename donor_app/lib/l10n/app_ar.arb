@@ -172,5 +172,12 @@
     "theme_light_mode": "الوضع الفاتح",
     "theme_light_description": "مثالي للبيئات السريرية عالية الوضوح.",
     "theme_dark_mode": "الوضع الداكن",
-    "theme_dark_description": "وهج منخفض لاستخدام مريح أثناء الليل."
+    "theme_dark_description": "وهج منخفض لاستخدام مريح أثناء الليل.",
+    "edit_profile_title": "تعديل الملف الشخصي",
+    "save_changes": "حفظ التغييرات",
+    "critical_notifications": "الإشعارات الحرجة",
+    "urgent_notifications": "الإشعارات العاجلة",
+    "normal_notifications": "الإشعارات العادية",
+    "profile_updated_message": "تم تحديث الملف الشخصي بنجاح.",
+    "available_for_donation": "متاح للتبرع"
 }

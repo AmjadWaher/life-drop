@@ -539,4 +539,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get theme_dark_description => 'وهج منخفض لاستخدام مريح أثناء الليل.';
+
+  @override
+  String get edit_profile_title => 'تعديل الملف الشخصي';
+
+  @override
+  String get save_changes => 'حفظ التغييرات';
+
+  @override
+  String get critical_notifications => 'الإشعارات الحرجة';
+
+  @override
+  String get urgent_notifications => 'الإشعارات العاجلة';
+
+  @override
+  String get normal_notifications => 'الإشعارات العادية';
+
+  @override
+  String get profile_updated_message => 'تم تحديث الملف الشخصي بنجاح.';
+
+  @override
+  String get available_for_donation => 'متاح للتبرع';
 }
