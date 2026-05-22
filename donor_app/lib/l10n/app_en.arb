@@ -133,7 +133,7 @@
     "cancellation_impact_message": "Canceling this request may affect your donor reliability score.\nConsistent donations help hospitals plan life-saving procedures more effectively.",
     "impact_on_reliability": "Impact on Reliability",
     "units": "{value} Units",
-    "language_settings": "Language",
+    "language_settings": "Language Settings",
     "language_settings_subtitle": "Select your preferred language",
     "language_english": "English",
     "language_arabic": "العربية",
@@ -161,10 +161,16 @@
     "theme_dark": "Dark",
     "theme_light": "Light",
     "logout": "Logout",
-    "app_footer": "VITALFLOW V2.4.0 • CLINICAL SANCTUARY",
     "next_eligible_donation": "NEXT ELIGIBLE DONATION",
     "days_label": "Days",
     "cooldown_recovery_message": "Recovery protocol active. Keep staying hydrated.",
     "retry": "Retry",
-    "donations_label": "DONATIONS"
+    "donations_label": "DONATIONS",
+    "theme_settings_title": "Theme Settings",
+    "theme_system_default": "System Default",
+    "theme_system_description": "Automatically sync with your device settings.",
+    "theme_light_mode": "Light Mode",
+    "theme_light_description": "Optimal for high-clarity clinical environments.",
+    "theme_dark_mode": "Dark Mode",
+    "theme_dark_description": "Reduced glare for comfortable nighttime use."
 }

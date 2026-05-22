@@ -19,13 +19,13 @@ class LanguageCubit extends Cubit<LanguageState> {
           ? deviceLocale.languageCode
           : 'en';
 
-      emit(LanguageState(locale: Locale(langCode)));
+      emit(state.copyWith(locale: Locale(langCode)));
     }
   }
 
   Future<void> changeLanguage(String languageCode) async {
     await SharedPrefHelper.setData(SharedPrefKeys.appLanguage, languageCode);
-    emit(LanguageState(locale: Locale(languageCode)));
+    emit(state.copyWith(locale: Locale(languageCode)));
   }
 
   bool _isSupported(String code) => ['en', 'ar'].contains(code);

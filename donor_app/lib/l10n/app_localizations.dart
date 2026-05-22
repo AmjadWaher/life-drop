@@ -902,7 +902,7 @@ abstract class AppLocalizations {
   /// No description provided for @language_settings.
   ///
   /// In en, this message translates to:
-  /// **'Language'**
+  /// **'Language Settings'**
   String get language_settings;
 
   /// No description provided for @language_settings_subtitle.
@@ -1067,12 +1067,6 @@ abstract class AppLocalizations {
   /// **'Logout'**
   String get logout;
 
-  /// No description provided for @app_footer.
-  ///
-  /// In en, this message translates to:
-  /// **'VITALFLOW V2.4.0 • CLINICAL SANCTUARY'**
-  String get app_footer;
-
   /// No description provided for @next_eligible_donation.
   ///
   /// In en, this message translates to:
@@ -1102,6 +1096,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'DONATIONS'**
   String get donations_label;
+
+  /// No description provided for @theme_settings_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme Settings'**
+  String get theme_settings_title;
+
+  /// No description provided for @theme_system_default.
+  ///
+  /// In en, this message translates to:
+  /// **'System Default'**
+  String get theme_system_default;
+
+  /// No description provided for @theme_system_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically sync with your device settings.'**
+  String get theme_system_description;
+
+  /// No description provided for @theme_light_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Mode'**
+  String get theme_light_mode;
+
+  /// No description provided for @theme_light_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Optimal for high-clarity clinical environments.'**
+  String get theme_light_description;
+
+  /// No description provided for @theme_dark_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get theme_dark_mode;
+
+  /// No description provided for @theme_dark_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Reduced glare for comfortable nighttime use.'**
+  String get theme_dark_description;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

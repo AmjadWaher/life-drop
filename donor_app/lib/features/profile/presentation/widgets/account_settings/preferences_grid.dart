@@ -4,7 +4,6 @@ import 'package:donor_app/core/logic/language/language_cubit.dart';
 import 'package:donor_app/features/profile/presentation/widgets/account_settings/preference_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class PreferencesGrid extends StatelessWidget {

@@ -1,6 +1,8 @@
 import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/logic/language/language_cubit.dart';
 import 'package:donor_app/core/logic/language/language_state.dart';
+import 'package:donor_app/core/logic/theme/theme_cubit.dart';
+import 'package:donor_app/core/logic/theme/theme_state.dart';
 import 'package:donor_app/core/routing/app_router.dart';
 import 'package:donor_app/core/themes/app_theme.dart';
 import 'package:donor_app/features/splash/presentation/screens/splash_screen.dart';
@@ -16,30 +18,42 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<LanguageCubit>(
-      create: (_) => getIt<LanguageCubit>()..loadLanguage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LanguageCubit>(
+          create: (_) => getIt<LanguageCubit>()..loadLanguage(),
+        ),
+        BlocProvider(create: (context) => getIt<ThemeCubit>()..loadTheme()),
+      ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return BlocBuilder<LanguageCubit, LanguageState>(
-            builder: (context, langState) {
-              return MaterialApp(
-                navigatorKey: navigatorKey,
-                theme: lightTheme(),
-                darkTheme: darkTheme(),
-                onGenerateRoute: appRouter.generateRoute,
-                supportedLocales: const [Locale('en'), Locale('ar')],
-                locale: langState.locale,
-                localizationsDelegates: const [
-                  AppLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                debugShowCheckedModeBanner: false,
-                home: const SplashScreen(),
+          return BlocBuilder<ThemeCubit, ThemeState>(
+            builder: (context, themeState) {
+              return BlocBuilder<LanguageCubit, LanguageState>(
+                builder: (context, langState) {
+                  return MaterialApp(
+                    navigatorKey: navigatorKey,
+                    theme: lightTheme(),
+                    darkTheme: darkTheme(),
+                    onGenerateRoute: appRouter.generateRoute,
+                    supportedLocales: const [Locale('en'), Locale('ar')],
+                    locale: langState.locale,
+                    themeMode: themeState.themeMode,
+                    themeAnimationDuration: Duration.zero,
+                    themeAnimationCurve: Curves.linear,
+                    localizationsDelegates: const [
+                      AppLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                    ],
+                    debugShowCheckedModeBanner: false,
+                    home: const SplashScreen(),
+                  );
+                },
               );
             },
           );

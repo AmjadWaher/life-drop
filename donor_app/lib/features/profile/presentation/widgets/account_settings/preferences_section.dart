@@ -20,7 +20,7 @@ class PreferencesSection extends StatelessWidget {
             context.pushNamed(Routes.languageSettings);
           },
           onThemeTap: () {
-            // TODO: Open theme picker
+            context.pushNamed(Routes.themeSettings);
           },
         ),
       ],

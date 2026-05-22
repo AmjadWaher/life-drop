@@ -1,4 +1,5 @@
 import 'package:donor_app/core/di/injection_container.dart';
+import 'package:donor_app/core/logic/biometric/biometric_cubit.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/features/auth/presentation/logic/forgot_password/forgot_password_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/login/login_cubit.dart';
@@ -18,6 +19,7 @@ import 'package:donor_app/features/onboarding/screens/onboarding_view.dart';
 import 'package:donor_app/features/profile/presentation/logic/cooldown/cooldown_cubit.dart';
 import 'package:donor_app/features/profile/presentation/logic/profile/profile_cubit.dart';
 import 'package:donor_app/features/profile/presentation/screens/language_settings_screen.dart';
+import 'package:donor_app/features/profile/presentation/screens/theme_settings_screen.dart';
 import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/cancel_donation/cancel_donation_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/cancellation_reasons/cancellation_reasons_cubit.dart';
@@ -123,13 +125,20 @@ class AppRouter {
 
       case Routes.accountSettings:
         return MaterialPageRoute(
-          builder: (context) => AccountSettingsScreen(
-            isVerified: (args as Map<String, dynamic>)['isVerified'],
+          builder: (context) => BlocProvider(
+            create: (context) => getIt<BiometricCubit>()..init(),
+            child: AccountSettingsScreen(
+              isVerified: (args as Map<String, dynamic>)['isVerified'],
+            ),
           ),
         );
       case Routes.languageSettings:
         return MaterialPageRoute(
           builder: (context) => const LanguageSettingsScreen(),
+        );
+      case Routes.themeSettings:
+        return MaterialPageRoute(
+          builder: (context) => const ThemeSettingsScreen(),
         );
 
       default:

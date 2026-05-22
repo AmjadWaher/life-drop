@@ -421,7 +421,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get language_settings => 'Language';
+  String get language_settings => 'Language Settings';
 
   @override
   String get language_settings_subtitle => 'Select your preferred language';
@@ -505,9 +505,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logout => 'Logout';
 
   @override
-  String get app_footer => 'VITALFLOW V2.4.0 • CLINICAL SANCTUARY';
-
-  @override
   String get next_eligible_donation => 'NEXT ELIGIBLE DONATION';
 
   @override
@@ -521,4 +518,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get donations_label => 'DONATIONS';
+
+  @override
+  String get theme_settings_title => 'Theme Settings';
+
+  @override
+  String get theme_system_default => 'System Default';
+
+  @override
+  String get theme_system_description => 'Automatically sync with your device settings.';
+
+  @override
+  String get theme_light_mode => 'Light Mode';
+
+  @override
+  String get theme_light_description => 'Optimal for high-clarity clinical environments.';
+
+  @override
+  String get theme_dark_mode => 'Dark Mode';
+
+  @override
+  String get theme_dark_description => 'Reduced glare for comfortable nighttime use.';
 }

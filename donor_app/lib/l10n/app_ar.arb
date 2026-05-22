@@ -133,7 +133,7 @@
     "cancellation_impact_message": "قد يؤثر إلغاء هذا الطلب على درجة موثوقيتك كمتبرع.\nيساعد الالتزام بالتبرع المستمر المستشفيات على التخطيط للإجراءات المنقذة للحياة بشكل أكثر فعالية.",
     "impact_on_reliability": "التأثير على الموثوقية",
     "units": "{value} وحدات دم",
-    "language_settings": "اللغة",
+    "language_settings": " إعدادات اللغة",
     "language_settings_subtitle": "اختر لغتك المفضلة",
     "language_english": "English",
     "language_arabic": "العربية",
@@ -161,10 +161,16 @@
     "theme_dark": "داكن",
     "theme_light": "فاتح",
     "logout": "تسجيل الخروج",
-    "app_footer": "VITALFLOW V2.4.0 • CLINICAL SANCTUARY",
     "next_eligible_donation": "التبرع المؤهل التالي",
     "days_label": "يوم",
     "cooldown_recovery_message": "بروتوكول التعافي نشط. استمر في شرب الماء.",
     "retry": "إعادة المحاولة",
-    "donations_label": "التبرعات"
+    "donations_label": "التبرعات",
+    "theme_settings_title": "إعدادات المظهر",
+    "theme_system_default": "الافتراضي للنظام",
+    "theme_system_description": "تزامن تلقائيًا مع إعدادات جهازك.",
+    "theme_light_mode": "الوضع الفاتح",
+    "theme_light_description": "مثالي للبيئات السريرية عالية الوضوح.",
+    "theme_dark_mode": "الوضع الداكن",
+    "theme_dark_description": "وهج منخفض لاستخدام مريح أثناء الليل."
 }

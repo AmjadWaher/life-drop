@@ -1,5 +1,4 @@
 import 'package:donor_app/core/helpers/extensions.dart';
-import 'package:donor_app/core/routing/app_router.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/box.dart';
 import 'package:flutter/material.dart';
