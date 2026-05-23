@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:donor_app/core/mixins/safe_api_call_mixin.dart';
 import 'package:donor_app/core/networking/api_response.dart';
 import 'package:donor_app/core/networking/api_result.dart';
+import 'package:donor_app/core/models/districts_model.dart';
+import 'package:donor_app/core/models/governorate_model.dart';
 import 'package:donor_app/features/profile/data/datasources/profile_constatns.dart';
 import 'package:donor_app/features/profile/data/models/cooldown_model.dart';
 import 'package:donor_app/features/profile/data/models/updated_profile_model.dart';
@@ -13,6 +15,10 @@ abstract class ProfileRemoteDatasource {
   Future<ApiResult<CooldownModel>> getCooldownStatus();
   Future<ApiResult<UpdatedProfileResponseModel>> updateProfile(
     UpdateProfileRequest request,
+  );
+  Future<ApiResult<List<GovernorateModel>>> getGovernorates();
+  Future<ApiResult<List<DistrictsModel>>> getDistrictsByGovernorateId(
+    String governorateId,
   );
 }
 
@@ -63,6 +69,40 @@ class ProfileRemoteDatasourceImpl extends ProfileRemoteDatasource
       final result = ApiResponse<CooldownModel>.fromJson(
         response.data,
         (json) => CooldownModel.fromJson(json as Map<String, dynamic>),
+      );
+      return result.data;
+    });
+  }
+
+  @override
+  Future<ApiResult<List<GovernorateModel>>> getGovernorates() {
+    return safeApiCall('getGovernorates', () async {
+      final response = await _dio.get(ProfileConstatns.governorates);
+      final result = ApiResponse<List<GovernorateModel>>.fromJson(
+        response.data,
+        (data) => List.from(data as List)
+            .map(
+              (json) => GovernorateModel.fromJson(json as Map<String, dynamic>),
+            )
+            .toList(),
+      );
+      return result.data;
+    });
+  }
+
+  @override
+  Future<ApiResult<List<DistrictsModel>>> getDistrictsByGovernorateId(
+    String governorateId,
+  ) {
+    return safeApiCall('getDistrictsByGovernorateId', () async {
+      final response = await _dio.get(
+        ProfileConstatns.districts(governorateId),
+      );
+      final result = ApiResponse<List<DistrictsModel>>.fromJson(
+        response.data,
+        (data) => List.from(
+          data as List,
+        ).map((json) => DistrictsModel.fromJson(json)).toList(),
       );
       return result.data;
     });

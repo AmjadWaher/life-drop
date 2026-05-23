@@ -12,10 +12,14 @@ class ProfileHeaderSection extends StatelessWidget {
     required this.isVerified,
     required this.firstName,
     required this.lastName,
+    required this.districtName,
+    required this.governorateName,
     required this.bloodType,
   });
   final String? firstName;
   final String? lastName;
+  final String? governorateName;
+  final String? districtName;
   final BloodType? bloodType;
   final bool? isVerified;
 
@@ -24,6 +28,8 @@ class ProfileHeaderSection extends StatelessWidget {
     if (isVerified == null &&
         firstName == null &&
         lastName == null &&
+        governorateName == null &&
+        districtName == null &&
         bloodType == null) {
       return Row(
         children: [
@@ -68,6 +74,8 @@ class ProfileHeaderSection extends StatelessWidget {
               ),
             ),
             verticalSpace(4),
+            Text('$governorateName, $districtName'),
+            verticalSpace(4),
             Row(
               children: [
                 TwoToneIcon.varied(
@@ -78,7 +86,9 @@ class ProfileHeaderSection extends StatelessWidget {
                 ),
                 horizontalSpace(4),
                 Text(
-                  isVerified! ? context.localizations.verified_donor : context.localizations.unverified_donor,
+                  isVerified!
+                      ? context.localizations.verified_donor
+                      : context.localizations.unverified_donor,
                   style: context.textStyles.font12SecondarySemiBold.copyWith(
                     letterSpacing: 1.2,
                   ),

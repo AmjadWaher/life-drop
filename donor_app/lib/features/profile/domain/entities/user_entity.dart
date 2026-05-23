@@ -16,6 +16,9 @@ class UserEntity extends Equatable {
   final int gamificationPoints;
   final bool isEligibleToDonate;
   final int totalDonations;
+  final bool receiveCriticalNotifications;
+  final bool receiveUrgentNotifications;
+  final bool receiveNormalNotifications;
 
   const UserEntity({
     required this.userId,
@@ -32,6 +35,9 @@ class UserEntity extends Equatable {
     required this.gamificationPoints,
     required this.isEligibleToDonate,
     required this.totalDonations,
+    required this.receiveCriticalNotifications,
+    required this.receiveUrgentNotifications,
+    required this.receiveNormalNotifications,
   });
 
   @override
@@ -50,5 +56,8 @@ class UserEntity extends Equatable {
     gamificationPoints,
     isEligibleToDonate,
     totalDonations,
+    receiveCriticalNotifications,
+    receiveUrgentNotifications,
+    receiveNormalNotifications,
   ];
 }

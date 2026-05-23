@@ -16,8 +16,11 @@ import 'package:donor_app/features/donation_request/presentation/screens/request
 import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
 import 'package:donor_app/features/main_navigation/screens/main_navigation_screen.dart';
 import 'package:donor_app/features/onboarding/screens/onboarding_view.dart';
+import 'package:donor_app/features/profile/domain/entities/user_entity.dart';
 import 'package:donor_app/features/profile/presentation/logic/cooldown/cooldown_cubit.dart';
+import 'package:donor_app/features/profile/presentation/logic/edit_profile/edit_profile_cubit.dart';
 import 'package:donor_app/features/profile/presentation/logic/profile/profile_cubit.dart';
+import 'package:donor_app/features/profile/presentation/screens/edit_profile_screen.dart';
 import 'package:donor_app/features/profile/presentation/screens/language_settings_screen.dart';
 import 'package:donor_app/features/profile/presentation/screens/theme_settings_screen.dart';
 import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
@@ -125,11 +128,18 @@ class AppRouter {
 
       case Routes.accountSettings:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => getIt<BiometricCubit>()..init(),
-            child: AccountSettingsScreen(
-              isVerified: (args as Map<String, dynamic>)['isVerified'],
-            ),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => getIt<BiometricCubit>()..init(),
+              ),
+              BlocProvider.value(
+                value:
+                    (args as Map<String, dynamic>)['profileCubit']
+                        as ProfileCubit,
+              ),
+            ],
+            child: AccountSettingsScreen(user: args['user']),
           ),
         );
       case Routes.languageSettings:
@@ -139,6 +149,13 @@ class AppRouter {
       case Routes.themeSettings:
         return MaterialPageRoute(
           builder: (context) => const ThemeSettingsScreen(),
+        );
+      case Routes.editProfile:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => getIt<EditProfileCubit>()..getGovernorates(),
+            child: EditProfileScreen(user: args as UserEntity),
+          ),
         );
 
       default:

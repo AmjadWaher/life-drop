@@ -21,6 +21,9 @@ class UserModel extends UserEntity {
     required super.gamificationPoints,
     required super.isEligibleToDonate,
     required super.totalDonations,
+    required super.receiveCriticalNotifications,
+    required super.receiveUrgentNotifications,
+    required super.receiveNormalNotifications,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

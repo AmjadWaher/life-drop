@@ -21,6 +21,9 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
   gamificationPoints: (json['gamificationPoints'] as num).toInt(),
   isEligibleToDonate: json['isEligibleToDonate'] as bool,
   totalDonations: (json['totalDonations'] as num).toInt(),
+  receiveCriticalNotifications: json['receiveCriticalNotifications'] as bool,
+  receiveUrgentNotifications: json['receiveUrgentNotifications'] as bool,
+  receiveNormalNotifications: json['receiveNormalNotifications'] as bool,
 );
 
 const _$BloodTypeEnumMap = {

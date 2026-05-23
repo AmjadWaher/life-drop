@@ -172,5 +172,12 @@
     "theme_light_mode": "Light Mode",
     "theme_light_description": "Optimal for high-clarity clinical environments.",
     "theme_dark_mode": "Dark Mode",
-    "theme_dark_description": "Reduced glare for comfortable nighttime use."
+    "theme_dark_description": "Reduced glare for comfortable nighttime use.",
+    "edit_profile_title": "Edit Profile",
+    "save_changes": "Save Changes",
+    "critical_notifications": "Critical Notifications",
+    "urgent_notifications": "Urgent Notifications",
+    "normal_notifications": "Normal Notifications",
+    "profile_updated_message": "Profile updated successfully.",
+    "available_for_donation": "Available for Donation"
 }

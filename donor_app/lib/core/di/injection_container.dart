@@ -17,6 +17,7 @@ import 'package:donor_app/features/profile/data/datasources/profile_remote_datas
 import 'package:donor_app/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:donor_app/features/profile/domain/repositories/profile_repository.dart';
 import 'package:donor_app/features/profile/presentation/logic/cooldown/cooldown_cubit.dart';
+import 'package:donor_app/features/profile/presentation/logic/edit_profile/edit_profile_cubit.dart';
 import 'package:donor_app/features/profile/presentation/logic/profile/profile_cubit.dart';
 import 'package:donor_app/features/requests/data/datasource/requests_remote_datasource_impl.dart';
 import 'package:donor_app/features/requests/data/repository/requests_repository_impl.dart';
@@ -110,5 +111,8 @@ Future<void> initDependencies() async {
   );
   getIt.registerFactory<CooldownCubit>(
     () => CooldownCubit(getIt<ProfileRepository>()),
+  );
+  getIt.registerFactory<EditProfileCubit>(
+    () => EditProfileCubit(getIt<ProfileRepository>()),
   );
 }

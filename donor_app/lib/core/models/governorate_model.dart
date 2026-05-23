@@ -1,6 +1,6 @@
-import 'package:donor_app/features/auth/domain/entities/governorate_entity.dart';
+import 'package:donor_app/core/entities/governorate_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'governorate_model.g.dart';
+part '../../features/auth/data/models/governorate_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class GovernorateModel extends GovernorateEntity {

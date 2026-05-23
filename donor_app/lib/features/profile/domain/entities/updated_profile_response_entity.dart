@@ -1,19 +1,26 @@
+import 'package:donor_app/core/enums/blood_type.dart';
 import 'package:equatable/equatable.dart';
 
 class UpdatedProfileResponseEntity extends Equatable {
-  final String userId;
+  final String firstName;
+  final String lastName;
+  final String phoneNumber;
+  final BloodType bloodType;
   final bool isAvailable;
-  final String governorateName;
-  final String districtName;
+  final String governorateId;
+  final String districtId;
   final bool receiveCriticalNotifications;
   final bool receiveUrgentNotifications;
   final bool receiveNormalNotifications;
 
   const UpdatedProfileResponseEntity({
-    required this.userId,
+    required this.firstName,
+    required this.lastName,
+    required this.phoneNumber,
+    required this.bloodType,
     required this.isAvailable,
-    required this.governorateName,
-    required this.districtName,
+    required this.governorateId,
+    required this.districtId,
     required this.receiveCriticalNotifications,
     required this.receiveUrgentNotifications,
     required this.receiveNormalNotifications,
@@ -21,10 +28,13 @@ class UpdatedProfileResponseEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-    userId,
+    firstName,
+    lastName,
+    phoneNumber,
+    bloodType,
     isAvailable,
-    governorateName,
-    districtName,
+    governorateId,
+    districtId,
     receiveCriticalNotifications,
     receiveUrgentNotifications,
     receiveNormalNotifications,

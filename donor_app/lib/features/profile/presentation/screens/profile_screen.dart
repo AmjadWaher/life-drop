@@ -56,6 +56,8 @@ class ProfileScreen extends StatelessWidget {
           firstName: user?.firstName,
           lastName: user?.lastName,
           bloodType: user?.bloodType,
+          governorateName: user?.governorateName,
+          districtName: user?.districtName,
         ),
         verticalSpace(28),
         const CooldownCard(),
@@ -65,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
           totalDonations: user?.totalDonations,
         ),
         verticalSpace(24),
-        AccountLinksSection(isVerified: user?.isMedicallyVerified),
+        AccountLinksSection(user: user),
       ],
     );
   }

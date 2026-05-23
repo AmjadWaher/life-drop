@@ -3,8 +3,8 @@ import 'package:donor_app/core/mixins/safe_api_call_mixin.dart';
 import 'package:donor_app/features/auth/data/datasources/auth_constants.dart';
 import 'package:donor_app/core/networking/api_response.dart';
 import 'package:donor_app/core/networking/api_result.dart';
-import 'package:donor_app/features/auth/data/models/districts_model.dart';
-import 'package:donor_app/features/auth/data/models/governorate_model.dart';
+import 'package:donor_app/core/models/districts_model.dart';
+import 'package:donor_app/core/models/governorate_model.dart';
 import '../../domain/params/register_params.dart';
 import '../models/token_model.dart';
 
