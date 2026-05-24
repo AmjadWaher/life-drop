@@ -12,6 +12,10 @@ import 'package:donor_app/features/auth/presentation/logic/login/login_cubit.dar
 import 'package:donor_app/features/auth/presentation/logic/otp/otp_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/register/register_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/reset_password/reset_password_cubit.dart';
+import 'package:donor_app/features/donation_request/data/datasources/donation_request_remote_datasource_impl.dart';
+import 'package:donor_app/features/donation_request/data/repositories/donation_request_repository_impl.dart';
+import 'package:donor_app/features/donation_request/domain/repositories/donation_request_repository.dart';
+import 'package:donor_app/features/donation_request/presentation/logic/donation_request_cubit.dart';
 import 'package:donor_app/features/home/data/datasource/home_remote_datasource_impl.dart';
 import 'package:donor_app/features/home/data/repositories/home_repository_impl.dart';
 import 'package:donor_app/features/home/domain/repositories/home_repository.dart';
@@ -87,6 +91,21 @@ Future<void> initDependencies() async {
       biometricHelper: getIt<BiometricHelper>(),
       homeRepository: getIt<HomeRepository>(),
     ),
+  );
+
+  // --------------- Donation Request ---------------
+
+  getIt.registerLazySingleton<DonationRequestRemoteDatasource>(
+    () => DonationRequestRemoteDatasourceImpl(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<DonationRequestRepository>(
+    () =>
+        DonationRequestRepositoryImpl(getIt<DonationRequestRemoteDatasource>()),
+  );
+
+  getIt.registerFactory<DonationRequestCubit>(
+    () => DonationRequestCubit(getIt<DonationRequestRepository>()),
   );
 
   // --------------- Requests ---------------

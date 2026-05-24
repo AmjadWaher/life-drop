@@ -11,6 +11,7 @@ import 'package:donor_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/register_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/reset_password_screen.dart';
+import 'package:donor_app/features/donation_request/presentation/logic/donation_request_cubit.dart';
 import 'package:donor_app/features/donation_request/presentation/screens/request_accepted_screen.dart';
 import 'package:donor_app/features/donation_request/presentation/screens/request_details_screen.dart';
 import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
@@ -87,30 +88,35 @@ class AppRouter {
                   ..loadHome()
                   ..checkBiometricPrompt(),
               ),
-              BlocProvider(
-                create: (context) =>
-                    getIt<ActiveDonationCubit>()..getCurrentActiveDonation(),
-              ),
-              BlocProvider(
-                create: (context) => getIt<ProfileCubit>()..getUserProfile(),
-              ),
-              BlocProvider(
-                create: (context) =>
-                    getIt<CooldownCubit>()..getCooldownStatus(),
-              ),
+              BlocProvider(create: (context) => getIt<ActiveDonationCubit>()),
+              BlocProvider(create: (context) => getIt<ProfileCubit>()),
+              BlocProvider(create: (context) => getIt<CooldownCubit>()),
             ],
             child: const MainNavigationScreen(),
           ),
         );
       case Routes.requestDetails:
         return MaterialPageRoute(
-          builder: (context) => RequestDetailsScreen(
-            requestId: (args as Map<String, dynamic>)['requestId'],
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                getIt<DonationRequestCubit>()
+                  ..getRequestDetails((args)['requestId'] as String),
+            child: RequestDetailsScreen(
+              requestId: (args as Map<String, dynamic>)['requestId'] as String,
+            ),
           ),
         );
       case Routes.requestAccepted:
         return MaterialPageRoute(
-          builder: (context) => const RequestAcceptedScreen(),
+          builder: (context) {
+            final acceptedArgs = args as Map<String, dynamic>;
+            return RequestAcceptedScreen(
+              hospitalLatitude: (acceptedArgs['hospitalLatitude'] as num)
+                  .toDouble(),
+              hospitalLongitude: (acceptedArgs['hospitalLongitude'] as num)
+                  .toDouble(),
+            );
+          },
         );
       case Routes.cancelRequests:
         return MaterialPageRoute(
