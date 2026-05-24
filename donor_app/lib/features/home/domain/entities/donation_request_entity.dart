@@ -1,33 +1,29 @@
+import 'package:donor_app/core/enums/blood_type.dart';
+import 'package:donor_app/core/enums/urgency_status.dart';
 import 'package:equatable/equatable.dart';
 
-enum UrgencyLevel { high, medium, low, scheduled }
-
 class DonationRequestEntity extends Equatable {
-  final String id;
-  final String bloodType;
-  final UrgencyLevel urgency;
-  final double distanceKm;
+  final String requestId;
+  final BloodType bloodType;
+  final UrgencyStatus urgency;
   final String hospitalName;
-  final String description;
 
   const DonationRequestEntity({
-    required this.id,
+    required this.requestId,
     required this.bloodType,
     required this.urgency,
-    required this.distanceKm,
     required this.hospitalName,
-    required this.description,
   });
 
-  bool get isUrgent => urgency == UrgencyLevel.high;
+  bool get isUrgent => urgency == UrgencyStatus.Urgent;
+
+  factory DonationRequestEntity.placeholder() => const DonationRequestEntity(
+    requestId: 'placeholder',
+    bloodType: BloodType.A_Negative,
+    urgency: UrgencyStatus.Normal,
+    hospitalName: 'placeholder',
+  );
 
   @override
-  List<Object?> get props => [
-    id,
-    bloodType,
-    urgency,
-    distanceKm,
-    hospitalName,
-    description,
-  ];
+  List<Object?> get props => [requestId, bloodType, urgency, hospitalName];
 }

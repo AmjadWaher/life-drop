@@ -25,27 +25,6 @@ class ProfileHeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isVerified == null &&
-        firstName == null &&
-        lastName == null &&
-        governorateName == null &&
-        districtName == null &&
-        bloodType == null) {
-      return Row(
-        children: [
-          const Box(height: 100, width: 100, radius: 100),
-          horizontalSpace(24),
-          Column(
-            crossAxisAlignment: .start,
-            children: [
-              const Box(height: 20, width: 150, radius: 12),
-              verticalSpace(4),
-              const Box(height: 16, width: 130, radius: 12),
-            ],
-          ),
-        ],
-      );
-    }
     return Row(
       children: [
         Container(

@@ -23,16 +23,13 @@ class CooldownCard extends StatelessWidget {
       builder: (context, state) {
         return state.when(
           initial: () => const SizedBox.shrink(),
-          loading: () => _buildLoadingPlaceholder(context),
+          loading: () =>
+              _buildCooldownContent(context, CooldownEntity.placeholder()),
           success: (data) => _buildCooldownContent(context, data),
           error: (error) => _buildErrorState(context),
         );
       },
     );
-  }
-
-  Widget _buildLoadingPlaceholder(BuildContext context) {
-    return Box(height: 200.h, width: double.infinity, radius: 12);
   }
 
   Widget _buildErrorState(BuildContext context) {

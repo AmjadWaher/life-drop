@@ -3,7 +3,15 @@ import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:flutter/material.dart';
 
 class GreetingSection extends StatelessWidget {
-  const GreetingSection({super.key});
+  const GreetingSection({
+    super.key,
+    required this.hospitalName,
+    required this.username,
+    required this.remainingDays,
+  });
+  final String username;
+  final String hospitalName;
+  final int remainingDays;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +24,7 @@ class GreetingSection extends StatelessWidget {
             style: context.textStyles.font30TextPrimaryExtraBold,
             children: [
               TextSpan(
-                text: '\nAlex Chen.',
+                text: '\n$username',
                 style: context.textStyles.font30PrimaryExtraBold,
               ),
             ],
@@ -24,7 +32,7 @@ class GreetingSection extends StatelessWidget {
         ),
         verticalSpace(12),
         Text(
-          '${context.localizations.donation_impact_message('Central General')} ${context.localizations.next_donation_availability('14')}',
+          '${context.localizations.donation_impact_message(hospitalName)} ${context.localizations.next_donation_availability(remainingDays)}',
           style: context.textStyles.font18TextSecondaryRegular,
           maxLines: null,
         ),

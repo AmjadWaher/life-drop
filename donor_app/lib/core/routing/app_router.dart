@@ -104,7 +104,9 @@ class AppRouter {
         );
       case Routes.requestDetails:
         return MaterialPageRoute(
-          builder: (context) => const RequestDetailsScreen(),
+          builder: (context) => RequestDetailsScreen(
+            requestId: (args as Map<String, dynamic>)['requestId'],
+          ),
         );
       case Routes.requestAccepted:
         return MaterialPageRoute(

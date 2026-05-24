@@ -1,4 +1,4 @@
-import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/enums/blood_type.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/features/profile/domain/entities/user_entity.dart';
 import 'package:donor_app/features/profile/presentation/logic/profile/profile_cubit.dart';
@@ -10,7 +10,7 @@ import 'package:donor_app/features/profile/presentation/widgets/profile/profile_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -26,12 +26,8 @@ class ProfileScreen extends StatelessWidget {
               builder: (context, state) {
                 return state.when(
                   initial: () => const SizedBox.shrink(),
-                  loading: () => Shimmer.fromColors(
-                    baseColor: Colors.white.withAlpha(150),
-                    highlightColor: Colors.white70,
-                    direction: context.isArabic
-                        ? ShimmerDirection.rtl
-                        : ShimmerDirection.ltr,
+                  loading: () => Skeletonizer(
+                    enabled: true,
                     child: _buildProfileContent(null),
                   ),
                   success: (user) => _buildProfileContent(user),
@@ -52,19 +48,19 @@ class ProfileScreen extends StatelessWidget {
     return Column(
       children: [
         ProfileHeaderSection(
-          isVerified: user?.isMedicallyVerified,
-          firstName: user?.firstName,
-          lastName: user?.lastName,
-          bloodType: user?.bloodType,
-          governorateName: user?.governorateName,
-          districtName: user?.districtName,
+          isVerified: user?.isMedicallyVerified ?? false,
+          firstName: user?.firstName ?? 'First',
+          lastName: user?.lastName ?? 'Last',
+          bloodType: user?.bloodType ?? BloodType.A_Negative,
+          governorateName: user?.governorateName ?? 'governorate',
+          districtName: user?.districtName ?? 'district',
         ),
         verticalSpace(28),
         const CooldownCard(),
         verticalSpace(24),
         IdentitySubGrid(
-          bloodType: user?.bloodType,
-          totalDonations: user?.totalDonations,
+          bloodType: user?.bloodType ?? BloodType.A_Negative,
+          totalDonations: user?.totalDonations ?? 0,
         ),
         verticalSpace(24),
         AccountLinksSection(user: user),

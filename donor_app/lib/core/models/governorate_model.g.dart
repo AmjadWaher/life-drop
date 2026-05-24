@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../../../../core/models/governorate_model.dart';
+part of 'governorate_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
