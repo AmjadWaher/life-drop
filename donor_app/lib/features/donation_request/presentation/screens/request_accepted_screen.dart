@@ -9,7 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RequestAcceptedScreen extends StatelessWidget {
-  const RequestAcceptedScreen({super.key});
+  const RequestAcceptedScreen({
+    super.key,
+    required this.hospitalLatitude,
+    required this.hospitalLongitude,
+  });
+
+  final double hospitalLatitude;
+  final double hospitalLongitude;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +31,15 @@ class RequestAcceptedScreen extends StatelessWidget {
               verticalSpace(8),
               const SuccessTextSection(),
               verticalSpace(35),
-
-              // TODO:: must change lat and lng values to be dynamic
-              const DestinationCard(lat: 32.5556, lng: 35.8500),
+              DestinationCard(lat: hospitalLatitude, lng: hospitalLongitude),
               verticalSpace(32),
               AppElevatedButton(
                 isLoading: false,
                 onPressed: () {
-                  // TODO:: must change lat and lng values to be dynamic
-                  LocationHelper.openDirections(32.5556, 35.8500);
+                  LocationHelper.openDirections(
+                    hospitalLatitude,
+                    hospitalLongitude,
+                  );
                 },
                 title: context.localizations.start_navigation,
               ),

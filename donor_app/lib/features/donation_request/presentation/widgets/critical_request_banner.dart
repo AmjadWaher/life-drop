@@ -34,6 +34,7 @@ class CriticalRequestBanner extends StatelessWidget {
           ),
           verticalSpace(5),
           Text(hospitalName, style: context.textStyles.font16SecondaryMedium),
+          verticalSpace(10),
           CircleAvatar(
             radius: 45,
             backgroundColor: context.isDarkMode
