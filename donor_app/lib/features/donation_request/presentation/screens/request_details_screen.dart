@@ -10,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RequestDetailsScreen extends StatelessWidget {
-  const RequestDetailsScreen({super.key});
+  const RequestDetailsScreen({super.key, required this.requestId});
+  final String requestId;
 
   @override
   Widget build(BuildContext context) {

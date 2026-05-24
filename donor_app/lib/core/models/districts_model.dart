@@ -1,6 +1,6 @@
 import 'package:donor_app/core/entities/districts_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-part '../../features/auth/data/models/districts_model.g.dart';
+part 'districts_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class DistrictsModel extends DistrictsEntity {

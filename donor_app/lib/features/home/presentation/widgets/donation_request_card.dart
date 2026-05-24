@@ -1,3 +1,4 @@
+import 'package:donor_app/core/enums/blood_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,20 +13,14 @@ class DonationRequestCard extends StatelessWidget {
     super.key,
     required this.bloodType,
     required this.urgencyStatus,
-    required this.distanceAway,
     required this.hospitalName,
-    required this.description,
-    required this.buttonTitle,
     required this.onPressed,
     this.buttonStyle,
     this.isUrgent = true,
   });
-  final String bloodType;
+  final BloodType bloodType;
   final String urgencyStatus;
-  final String distanceAway;
   final String hospitalName;
-  final String description;
-  final String buttonTitle;
   final TextStyle? buttonStyle;
   final bool isUrgent;
   final void Function() onPressed;
@@ -43,11 +38,10 @@ class DonationRequestCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              BloodTypeBadge(bloodType: bloodType, isUrgent: isUrgent),
+              BloodTypeBadge(bloodType: bloodType.label, isUrgent: isUrgent),
               const Spacer(),
               UrgencyIndicator(
                 urgencyStatus: urgencyStatus.toUpperCase(),
-                distanceAway: distanceAway,
                 statusStyle: isUrgent
                     ? context.textStyles.font10PrimaryBold.copyWith(
                         letterSpacing: 0.5,
@@ -60,18 +54,13 @@ class DonationRequestCard extends StatelessWidget {
           ),
           verticalSpace(15),
           Text(hospitalName, style: context.textStyles.font18TextPrimaryBold),
-          verticalSpace(5),
-          Text(
-            description,
-            style: context.textStyles.font14TextSecondaryRegular,
-          ),
           verticalSpace(20),
           AppElevatedButton(
             isLoading: false,
             onPressed: onPressed,
             style: isUrgent ? null : context.textStyles.font16SecondaryBold,
             buttonColors: isUrgent ? null : context.colors.tertiary,
-            title: buttonTitle,
+            title: context.localizations.response_now_button,
           ),
         ],
       ),

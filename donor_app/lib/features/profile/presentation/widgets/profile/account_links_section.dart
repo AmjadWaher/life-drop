@@ -1,6 +1,5 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/routing/routes.dart';
-import 'package:donor_app/core/widgets/box.dart';
 import 'package:donor_app/features/profile/domain/entities/user_entity.dart';
 import 'package:donor_app/features/profile/presentation/logic/profile/profile_cubit.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +13,6 @@ class AccountLinksSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (user == null) {
-      return const Box(height: 60, width: double.infinity, radius: 12);
-    }
     return Container(
       decoration: BoxDecoration(
         color: context.colors.neutral,

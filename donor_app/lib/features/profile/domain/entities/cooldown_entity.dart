@@ -11,6 +11,12 @@ class CooldownEntity extends Equatable {
     required this.isEligible,
   });
 
+  factory CooldownEntity.placeholder() => CooldownEntity(
+    nextEligibleDate: DateTime.now(),
+    daysRemaining: 0,
+    isEligible: false,
+  );
+
   @override
   List<Object?> get props => [nextEligibleDate, daysRemaining, isEligible];
 }

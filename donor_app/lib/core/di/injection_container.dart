@@ -12,6 +12,9 @@ import 'package:donor_app/features/auth/presentation/logic/login/login_cubit.dar
 import 'package:donor_app/features/auth/presentation/logic/otp/otp_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/register/register_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/reset_password/reset_password_cubit.dart';
+import 'package:donor_app/features/home/data/datasource/home_remote_datasource_impl.dart';
+import 'package:donor_app/features/home/data/repositories/home_repository_impl.dart';
+import 'package:donor_app/features/home/domain/repositories/home_repository.dart';
 import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
 import 'package:donor_app/features/profile/data/datasources/profile_remote_datasource_impl.dart';
 import 'package:donor_app/features/profile/data/repositories/profile_repository_impl.dart';
@@ -71,9 +74,19 @@ Future<void> initDependencies() async {
   );
 
   // --------------- Home ---------------
+  getIt.registerLazySingleton<HomeRemoteDatasourceImpl>(
+    () => HomeRemoteDatasourceImpl(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<HomeRepository>(
+    () => HomeRepositoryImpl(getIt<HomeRemoteDatasourceImpl>()),
+  );
 
   getIt.registerFactory<HomeCubit>(
-    () => HomeCubit(biometricHelper: getIt<BiometricHelper>()),
+    () => HomeCubit(
+      biometricHelper: getIt<BiometricHelper>(),
+      homeRepository: getIt<HomeRepository>(),
+    ),
   );
 
   // --------------- Requests ---------------

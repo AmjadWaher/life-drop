@@ -34,6 +34,22 @@ class ActiveDonationEntity extends Equatable {
     required this.remainingMinutes,
   });
 
+  factory ActiveDonationEntity.placeholder() => ActiveDonationEntity(
+    acceptanceId: 'placeholder',
+    requestId: 'placeholder',
+    hospitalName: 'Hospital Name Here',
+    hospitalAddress: 'Hospital Address Here',
+    hospitalPhoneNumber: '0780000000',
+    hospitalLatitude: 0.0,
+    hospitalLongitude: 0.0,
+    requiredBloodType: BloodType.A_Negative,
+    urgency: UrgencyStatus.Normal,
+    unitsRequested: 1,
+    status: DonationStatus.NoShow,
+    acceptedAt: DateTime.now(),
+    remainingMinutes: 0,
+  );
+
   @override
   List<Object?> get props => [
     acceptanceId,
