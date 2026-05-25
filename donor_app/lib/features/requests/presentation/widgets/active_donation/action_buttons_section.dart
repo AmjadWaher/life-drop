@@ -6,10 +6,23 @@ import 'package:donor_app/features/requests/presentation/logic/active_donation/a
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ActionButtonsSection extends StatelessWidget {
-  const ActionButtonsSection({super.key, required this.requestId});
+  const ActionButtonsSection({
+    super.key,
+    required this.requestId,
+    required this.hospitalPhoneNumber,
+  });
   final String requestId;
+  final String hospitalPhoneNumber;
+
+  Future<void> _launchCall(String phoneNumber) async {
+    final uri = Uri(scheme: 'tel', path: phoneNumber);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +33,7 @@ class ActionButtonsSection extends StatelessWidget {
           buttonText: context.localizations.contact_hospital_button,
           textStyle: context.textStyles.font16WhiteBold,
           onPressed: () {
-            // TODO: Implement contact hospital action
+            _launchCall(hospitalPhoneNumber.formatPhoneNumberJO());
           },
         ),
         verticalSpace(16),

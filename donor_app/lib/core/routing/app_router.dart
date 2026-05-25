@@ -16,6 +16,7 @@ import 'package:donor_app/features/donation_request/presentation/screens/request
 import 'package:donor_app/features/donation_request/presentation/screens/request_details_screen.dart';
 import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
 import 'package:donor_app/features/main_navigation/screens/main_navigation_screen.dart';
+import 'package:donor_app/features/notifications/presentation/logic/device_token_cubit.dart';
 import 'package:donor_app/features/onboarding/screens/onboarding_view.dart';
 import 'package:donor_app/features/profile/domain/entities/user_entity.dart';
 import 'package:donor_app/features/profile/presentation/logic/cooldown/cooldown_cubit.dart';
@@ -91,6 +92,10 @@ class AppRouter {
               BlocProvider(create: (context) => getIt<ActiveDonationCubit>()),
               BlocProvider(create: (context) => getIt<ProfileCubit>()),
               BlocProvider(create: (context) => getIt<CooldownCubit>()),
+              BlocProvider(
+                create: (context) =>
+                    getIt<DeviceTokenCubit>()..registerDeviceToken(),
+              ),
             ],
             child: const MainNavigationScreen(),
           ),

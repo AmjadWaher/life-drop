@@ -4,10 +4,18 @@ import 'dart:ui';
 import 'package:donor_app/app.dart';
 import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/routing/app_router.dart';
+import 'package:donor_app/features/notifications/data/services/notification_service.dart';
+import 'package:donor_app/features/notifications/presentation/logic/device_token_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+}
 
 void main(List<String> args) {
   runZonedGuarded(
@@ -15,7 +23,14 @@ void main(List<String> args) {
       WidgetsFlutterBinding.ensureInitialized();
       await ScreenUtil.ensureScreenSize();
       await Firebase.initializeApp();
-      initDependencies();
+      FirebaseMessaging.onBackgroundMessage(
+        _firebaseMessagingBackgroundHandler,
+      );
+      await initDependencies();
+      await getIt<NotificationService>().initializeHandlers(
+        onTokenRefresh: (token) => getIt<DeviceTokenCubit>()
+            .registerDeviceToken(refreshedToken: token),
+      );
       FlutterError.onError = (details) {
         FirebaseCrashlytics.instance.recordFlutterError(details);
       };

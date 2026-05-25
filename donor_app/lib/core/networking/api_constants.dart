@@ -10,4 +10,5 @@ class ApiConstants {
   static const String locations = '$baseUrl/locations';
   static const String donationRequests = '$baseUrl/donationRequests';
   static const String referenceData = '$baseUrl/referenceData';
+  static const String notifications = '$baseUrl/notifications';
 }

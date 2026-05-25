@@ -65,7 +65,10 @@ class ActiveDonationScreen extends StatelessWidget {
           hospitalLng: donation.hospitalLongitude,
         ),
         verticalSpace(32),
-        ActionButtonsSection(requestId: donation.requestId),
+        ActionButtonsSection(
+          requestId: donation.requestId,
+          hospitalPhoneNumber: donation.hospitalPhoneNumber,
+        ),
         verticalSpace(32),
         ExpirationCountdownCard(acceptedAt: donation.acceptedAt),
         verticalSpace(32),

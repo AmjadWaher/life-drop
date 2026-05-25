@@ -12,7 +12,7 @@ platform :android do
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       # testers: "amjadwaher623@gmail.com",
       groups: "team",
-      release_notes: "Connect Donation Request with API",
+      release_notes: "Implement Remote and Local Notification",
     )
   end
 end
