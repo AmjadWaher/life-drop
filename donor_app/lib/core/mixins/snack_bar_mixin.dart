@@ -19,6 +19,20 @@ mixin SnackBarMixin {
     );
   }
 
+  void showInfoSnackBar(
+    BuildContext context, {
+    required String message,
+    int? maxLines,
+  }) {
+    _showSnackBar(
+      context,
+      content: message,
+      backgroundColor: Colors.blue.withAlpha(150),
+      maxLines: maxLines,
+      icon: Icons.info_outline,
+    );
+  }
+
   void showErrorSnackBar(
     BuildContext context, {
     required String message,

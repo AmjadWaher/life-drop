@@ -3,12 +3,14 @@ import 'package:equatable/equatable.dart';
 
 class HomeDataEntity extends Equatable {
   final String username;
+  final String lastHospitalName;
   final int remainingDays;
   final int totalContributions;
   final List<DonationRequestEntity> activeRequests;
 
   const HomeDataEntity({
     required this.username,
+    required this.lastHospitalName,
     required this.remainingDays,
     required this.totalContributions,
     required this.activeRequests,
@@ -16,6 +18,7 @@ class HomeDataEntity extends Equatable {
 
   factory HomeDataEntity.placeHolder() => HomeDataEntity(
     username: 'placeholder',
+    lastHospitalName: 'placeholder',
     remainingDays: 0,
     totalContributions: 0,
     activeRequests: [DonationRequestEntity.placeholder()],
@@ -24,6 +27,7 @@ class HomeDataEntity extends Equatable {
   @override
   List<Object?> get props => [
     username,
+    lastHospitalName,
     remainingDays,
     totalContributions,
     activeRequests,

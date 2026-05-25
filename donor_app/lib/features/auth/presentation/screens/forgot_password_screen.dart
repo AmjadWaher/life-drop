@@ -33,7 +33,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
+      listenWhen: (previous, current) => previous.status != current.status,
       listener: (context, state) {
+        if (!context.mounted) return;
+
         if (state.status == ForgotPasswordStatus.success) {
           showSuccessSnackBar(
             context,

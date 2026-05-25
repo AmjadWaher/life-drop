@@ -12,6 +12,7 @@ class HomeDataModel extends HomeDataEntity {
   @override
   const HomeDataModel({
     required super.username,
+    @JsonKey(defaultValue: '') required super.lastHospitalName,
     required super.remainingDays,
     required super.totalContributions,
     required this.activeRequests,

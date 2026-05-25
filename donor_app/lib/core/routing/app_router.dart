@@ -25,6 +25,7 @@ import 'package:donor_app/features/profile/presentation/logic/profile/profile_cu
 import 'package:donor_app/features/profile/presentation/screens/edit_profile_screen.dart';
 import 'package:donor_app/features/profile/presentation/screens/language_settings_screen.dart';
 import 'package:donor_app/features/profile/presentation/screens/theme_settings_screen.dart';
+import 'package:donor_app/features/realtime/presentation/logic/realtime_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/cancel_donation/cancel_donation_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/cancellation_reasons/cancellation_reasons_cubit.dart';
@@ -96,6 +97,7 @@ class AppRouter {
                 create: (context) =>
                     getIt<DeviceTokenCubit>()..registerDeviceToken(),
               ),
+              BlocProvider(create: (context) => getIt<RealtimeCubit>()),
             ],
             child: const MainNavigationScreen(),
           ),
