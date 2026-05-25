@@ -20,6 +20,11 @@ import 'package:donor_app/features/home/data/datasource/home_remote_datasource_i
 import 'package:donor_app/features/home/data/repositories/home_repository_impl.dart';
 import 'package:donor_app/features/home/domain/repositories/home_repository.dart';
 import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
+import 'package:donor_app/features/notifications/data/datasources/notification_remote_datasource_impl.dart';
+import 'package:donor_app/features/notifications/data/repositories/notification_repository_impl.dart';
+import 'package:donor_app/features/notifications/data/services/notification_service.dart';
+import 'package:donor_app/features/notifications/domain/repositories/notification_repository.dart';
+import 'package:donor_app/features/notifications/presentation/logic/device_token_cubit.dart';
 import 'package:donor_app/features/profile/data/datasources/profile_remote_datasource_impl.dart';
 import 'package:donor_app/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:donor_app/features/profile/domain/repositories/profile_repository.dart';
@@ -61,7 +66,9 @@ Future<void> initDependencies() async {
     () => AuthRepositoryImpl(getIt<AuthRemoteDataSourceImpl>()),
   );
 
-  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt<AuthRepository>()));
+  getIt.registerFactory<LoginCubit>(
+    () => LoginCubit(getIt<AuthRepository>(), getIt<DeviceTokenCubit>()),
+  );
 
   getIt.registerFactory<RegisterCubit>(
     () => RegisterCubit(getIt<AuthRepository>()),
@@ -90,6 +97,25 @@ Future<void> initDependencies() async {
     () => HomeCubit(
       biometricHelper: getIt<BiometricHelper>(),
       homeRepository: getIt<HomeRepository>(),
+    ),
+  );
+
+  // --------------- Notifications ---------------
+
+  getIt.registerLazySingleton<NotificationRemoteDatasource>(
+    () => NotificationRemoteDatasourceImpl(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<NotificationRepository>(
+    () => NotificationRepositoryImpl(getIt<NotificationRemoteDatasource>()),
+  );
+
+  getIt.registerLazySingleton<NotificationService>(() => NotificationService());
+
+  getIt.registerFactory<DeviceTokenCubit>(
+    () => DeviceTokenCubit(
+      getIt<NotificationRepository>(),
+      getIt<NotificationService>(),
     ),
   );
 
