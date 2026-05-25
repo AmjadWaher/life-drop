@@ -9,6 +9,7 @@ part of 'home_data_model.dart';
 HomeDataModel _$HomeDataModelFromJson(Map<String, dynamic> json) =>
     HomeDataModel(
       username: json['username'] as String,
+      lastHospitalName: json['lastHospitalName'] as String? ?? '',
       remainingDays: (json['remainingDays'] as num).toInt(),
       totalContributions: (json['totalContributions'] as num).toInt(),
       activeRequests: (json['activeRequests'] as List<dynamic>)

@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 verticalSpace(15),
                 GreetingSection(
-                  hospitalName: 'Hospital Name',
+                  hospitalName: data.lastHospitalName,
                   username: data.username,
                   remainingDays: data.remainingDays,
                 ),

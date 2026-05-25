@@ -50,6 +50,24 @@ class ActiveDonationEntity extends Equatable {
     remainingMinutes: 0,
   );
 
+  ActiveDonationEntity copyWithStatus(DonationStatus status) {
+    return ActiveDonationEntity(
+      acceptanceId: acceptanceId,
+      requestId: requestId,
+      hospitalName: hospitalName,
+      hospitalAddress: hospitalAddress,
+      hospitalPhoneNumber: hospitalPhoneNumber,
+      hospitalLatitude: hospitalLatitude,
+      hospitalLongitude: hospitalLongitude,
+      requiredBloodType: requiredBloodType,
+      urgency: urgency,
+      unitsRequested: unitsRequested,
+      status: status,
+      acceptedAt: acceptedAt,
+      remainingMinutes: remainingMinutes,
+    );
+  }
+
   @override
   List<Object?> get props => [
     acceptanceId,
