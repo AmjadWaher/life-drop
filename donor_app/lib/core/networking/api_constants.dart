@@ -1,8 +1,8 @@
 class ApiConstants {
   ApiConstants._();
 
-  static const String baseUrl = 'http://192.168.1.242:7894/api';
-  static const String realtimeBaseUrl = 'http://192.168.1.242:7894';
+  static const String baseUrl = 'https://lifedrop-vh2h.onrender.com/api';
+  static const String realtimeBaseUrl = 'https://lifedrop-vh2h.onrender.com';
 
   static const String auth = '$baseUrl/auth';
   static const String refreshToken = '$auth/refresh';
