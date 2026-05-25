@@ -196,6 +196,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get active_requests => 'الطلبات النشطة';
 
   @override
+  String get view_all_requests => 'عرض كل الطلبات';
+
+  @override
+  String get no_active_requests_found => 'لا توجد طلبات تبرع نشطة حالياً.';
+
+  @override
   String get urgent_priority => 'حالة طارئة';
 
   @override

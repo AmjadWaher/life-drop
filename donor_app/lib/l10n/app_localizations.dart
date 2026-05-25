@@ -461,6 +461,18 @@ abstract class AppLocalizations {
   /// **'Active Requests'**
   String get active_requests;
 
+  /// No description provided for @view_all_requests.
+  ///
+  /// In en, this message translates to:
+  /// **'View All Requests'**
+  String get view_all_requests;
+
+  /// No description provided for @no_active_requests_found.
+  ///
+  /// In en, this message translates to:
+  /// **'No active donation requests right now.'**
+  String get no_active_requests_found;
+
   /// No description provided for @urgent_priority.
   ///
   /// In en, this message translates to:

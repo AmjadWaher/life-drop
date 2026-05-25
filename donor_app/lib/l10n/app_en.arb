@@ -60,6 +60,8 @@
     "donations": "Donations",
     "tens_donation": "Donations",
     "active_requests": "Active Requests",
+    "view_all_requests": "View All Requests",
+    "no_active_requests_found": "No active donation requests right now.",
     "urgent_priority": "URGENT PRIORITY",
     "donation_progress": "Donation\nProgress",
     "donors_confirmed_progress": "{confirmed}/{total} donors\nconfirmed",

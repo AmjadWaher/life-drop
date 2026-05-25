@@ -196,6 +196,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get active_requests => 'Active Requests';
 
   @override
+  String get view_all_requests => 'View All Requests';
+
+  @override
+  String get no_active_requests_found => 'No active donation requests right now.';
+
+  @override
   String get urgent_priority => 'URGENT PRIORITY';
 
   @override

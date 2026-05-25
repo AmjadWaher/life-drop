@@ -78,7 +78,10 @@ class HomeScreen extends StatelessWidget {
                 verticalSpace(38),
                 const RequestsSection(),
                 verticalSpace(24),
-                const RequestCardsList(),
+                RequestCardsList(
+                  requests: data.activeRequests,
+                  maxVisibleRequests: 5,
+                ),
                 verticalSpace(20),
               ],
             ),

@@ -60,6 +60,8 @@
     "donations": "تبرع",
     "tens_donation": "تبرعات",
     "active_requests": "الطلبات النشطة",
+    "view_all_requests": "عرض كل الطلبات",
+    "no_active_requests_found": "لا توجد طلبات تبرع نشطة حالياً.",
     "urgent_priority": "حالة طارئة",
     "donation_progress": "تقدم التبرع",
     "donors_confirmed_progress": "تم تأكيد {confirmed}/{total} متبرعين",
