@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:app_settings/app_settings.dart';
 import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/routing/routes.dart';
@@ -11,6 +13,8 @@ class NotificationService {
 
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+
+  static const String _channelId = 'lifedrop_critical';
 
   int get platformValue {
     return defaultTargetPlatform == TargetPlatform.iOS ? 1 : 0;
@@ -76,12 +80,17 @@ class NotificationService {
     await _flutterLocalNotificationsPlugin.initialize(
       settings: initializationSetting,
       onDidReceiveNotificationResponse: (details) {
-        // TODO::handle when tap on local message to navigate to request details screen
+        final requestId = details.payload;
+        if (requestId == null || requestId.isEmpty) {
+          log('request id is null or empty');
+          return;
+        }
+        _openRequestDetails(requestId);
       },
     );
 
     const androidChannel = AndroidNotificationChannel(
-      'high_importance_channel',
+      _channelId,
       'High Importance Notifications',
       description: 'your channel description',
       importance: Importance.max,
@@ -104,7 +113,7 @@ class NotificationService {
 
     AndroidNotificationDetails androidNotificationDetails =
         const AndroidNotificationDetails(
-          'high_importance_channel',
+          _channelId,
           'High Importance Notifications',
           channelDescription: 'your channel description',
           importance: Importance.max,
@@ -119,14 +128,29 @@ class NotificationService {
 
     _flutterLocalNotificationsPlugin.show(
       id: message.hashCode,
-      title: message.notification!.title.toString(),
-      body: message.notification!.body.toString(),
+      title: title,
+      body: body,
       notificationDetails: notificationDetails,
+      payload: message.data['requestId']?.toString(),
     );
   }
 
   void onTokenRefresh(void Function(String) onNewToken) {
     _messaging.onTokenRefresh.listen(onNewToken);
+  }
+
+  void _openRequestDetails(String requestId) {
+    void open() {
+      navigatorKey.currentState?.pushNamed(
+        Routes.requestDetails,
+        arguments: {'requestId': requestId},
+      );
+    }
+
+    if (navigatorKey.currentState != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => open());
+      return;
+    }
   }
 
   void _handleForegroundMessage(RemoteMessage message) {
@@ -148,7 +172,5 @@ class NotificationService {
       WidgetsBinding.instance.addPostFrameCallback((_) => openRequestDetails());
       return;
     }
-
-    openRequestDetails();
   }
 }
