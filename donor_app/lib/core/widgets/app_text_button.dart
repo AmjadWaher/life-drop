@@ -16,6 +16,7 @@ class AppTextButton extends StatelessWidget {
     this.buttonHeight,
     required this.onPressed,
     this.isLoading = false,
+    this.isIconRight = false,
     this.icon,
   });
   final Widget? icon;
@@ -29,6 +30,7 @@ class AppTextButton extends StatelessWidget {
   final double? buttonHeight;
   final VoidCallback onPressed;
   final bool isLoading;
+  final bool isIconRight;
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +62,11 @@ class AppTextButton extends StatelessWidget {
           : Row(
               mainAxisAlignment: .center,
               children: [
-                ?icon,
-                if (icon != null) horizontalSpace(8),
+                if (!isIconRight) ?icon,
+                if (icon != null && !isIconRight) horizontalSpace(8),
                 Text(buttonText, style: textStyle),
+                if (icon != null && isIconRight) horizontalSpace(8),
+                if (isIconRight) ?icon,
               ],
             ),
     );

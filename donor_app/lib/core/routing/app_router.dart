@@ -14,7 +14,9 @@ import 'package:donor_app/features/auth/presentation/screens/reset_password_scre
 import 'package:donor_app/features/donation_request/presentation/logic/donation_request_cubit.dart';
 import 'package:donor_app/features/donation_request/presentation/screens/request_accepted_screen.dart';
 import 'package:donor_app/features/donation_request/presentation/screens/request_details_screen.dart';
+import 'package:donor_app/features/home/domain/entities/donation_request_entity.dart';
 import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
+import 'package:donor_app/features/home/presentation/screens/active_requests_screen.dart';
 import 'package:donor_app/features/main_navigation/screens/main_navigation_screen.dart';
 import 'package:donor_app/features/notifications/presentation/logic/device_token_cubit.dart';
 import 'package:donor_app/features/onboarding/screens/onboarding_view.dart';
@@ -124,6 +126,12 @@ class AppRouter {
                   .toDouble(),
             );
           },
+        );
+      case Routes.requests:
+        return MaterialPageRoute(
+          builder: (context) => ActiveRequestsScreen(
+            requests: args as List<DonationRequestEntity>,
+          ),
         );
       case Routes.cancelRequests:
         return MaterialPageRoute(

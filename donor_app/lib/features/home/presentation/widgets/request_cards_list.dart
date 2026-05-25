@@ -1,64 +1,78 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/routing/routes.dart';
+import 'package:donor_app/core/widgets/app_text_button.dart';
 import 'package:donor_app/features/home/domain/entities/donation_request_entity.dart';
-import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
-import 'package:donor_app/features/home/presentation/logic/home_state.dart';
 import 'package:donor_app/features/home/presentation/widgets/donation_request_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class RequestCardsList extends StatelessWidget {
-  const RequestCardsList({super.key});
+  const RequestCardsList({
+    super.key,
+    required this.requests,
+    this.maxVisibleRequests,
+    this.canScroll = false,
+  });
+  final List<DonationRequestEntity> requests;
+  final int? maxVisibleRequests;
+  final bool canScroll;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(
-      buildWhen: (previous, current) =>
-          current is HomeSuccess ||
-          current is HomeLoading ||
-          current is HomeError,
-      builder: (context, state) {
-        return state.when(
-          initial: () => const SizedBox.shrink(),
-          loading: () => Skeletonizer(
-            enabled: true,
-            child: _buildActiveRequestsList([
-              DonationRequestEntity.placeholder(),
-            ]),
+    final visibleRequests = maxVisibleRequests == null
+        ? requests
+        : requests.take(maxVisibleRequests!).toList();
+    if (visibleRequests.isEmpty) {
+      return Center(
+        child: Text(context.localizations.no_active_requests_found),
+      );
+    }
+    return Container(
+      decoration: BoxDecoration(
+        color: canScroll ? null : context.colors.neutral,
+        borderRadius: canScroll ? null : BorderRadius.circular(12),
+      ),
+      padding: canScroll ? null : const EdgeInsets.all(12),
+      child: Column(
+        children: [
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: visibleRequests.length,
+            itemBuilder: (context, index) {
+              final request = visibleRequests[index];
+              return DonationRequestCard(
+                bloodType: request.bloodType,
+                urgencyStatus: request.urgency.name.toUpperCase(),
+                hospitalName: request.hospitalName,
+                isUrgent: request.isUrgent,
+                onPressed: () {
+                  context.pushNamed(
+                    Routes.requestDetails,
+                    arguments: {'requestId': request.requestId},
+                  );
+                },
+              );
+            },
+
+            separatorBuilder: (context, index) => verticalSpace(16),
           ),
-          success: (data) => _buildActiveRequestsList(data.activeRequests),
-          error: (error) => Center(child: Text(error.getAllErrorMessages())),
-          biometricPromptRequired: () => const SizedBox.shrink(),
-        );
-      },
-    );
-  }
-
-  Widget _buildActiveRequestsList(List<DonationRequestEntity> requests) {
-    return ListView.separated(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: requests.length,
-      itemBuilder: (context, index) {
-        final request = requests[index];
-        return DonationRequestCard(
-          bloodType: request.bloodType,
-          urgencyStatus: request.urgency.name.toUpperCase(),
-          hospitalName: request.hospitalName,
-
-          isUrgent: request.isUrgent,
-          onPressed: () {
-            context.pushNamed(
-              Routes.requestDetails,
-              arguments: {'requestId': request.requestId},
-            );
-          },
-        );
-      },
-
-      separatorBuilder: (context, index) => verticalSpace(16),
+          if (!canScroll) verticalSpace(25),
+          if (!canScroll)
+            AppTextButton(
+              isLoading: false,
+              onPressed: () =>
+                  context.pushNamed(Routes.requests, arguments: requests),
+              buttonText: context.localizations.view_all_requests,
+              textStyle: context.textStyles.font16WhiteBold,
+              isIconRight: true,
+              icon: Icon(
+                Icons.arrow_forward,
+                color: context.colors.textPrimary,
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
