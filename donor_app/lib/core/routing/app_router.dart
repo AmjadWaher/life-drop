@@ -112,6 +112,7 @@ class AppRouter {
                   ..getRequestDetails((args)['requestId'] as String),
             child: RequestDetailsScreen(
               requestId: (args as Map<String, dynamic>)['requestId'] as String,
+              canDonate: args['canDonate'] as bool,
             ),
           ),
         );
@@ -130,7 +131,10 @@ class AppRouter {
       case Routes.requests:
         return MaterialPageRoute(
           builder: (context) => ActiveRequestsScreen(
-            requests: args as List<DonationRequestEntity>,
+            requests:
+                (args as Map<String, dynamic>)['requests']
+                    as List<DonationRequestEntity>,
+            canDonate: args['canDonate'] as bool,
           ),
         );
       case Routes.cancelRequests:

@@ -11,10 +11,12 @@ class RequestCardsList extends StatelessWidget {
     super.key,
     required this.requests,
     this.maxVisibleRequests,
+    required this.canDonate,
     this.canScroll = false,
   });
   final List<DonationRequestEntity> requests;
   final int? maxVisibleRequests;
+  final bool canDonate;
   final bool canScroll;
 
   @override
@@ -49,7 +51,10 @@ class RequestCardsList extends StatelessWidget {
                 onPressed: () {
                   context.pushNamed(
                     Routes.requestDetails,
-                    arguments: {'requestId': request.requestId},
+                    arguments: {
+                      'requestId': request.requestId,
+                      'canDonate': canDonate,
+                    },
                   );
                 },
               );
@@ -61,8 +66,10 @@ class RequestCardsList extends StatelessWidget {
           if (!canScroll)
             AppTextButton(
               isLoading: false,
-              onPressed: () =>
-                  context.pushNamed(Routes.requests, arguments: requests),
+              onPressed: () => context.pushNamed(
+                Routes.requests,
+                arguments: {'requests': requests, 'canDonate': canDonate},
+              ),
               buttonText: context.localizations.view_all_requests,
               textStyle: context.textStyles.font16WhiteBold,
               isIconRight: true,
