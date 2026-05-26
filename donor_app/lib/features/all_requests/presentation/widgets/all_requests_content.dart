@@ -3,6 +3,7 @@ import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/features/all_requests/domain/entities/donation_request_feed_entity.dart';
 import 'package:donor_app/features/home/presentation/widgets/donation_request_card.dart';
+import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,12 +14,14 @@ class AllRequestsContent extends StatelessWidget {
     required this.isLoadingMore,
     required this.totalCount,
     required this.onNearBottom,
+    this.activeDonationCubit,
   });
 
   final List<DonationRequestFeedEntity> requests;
   final bool isLoadingMore;
   final int totalCount;
   final VoidCallback onNearBottom;
+  final ActiveDonationCubit? activeDonationCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,10 @@ class AllRequestsContent extends StatelessWidget {
                 onPressed: () {
                   context.pushNamed(
                     Routes.requestDetails,
-                    arguments: {'requestId': request.requestId},
+                    arguments: {
+                      'requestId': request.requestId,
+                      'activeDonationCubit': activeDonationCubit,
+                    },
                   );
                 },
               );

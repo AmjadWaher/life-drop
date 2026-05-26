@@ -4,6 +4,7 @@ import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
 import 'package:donor_app/features/home/domain/entities/donation_request_entity.dart';
 import 'package:donor_app/features/home/presentation/widgets/donation_request_card.dart';
+import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:flutter/material.dart';
 
 class RequestCardsList extends StatelessWidget {
@@ -12,10 +13,12 @@ class RequestCardsList extends StatelessWidget {
     required this.requests,
     this.maxVisibleRequests,
     this.canScroll = false,
+    this.activeDonationCubit,
   });
   final List<DonationRequestEntity> requests;
   final int? maxVisibleRequests;
   final bool canScroll;
+  final ActiveDonationCubit? activeDonationCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,10 @@ class RequestCardsList extends StatelessWidget {
                 onPressed: () {
                   context.pushNamed(
                     Routes.requestDetails,
-                    arguments: {'requestId': request.requestId},
+                    arguments: {
+                      'requestId': request.requestId,
+                      'activeDonationCubit': activeDonationCubit,
+                    },
                   );
                 },
               );
@@ -61,7 +67,10 @@ class RequestCardsList extends StatelessWidget {
           if (!canScroll)
             AppTextButton(
               isLoading: false,
-              onPressed: () => context.pushNamed(Routes.requests),
+              onPressed: () => context.pushNamed(
+                Routes.requests,
+                arguments: {'activeDonationCubit': activeDonationCubit},
+              ),
               buttonText: context.localizations.view_all_requests,
               textStyle: context.textStyles.font16WhiteBold,
               isIconRight: true,

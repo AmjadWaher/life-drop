@@ -9,13 +9,16 @@ import 'package:donor_app/features/all_requests/presentation/logic/all_requests_
 import 'package:donor_app/features/all_requests/presentation/widgets/all_requests_content.dart';
 import 'package:donor_app/features/all_requests/presentation/widgets/all_requests_error_state.dart';
 import 'package:donor_app/features/all_requests/presentation/widgets/all_requests_filters.dart';
+import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class AllRequestsScreen extends StatefulWidget {
-  const AllRequestsScreen({super.key});
+  const AllRequestsScreen({super.key, this.activeDonationCubit});
+
+  final ActiveDonationCubit? activeDonationCubit;
 
   @override
   State<AllRequestsScreen> createState() => _AllRequestsScreenState();
@@ -85,6 +88,7 @@ class _AllRequestsScreenState extends State<AllRequestsScreen> {
                                 isLoadingMore: false,
                                 totalCount: 10,
                                 onNearBottom: () {},
+                                activeDonationCubit: widget.activeDonationCubit,
                               ),
                             ),
                             success:
@@ -96,6 +100,8 @@ class _AllRequestsScreenState extends State<AllRequestsScreen> {
                                       onNearBottom: context
                                           .read<AllRequestsCubit>()
                                           .loadMore,
+                                      activeDonationCubit:
+                                          widget.activeDonationCubit,
                                     ),
                             empty: (searchTerm, urgency) => Center(
                               child: Text(

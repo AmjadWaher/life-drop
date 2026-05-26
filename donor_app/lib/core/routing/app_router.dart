@@ -108,14 +108,19 @@ class AppRouter {
         );
       case Routes.requestDetails:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) =>
-                getIt<DonationRequestCubit>()
-                  ..getRequestDetails((args)['requestId'] as String),
-            child: RequestDetailsScreen(
-              requestId: (args as Map<String, dynamic>)['requestId'] as String,
-            ),
-          ),
+          builder: (context) {
+            final detailsArgs = args as Map<String, dynamic>;
+            return BlocProvider(
+              create: (context) =>
+                  getIt<DonationRequestCubit>()
+                    ..getRequestDetails(detailsArgs['requestId'] as String),
+              child: RequestDetailsScreen(
+                requestId: detailsArgs['requestId'] as String,
+                activeDonationCubit:
+                    detailsArgs['activeDonationCubit'] as ActiveDonationCubit?,
+              ),
+            );
+          },
         );
       case Routes.requestAccepted:
         return MaterialPageRoute(
@@ -131,10 +136,17 @@ class AppRouter {
         );
       case Routes.requests:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => getIt<AllRequestsCubit>()..loadRequests(),
-            child: const AllRequestsScreen(),
-          ),
+          builder: (context) {
+            final requestsArgs = args as Map<String, dynamic>?;
+            return BlocProvider(
+              create: (context) => getIt<AllRequestsCubit>()..loadRequests(),
+              child: AllRequestsScreen(
+                activeDonationCubit:
+                    requestsArgs?['activeDonationCubit']
+                        as ActiveDonationCubit?,
+              ),
+            );
+          },
         );
       case Routes.cancelRequests:
         return MaterialPageRoute(

@@ -10,14 +10,21 @@ import 'package:donor_app/features/donation_request/presentation/logic/donation_
 import 'package:donor_app/features/donation_request/presentation/widgets/critical_request_banner.dart';
 import 'package:donor_app/features/donation_request/presentation/widgets/donation_progress_card.dart';
 import 'package:donor_app/features/donation_request/presentation/widgets/hospital_location_card.dart';
+import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class RequestDetailsScreen extends StatelessWidget with SnackBarMixin {
-  const RequestDetailsScreen({super.key, required this.requestId});
+  const RequestDetailsScreen({
+    super.key,
+    required this.requestId,
+    this.activeDonationCubit,
+  });
+
   final String requestId;
+  final ActiveDonationCubit? activeDonationCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +57,7 @@ class RequestDetailsScreen extends StatelessWidget with SnackBarMixin {
                   listener: (context, state) {
                     state.whenOrNull(
                       acceptSuccess: (acceptance, request) {
+                        activeDonationCubit?.getCurrentActiveDonation();
                         context.pushReplacementNamed(
                           Routes.requestAccepted,
                           arguments: {
