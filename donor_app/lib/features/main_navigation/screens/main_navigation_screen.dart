@@ -1,4 +1,6 @@
 import 'package:donor_app/core/mixins/snack_bar_mixin.dart';
+import 'package:donor_app/features/donation_history/presentation/logic/donation_history_cubit.dart';
+import 'package:donor_app/features/donation_history/presentation/screens/donation_history_screen.dart';
 import 'package:donor_app/features/home/presentation/screens/home_screen.dart';
 import 'package:donor_app/features/main_navigation/widgets/custom_navigation_bar.dart';
 import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
@@ -28,8 +30,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen>
   final List<Widget> screens = [
     const HomeScreen(),
     const ActiveDonationScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
+    const DonationHistoryScreen(),
     const ProfileScreen(),
   ];
 
@@ -58,7 +59,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen>
       case 1:
         context.read<ActiveDonationCubit>().getCurrentActiveDonation();
         break;
-      case 4:
+      case 2:
+        context.read<DonationHistoryCubit>().loadHistory();
+        break;
+      case 3:
         context.read<ProfileCubit>().getUserProfile();
         context.read<CooldownCubit>().getCooldownStatus();
         break;
@@ -85,7 +89,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen>
       case RealtimeReconnectedEvent():
         context.read<HomeCubit>().loadHome();
         context.read<ActiveDonationCubit>().getCurrentActiveDonation();
-        if (_loadedIndexes.contains(4)) {
+        if (_loadedIndexes.contains(3)) {
           context.read<ProfileCubit>().getUserProfile();
           context.read<CooldownCubit>().getCooldownStatus();
         }

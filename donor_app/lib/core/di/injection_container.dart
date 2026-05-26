@@ -4,6 +4,10 @@ import 'package:donor_app/core/logic/biometric/biometric_cubit.dart';
 import 'package:donor_app/core/logic/language/language_cubit.dart';
 import 'package:donor_app/core/logic/theme/theme_cubit.dart';
 import 'package:donor_app/core/networking/dio_factory.dart';
+import 'package:donor_app/features/all_requests/data/datasources/all_requests_remote_datasource_impl.dart';
+import 'package:donor_app/features/all_requests/data/repositories/all_requests_repository_impl.dart';
+import 'package:donor_app/features/all_requests/domain/repositories/all_requests_repository.dart';
+import 'package:donor_app/features/all_requests/presentation/logic/all_requests_cubit.dart';
 import 'package:donor_app/features/auth/data/datasources/auth_remote_datasource_impl.dart';
 import 'package:donor_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:donor_app/features/auth/domain/repositories/auth_repository.dart';
@@ -16,6 +20,10 @@ import 'package:donor_app/features/donation_request/data/datasources/donation_re
 import 'package:donor_app/features/donation_request/data/repositories/donation_request_repository_impl.dart';
 import 'package:donor_app/features/donation_request/domain/repositories/donation_request_repository.dart';
 import 'package:donor_app/features/donation_request/presentation/logic/donation_request_cubit.dart';
+import 'package:donor_app/features/donation_history/data/datasources/donation_history_remote_datasource_impl.dart';
+import 'package:donor_app/features/donation_history/data/repositories/donation_history_repository_impl.dart';
+import 'package:donor_app/features/donation_history/domain/repositories/donation_history_repository.dart';
+import 'package:donor_app/features/donation_history/presentation/logic/donation_history_cubit.dart';
 import 'package:donor_app/features/home/data/datasource/home_remote_datasource_impl.dart';
 import 'package:donor_app/features/home/data/repositories/home_repository_impl.dart';
 import 'package:donor_app/features/home/domain/repositories/home_repository.dart';
@@ -102,6 +110,20 @@ Future<void> initDependencies() async {
     ),
   );
 
+  // --------------- All Requests ---------------
+
+  getIt.registerLazySingleton<AllRequestsRemoteDatasource>(
+    () => AllRequestsRemoteDatasourceImpl(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<AllRequestsRepository>(
+    () => AllRequestsRepositoryImpl(getIt<AllRequestsRemoteDatasource>()),
+  );
+
+  getIt.registerFactory<AllRequestsCubit>(
+    () => AllRequestsCubit(getIt<AllRequestsRepository>()),
+  );
+
   // --------------- Notifications ---------------
 
   getIt.registerLazySingleton<NotificationRemoteDatasource>(
@@ -142,6 +164,21 @@ Future<void> initDependencies() async {
 
   getIt.registerFactory<DonationRequestCubit>(
     () => DonationRequestCubit(getIt<DonationRequestRepository>()),
+  );
+
+  // --------------- Donation History ---------------
+
+  getIt.registerLazySingleton<DonationHistoryRemoteDatasource>(
+    () => DonationHistoryRemoteDatasourceImpl(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<DonationHistoryRepository>(
+    () =>
+        DonationHistoryRepositoryImpl(getIt<DonationHistoryRemoteDatasource>()),
+  );
+
+  getIt.registerFactory<DonationHistoryCubit>(
+    () => DonationHistoryCubit(getIt<DonationHistoryRepository>()),
   );
 
   // --------------- Requests ---------------

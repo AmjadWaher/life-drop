@@ -23,7 +23,6 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
   List<String> get _paths => [
     ImagePaths.homeIcon,
     ImagePaths.requestIcon,
-    ImagePaths.mapIcon,
     ImagePaths.historyIcon,
     ImagePaths.profileIcon,
   ];
@@ -38,7 +37,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
       backgroundColor: context.colors.background,
       index: widget.currentIndex,
       onTap: widget.onTap,
-      items: List.generate(5, (index) {
+      items: List.generate(_paths.length, (index) {
         return NavigationItem(
           path: _paths[index],
           isSelected: widget.currentIndex == index,

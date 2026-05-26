@@ -45,7 +45,7 @@ class RequestCardsList extends StatelessWidget {
                 bloodType: request.bloodType,
                 urgencyStatus: request.urgency.name.toUpperCase(),
                 hospitalName: request.hospitalName,
-                isUrgent: request.isUrgent,
+                isCritical: request.isCritical,
                 onPressed: () {
                   context.pushNamed(
                     Routes.requestDetails,
@@ -61,8 +61,7 @@ class RequestCardsList extends StatelessWidget {
           if (!canScroll)
             AppTextButton(
               isLoading: false,
-              onPressed: () =>
-                  context.pushNamed(Routes.requests, arguments: requests),
+              onPressed: () => context.pushNamed(Routes.requests),
               buttonText: context.localizations.view_all_requests,
               textStyle: context.textStyles.font16WhiteBold,
               isIconRight: true,

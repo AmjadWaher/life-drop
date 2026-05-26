@@ -15,7 +15,7 @@ class DonationRequestEntity extends Equatable {
     required this.hospitalName,
   });
 
-  bool get isUrgent => urgency == UrgencyStatus.Urgent;
+  bool get isCritical => urgency == UrgencyStatus.Critical;
 
   factory DonationRequestEntity.placeholder() => const DonationRequestEntity(
     requestId: 'placeholder',

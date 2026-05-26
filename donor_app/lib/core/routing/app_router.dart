@@ -1,6 +1,8 @@
 import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/logic/biometric/biometric_cubit.dart';
 import 'package:donor_app/core/routing/routes.dart';
+import 'package:donor_app/features/all_requests/presentation/logic/all_requests_cubit.dart';
+import 'package:donor_app/features/all_requests/presentation/screens/all_requests_screen.dart';
 import 'package:donor_app/features/auth/presentation/logic/forgot_password/forgot_password_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/login/login_cubit.dart';
 import 'package:donor_app/features/auth/presentation/logic/otp/otp_cubit.dart';
@@ -14,9 +16,8 @@ import 'package:donor_app/features/auth/presentation/screens/reset_password_scre
 import 'package:donor_app/features/donation_request/presentation/logic/donation_request_cubit.dart';
 import 'package:donor_app/features/donation_request/presentation/screens/request_accepted_screen.dart';
 import 'package:donor_app/features/donation_request/presentation/screens/request_details_screen.dart';
-import 'package:donor_app/features/home/domain/entities/donation_request_entity.dart';
+import 'package:donor_app/features/donation_history/presentation/logic/donation_history_cubit.dart';
 import 'package:donor_app/features/home/presentation/logic/home_cubit.dart';
-import 'package:donor_app/features/home/presentation/screens/active_requests_screen.dart';
 import 'package:donor_app/features/main_navigation/screens/main_navigation_screen.dart';
 import 'package:donor_app/features/notifications/presentation/logic/device_token_cubit.dart';
 import 'package:donor_app/features/onboarding/screens/onboarding_view.dart';
@@ -94,6 +95,7 @@ class AppRouter {
               ),
               BlocProvider(create: (context) => getIt<ActiveDonationCubit>()),
               BlocProvider(create: (context) => getIt<ProfileCubit>()),
+              BlocProvider(create: (context) => getIt<DonationHistoryCubit>()),
               BlocProvider(create: (context) => getIt<CooldownCubit>()),
               BlocProvider(
                 create: (context) =>
@@ -129,8 +131,9 @@ class AppRouter {
         );
       case Routes.requests:
         return MaterialPageRoute(
-          builder: (context) => ActiveRequestsScreen(
-            requests: args as List<DonationRequestEntity>,
+          builder: (context) => BlocProvider(
+            create: (context) => getIt<AllRequestsCubit>()..loadRequests(),
+            child: const AllRequestsScreen(),
           ),
         );
       case Routes.cancelRequests:

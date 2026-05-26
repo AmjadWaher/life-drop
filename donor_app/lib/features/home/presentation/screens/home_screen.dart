@@ -56,6 +56,7 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.only(left: 24.w, right: 24.w),
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: .start,
               children: [
                 AppHeader(
                   icon: const AppImages(

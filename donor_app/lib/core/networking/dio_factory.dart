@@ -54,7 +54,7 @@ class DioFactory {
   }
 
   static void setTokenIntoHeaderAfterLogin(String token) {
-    dio?.options.headers = {'Authorization': 'Bearer $token'};
+    dio?.options.headers.addAll({'Authorization': 'Bearer $token'});
   }
 
   static void addDioInterceptor() {

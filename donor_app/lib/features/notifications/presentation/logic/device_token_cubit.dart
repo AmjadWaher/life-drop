@@ -1,3 +1,5 @@
+import 'package:donor_app/core/helpers/constants.dart';
+import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/features/notifications/domain/params/register_device_token_params.dart';
 import 'package:donor_app/features/notifications/domain/repositories/notification_repository.dart';
 import 'package:donor_app/features/notifications/data/services/notification_service.dart';
@@ -13,6 +15,11 @@ class DeviceTokenCubit extends Cubit<DeviceTokenState> {
     : super(const DeviceTokenState.initial());
 
   Future<void> registerDeviceToken({String? refreshedToken}) async {
+    final isLoggedIn = await SharedPrefHelper.getBool(
+      SharedPrefKeys.isLoggedIn,
+    );
+    if (!isLoggedIn) return;
+
     final token =
         refreshedToken ?? await _notificationService.getAuthorizedDeviceToken();
     if (token == null || token.isEmpty) return;

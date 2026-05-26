@@ -7,6 +7,7 @@ import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/networking/api_result.dart';
 import 'package:donor_app/core/networking/dio_factory.dart';
 import 'package:donor_app/core/routing/routes.dart';
+import 'package:donor_app/features/auth/data/datasources/auth_constants.dart';
 import 'package:donor_app/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthInterceptor extends QueuedInterceptor {
@@ -17,7 +18,7 @@ class AuthInterceptor extends QueuedInterceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
-    if (err.response?.statusCode == 401) {
+    if (err.response?.statusCode == 401 && !_shouldSkipRefresh(err)) {
       try {
         if (!isRefreshing) {
           isRefreshing = true;
@@ -57,6 +58,23 @@ class AuthInterceptor extends QueuedInterceptor {
     }
   }
 
+  bool _shouldSkipRefresh(DioException err) {
+    final requestPath = err.requestOptions.uri.toString();
+    return _publicEndpoints.any(requestPath.contains);
+  }
+
+  static const List<String> _publicEndpoints = [
+    AuthConstants.login,
+    AuthConstants.verifyOtp,
+    AuthConstants.sendOtp,
+    AuthConstants.resetPassword,
+    AuthConstants.resendOtp,
+    AuthConstants.refreshToken,
+    AuthConstants.register,
+    AuthConstants.verifyRegistration,
+    AuthConstants.resendRegistrationOtp,
+  ];
+
   Future<String?> _refreshToken() async {
     final oldAccessToken = await SharedPrefHelper.getSecuredString(
       SharedPrefKeys.accessToken,
@@ -64,6 +82,8 @@ class AuthInterceptor extends QueuedInterceptor {
     final oldRefreshToken = await SharedPrefHelper.getSecuredString(
       SharedPrefKeys.refreshToken,
     );
+
+    if (oldAccessToken.isEmpty || oldRefreshToken.isEmpty) return null;
 
     final result = await getIt<AuthRepository>().refreshToken(
       oldAccessToken,

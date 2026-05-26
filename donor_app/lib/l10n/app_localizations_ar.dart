@@ -45,13 +45,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onboarding_title_3_part_2 => 'ذكية';
 
   @override
-  String get onboarding_subtitle_1 => 'انضم إلى شبكة عالمية من الأبطال المتطوعين لتقديم تبرعات دم تنقذ الحياة';
+  String get onboarding_subtitle_1 =>
+      'انضم إلى شبكة عالمية من الأبطال المتطوعين لتقديم تبرعات دم تنقذ الحياة';
 
   @override
-  String get onboarding_subtitle_2 => 'كل تبرع يتم التحقق منه طبيًا ويتم تتبعه من لحظة التبرع حتى وصوله للمريض المحتاج';
+  String get onboarding_subtitle_2 =>
+      'كل تبرع يتم التحقق منه طبيًا ويتم تتبعه من لحظة التبرع حتى وصوله للمريض المحتاج';
 
   @override
-  String get onboarding_subtitle_3 => 'استقبل إشعارات فورية عند الحاجة العاجلة لفصيلة دمك في المستشفيات القريبة';
+  String get onboarding_subtitle_3 =>
+      'استقبل إشعارات فورية عند الحاجة العاجلة لفصيلة دمك في المستشفيات القريبة';
 
   @override
   String get next => 'التالي';
@@ -108,7 +111,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get already_have_an_account => 'هل لديك حساب بالفعل؟';
 
   @override
-  String get forgot_password_subtitle => 'أدخل بريدك الإلكتروني أو رقم هاتفك المسجّل وسنرسل لك رمز تحقق.';
+  String get forgot_password_subtitle =>
+      'أدخل بريدك الإلكتروني أو رقم هاتفك المسجّل وسنرسل لك رمز تحقق.';
 
   @override
   String get back_to_login => 'العودة إلى تسجيل الدخول';
@@ -120,10 +124,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get otp_verification => 'تأكيد رمز التحقق';
 
   @override
-  String get otp_from_forgot_password_subtitle => 'تم إرسال رمز مكوّن من 6 أرقام إلى بريدك الألكتروني. أدخله للمتابعة.';
+  String get otp_from_forgot_password_subtitle =>
+      'تم إرسال رمز مكوّن من 6 أرقام إلى بريدك الألكتروني. أدخله للمتابعة.';
 
   @override
-  String get otp_from_register_subtitle => 'تم إرسال رمز مكوّن من 6 أرقام إلى بريدك الألكتروني. أدخله لإنشاء الحساب.';
+  String get otp_from_register_subtitle =>
+      'تم إرسال رمز مكوّن من 6 أرقام إلى بريدك الألكتروني. أدخله لإنشاء الحساب.';
 
   @override
   String get verify_continue => 'تحقق وتابع';
@@ -132,7 +138,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reset_password => 'تغيير كلمة السر';
 
   @override
-  String get reset_subtitle => 'تأكد من أن كلمة المرور الجديدة تتكون من 8 أحرف على الأقل وتحتوي على أحرف كبيرة وصغيرة وأرقام ورموز.';
+  String get reset_subtitle =>
+      'تأكد من أن كلمة المرور الجديدة تتكون من 8 أحرف على الأقل وتحتوي على أحرف كبيرة وصغيرة وأرقام ورموز.';
 
   @override
   String get update_password => 'تحديث كلمة المرور';
@@ -153,7 +160,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get quick_login => 'تسجيل دخول سريع';
 
   @override
-  String get enable_biometric_login_message => 'استخدم بصمتك لتسجيل دخول أسرع وأكثر أمانًا في المرة القادمة';
+  String get enable_biometric_login_message =>
+      'استخدم بصمتك لتسجيل دخول أسرع وأكثر أمانًا في المرة القادمة';
 
   @override
   String get accounts => 'الحسابات';
@@ -162,7 +170,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authenticate_to_login => 'المصادقة لتسجيل الدخول';
 
   @override
-  String get use_fingerprint_for_quick_secure_login => 'استخدم بصمتك لتسجيل الدخول بسرعة وأمان';
+  String get use_fingerprint_for_quick_secure_login =>
+      'استخدم بصمتك لتسجيل الدخول بسرعة وأمان';
 
   @override
   String get enable => 'تفعيل';
@@ -202,6 +211,26 @@ class AppLocalizationsAr extends AppLocalizations {
   String get no_active_requests_found => 'لا توجد طلبات تبرع نشطة حالياً.';
 
   @override
+  String get search_requests_hint => 'ابحث في الطلبات';
+
+  @override
+  String get all_filter => 'الكل';
+
+  @override
+  String get normal_filter => 'عادي';
+
+  @override
+  String get urgent_filter => 'عاجل';
+
+  @override
+  String get critical_filter => 'حرج';
+
+  @override
+  String all_requests_count(Object count) {
+    return '$count طلب';
+  }
+
+  @override
   String get urgent_priority => 'حالة طارئة';
 
   @override
@@ -230,7 +259,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get you_are_a_lifesaver => 'أنت تنقذ الأرواح!';
 
   @override
-  String get request_accepted_hospital_waiting => 'تم تأكيد قبول طلبك.\nوحدة المستشفى بانتظار وصولك.';
+  String get request_accepted_hospital_waiting =>
+      'تم تأكيد قبول طلبك.\nوحدة المستشفى بانتظار وصولك.';
 
   @override
   String get hospital_location => 'موقع المستشفى';
@@ -263,13 +293,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get email_required => 'يرجى إدخال بريد إلكتروني صحيح.';
 
   @override
-  String get phone_required => 'رقم هاتف غير صالح.\nيجب أن يبدأ بـ 77 أو 78 أو 79.';
+  String get phone_required =>
+      'رقم هاتف غير صالح.\nيجب أن يبدأ بـ 77 أو 78 أو 79.';
 
   @override
-  String get phone_number_digits_only => 'يجب أن يحتوي رقم الهاتف على أرقام فقط.';
+  String get phone_number_digits_only =>
+      'يجب أن يحتوي رقم الهاتف على أرقام فقط.';
 
   @override
-  String get password_required => 'يجب أن تكون كلمة المرور أكثر من 8 أحرف، وتحتوي على أحرف كبيرة وصغيرة، رقم، رمز، وبدون مسافات.';
+  String get password_required =>
+      'يجب أن تكون كلمة المرور أكثر من 8 أحرف، وتحتوي على أحرف كبيرة وصغيرة، رقم، رمز، وبدون مسافات.';
 
   @override
   String get passwords_do_not_match => 'كلمة المرور غير متطابقة.';
@@ -299,10 +332,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get resend_code_message => 'تم إرسال رمز التحقق مرة أخرى.';
 
   @override
-  String get account_acreated_message => 'Account has been created successfully.';
+  String get account_acreated_message =>
+      'Account has been created successfully.';
 
   @override
-  String get verification_code_sent => 'تم إرسال رمز التحقق بنجاح.\nيرجى التحقق من بريدك الإلكتروني للمتابعة.';
+  String get verification_code_sent =>
+      'تم إرسال رمز التحقق بنجاح.\nيرجى التحقق من بريدك الإلكتروني للمتابعة.';
 
   @override
   String get password_updated_message => 'تم تحديث كلمة المرور بنجاح.';
@@ -326,7 +361,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reason_required_error => 'يجب اختيار سبب لإلغاء التبرع';
 
   @override
-  String get cancellation_health_warning => '* ملاحظة: بالنسبة للإلغاءات المتعلقة بالصحة، قد يتم تأجيل التبرع مؤقتاً لضمان سلامتك الصحية.';
+  String get cancellation_health_warning =>
+      '* ملاحظة: بالنسبة للإلغاءات المتعلقة بالصحة، قد يتم تأجيل التبرع مؤقتاً لضمان سلامتك الصحية.';
 
   @override
   String get optional_note_label => 'ملاحظة (اختياري)';
@@ -344,7 +380,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cancellation_heading => 'الإلغاء';
 
   @override
-  String get cancellation_description => 'نفهم أن الخطط قد تتغير. يرجى إخبارنا بسبب الحاجة لإلغاء طلب التبرع هذا.';
+  String get cancellation_description =>
+      'نفهم أن الخطط قد تتغير. يرجى إخبارنا بسبب الحاجة لإلغاء طلب التبرع هذا.';
 
   @override
   String get blood_type_label => 'فصيلة الدم';
@@ -377,13 +414,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get request_expires_in_heading => 'ينتهي الطلب بعد';
 
   @override
-  String get request_expired_message => 'لقد انتهت صلاحية الطلب.\nيرجى البحث عن طلبات جديدة.';
+  String get request_expired_message =>
+      'لقد انتهت صلاحية الطلب.\nيرجى البحث عن طلبات جديدة.';
 
   @override
-  String get arrive_before_timer_message => 'يرجى الحضور قبل انتهاء الوقت\nللتأكد من معالجة تبرعك.';
+  String get arrive_before_timer_message =>
+      'يرجى الحضور قبل انتهاء الوقت\nللتأكد من معالجة تبرعك.';
 
   @override
-  String get help_support_text => 'هل تحتاج إلى مساعدة؟ استخدم زر الاتصال\nأعلاه أو ';
+  String get help_support_text =>
+      'هل تحتاج إلى مساعدة؟ استخدم زر الاتصال\nأعلاه أو ';
 
   @override
   String get view_guidelines_link => 'اعرض إرشادات التبرع';
@@ -416,7 +456,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get date_of_birth_placeholder => 'اختر تاريخ الميلاد';
 
   @override
-  String get cancellation_impact_message => 'قد يؤثر إلغاء هذا الطلب على درجة موثوقيتك كمتبرع.\nيساعد الالتزام بالتبرع المستمر المستشفيات على التخطيط للإجراءات المنقذة للحياة بشكل أكثر فعالية.';
+  String get cancellation_impact_message =>
+      'قد يؤثر إلغاء هذا الطلب على درجة موثوقيتك كمتبرع.\nيساعد الالتزام بالتبرع المستمر المستشفيات على التخطيط للإجراءات المنقذة للحياة بشكل أكثر فعالية.';
 
   @override
   String get impact_on_reliability => 'التأثير على الموثوقية';
@@ -517,7 +558,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get days_label => 'يوم';
 
   @override
-  String get cooldown_recovery_message => 'بروتوكول التعافي نشط. استمر في شرب الماء.';
+  String get cooldown_recovery_message =>
+      'بروتوكول التعافي نشط. استمر في شرب الماء.';
 
   @override
   String get retry => 'إعادة المحاولة';

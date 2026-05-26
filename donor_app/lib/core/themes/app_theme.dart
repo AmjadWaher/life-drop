@@ -17,7 +17,7 @@ ThemeData lightTheme() {
       ),
       prefixIconConstraints: BoxConstraints(
         maxHeight: 40.h,
-        maxWidth: 90.w,
+        maxWidth: 100.w,
         minHeight: 16.h,
         minWidth: 16.w,
       ),
@@ -49,7 +49,7 @@ ThemeData darkTheme() {
       ),
       prefixIconConstraints: BoxConstraints(
         maxHeight: 40.h,
-        maxWidth: 90.w,
+        maxWidth: 100.w,
         minHeight: 16.h,
         minWidth: 16.w,
       ),
