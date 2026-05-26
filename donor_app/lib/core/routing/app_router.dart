@@ -13,6 +13,7 @@ import 'package:donor_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/register_screen.dart';
 import 'package:donor_app/features/auth/presentation/screens/reset_password_screen.dart';
+import 'package:donor_app/features/disconnected/presentation/screens/disconnected_screen.dart';
 import 'package:donor_app/features/donation_request/presentation/logic/donation_request_cubit.dart';
 import 'package:donor_app/features/donation_request/presentation/screens/request_accepted_screen.dart';
 import 'package:donor_app/features/donation_request/presentation/screens/request_details_screen.dart';
@@ -34,6 +35,7 @@ import 'package:donor_app/features/requests/presentation/logic/cancel_donation/c
 import 'package:donor_app/features/requests/presentation/logic/cancellation_reasons/cancellation_reasons_cubit.dart';
 import 'package:donor_app/features/requests/presentation/screens/cancel_donation_screen.dart';
 import 'package:donor_app/features/profile/presentation/screens/account_settings_screen.dart';
+import 'package:donor_app/features/splash/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,6 +43,12 @@ class AppRouter {
   Route generateRoute(RouteSettings setting) {
     final args = setting.arguments;
     switch (setting.name) {
+      case Routes.splash:
+        return MaterialPageRoute(builder: (context) => const SplashScreen());
+      case Routes.disconnected:
+        return MaterialPageRoute(
+          builder: (context) => const DisconnectedScreen(),
+        );
       case Routes.onboarding:
         return MaterialPageRoute(builder: (context) => const OnboardingView());
       case Routes.login:

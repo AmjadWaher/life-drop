@@ -1,5 +1,6 @@
 import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
+import 'package:donor_app/core/helpers/internet_connection_service.dart';
 import 'package:donor_app/core/helpers/location_helper.dart';
 import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
@@ -20,7 +21,26 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final InternetConnectionService _internetConnectionService =
+      const InternetConnectionService();
   double value = 0.0;
+
+  Future<void> _prepareStartup() async {
+    requestLocationPermission();
+
+    final hasConnection = await _internetConnectionService.hasConnection();
+
+    if (!mounted) return;
+
+    if (!hasConnection) {
+      await _internetConnectionService.waitForConnection();
+    }
+
+    if (!mounted) return;
+
+    _startLoading();
+  }
+
   void _startLoading() async {
     for (int i = 1; i <= 100; i++) {
       await Future.delayed(const Duration(milliseconds: 20));
@@ -51,8 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    requestLocationPermission();
-    _startLoading();
+    _prepareStartup();
   }
 
   @override

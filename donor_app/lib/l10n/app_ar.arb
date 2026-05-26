@@ -187,5 +187,7 @@
     "urgent_notifications": "الإشعارات العاجلة",
     "normal_notifications": "الإشعارات العادية",
     "profile_updated_message": "تم تحديث الملف الشخصي بنجاح.",
+    "no_internet_connection_title": "لا يوجد اتصال بالإنترنت",
+    "no_internet_connection_message": "يرجى التحقق من اتصالك والمحاولة مرة أخرى.",
     "available_for_donation": "متاح للتبرع"
 }
