@@ -12,12 +12,14 @@ class RequestCardsList extends StatelessWidget {
     super.key,
     required this.requests,
     this.maxVisibleRequests,
+    required this.canDonate,
     this.canScroll = false,
     this.activeDonationCubit,
   });
   final List<DonationRequestEntity> requests;
   final int? maxVisibleRequests;
   final bool canScroll;
+  final bool canDonate;
   final ActiveDonationCubit? activeDonationCubit;
 
   @override
@@ -54,6 +56,7 @@ class RequestCardsList extends StatelessWidget {
                     Routes.requestDetails,
                     arguments: {
                       'requestId': request.requestId,
+                      'canDonate': canDonate,
                       'activeDonationCubit': activeDonationCubit,
                     },
                   );
@@ -69,7 +72,10 @@ class RequestCardsList extends StatelessWidget {
               isLoading: false,
               onPressed: () => context.pushNamed(
                 Routes.requests,
-                arguments: {'activeDonationCubit': activeDonationCubit},
+                arguments: {
+                  'activeDonationCubit': activeDonationCubit,
+                  'canDonate': canDonate,
+                },
               ),
               buttonText: context.localizations.view_all_requests,
               textStyle: context.textStyles.font16WhiteBold,

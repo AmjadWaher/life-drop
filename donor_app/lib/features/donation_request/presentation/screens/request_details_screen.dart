@@ -20,11 +20,13 @@ class RequestDetailsScreen extends StatelessWidget with SnackBarMixin {
   const RequestDetailsScreen({
     super.key,
     required this.requestId,
+    required this.canDonate,
     this.activeDonationCubit,
   });
 
   final String requestId;
   final ActiveDonationCubit? activeDonationCubit;
+  final bool canDonate;
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +123,7 @@ class RequestDetailsScreen extends StatelessWidget with SnackBarMixin {
           hospitalName: request.hospitalName,
           bloodType: request.requiredBloodType.label,
         ),
-        if (request.canAccept) ...[
+        if (request.canAccept && canDonate) ...[
           verticalSpace(15),
           // TODO:: handle it
           const DonationProgressCard(confirmedDonors: 2, totalDonors: 5),
@@ -131,7 +133,7 @@ class RequestDetailsScreen extends StatelessWidget with SnackBarMixin {
           lat: request.hospitalLatitude,
           lng: request.hospitalLongitude,
         ),
-        if (request.canAccept) ...[
+        if (request.canAccept && canDonate) ...[
           verticalSpace(20),
           AppTextButton(
             buttonText: context.localizations.accept_request,

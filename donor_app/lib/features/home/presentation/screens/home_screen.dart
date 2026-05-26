@@ -83,6 +83,7 @@ class HomeScreen extends StatelessWidget {
                 RequestCardsList(
                   requests: data.activeRequests,
                   maxVisibleRequests: 5,
+                  canDonate: data.canDonate,
                   activeDonationCubit: context.read<ActiveDonationCubit>(),
                 ),
                 verticalSpace(20),

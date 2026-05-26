@@ -16,6 +16,8 @@ class HomeDataEntity extends Equatable {
     required this.activeRequests,
   });
 
+  bool get canDonate => remainingDays == 0;
+
   factory HomeDataEntity.placeHolder() => HomeDataEntity(
     username: 'placeholder',
     lastHospitalName: 'placeholder',
