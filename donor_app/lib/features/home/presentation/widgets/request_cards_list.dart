@@ -12,11 +12,13 @@ class RequestCardsList extends StatelessWidget {
     super.key,
     required this.requests,
     this.maxVisibleRequests,
+    required this.canDonate,
     this.canScroll = false,
     this.activeDonationCubit,
   });
   final List<DonationRequestEntity> requests;
   final int? maxVisibleRequests;
+  final bool canDonate;
   final bool canScroll;
   final ActiveDonationCubit? activeDonationCubit;
 

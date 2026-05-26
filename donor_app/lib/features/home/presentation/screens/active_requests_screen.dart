@@ -7,8 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ActiveRequestsScreen extends StatelessWidget {
-  const ActiveRequestsScreen({super.key, required this.requests});
+  const ActiveRequestsScreen({
+    super.key,
+    required this.requests,
+    required this.canDonate,
+  });
   final List<DonationRequestEntity> requests;
+  final bool canDonate;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,11 @@ class ActiveRequestsScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  child: RequestCardsList(requests: requests, canScroll: true),
+                  child: RequestCardsList(
+                    requests: requests,
+                    canScroll: true,
+                    canDonate: canDonate,
+                  ),
                 ),
               ),
             ),

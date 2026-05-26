@@ -117,11 +117,12 @@ class RequestDetailsScreen extends StatelessWidget with SnackBarMixin {
     return Column(
       children: [
         CriticalRequestBanner(
+          priority: request.urgency.name,
           requestHeadline: '${request.urgency.name} Blood Needed',
           hospitalName: request.hospitalName,
           bloodType: request.requiredBloodType.label,
         ),
-        if (request.canAccept) ...[
+        if (request.canAccept && canDonate) ...[
           verticalSpace(15),
           // TODO:: handle it
           const DonationProgressCard(confirmedDonors: 2, totalDonors: 5),
@@ -131,7 +132,7 @@ class RequestDetailsScreen extends StatelessWidget with SnackBarMixin {
           lat: request.hospitalLatitude,
           lng: request.hospitalLongitude,
         ),
-        if (request.canAccept) ...[
+        if (request.canAccept && canDonate) ...[
           verticalSpace(20),
           AppTextButton(
             buttonText: context.localizations.accept_request,
