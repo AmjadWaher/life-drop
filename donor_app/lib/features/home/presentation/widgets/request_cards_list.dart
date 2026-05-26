@@ -20,7 +20,6 @@ class RequestCardsList extends StatelessWidget {
   final int? maxVisibleRequests;
   final bool canDonate;
   final bool canScroll;
-  final bool canDonate;
   final ActiveDonationCubit? activeDonationCubit;
 
   @override
