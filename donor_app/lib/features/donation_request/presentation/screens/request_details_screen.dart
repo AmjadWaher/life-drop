@@ -119,6 +119,7 @@ class RequestDetailsScreen extends StatelessWidget with SnackBarMixin {
     return Column(
       children: [
         CriticalRequestBanner(
+          priority: request.urgency.name,
           requestHeadline: '${request.urgency.name} Blood Needed',
           hospitalName: request.hospitalName,
           bloodType: request.requiredBloodType.label,

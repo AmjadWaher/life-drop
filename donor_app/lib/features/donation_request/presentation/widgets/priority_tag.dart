@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PriorityTag extends StatelessWidget {
-  const PriorityTag({super.key});
+  const PriorityTag({super.key, required this.priority});
+  final String priority;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class PriorityTag extends StatelessWidget {
       ),
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
       child: Text(
-        'CRITICAL',
+        priority,
         style: context.textStyles.font12PrimaryBold.copyWith(
           letterSpacing: 0.6,
         ),

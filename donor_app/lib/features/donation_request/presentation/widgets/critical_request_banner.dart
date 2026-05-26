@@ -8,10 +8,12 @@ class CriticalRequestBanner extends StatelessWidget {
   const CriticalRequestBanner({
     super.key,
     required this.requestHeadline,
+    required this.priority,
     required this.hospitalName,
     required this.bloodType,
   });
   final String requestHeadline;
+  final String priority;
   final String hospitalName;
   final String bloodType;
 
@@ -26,7 +28,7 @@ class CriticalRequestBanner extends StatelessWidget {
       child: Column(
         crossAxisAlignment: .start,
         children: [
-          const PriorityTag(),
+          PriorityTag(priority: priority),
           verticalSpace(5),
           Text(
             requestHeadline,

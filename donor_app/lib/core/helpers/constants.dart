@@ -10,4 +10,5 @@ class SharedPrefKeys {
   static const String biometricPromptShown = 'biometricPromptShown';
   static const String appLanguage = 'appLanguage';
   static const String themeMode = 'themeMode';
+  static const String canDonate = 'canDonate';
 }
