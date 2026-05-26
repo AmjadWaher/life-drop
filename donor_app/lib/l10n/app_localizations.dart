@@ -1226,6 +1226,18 @@ abstract class AppLocalizations {
   /// **'Profile updated successfully.'**
   String get profile_updated_message;
 
+  /// No description provided for @no_internet_connection_title.
+  ///
+  /// In en, this message translates to:
+  /// **'No Internet Connection'**
+  String get no_internet_connection_title;
+
+  /// No description provided for @no_internet_connection_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check your connection and try again.'**
+  String get no_internet_connection_message;
+
   /// No description provided for @available_for_donation.
   ///
   /// In en, this message translates to:

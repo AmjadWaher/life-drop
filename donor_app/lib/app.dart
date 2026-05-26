@@ -5,6 +5,7 @@ import 'package:donor_app/core/logic/theme/theme_cubit.dart';
 import 'package:donor_app/core/logic/theme/theme_state.dart';
 import 'package:donor_app/core/routing/app_router.dart';
 import 'package:donor_app/core/themes/app_theme.dart';
+import 'package:donor_app/core/widgets/internet_connection_listener.dart';
 import 'package:donor_app/features/splash/presentation/screens/splash_screen.dart';
 import 'package:donor_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,11 @@ class App extends StatelessWidget {
                       GlobalWidgetsLocalizations.delegate,
                       GlobalCupertinoLocalizations.delegate,
                     ],
+                    builder: (context, child) {
+                      return InternetConnectionListener(
+                        child: child ?? const SizedBox.shrink(),
+                      );
+                    },
                     debugShowCheckedModeBanner: false,
                     home: const SplashScreen(),
                   );

@@ -613,5 +613,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_updated_message => 'Profile updated successfully.';
 
   @override
+  String get no_internet_connection_title => 'No Internet Connection';
+
+  @override
+  String get no_internet_connection_message =>
+      'Please check your connection and try again.';
+
+  @override
   String get available_for_donation => 'Available for Donation';
 }

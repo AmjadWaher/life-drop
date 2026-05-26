@@ -607,5 +607,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile_updated_message => 'تم تحديث الملف الشخصي بنجاح.';
 
   @override
+  String get no_internet_connection_title => 'لا يوجد اتصال بالإنترنت';
+
+  @override
+  String get no_internet_connection_message =>
+      'يرجى التحقق من اتصالك والمحاولة مرة أخرى.';
+
+  @override
   String get available_for_donation => 'متاح للتبرع';
 }
