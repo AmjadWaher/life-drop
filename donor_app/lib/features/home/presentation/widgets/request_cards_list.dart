@@ -4,6 +4,7 @@ import 'package:donor_app/core/routing/routes.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
 import 'package:donor_app/features/home/domain/entities/donation_request_entity.dart';
 import 'package:donor_app/features/home/presentation/widgets/donation_request_card.dart';
+import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:flutter/material.dart';
 
 class RequestCardsList extends StatelessWidget {
@@ -13,11 +14,13 @@ class RequestCardsList extends StatelessWidget {
     this.maxVisibleRequests,
     required this.canDonate,
     this.canScroll = false,
+    this.activeDonationCubit,
   });
   final List<DonationRequestEntity> requests;
   final int? maxVisibleRequests;
   final bool canDonate;
   final bool canScroll;
+  final ActiveDonationCubit? activeDonationCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +50,13 @@ class RequestCardsList extends StatelessWidget {
                 bloodType: request.bloodType,
                 urgencyStatus: request.urgency.name.toUpperCase(),
                 hospitalName: request.hospitalName,
-                isUrgent: request.isUrgent,
+                isCritical: request.isCritical,
                 onPressed: () {
                   context.pushNamed(
                     Routes.requestDetails,
                     arguments: {
                       'requestId': request.requestId,
-                      'canDonate': canDonate,
+                      'activeDonationCubit': activeDonationCubit,
                     },
                   );
                 },
@@ -68,7 +71,7 @@ class RequestCardsList extends StatelessWidget {
               isLoading: false,
               onPressed: () => context.pushNamed(
                 Routes.requests,
-                arguments: {'requests': requests, 'canDonate': canDonate},
+                arguments: {'activeDonationCubit': activeDonationCubit},
               ),
               buttonText: context.localizations.view_all_requests,
               textStyle: context.textStyles.font16WhiteBold,

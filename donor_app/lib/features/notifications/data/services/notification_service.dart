@@ -65,6 +65,10 @@ class NotificationService {
     }
 
     if (onTokenRefresh != null) {
+      final currentToken = await getDeviceToken();
+      if (currentToken != null) {
+        await onTokenRefresh(currentToken);
+      }
       this.onTokenRefresh(onTokenRefresh);
     }
   }
@@ -135,8 +139,13 @@ class NotificationService {
     );
   }
 
-  void onTokenRefresh(void Function(String) onNewToken) {
-    _messaging.onTokenRefresh.listen(onNewToken);
+  void onTokenRefresh(void Function(String) onNewToken) async {
+    log('Listening for token refresh...');
+    log('Current FCM Token: ${await getDeviceToken()}');
+    _messaging.onTokenRefresh.listen((event) {
+      log('New FCM Token: $event');
+      onNewToken(event);
+    });
   }
 
   void _openRequestDetails(String requestId) {

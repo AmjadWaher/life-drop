@@ -45,13 +45,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboarding_title_3_part_2 => '\nNotifications';
 
   @override
-  String get onboarding_subtitle_1 => 'Join a global network of altruistic heroes dedicated `to providing life-saving blood donations.';
+  String get onboarding_subtitle_1 =>
+      'Join a global network of altruistic heroes dedicated `to providing life-saving blood donations.';
 
   @override
-  String get onboarding_subtitle_2 => 'Every donation is clinically verified and tracked from your arm to the patient in need.';
+  String get onboarding_subtitle_2 =>
+      'Every donation is clinically verified and tracked from your arm to the patient in need.';
 
   @override
-  String get onboarding_subtitle_3 => 'Receive instant alerts when your specific blood type is needed urgently in nearby hospitals.';
+  String get onboarding_subtitle_3 =>
+      'Receive instant alerts when your specific blood type is needed urgently in nearby hospitals.';
 
   @override
   String get next => 'Next';
@@ -108,7 +111,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get already_have_an_account => 'Already have an account?';
 
   @override
-  String get forgot_password_subtitle => 'Enter your registered email or phone number toreceive a verification code.';
+  String get forgot_password_subtitle =>
+      'Enter your registered email or phone number toreceive a verification code.';
 
   @override
   String get back_to_login => 'Back to Login';
@@ -120,10 +124,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get otp_verification => 'OTP Verification';
 
   @override
-  String get otp_from_forgot_password_subtitle => 'We\'ve sent a 6-digit code to your email. Enter it below to continue.';
+  String get otp_from_forgot_password_subtitle =>
+      'We\'ve sent a 6-digit code to your email. Enter it below to continue.';
 
   @override
-  String get otp_from_register_subtitle => 'We\'ve sent a 6-digit code to your email. Enter it below to create an account.';
+  String get otp_from_register_subtitle =>
+      'We\'ve sent a 6-digit code to your email. Enter it below to create an account.';
 
   @override
   String get verify_continue => 'Verify & Continue';
@@ -132,7 +138,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reset_password => 'Reset Password';
 
   @override
-  String get reset_subtitle => 'Ensure your new password is at least 8 characters long with Uppercase, Lowercase, Digits and symbols.';
+  String get reset_subtitle =>
+      'Ensure your new password is at least 8 characters long with Uppercase, Lowercase, Digits and symbols.';
 
   @override
   String get update_password => 'Update Password';
@@ -153,7 +160,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quick_login => 'Quick Login';
 
   @override
-  String get enable_biometric_login_message => 'Use your fingerprint for faster and secure login next time';
+  String get enable_biometric_login_message =>
+      'Use your fingerprint for faster and secure login next time';
 
   @override
   String get accounts => 'Accounts';
@@ -162,7 +170,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authenticate_to_login => 'Authenticate to Login';
 
   @override
-  String get use_fingerprint_for_quick_secure_login => 'Use your fingerprint to login quickly and securely';
+  String get use_fingerprint_for_quick_secure_login =>
+      'Use your fingerprint to login quickly and securely';
 
   @override
   String get enable => 'Enable';
@@ -199,7 +208,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get view_all_requests => 'View All Requests';
 
   @override
-  String get no_active_requests_found => 'No active donation requests right now.';
+  String get no_active_requests_found =>
+      'No active donation requests right now.';
+
+  @override
+  String get search_requests_hint => 'Search requests';
+
+  @override
+  String get all_filter => 'All';
+
+  @override
+  String get normal_filter => 'Normal';
+
+  @override
+  String get urgent_filter => 'Urgent';
+
+  @override
+  String get critical_filter => 'Critical';
+
+  @override
+  String all_requests_count(Object count) {
+    return '$count requests';
+  }
 
   @override
   String get urgent_priority => 'URGENT PRIORITY';
@@ -230,7 +260,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get you_are_a_lifesaver => 'You\'re a lifesaver!';
 
   @override
-  String get request_accepted_hospital_waiting => 'Your request acceptance is confirmed.\nA hospital unit is expecting your arrival.';
+  String get request_accepted_hospital_waiting =>
+      'Your request acceptance is confirmed.\nA hospital unit is expecting your arrival.';
 
   @override
   String get hospital_location => 'Hospital Location';
@@ -263,13 +294,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get email_required => 'Please enter a valid email address.';
 
   @override
-  String get phone_required => 'Invalid phone number.\nMust start with 77, 78 and 79.';
+  String get phone_required =>
+      'Invalid phone number.\nMust start with 77, 78 and 79.';
 
   @override
-  String get phone_number_digits_only => 'Phone number must contain digits only.';
+  String get phone_number_digits_only =>
+      'Phone number must contain digits only.';
 
   @override
-  String get password_required => 'Password must be more than 8 chars, include uppercase and lowercase letters, number, symbol, no spaces.';
+  String get password_required =>
+      'Password must be more than 8 chars, include uppercase and lowercase letters, number, symbol, no spaces.';
 
   @override
   String get passwords_do_not_match => 'Passwords do not match.';
@@ -299,16 +333,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resend_code_message => 'Verification code has been sent again.';
 
   @override
-  String get account_acreated_message => 'Account has been created successfully.';
+  String get account_acreated_message =>
+      'Account has been created successfully.';
 
   @override
-  String get verification_code_sent => 'Verification code sent successfully.\nPlease check your email to continue.';
+  String get verification_code_sent =>
+      'Verification code sent successfully.\nPlease check your email to continue.';
 
   @override
   String get password_updated_message => 'Password updated successfully.';
 
   @override
-  String get donation_cancelled_success => 'The donation was successfully cancelled.';
+  String get donation_cancelled_success =>
+      'The donation was successfully cancelled.';
 
   @override
   String get no_active_donation_found => 'Not Found Active Donation Now.';
@@ -317,7 +354,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get go_back_label => 'Go Back';
 
   @override
-  String get select_cancellation_reason_title => 'Select Reason for Cancellation';
+  String get select_cancellation_reason_title =>
+      'Select Reason for Cancellation';
 
   @override
   String get select_reason_hint => 'Select a reason';
@@ -326,7 +364,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reason_required_error => 'Must select reason to cancel donation';
 
   @override
-  String get cancellation_health_warning => '* Note: For health-related cancellations, you may be temporarily deferred from donating to ensure your own safety.';
+  String get cancellation_health_warning =>
+      '* Note: For health-related cancellations, you may be temporarily deferred from donating to ensure your own safety.';
 
   @override
   String get optional_note_label => 'Note (optionally)';
@@ -344,7 +383,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancellation_heading => 'Cancellation';
 
   @override
-  String get cancellation_description => 'We understand that plans change. Please let us know why you need to cancel this donation request.';
+  String get cancellation_description =>
+      'We understand that plans change. Please let us know why you need to cancel this donation request.';
 
   @override
   String get blood_type_label => 'BLOOD TYPE';
@@ -377,13 +417,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get request_expires_in_heading => 'REQUEST EXPIRES IN';
 
   @override
-  String get request_expired_message => 'The request has expired.\nPlease check for new requests.';
+  String get request_expired_message =>
+      'The request has expired.\nPlease check for new requests.';
 
   @override
-  String get arrive_before_timer_message => 'Please arrive before the timer reaches zero to\nensure your donation is processed.';
+  String get arrive_before_timer_message =>
+      'Please arrive before the timer reaches zero to\nensure your donation is processed.';
 
   @override
-  String get help_support_text => 'Need assistance? Use the contact button\nabove or ';
+  String get help_support_text =>
+      'Need assistance? Use the contact button\nabove or ';
 
   @override
   String get view_guidelines_link => 'view donation guidelines';
@@ -416,7 +459,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get date_of_birth_placeholder => 'Select Date of Birth';
 
   @override
-  String get cancellation_impact_message => 'Canceling this request may affect your donor reliability score.\nConsistent donations help hospitals plan life-saving procedures more effectively.';
+  String get cancellation_impact_message =>
+      'Canceling this request may affect your donor reliability score.\nConsistent donations help hospitals plan life-saving procedures more effectively.';
 
   @override
   String get impact_on_reliability => 'Impact on Reliability';
@@ -517,7 +561,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get days_label => 'Days';
 
   @override
-  String get cooldown_recovery_message => 'Recovery protocol active. Keep staying hydrated.';
+  String get cooldown_recovery_message =>
+      'Recovery protocol active. Keep staying hydrated.';
 
   @override
   String get retry => 'Retry';
@@ -532,19 +577,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get theme_system_default => 'System Default';
 
   @override
-  String get theme_system_description => 'Automatically sync with your device settings.';
+  String get theme_system_description =>
+      'Automatically sync with your device settings.';
 
   @override
   String get theme_light_mode => 'Light Mode';
 
   @override
-  String get theme_light_description => 'Optimal for high-clarity clinical environments.';
+  String get theme_light_description =>
+      'Optimal for high-clarity clinical environments.';
 
   @override
   String get theme_dark_mode => 'Dark Mode';
 
   @override
-  String get theme_dark_description => 'Reduced glare for comfortable nighttime use.';
+  String get theme_dark_description =>
+      'Reduced glare for comfortable nighttime use.';
 
   @override
   String get edit_profile_title => 'Edit Profile';

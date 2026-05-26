@@ -1,6 +1,7 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/widgets/app_images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnboardingImage extends StatelessWidget {
   const OnboardingImage({super.key, required this.image});
@@ -11,8 +12,8 @@ class OnboardingImage extends StatelessWidget {
       alignment: AlignmentGeometry.center,
       children: [
         Container(
-          width: 260,
-          height: 260,
+          width: 260.w,
+          height: 260.h,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             boxShadow: [

@@ -11,6 +11,7 @@ import 'package:donor_app/features/home/presentation/widgets/donation_summary.da
 import 'package:donor_app/features/home/presentation/widgets/greeting_section.dart';
 import 'package:donor_app/features/home/presentation/widgets/request_cards_list.dart';
 import 'package:donor_app/features/home/presentation/widgets/requests_section.dart';
+import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -56,6 +57,7 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.only(left: 24.w, right: 24.w),
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: .start,
               children: [
                 AppHeader(
                   icon: const AppImages(
@@ -82,6 +84,7 @@ class HomeScreen extends StatelessWidget {
                   canDonate: data.canDonate,
                   requests: data.activeRequests,
                   maxVisibleRequests: 5,
+                  activeDonationCubit: context.read<ActiveDonationCubit>(),
                 ),
                 verticalSpace(20),
               ],

@@ -16,13 +16,13 @@ class DonationRequestCard extends StatelessWidget {
     required this.hospitalName,
     required this.onPressed,
     this.buttonStyle,
-    this.isUrgent = true,
+    this.isCritical = true,
   });
   final BloodType bloodType;
   final String urgencyStatus;
   final String hospitalName;
   final TextStyle? buttonStyle;
-  final bool isUrgent;
+  final bool isCritical;
   final void Function() onPressed;
 
   @override
@@ -38,11 +38,11 @@ class DonationRequestCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              BloodTypeBadge(bloodType: bloodType.label, isUrgent: isUrgent),
+              BloodTypeBadge(bloodType: bloodType.label, isUrgent: isCritical),
               const Spacer(),
               UrgencyIndicator(
                 urgencyStatus: urgencyStatus.toUpperCase(),
-                statusStyle: isUrgent
+                statusStyle: isCritical
                     ? context.textStyles.font10PrimaryBold.copyWith(
                         letterSpacing: 0.5,
                       )
@@ -58,8 +58,8 @@ class DonationRequestCard extends StatelessWidget {
           AppElevatedButton(
             isLoading: false,
             onPressed: onPressed,
-            style: isUrgent ? null : context.textStyles.font16SecondaryBold,
-            buttonColors: isUrgent ? null : context.colors.tertiary,
+            style: isCritical ? null : context.textStyles.font16SecondaryBold,
+            buttonColors: isCritical ? null : context.colors.tertiary,
             title: context.localizations.response_now_button,
           ),
         ],
