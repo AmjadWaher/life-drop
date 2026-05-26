@@ -152,7 +152,7 @@ class NotificationService {
     void open() {
       navigatorKey.currentState?.pushNamed(
         Routes.requestDetails,
-        arguments: {'requestId': requestId},
+        arguments: {'requestId': requestId, 'canDonate': true},
       );
     }
 
@@ -173,7 +173,7 @@ class NotificationService {
     void openRequestDetails() {
       navigatorKey.currentState?.pushNamed(
         Routes.requestDetails,
-        arguments: {'requestId': requestId},
+        arguments: {'requestId': requestId, 'canDonate': true},
       );
     }
 

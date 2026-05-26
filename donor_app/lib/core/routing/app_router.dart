@@ -109,15 +109,16 @@ class AppRouter {
       case Routes.requestDetails:
         return MaterialPageRoute(
           builder: (context) {
-            final detailsArgs = args as Map<String, dynamic>;
             return BlocProvider(
               create: (context) =>
                   getIt<DonationRequestCubit>()
-                    ..getRequestDetails(detailsArgs['requestId'] as String),
+                    ..getRequestDetails((args)['requestId'] as String),
               child: RequestDetailsScreen(
-                requestId: detailsArgs['requestId'] as String,
+                requestId:
+                    (args as Map<String, dynamic>)['requestId'] as String,
+                canDonate: args['canDonate'] as bool,
                 activeDonationCubit:
-                    detailsArgs['activeDonationCubit'] as ActiveDonationCubit?,
+                    args['activeDonationCubit'] as ActiveDonationCubit?,
               ),
             );
           },
@@ -137,13 +138,13 @@ class AppRouter {
       case Routes.requests:
         return MaterialPageRoute(
           builder: (context) {
-            final requestsArgs = args as Map<String, dynamic>?;
             return BlocProvider(
               create: (context) => getIt<AllRequestsCubit>()..loadRequests(),
               child: AllRequestsScreen(
                 activeDonationCubit:
-                    requestsArgs?['activeDonationCubit']
+                    (args as Map<String, dynamic>)['activeDonationCubit']
                         as ActiveDonationCubit?,
+                canDonate: args['canDonate'] as bool,
               ),
             );
           },

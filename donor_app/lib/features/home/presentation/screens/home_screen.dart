@@ -84,6 +84,7 @@ class HomeScreen extends StatelessWidget {
                   canDonate: data.canDonate,
                   requests: data.activeRequests,
                   maxVisibleRequests: 5,
+                  canDonate: data.canDonate,
                   activeDonationCubit: context.read<ActiveDonationCubit>(),
                 ),
                 verticalSpace(20),

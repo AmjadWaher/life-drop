@@ -3,7 +3,6 @@ import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/resources/image_paths.dart';
 import 'package:donor_app/core/widgets/app_images.dart';
 import 'package:donor_app/core/widgets/app_linear_progress.dart';
-import 'package:donor_app/core/widgets/box.dart';
 import 'package:donor_app/features/profile/domain/entities/cooldown_entity.dart';
 import 'package:donor_app/features/profile/presentation/logic/cooldown/cooldown_cubit.dart';
 import 'package:donor_app/features/profile/presentation/logic/cooldown/cooldown_state.dart';

@@ -16,9 +16,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class AllRequestsScreen extends StatefulWidget {
-  const AllRequestsScreen({super.key, this.activeDonationCubit});
+  const AllRequestsScreen({
+    super.key,
+    this.activeDonationCubit,
+    required this.canDonate,
+  });
 
   final ActiveDonationCubit? activeDonationCubit;
+  final bool canDonate;
 
   @override
   State<AllRequestsScreen> createState() => _AllRequestsScreenState();
@@ -88,6 +93,7 @@ class _AllRequestsScreenState extends State<AllRequestsScreen> {
                                 isLoadingMore: false,
                                 totalCount: 10,
                                 onNearBottom: () {},
+                                canDonate: false,
                                 activeDonationCubit: widget.activeDonationCubit,
                               ),
                             ),
@@ -97,6 +103,7 @@ class _AllRequestsScreenState extends State<AllRequestsScreen> {
                                       requests: page.data,
                                       isLoadingMore: isLoadingMore,
                                       totalCount: page.totalCount,
+                                      canDonate: widget.canDonate,
                                       onNearBottom: context
                                           .read<AllRequestsCubit>()
                                           .loadMore,

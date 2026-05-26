@@ -14,6 +14,7 @@ class AllRequestsContent extends StatelessWidget {
     required this.isLoadingMore,
     required this.totalCount,
     required this.onNearBottom,
+    required this.canDonate,
     this.activeDonationCubit,
   });
 
@@ -21,6 +22,7 @@ class AllRequestsContent extends StatelessWidget {
   final bool isLoadingMore;
   final int totalCount;
   final VoidCallback onNearBottom;
+  final bool canDonate;
   final ActiveDonationCubit? activeDonationCubit;
 
   @override
@@ -59,6 +61,7 @@ class AllRequestsContent extends StatelessWidget {
                     Routes.requestDetails,
                     arguments: {
                       'requestId': request.requestId,
+                      'canDonate': canDonate,
                       'activeDonationCubit': activeDonationCubit,
                     },
                   );

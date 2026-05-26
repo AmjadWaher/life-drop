@@ -20,11 +20,13 @@ class RequestDetailsScreen extends StatelessWidget with SnackBarMixin {
   const RequestDetailsScreen({
     super.key,
     required this.requestId,
+    required this.canDonate,
     this.activeDonationCubit,
   });
 
   final String requestId;
   final ActiveDonationCubit? activeDonationCubit;
+  final bool canDonate;
 
   @override
   Widget build(BuildContext context) {
