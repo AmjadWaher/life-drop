@@ -33,7 +33,7 @@ class IdentityInfoCard extends StatelessWidget {
               color: backgroundColor,
               shape: BoxShape.circle,
             ),
-            child: Center(child: Text(icon, style: iconColor)),
+            child: Center(child: Text(icon, style: iconColor, maxLines: 1)),
           ),
           verticalSpace(16),
           Text(
@@ -41,6 +41,7 @@ class IdentityInfoCard extends StatelessWidget {
             style: context.textStyles.font10SecondaryBold.copyWith(
               letterSpacing: 1.5,
             ),
+            textAlign: TextAlign.center,
           ),
         ],
       ),

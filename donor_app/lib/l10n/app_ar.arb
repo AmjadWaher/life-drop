@@ -189,5 +189,6 @@
     "profile_updated_message": "تم تحديث الملف الشخصي بنجاح.",
     "no_internet_connection_title": "لا يوجد اتصال بالإنترنت",
     "no_internet_connection_message": "يرجى التحقق من اتصالك والمحاولة مرة أخرى.",
-    "available_for_donation": "متاح للتبرع"
+    "available_for_donation": "متاح للتبرع",
+    "gamification_points": "نقاط التبرع"
 }

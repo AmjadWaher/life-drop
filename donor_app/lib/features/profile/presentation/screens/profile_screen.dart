@@ -59,7 +59,7 @@ class ProfileScreen extends StatelessWidget {
         const CooldownCard(),
         verticalSpace(24),
         IdentitySubGrid(
-          bloodType: user?.bloodType ?? BloodType.A_Negative,
+          points: user?.gamificationPoints ?? 0,
           totalDonations: user?.totalDonations ?? 0,
         ),
         verticalSpace(24),
