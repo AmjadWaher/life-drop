@@ -585,6 +585,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile_updated_message => 'تم تحديث الملف الشخصي بنجاح.';
 
   @override
+  String get ui_error_title => 'حدث خطأ في الشاشة';
+
+  @override
+  String get ui_error_message => 'واجه التطبيق مشكلة أثناء عرض هذه الصفحة. يمكنك العودة للبداية والمحاولة مرة أخرى.';
+
+  @override
+  String get ui_error_action => 'العودة للبداية';
+
+  @override
   String get no_internet_connection_title => 'لا يوجد اتصال بالإنترنت';
 
   @override

@@ -6,6 +6,7 @@ import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/routing/app_router.dart';
+import 'package:donor_app/core/widgets/ui_error_screen.dart';
 import 'package:donor_app/features/notifications/data/services/notification_service.dart';
 import 'package:donor_app/features/notifications/presentation/logic/device_token_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -47,6 +48,7 @@ void main(List<String> args) {
       FlutterError.onError = (details) {
         FirebaseCrashlytics.instance.recordFlutterError(details);
       };
+      ErrorWidget.builder = (details) => UiErrorScreen(details: details);
 
       PlatformDispatcher.instance.onError = (error, stack) {
         FirebaseCrashlytics.instance.recordError(error, stack);

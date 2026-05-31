@@ -585,6 +585,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_updated_message => 'Profile updated successfully.';
 
   @override
+  String get ui_error_title => 'Something went wrong';
+
+  @override
+  String get ui_error_message => 'The app had trouble showing this screen. You can go back to the start and try again.';
+
+  @override
+  String get ui_error_action => 'Back to start';
+
+  @override
   String get no_internet_connection_title => 'No Internet Connection';
 
   @override

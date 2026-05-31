@@ -1223,6 +1223,24 @@ abstract class AppLocalizations {
   /// **'Profile updated successfully.'**
   String get profile_updated_message;
 
+  /// No description provided for @ui_error_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get ui_error_title;
+
+  /// No description provided for @ui_error_message.
+  ///
+  /// In en, this message translates to:
+  /// **'The app had trouble showing this screen. You can go back to the start and try again.'**
+  String get ui_error_message;
+
+  /// No description provided for @ui_error_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to start'**
+  String get ui_error_action;
+
   /// No description provided for @no_internet_connection_title.
   ///
   /// In en, this message translates to:
