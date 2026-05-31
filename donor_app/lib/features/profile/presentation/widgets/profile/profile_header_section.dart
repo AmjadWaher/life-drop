@@ -1,7 +1,6 @@
 import 'package:donor_app/core/enums/blood_type.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/core/widgets/box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
