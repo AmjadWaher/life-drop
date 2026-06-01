@@ -81,6 +81,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen>
         _handleActiveDonationUpdated(event);
         _showMessage(null, event.message);
         break;
+      case RealtimeNotificationEvent():
+        _showMessage(event.title, event.body);
+        break;
       case ProfileUpdatedEvent():
         break;
       case RealtimeReconnectedEvent():

@@ -66,7 +66,7 @@ class ActiveDonationCubit extends Cubit<ActiveDonationState> {
   bool _isNoActiveDonationError(ApiErrorModel error) {
     final errors = error.errors?['errors'];
     final errorCodes = errors is List
-        ? errors.map((e) => e.toString()).toList()
+        ? errors.map((item) => item.toString()).toList()
         : <String>[];
 
     return error.code == 404 &&

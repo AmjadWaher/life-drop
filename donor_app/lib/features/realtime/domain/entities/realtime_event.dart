@@ -82,6 +82,23 @@ final class ActiveDonationUpdatedEvent extends RealtimeEvent {
   List<Object?> get props => [requestId, acceptanceId, status, message];
 }
 
+final class RealtimeNotificationEvent extends RealtimeEvent {
+  const RealtimeNotificationEvent({required this.title, required this.body});
+
+  factory RealtimeNotificationEvent.fromJson(Map<String, dynamic> json) {
+    return RealtimeNotificationEvent(
+      title: json['title'] as String? ?? '',
+      body: json['body'] as String? ?? '',
+    );
+  }
+
+  final String title;
+  final String body;
+
+  @override
+  List<Object?> get props => [title, body];
+}
+
 final class ProfileUpdatedEvent extends RealtimeEvent {
   const ProfileUpdatedEvent();
 }

@@ -44,13 +44,9 @@ class HomeScreen extends StatelessWidget {
             child: _buildHomeContent(context, HomeDataEntity.placeHolder()),
           ),
           success: (data) => _buildHomeContent(context, data),
-          error: (error) => Scaffold(
-            body: SafeArea(
-              child: ApiErrorScreen(
-                error: error,
-                onRetry: context.read<HomeCubit>().loadHome,
-              ),
-            ),
+          error: (error) => ApiErrorScreen(
+            error: error,
+            onRetry: context.read<HomeCubit>().loadHome,
           ),
           biometricPromptRequired: () => const SizedBox.shrink(),
         );

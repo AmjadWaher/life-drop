@@ -48,6 +48,7 @@ void main(List<String> args) {
         _firebaseMessagingBackgroundHandler,
       );
       await initDependencies();
+      _initializeNotificationHandlers();
       FlutterError.onError = (details) {
         FirebaseCrashlytics.instance.recordFlutterError(details);
       };
@@ -58,9 +59,6 @@ void main(List<String> args) {
         return true;
       };
       runApp(App(appRouter: AppRouter()));
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        unawaited(_initializeNotificationHandlers());
-      });
     },
     (error, stack) {
       FirebaseCrashlytics.instance.recordError(error, stack);
