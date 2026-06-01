@@ -63,12 +63,6 @@ class DonationsHubService {
       _eventsController.add(ActiveDonationUpdatedEvent.fromJson(data));
     });
 
-    connection.on('Notification', (arguments) {
-      final data = _firstJsonArgument(arguments);
-      if (data == null) return;
-      _eventsController.add(RealtimeNotificationEvent.fromJson(data));
-    });
-
     connection.on('ProfileUpdated', (arguments) async {
       await refreshGroups();
       _eventsController.add(const ProfileUpdatedEvent());

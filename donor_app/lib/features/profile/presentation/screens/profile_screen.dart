@@ -1,5 +1,6 @@
 import 'package:donor_app/core/enums/blood_type.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
+import 'package:donor_app/core/widgets/api_error_screen.dart';
 import 'package:donor_app/features/profile/domain/entities/user_entity.dart';
 import 'package:donor_app/features/profile/presentation/logic/profile/profile_cubit.dart';
 import 'package:donor_app/features/profile/presentation/logic/profile/profile_state.dart';
@@ -33,8 +34,10 @@ class ProfileScreen extends StatelessWidget {
                   success: (user) => _buildProfileContent(user),
                   updating: (user) => _buildProfileContent(user),
                   updateSuccess: (user, response) => _buildProfileContent(user),
-                  error: (error) =>
-                      Center(child: Text(error.getAllErrorMessages())),
+                  error: (error) => ApiErrorScreen(
+                    error: error,
+                    onRetry: context.read<ProfileCubit>().getUserProfile,
+                  ),
                 );
               },
             ),

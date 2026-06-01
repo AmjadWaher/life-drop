@@ -1,4 +1,5 @@
 import 'package:donor_app/core/enums/donation_status.dart';
+import 'package:donor_app/core/networking/api_error_model.dart';
 import 'package:donor_app/core/networking/api_result.dart';
 import 'package:donor_app/features/realtime/domain/entities/realtime_event.dart';
 import 'package:donor_app/features/requests/domain/repository/requests_repository.dart';
@@ -28,7 +29,14 @@ class ActiveDonationCubit extends Cubit<ActiveDonationState> {
           emit(ActiveDonationState.success(data));
         }
       },
-      failure: (error) => emit(ActiveDonationState.error(error)),
+      failure: (error) {
+        if (_isNoActiveDonationError(error)) {
+          emit(const ActiveDonationState.empty());
+          return;
+        }
+
+        emit(ActiveDonationState.error(error));
+      },
     );
   }
 
@@ -53,5 +61,16 @@ class ActiveDonationCubit extends Cubit<ActiveDonationState> {
 
     final donation = currentState.donation;
     emit(ActiveDonationState.success(donation.copyWithStatus(status)));
+  }
+
+  bool _isNoActiveDonationError(ApiErrorModel error) {
+    final errors = error.errors?['errors'];
+    final errorCodes = errors is List
+        ? errors.map((e) => e.toString()).toList()
+        : <String>[];
+
+    return error.code == 404 &&
+        (error.message == 'You do not have an active donation at the moment.' ||
+            errorCodes.contains('donation.no_active_donation'));
   }
 }

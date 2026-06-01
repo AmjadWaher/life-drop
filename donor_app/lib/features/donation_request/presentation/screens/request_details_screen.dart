@@ -2,6 +2,7 @@ import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/mixins/snack_bar_mixin.dart';
 import 'package:donor_app/core/routing/routes.dart';
+import 'package:donor_app/core/widgets/api_error_screen.dart';
 import 'package:donor_app/core/widgets/app_header.dart';
 import 'package:donor_app/core/widgets/app_text_button.dart';
 import 'package:donor_app/features/donation_request/domain/entities/request_details_entity.dart';
@@ -88,8 +89,12 @@ class RequestDetailsScreen extends StatelessWidget with SnackBarMixin {
                       ),
                       detailsSuccess: (request) =>
                           _buildRequestDetails(context, request),
-                      detailsError: (error) =>
-                          Center(child: Text(error.getAllErrorMessages())),
+                      detailsError: (error) => ApiErrorScreen(
+                        error: error,
+                        onRetry: () => context
+                            .read<DonationRequestCubit>()
+                            .getRequestDetails(requestId),
+                      ),
                       acceptLoading: (request) => _buildRequestDetails(
                         context,
                         request,

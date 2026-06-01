@@ -331,7 +331,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get donation_cancelled_success => 'The donation was successfully cancelled.';
 
   @override
-  String get no_active_donation_found => 'Not Found Active Donation Now.';
+  String get no_active_donation_found => 'No active donation right now.';
+
+  @override
+  String get active_donation_empty_message => 'When you accept a donation request, its hospital details, timer, and next steps will appear here.';
+
+  @override
+  String get active_donation_empty_action => 'Check again';
+
+  @override
+  String get api_error_title => 'Unable to load data';
+
+  @override
+  String get api_error_message => 'Something went wrong while loading this content. Please try again.';
 
   @override
   String get go_back_label => 'Go Back';

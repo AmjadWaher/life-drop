@@ -722,8 +722,32 @@ abstract class AppLocalizations {
   /// No description provided for @no_active_donation_found.
   ///
   /// In en, this message translates to:
-  /// **'Not Found Active Donation Now.'**
+  /// **'No active donation right now.'**
   String get no_active_donation_found;
+
+  /// No description provided for @active_donation_empty_message.
+  ///
+  /// In en, this message translates to:
+  /// **'When you accept a donation request, its hospital details, timer, and next steps will appear here.'**
+  String get active_donation_empty_message;
+
+  /// No description provided for @active_donation_empty_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Check again'**
+  String get active_donation_empty_action;
+
+  /// No description provided for @api_error_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load data'**
+  String get api_error_title;
+
+  /// No description provided for @api_error_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong while loading this content. Please try again.'**
+  String get api_error_message;
 
   /// No description provided for @go_back_label.
   ///

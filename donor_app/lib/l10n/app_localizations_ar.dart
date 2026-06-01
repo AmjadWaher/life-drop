@@ -331,7 +331,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get donation_cancelled_success => 'تم إلغاء التبرع بنجاح.';
 
   @override
-  String get no_active_donation_found => 'لا توجد طلبات تبرع نشطة حالياً.';
+  String get no_active_donation_found => 'لا يوجد تبرع نشط حالياً.';
+
+  @override
+  String get active_donation_empty_message => 'عند قبول طلب تبرع، ستظهر هنا تفاصيل المستشفى والمؤقت والخطوات التالية.';
+
+  @override
+  String get active_donation_empty_action => 'تحقق مرة أخرى';
+
+  @override
+  String get api_error_title => 'تعذر تحميل البيانات';
+
+  @override
+  String get api_error_message => 'حدثت مشكلة أثناء تحميل هذا المحتوى. يرجى المحاولة مرة أخرى.';
 
   @override
   String get go_back_label => 'العودة';
