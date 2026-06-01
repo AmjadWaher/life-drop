@@ -20,6 +20,24 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
 }
 
+Future<void> _initializeNotificationHandlers() async {
+  await getIt<NotificationService>().initializeHandlers(
+    onTokenRefresh: (token) async {
+      final accessToken = await SharedPrefHelper.getSecuredString(
+        SharedPrefKeys.accessToken,
+      );
+      final refreshToken = await SharedPrefHelper.getSecuredString(
+        SharedPrefKeys.refreshToken,
+      );
+      if (accessToken.isNotEmpty && refreshToken.isNotEmpty) {
+        await getIt<DeviceTokenCubit>().registerDeviceToken(
+          refreshedToken: token,
+        );
+      }
+    },
+  );
+}
+
 void main(List<String> args) {
   runZonedGuarded(
     () async {
@@ -30,21 +48,7 @@ void main(List<String> args) {
         _firebaseMessagingBackgroundHandler,
       );
       await initDependencies();
-      await getIt<NotificationService>().initializeHandlers(
-        onTokenRefresh: (token) async {
-          final accessToken = await SharedPrefHelper.getSecuredString(
-            SharedPrefKeys.accessToken,
-          );
-          final refreshToken = await SharedPrefHelper.getSecuredString(
-            SharedPrefKeys.refreshToken,
-          );
-          if (accessToken.isNotEmpty && refreshToken.isNotEmpty) {
-            await getIt<DeviceTokenCubit>().registerDeviceToken(
-              refreshedToken: token,
-            );
-          }
-        },
-      );
+      _initializeNotificationHandlers();
       FlutterError.onError = (details) {
         FirebaseCrashlytics.instance.recordFlutterError(details);
       };

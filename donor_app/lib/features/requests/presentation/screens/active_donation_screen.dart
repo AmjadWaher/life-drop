@@ -1,8 +1,9 @@
-import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
+import 'package:donor_app/core/widgets/api_error_screen.dart';
 import 'package:donor_app/features/requests/domain/entities/active_donation_entity.dart';
 import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_state.dart';
+import 'package:donor_app/features/requests/presentation/widgets/active_donation/active_donation_empty_state.dart';
 import 'package:donor_app/features/requests/presentation/widgets/active_donation/action_buttons_section.dart';
 import 'package:donor_app/features/requests/presentation/widgets/active_donation/expiration_countdown_card.dart';
 import 'package:donor_app/features/requests/presentation/widgets/active_donation/hospital_summary_card.dart';
@@ -21,33 +22,37 @@ class ActiveDonationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: 24.w,
-              right: 24.w,
-              top: 20.h,
-              bottom: 20.h,
-            ),
-            child: BlocBuilder<ActiveDonationCubit, ActiveDonationState>(
-              builder: (context, state) {
-                return state.when(
-                  initial: () => const SizedBox.shrink(),
-                  loading: () => Skeletonizer(
-                    enabled: true,
-                    child: _buildActiveDonaion(
-                      ActiveDonationEntity.placeholder(),
-                    ),
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: 24.w,
+            right: 24.w,
+            top: 20.h,
+            bottom: 20.h,
+          ),
+          child: BlocBuilder<ActiveDonationCubit, ActiveDonationState>(
+            builder: (context, state) {
+              return state.when(
+                initial: () => const SizedBox.shrink(),
+                loading: () => Skeletonizer(
+                  enabled: true,
+                  child: _buildActiveDonaion(
+                    ActiveDonationEntity.placeholder(),
                   ),
-                  success: (donation) => _buildActiveDonaion(donation),
-                  empty: () => Center(
-                    child: Text(context.localizations.no_active_donation_found),
-                  ),
-                  error: (error) =>
-                      Center(child: Text(error.getAllErrorMessages())),
-                );
-              },
-            ),
+                ),
+                success: (donation) => _buildActiveDonaion(donation),
+                empty: () => ActiveDonationEmptyState(
+                  onRefresh: context
+                      .read<ActiveDonationCubit>()
+                      .getCurrentActiveDonation,
+                ),
+                error: (error) => ApiErrorScreen(
+                  error: error,
+                  onRetry: context
+                      .read<ActiveDonationCubit>()
+                      .getCurrentActiveDonation,
+                ),
+              );
+            },
           ),
         ),
       ),
@@ -55,27 +60,29 @@ class ActiveDonationScreen extends StatelessWidget {
   }
 
   Widget _buildActiveDonaion(ActiveDonationEntity donation) {
-    return Column(
-      crossAxisAlignment: .start,
-      children: [
-        const StatusHeaderSection(),
-        verticalSpace(12),
-        MapBentoCard(
-          hospitalLat: donation.hospitalLatitude,
-          hospitalLng: donation.hospitalLongitude,
-        ),
-        verticalSpace(32),
-        ActionButtonsSection(
-          requestId: donation.requestId,
-          hospitalPhoneNumber: donation.hospitalPhoneNumber,
-        ),
-        verticalSpace(32),
-        ExpirationCountdownCard(acceptedAt: donation.acceptedAt),
-        verticalSpace(32),
-        HospitalSummaryCard(donation: donation),
-        verticalSpace(32),
-        const InstructionCard(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: .start,
+        children: [
+          const StatusHeaderSection(),
+          verticalSpace(12),
+          MapBentoCard(
+            hospitalLat: donation.hospitalLatitude,
+            hospitalLng: donation.hospitalLongitude,
+          ),
+          verticalSpace(32),
+          ActionButtonsSection(
+            requestId: donation.requestId,
+            hospitalPhoneNumber: donation.hospitalPhoneNumber,
+          ),
+          verticalSpace(32),
+          ExpirationCountdownCard(acceptedAt: donation.acceptedAt),
+          verticalSpace(32),
+          HospitalSummaryCard(donation: donation),
+          verticalSpace(32),
+          const InstructionCard(),
+        ],
+      ),
     );
   }
 }

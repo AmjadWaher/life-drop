@@ -2,12 +2,12 @@ import 'package:donor_app/core/enums/blood_type.dart';
 import 'package:donor_app/core/enums/urgency_status.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
+import 'package:donor_app/core/widgets/api_error_screen.dart';
 import 'package:donor_app/core/widgets/app_header.dart';
 import 'package:donor_app/features/all_requests/domain/entities/donation_request_feed_entity.dart';
 import 'package:donor_app/features/all_requests/presentation/logic/all_requests_cubit.dart';
 import 'package:donor_app/features/all_requests/presentation/logic/all_requests_state.dart';
 import 'package:donor_app/features/all_requests/presentation/widgets/all_requests_content.dart';
-import 'package:donor_app/features/all_requests/presentation/widgets/all_requests_error_state.dart';
 import 'package:donor_app/features/all_requests/presentation/widgets/all_requests_filters.dart';
 import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:flutter/material.dart';
@@ -118,8 +118,8 @@ class _AllRequestsScreenState extends State<AllRequestsScreen> {
                                     context.textStyles.font14TextPrimaryRegular,
                               ),
                             ),
-                            error: (error) => AllRequestsErrorState(
-                              message: error.getAllErrorMessages(),
+                            error: (error) => ApiErrorScreen(
+                              error: error,
                               onRetry: _applyFilters,
                             ),
                           );

@@ -1,6 +1,7 @@
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/resources/image_paths.dart';
+import 'package:donor_app/core/widgets/api_error_screen.dart';
 import 'package:donor_app/core/widgets/app_header.dart';
 import 'package:donor_app/core/widgets/app_images.dart';
 import 'package:donor_app/features/home/domain/entities/home_data_entity.dart';
@@ -43,7 +44,10 @@ class HomeScreen extends StatelessWidget {
             child: _buildHomeContent(context, HomeDataEntity.placeHolder()),
           ),
           success: (data) => _buildHomeContent(context, data),
-          error: (error) => Center(child: Text(error.getAllErrorMessages())),
+          error: (error) => ApiErrorScreen(
+            error: error,
+            onRetry: context.read<HomeCubit>().loadHome,
+          ),
           biometricPromptRequired: () => const SizedBox.shrink(),
         );
       },

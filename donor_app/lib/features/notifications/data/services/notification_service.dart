@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:app_settings/app_settings.dart';
@@ -67,7 +68,7 @@ class NotificationService {
     if (onTokenRefresh != null) {
       final currentToken = await getDeviceToken();
       if (currentToken != null) {
-        await onTokenRefresh(currentToken);
+        unawaited(onTokenRefresh(currentToken));
       }
       this.onTokenRefresh(onTokenRefresh);
     }
@@ -139,12 +140,12 @@ class NotificationService {
     );
   }
 
-  void onTokenRefresh(void Function(String) onNewToken) async {
+  void onTokenRefresh(FutureOr<void> Function(String) onNewToken) async {
     log('Listening for token refresh...');
     log('Current FCM Token: ${await getDeviceToken()}');
     _messaging.onTokenRefresh.listen((event) {
       log('New FCM Token: $event');
-      onNewToken(event);
+      unawaited(Future.sync(() => onNewToken(event)));
     });
   }
 

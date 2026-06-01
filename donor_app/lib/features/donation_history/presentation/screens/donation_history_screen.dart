@@ -2,7 +2,7 @@ import 'package:donor_app/core/enums/blood_type.dart';
 import 'package:donor_app/core/enums/donation_status.dart';
 import 'package:donor_app/core/helpers/extensions.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
-import 'package:donor_app/core/widgets/app_elevated_button.dart';
+import 'package:donor_app/core/widgets/api_error_screen.dart';
 import 'package:donor_app/features/donation_history/domain/entities/donation_history_entity.dart';
 import 'package:donor_app/features/donation_history/presentation/logic/donation_history_cubit.dart';
 import 'package:donor_app/features/donation_history/presentation/logic/donation_history_state.dart';
@@ -41,8 +41,8 @@ class DonationHistoryScreen extends StatelessWidget {
                   onNearBottom: context.read<DonationHistoryCubit>().loadMore,
                 ),
                 DonationHistoryEmpty() => const DonationHistoryEmptyState(),
-                DonationHistoryError() => _HistoryErrorState(
-                  message: state.error.getAllErrorMessages(),
+                DonationHistoryError() => ApiErrorScreen(
+                  error: state.error,
                   onRetry: context.read<DonationHistoryCubit>().loadHistory,
                 ),
               };
@@ -140,38 +140,6 @@ class _HistoryContent extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _HistoryErrorState extends StatelessWidget {
-  const _HistoryErrorState({required this.message, required this.onRetry});
-
-  final String message;
-  final VoidCallback onRetry;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              message,
-              textAlign: TextAlign.center,
-              style: context.textStyles.font14TextPrimaryRegular,
-            ),
-            verticalSpace(18),
-            AppElevatedButton(
-              isLoading: false,
-              onPressed: onRetry,
-              title: context.localizations.retry,
-            ),
-          ],
-        ),
       ),
     );
   }
