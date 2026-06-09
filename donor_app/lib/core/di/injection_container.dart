@@ -47,6 +47,7 @@ import 'package:donor_app/features/requests/domain/repository/requests_repositor
 import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/cancel_donation/cancel_donation_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/cancellation_reasons/cancellation_reasons_cubit.dart';
+import 'package:donor_app/features/requests/presentation/logic/certificate_download/certificate_download_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -199,6 +200,9 @@ Future<void> initDependencies() async {
   );
   getIt.registerFactory<CancellationReasonsCubit>(
     () => CancellationReasonsCubit(getIt<RequestsRepository>()),
+  );
+  getIt.registerFactory<CertificateDownloadCubit>(
+    () => CertificateDownloadCubit(getIt<RequestsRepository>()),
   );
 
   // --------------- Profile ---------------

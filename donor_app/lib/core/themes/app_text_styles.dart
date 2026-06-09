@@ -169,6 +169,11 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.regular,
     color: colors.textSecondary,
   );
+  TextStyle get font14TextSecondaryMedium => TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: colors.textSecondary,
+  );
   TextStyle get font14TextPlaceHolderRegular => TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.regular,

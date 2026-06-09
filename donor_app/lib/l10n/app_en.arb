@@ -197,5 +197,10 @@
     "no_internet_connection_title": "No Internet Connection",
     "no_internet_connection_message": "Please check your connection and try again.",
     "available_for_donation": "Available for Donation",
+    "donation_certificate_title": "Donation Certificate",
+    "donation_certificate_thank_you": "Thank you for completing your blood donation at {hospital}.",
+    "donation_certificate_downloaded": "Certificate downloaded",
+    "download_certificate_button": "Download Certificate",
+    "hospital_label": "Hospital",
     "gamification_points": "Gamification Points"
 }

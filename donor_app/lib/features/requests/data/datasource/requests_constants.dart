@@ -5,8 +5,13 @@ class RequestsConstants {
 
   static const String activeDonation =
       '${ApiConstants.donationRequests}/active';
+
   static String cancelDonationAcceptance(String requestId) =>
       '${ApiConstants.donationRequests}/$requestId/cancel-acceptance';
+
   static String reasonsCancellation =
       '${ApiConstants.referenceData}/cancellation-reasons';
+
+  static String donationCertificate(String requestId) =>
+      '${ApiConstants.baseUrl}/DonationRequests/$requestId/certificate';
 }

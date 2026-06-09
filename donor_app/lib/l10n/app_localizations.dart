@@ -1286,6 +1286,36 @@ abstract class AppLocalizations {
   /// **'Available for Donation'**
   String get available_for_donation;
 
+  /// No description provided for @donation_certificate_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation Certificate'**
+  String get donation_certificate_title;
+
+  /// No description provided for @donation_certificate_thank_you.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for completing your blood donation at {hospital}.'**
+  String donation_certificate_thank_you(Object hospital);
+
+  /// No description provided for @donation_certificate_downloaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificate downloaded'**
+  String get donation_certificate_downloaded;
+
+  /// No description provided for @download_certificate_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Download Certificate'**
+  String get download_certificate_button;
+
+  /// No description provided for @hospital_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Hospital'**
+  String get hospital_label;
+
   /// No description provided for @gamification_points.
   ///
   /// In en, this message translates to:

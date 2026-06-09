@@ -7,6 +7,7 @@ abstract class RequestsRepository {
   Future<ApiResult<ActiveDonationEntity?>> getCurrentActiveDonation();
   Future<ApiResult<List<DonationCancellationReasonsEntity>>>
   getDonationCancellationReasons();
+  Future<ApiResult<String>> downloadCertificate(String requestId);
   Future<ApiResult<void>> cancelDonationAcceptance(
     String requestId,
     CancelAcceptanceRequest request,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:donor_app/core/networking/api_response.dart';
 import 'package:donor_app/core/networking/api_result.dart';
@@ -6,6 +8,7 @@ import 'package:donor_app/features/requests/data/datasource/requests_constants.d
 import 'package:donor_app/features/requests/data/models/active_donation_model.dart';
 import 'package:donor_app/features/requests/data/models/donation_cancellation_reasons_model.dart';
 import 'package:donor_app/features/requests/data/requests/cancel_acceptance_request.dart';
+import 'package:path_provider/path_provider.dart';
 
 abstract class _RequestsRemoteDatasource {
   Future<ApiResult<ActiveDonationModel?>> getCurrentActiveDonation();
@@ -15,6 +18,7 @@ abstract class _RequestsRemoteDatasource {
     String requestId,
     CancelAcceptanceRequest request,
   );
+  Future<ApiResult<String>> downloadCertificate(String requestId);
 }
 
 class RequestsRemoteDatasourceImpl extends _RequestsRemoteDatasource
@@ -68,6 +72,23 @@ class RequestsRemoteDatasourceImpl extends _RequestsRemoteDatasource
           );
 
       return result.data;
+    });
+  }
+
+  @override
+  Future<ApiResult<String>> downloadCertificate(String requestId) {
+    return safeApiCall('downloadCertificate', () async {
+      final downloadsDir = Directory('/storage/emulated/0/Download');
+
+      final filePath =
+          '${downloadsDir.path}/donation-certificate-$requestId.pdf';
+
+      await _dio.download(
+        RequestsConstants.donationCertificate(requestId),
+        filePath,
+      );
+
+      return filePath;
     });
   }
 }

@@ -641,5 +641,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get available_for_donation => 'متاح للتبرع';
 
   @override
+  String get donation_certificate_title => 'شهادة التبرع';
+
+  @override
+  String donation_certificate_thank_you(Object hospital) {
+    return 'شكرًا لإكمال تبرعك بالدم في $hospital.';
+  }
+
+  @override
+  String get donation_certificate_downloaded => 'تم تنزيل الشهادة';
+
+  @override
+  String get download_certificate_button => 'تنزيل الشهادة';
+
+  @override
+  String get hospital_label => 'المستشفى';
+
+  @override
   String get gamification_points => 'نقاط التبرع';
 }

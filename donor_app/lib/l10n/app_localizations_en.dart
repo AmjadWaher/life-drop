@@ -647,5 +647,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get available_for_donation => 'Available for Donation';
 
   @override
+  String get donation_certificate_title => 'Donation Certificate';
+
+  @override
+  String donation_certificate_thank_you(Object hospital) {
+    return 'Thank you for completing your blood donation at $hospital.';
+  }
+
+  @override
+  String get donation_certificate_downloaded => 'Certificate downloaded';
+
+  @override
+  String get download_certificate_button => 'Download Certificate';
+
+  @override
+  String get hospital_label => 'Hospital';
+
+  @override
   String get gamification_points => 'Gamification Points';
 }

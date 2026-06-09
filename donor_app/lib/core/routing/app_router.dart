@@ -32,6 +32,7 @@ import 'package:donor_app/features/realtime/presentation/logic/realtime_cubit.da
 import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/cancel_donation/cancel_donation_cubit.dart';
 import 'package:donor_app/features/requests/presentation/logic/cancellation_reasons/cancellation_reasons_cubit.dart';
+import 'package:donor_app/features/requests/presentation/logic/certificate_download/certificate_download_cubit.dart';
 import 'package:donor_app/features/requests/presentation/screens/cancel_donation_screen.dart';
 import 'package:donor_app/features/profile/presentation/screens/account_settings_screen.dart';
 import 'package:donor_app/features/splash/presentation/screens/splash_screen.dart';
@@ -105,6 +106,9 @@ class AppRouter {
               BlocProvider(create: (context) => getIt<DonationHistoryCubit>()),
               BlocProvider(create: (context) => getIt<CooldownCubit>()),
               BlocProvider(create: (context) => getIt<RealtimeCubit>()),
+              BlocProvider(
+                create: (context) => getIt<CertificateDownloadCubit>(),
+              ),
             ],
             child: const MainNavigationScreen(),
           ),
