@@ -31,21 +31,26 @@ class DonationCertificateCard extends StatelessWidget with SnackBarMixin {
           ),
           verticalSpace(16),
           Text(
-            'Donation Certificate',
+            context.localizations.donation_certificate_title,
             style: context.textStyles.font24TextPrimaryBold,
           ),
           verticalSpace(8),
           Text(
-            'Thank you for completing your blood donation at ${donation.hospitalName}',
+            context.localizations.donation_certificate_thank_you(
+              donation.hospitalName,
+            ),
             style: context.textStyles.font14TextSecondaryRegular,
           ),
           verticalSpace(15),
           CertificateInfoRow(
-            label: 'Blood Type',
+            label: context.localizations.blood_type_label,
             value: donation.requiredBloodType.label,
           ),
           verticalSpace(10),
-          CertificateInfoRow(label: 'Hospital', value: donation.hospitalName),
+          CertificateInfoRow(
+            label: context.localizations.hospital_label,
+            value: donation.hospitalName,
+          ),
           verticalSpace(20),
           DonationCertificateDownloadButton(requestId: donation.requestId),
         ],

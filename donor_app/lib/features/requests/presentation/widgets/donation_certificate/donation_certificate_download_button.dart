@@ -16,7 +16,10 @@ class DonationCertificateDownloadButton extends StatelessWidget
     return BlocConsumer<CertificateDownloadCubit, CertificateDownloadState>(
       listener: (context, state) {
         if (state is CertificateDownloadSuccess) {
-          showSuccessSnackBar(context, message: 'Certificate downloaded');
+          showSuccessSnackBar(
+            context,
+            message: context.localizations.donation_certificate_downloaded,
+          );
         }
         if (state is CertificateDownloadError) {
           showErrorSnackBar(
@@ -28,7 +31,7 @@ class DonationCertificateDownloadButton extends StatelessWidget
       builder: (context, state) {
         return AppTextButton(
           icon: const Icon(Icons.download, color: Colors.white),
-          buttonText: 'Download Certificate',
+          buttonText: context.localizations.download_certificate_button,
           textStyle: context.textStyles.font16WhiteBold,
           isLoading: state is CertificateDownloadLoading,
           onPressed: () {

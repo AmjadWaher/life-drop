@@ -197,5 +197,10 @@
     "no_internet_connection_title": "لا يوجد اتصال بالإنترنت",
     "no_internet_connection_message": "يرجى التحقق من اتصالك والمحاولة مرة أخرى.",
     "available_for_donation": "متاح للتبرع",
+    "donation_certificate_title": "شهادة التبرع",
+    "donation_certificate_thank_you": "شكرًا لإكمال تبرعك بالدم في {hospital}.",
+    "donation_certificate_downloaded": "تم تنزيل الشهادة",
+    "download_certificate_button": "تنزيل الشهادة",
+    "hospital_label": "المستشفى",
     "gamification_points": "نقاط التبرع"
 }
