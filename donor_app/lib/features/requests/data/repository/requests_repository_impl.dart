@@ -45,4 +45,14 @@ class RequestsRepositoryImpl extends RequestsRepository {
       failure: (error) => ApiResult.failure(error),
     );
   }
+
+  @override
+  Future<ApiResult<String>> downloadCertificate(String requestId) async {
+    final result = await _remoteDatasourceImpl.downloadCertificate(requestId);
+
+    return result.when(
+      success: (filePath) => ApiResult.success(filePath),
+      failure: (error) => ApiResult.failure(error),
+    );
+  }
 }

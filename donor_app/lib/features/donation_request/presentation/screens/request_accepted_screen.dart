@@ -22,29 +22,56 @@ class RequestAcceptedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Column(
-            mainAxisAlignment: .center,
-            children: [
-              const SuccessIcon(),
-              verticalSpace(8),
-              const SuccessTextSection(),
-              verticalSpace(35),
-              DestinationCard(lat: hospitalLatitude, lng: hospitalLongitude),
-              verticalSpace(32),
-              AppElevatedButton(
-                isLoading: false,
-                onPressed: () {
-                  LocationHelper.openDirections(
-                    hospitalLatitude,
-                    hospitalLongitude,
-                  );
-                },
-                title: context.localizations.start_navigation,
+        child: Column(
+          children: [
+            Align(
+              alignment: .centerLeft,
+              child: IconButton(
+                onPressed: () => context.pop(),
+                icon: Icon(
+                  Icons.close,
+                  size: 28,
+                  color: context.colors.textPrimary,
+                ),
               ),
-            ],
-          ),
+            ),
+            verticalSpace(8),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: 24.w,
+                    right: 24.w,
+                    bottom: 24.h,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: .center,
+                    children: [
+                      const SuccessIcon(),
+                      verticalSpace(8),
+                      const SuccessTextSection(),
+                      verticalSpace(35),
+                      DestinationCard(
+                        lat: hospitalLatitude,
+                        lng: hospitalLongitude,
+                      ),
+                      verticalSpace(32),
+                      AppElevatedButton(
+                        isLoading: false,
+                        onPressed: () {
+                          LocationHelper.openDirections(
+                            hospitalLatitude,
+                            hospitalLongitude,
+                          );
+                        },
+                        title: context.localizations.start_navigation,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

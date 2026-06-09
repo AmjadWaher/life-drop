@@ -105,21 +105,17 @@ class _MainNavigationScreenState extends State<MainNavigationScreen>
         activeDonationCubit.getCurrentActiveDonation();
         break;
       case 'Fulfilled':
-        _refreshAfterDonationFulfilled(activeDonationCubit);
+        activeDonationCubit.applyRealtimeUpdate(event);
+
+        final hospitalName = activeDonationCubit.currentHospitalName;
+        context.read<HomeCubit>().refreshAfterDonationFulfilled(
+          hospitalName: hospitalName,
+        );
         break;
       default:
         activeDonationCubit.applyRealtimeUpdate(event);
         break;
     }
-  }
-
-  void _refreshAfterDonationFulfilled(ActiveDonationCubit activeDonationCubit) {
-    final hospitalName = activeDonationCubit.currentHospitalName;
-
-    activeDonationCubit.getCurrentActiveDonation();
-    context.read<HomeCubit>().refreshAfterDonationFulfilled(
-      hospitalName: hospitalName,
-    );
   }
 
   void _showMessage(String? title, String body) {

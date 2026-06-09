@@ -47,7 +47,7 @@ class ActiveDonationCubit extends Cubit<ActiveDonationState> {
         emit(const ActiveDonationState.empty());
         return;
       case 'Fulfilled':
-        emit(const ActiveDonationState.empty());
+        _updateCurrentStatus(DonationStatus.Fulfilled);
         return;
       case 'Accepted':
         _updateCurrentStatus(DonationStatus.Accepted);

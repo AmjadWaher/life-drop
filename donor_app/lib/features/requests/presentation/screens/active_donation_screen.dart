@@ -1,3 +1,4 @@
+import 'package:donor_app/core/enums/donation_status.dart';
 import 'package:donor_app/core/helpers/spacing.dart';
 import 'package:donor_app/core/widgets/api_error_screen.dart';
 import 'package:donor_app/features/requests/domain/entities/active_donation_entity.dart';
@@ -10,6 +11,7 @@ import 'package:donor_app/features/requests/presentation/widgets/active_donation
 import 'package:donor_app/features/requests/presentation/widgets/active_donation/instruction_card.dart';
 import 'package:donor_app/features/requests/presentation/widgets/active_donation/map_bento_card.dart';
 import 'package:donor_app/features/requests/presentation/widgets/active_donation/status_header_section.dart';
+import 'package:donor_app/features/requests/presentation/widgets/donation_certificate/donation_certificate_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +41,12 @@ class ActiveDonationScreen extends StatelessWidget {
                     ActiveDonationEntity.placeholder(),
                   ),
                 ),
-                success: (donation) => _buildActiveDonaion(donation),
+                success: (donation) {
+                  if (donation.status == DonationStatus.Fulfilled) {
+                    return _buildFulfilledDonation(donation);
+                  }
+                  return _buildActiveDonaion(donation);
+                },
                 empty: () => ActiveDonationEmptyState(
                   onRefresh: context
                       .read<ActiveDonationCubit>()
@@ -83,6 +90,16 @@ class ActiveDonationScreen extends StatelessWidget {
           const InstructionCard(),
         ],
       ),
+    );
+  }
+
+  Widget _buildFulfilledDonation(ActiveDonationEntity donation) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        verticalSpace(24),
+        DonationCertificateCard(donation: donation),
+      ],
     );
   }
 }
