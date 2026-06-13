@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/logic/biometric/biometric_state.dart';
@@ -30,7 +28,6 @@ class BiometricCubit extends Cubit<BiometricState> {
     await SharedPrefHelper.setData(SharedPrefKeys.biometricEnabled, value);
 
     if (isClosed) {
-      log('Biometric Cubit is Closed');
       return;
     }
 

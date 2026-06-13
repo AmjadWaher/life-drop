@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:app_settings/app_settings.dart';
 import 'package:donor_app/core/di/injection_container.dart';
@@ -87,7 +86,6 @@ class NotificationService {
       onDidReceiveNotificationResponse: (details) {
         final requestId = details.payload;
         if (requestId == null || requestId.isEmpty) {
-          log('request id is null or empty');
           return;
         }
         _openRequestDetails(requestId);
@@ -141,10 +139,7 @@ class NotificationService {
   }
 
   void onTokenRefresh(FutureOr<void> Function(String) onNewToken) async {
-    log('Listening for token refresh...');
-    log('Current FCM Token: ${await getDeviceToken()}');
     _messaging.onTokenRefresh.listen((event) {
-      log('New FCM Token: $event');
       unawaited(Future.sync(() => onNewToken(event)));
     });
   }
@@ -182,5 +177,7 @@ class NotificationService {
       WidgetsBinding.instance.addPostFrameCallback((_) => openRequestDetails());
       return;
     }
+
+    openRequestDetails();
   }
 }

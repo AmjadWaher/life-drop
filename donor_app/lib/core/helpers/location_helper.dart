@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -27,8 +25,6 @@ class LocationHelper {
       List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
 
       final place = placemarks.first;
-
-      log("${place.street}, ${place.subLocality}, ${place.locality}");
 
       return "${place.street}, ${place.subLocality}, ${place.locality}";
     } catch (e, stack) {

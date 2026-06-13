@@ -5,6 +5,7 @@ import 'package:donor_app/core/helpers/constants.dart';
 import 'package:donor_app/core/helpers/shared_pref_helper.dart';
 import 'package:donor_app/core/networking/api_constants.dart';
 import 'package:donor_app/features/realtime/domain/entities/realtime_event.dart';
+import 'package:flutter/foundation.dart';
 import 'package:signalr_netcore/signalr_client.dart';
 
 class DonationsHubService {
@@ -37,7 +38,7 @@ class DonationsHubService {
     try {
       await connection.start();
     } catch (error) {
-      log('SignalR failed to start: $error');
+      if (kDebugMode) log('SignalR failed to start: $error');
     }
   }
 
@@ -79,7 +80,7 @@ class DonationsHubService {
     });
 
     connection.onclose(({error}) {
-      log('SignalR closed: $error');
+      if (kDebugMode) log('SignalR closed: $error');
     });
   }
 

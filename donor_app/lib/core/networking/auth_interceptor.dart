@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:donor_app/core/di/injection_container.dart';
 import 'package:donor_app/core/helpers/constants.dart';
@@ -110,7 +108,6 @@ class AuthInterceptor extends QueuedInterceptor {
   }
 
   Future<void> _clearTokensAndLogout() async {
-    log('clearTokensAndLogout');
     await SharedPrefHelper.removeAllSecuredData();
 
     navigatorKey.currentState?.pushNamedAndRemoveUntil(

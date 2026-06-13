@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:local_auth/local_auth.dart';
 
 class BiometricHelper {
@@ -41,7 +39,6 @@ class BiometricHelper {
     try {
       return await _localAuth.authenticate(localizedReason: reason);
     } catch (e) {
-      log(e.toString());
       return false;
     }
   }

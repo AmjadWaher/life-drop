@@ -23,7 +23,7 @@ class MapBentoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        LocationHelper.openDirections(hospitalLat, hospitalLat);
+        LocationHelper.openDirections(hospitalLat, hospitalLng);
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
