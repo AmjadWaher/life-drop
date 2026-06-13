@@ -24,12 +24,10 @@ class DioFactory {
         ..options.receiveTimeout = timeout;
 
       (dio!.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
-        HttpClient httpClient = HttpClient();
-        httpClient
+        final httpClient = HttpClient()
           ..idleTimeout = timeout
-          ..connectionTimeout = timeout
-          ..badCertificateCallback =
-              (X509Certificate cert, String host, int port) => true;
+          ..connectionTimeout = timeout;
+
         return httpClient;
       };
 
@@ -58,13 +56,17 @@ class DioFactory {
   }
 
   static void addDioInterceptor() {
-    dio?.interceptors.addAll([
-      AuthInterceptor(dio!),
-      PrettyDioLogger(
-        requestBody: true,
-        requestHeader: true,
-        responseHeader: true,
-      ),
-    ]);
+    dio?.interceptors.add(AuthInterceptor(dio!));
+
+    assert(() {
+      dio?.interceptors.add(
+        PrettyDioLogger(
+          requestBody: true,
+          requestHeader: true,
+          responseHeader: true,
+        ),
+      );
+      return true;
+    }());
   }
 }

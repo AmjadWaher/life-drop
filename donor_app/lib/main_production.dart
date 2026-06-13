@@ -48,7 +48,7 @@ void main(List<String> args) {
         _firebaseMessagingBackgroundHandler,
       );
       await initDependencies();
-      _initializeNotificationHandlers();
+      await _initializeNotificationHandlers();
       FlutterError.onError = (details) {
         FirebaseCrashlytics.instance.recordFlutterError(details);
       };
