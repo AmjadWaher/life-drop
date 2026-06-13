@@ -188,9 +188,3 @@ Contributions are welcome! Please follow these architecture guidelines:
 - [SignalR](https://learn.microsoft.com/en-us/aspnet/signalr/)
 - [get_it](https://pub.dev/packages/get_it)
 - [Freezed](https://pub.dev/packages/freezed) & [JSON Serializable](https://pub.dev/packages/json_serializable)
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
