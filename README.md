@@ -9,7 +9,7 @@
 | Component | Tech | Status | README |
 |-----------|------|--------|--------|
 | 🖥️ Backend API | ASP.NET Core (.NET 10) | ✅ Deployed | [View README](./backend/README.md) |
-| 🌐 Hospital Dashboard | HTML, CSS, JavaScript | ✅ Implemented | [View README](life-drop/hospital_dashboard/LifeDrop-Web/README.md) |
+| 🌐 Hospital Dashboard | HTML, CSS, JavaScript | ✅ Implemented | [View README](./hospital_dashboard/LifeDrop-Web/README.md) |
 | 📱 Donor App | Flutter | ✅ Implemented | [View README](./donor_app/README.md) |
 
 ---
