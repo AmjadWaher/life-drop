@@ -11,6 +11,7 @@ using Services.Features.Hospitals.GetHospitalEmployeeDetails;
 using Services.Features.Hospitals.GetHospitalEmployees;
 using Shared.Responses;
 using Api.Common;
+using Services.Interfaces;
 
 namespace Api.Controllers;
 
@@ -21,15 +22,17 @@ namespace Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
-[Authorize(Policy = "SystemAdminOnly")]
+[Authorize]
 [Microsoft.AspNetCore.Http.Tags("System Administration")]
 public class AdminController : BaseController
 {
     private readonly IMediator _mediator;
+    private readonly ICurrentUserService _currentUserService;
 
-    public AdminController(IMediator mediator)
+    public AdminController(IMediator mediator, ICurrentUserService currentUserService)
     {
         _mediator = mediator;
+        _currentUserService = currentUserService;
     }
 
     /// <summary>
@@ -40,6 +43,7 @@ public class AdminController : BaseController
     /// </remarks>
     /// <returns>Global stats including total hospitals, donors, and requests by governorate.</returns>
     [HttpGet("operations", Name = nameof(GetGlobalOperations))]
+    [Authorize(Policy = "SystemAdminOnly")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResponse<GlobalOperationsDto>))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ApiResponse<object>))]
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ApiResponse<object>))]
@@ -50,6 +54,7 @@ public class AdminController : BaseController
     }
 
     [HttpGet("hospitals", Name = nameof(GetAllHospitals))]
+    [Authorize(Policy = "SystemAdminOnly")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResponse<List<HospitalListItemDto>>))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ApiResponse<object>))]
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ApiResponse<object>))]
@@ -60,6 +65,7 @@ public class AdminController : BaseController
     }
 
     [HttpGet("hospitals/{hospitalId:guid}/employees", Name = nameof(GetHospitalEmployeesAdmin))]
+    [Authorize(Policy = "SystemAdminOnly")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResponse<List<HospitalEmployeeDto>>))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ApiResponse<object>))]
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ApiResponse<object>))]
@@ -71,6 +77,7 @@ public class AdminController : BaseController
     }
 
     [HttpGet("hospitals/{hospitalId:guid}/employees/{employeeProfileId:guid}", Name = nameof(GetHospitalEmployeeDetailsAdmin))]
+    [Authorize(Policy = "SystemAdminOnly")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResponse<HospitalEmployeeDetailsDto>))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ApiResponse<object>))]
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ApiResponse<object>))]
@@ -82,28 +89,35 @@ public class AdminController : BaseController
     }
 
     [HttpPatch("hospitals/employees/{employeeProfileId:guid}/activate", Name = nameof(ActivateEmployee))]
+    [Authorize(Policy = "SystemOrHospitalAdmin")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResponse<SetEmployeeActiveStateResult>))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ApiResponse<object>))]
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ApiResponse<object>))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ApiResponse<object>))]
     public async Task<IActionResult> ActivateEmployee(Guid employeeProfileId)
     {
-        var result = await _mediator.Send(new SetEmployeeActiveStateCommand(employeeProfileId, IsActive: true));
+        if (!TryGetScopedHospitalId(out var hospitalId)) return Unauthorized();
+
+        var result = await _mediator.Send(new SetEmployeeActiveStateCommand(employeeProfileId, IsActive: true, hospitalId));
         return HandleResult(result);
     }
 
     [HttpPatch("hospitals/employees/{employeeProfileId:guid}/deactivate", Name = nameof(DeactivateEmployee))]
+    [Authorize(Policy = "SystemOrHospitalAdmin")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResponse<SetEmployeeActiveStateResult>))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ApiResponse<object>))]
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ApiResponse<object>))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ApiResponse<object>))]
     public async Task<IActionResult> DeactivateEmployee(Guid employeeProfileId)
     {
-        var result = await _mediator.Send(new SetEmployeeActiveStateCommand(employeeProfileId, IsActive: false));
+        if (!TryGetScopedHospitalId(out var hospitalId)) return Unauthorized();
+
+        var result = await _mediator.Send(new SetEmployeeActiveStateCommand(employeeProfileId, IsActive: false, hospitalId));
         return HandleResult(result);
     }
 
     [HttpPatch("hospitals/{hospitalId:guid}/activate", Name = nameof(ActivateHospital))]
+    [Authorize(Policy = "SystemAdminOnly")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResponse<SetHospitalActiveStateResult>))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ApiResponse<object>))]
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ApiResponse<object>))]
@@ -115,6 +129,7 @@ public class AdminController : BaseController
     }
 
     [HttpPatch("hospitals/{hospitalId:guid}/deactivate", Name = nameof(DeactivateHospital))]
+    [Authorize(Policy = "SystemAdminOnly")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResponse<SetHospitalActiveStateResult>))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ApiResponse<object>))]
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ApiResponse<object>))]
@@ -123,5 +138,15 @@ public class AdminController : BaseController
     {
         var result = await _mediator.Send(new SetHospitalActiveStateCommand(hospitalId, IsActive: false));
         return HandleResult(result);
+    }
+
+    private bool TryGetScopedHospitalId(out Guid? hospitalId)
+    {
+        hospitalId = null;
+
+        if (User.IsInRole("SystemAdmin")) return true;
+
+        hospitalId = _currentUserService.HospitalId;
+        return hospitalId.HasValue;
     }
 }

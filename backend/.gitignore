@@ -13,7 +13,6 @@
 .env
 .env.*
 secrets.json
-firebase-key.json
 **/appsettings.Local.json
 **/appsettings.*.local.json
 **/appsettings.Secrets.json

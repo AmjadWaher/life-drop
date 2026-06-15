@@ -32,7 +32,10 @@ public class SetEmployeeActiveStateCommandHandler
         var employeeProfile = await _unitOfWork.HospitalEmployeeProfiles
             .Query()
             .Include(ep => ep.User)
-            .FirstOrDefaultAsync(ep => ep.Id == request.EmployeeProfileId, cancellationToken);
+            .FirstOrDefaultAsync(
+                ep => ep.Id == request.EmployeeProfileId
+                    && (!request.HospitalId.HasValue || ep.HospitalId == request.HospitalId.Value),
+                cancellationToken);
 
         if (employeeProfile == null)
         {

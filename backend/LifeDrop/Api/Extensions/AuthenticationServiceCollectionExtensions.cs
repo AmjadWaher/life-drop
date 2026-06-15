@@ -72,6 +72,7 @@ public static class AuthenticationServiceCollectionExtensions
         services.AddAuthorization(options =>
         {
             options.AddPolicy("SystemAdminOnly", policy => policy.RequireRole("SystemAdmin"));
+            options.AddPolicy("SystemOrHospitalAdmin", policy => policy.RequireRole("SystemAdmin", "HospitalAdmin"));
             options.AddPolicy("HospitalAdminOnly", policy => policy.RequireRole("HospitalAdmin"));
             options.AddPolicy("HospitalEmployeeOnly", policy => policy.RequireRole("HospitalEmployee", "HospitalAdmin"));
             options.AddPolicy("DonorOnly", policy => policy.RequireRole("Donor"));

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Services.Features.Admin.Hospitals.SetEmployeeActiveState;
 
-public record SetEmployeeActiveStateCommand(Guid EmployeeProfileId, bool IsActive)
+public record SetEmployeeActiveStateCommand(Guid EmployeeProfileId, bool IsActive, Guid? HospitalId = null)
     : IRequest<Result<SetEmployeeActiveStateResult>>;
 
 public record SetEmployeeActiveStateResult(Guid EmployeeProfileId, bool IsActive);
