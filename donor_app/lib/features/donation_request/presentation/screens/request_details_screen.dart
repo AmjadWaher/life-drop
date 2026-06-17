@@ -9,7 +9,6 @@ import 'package:donor_app/features/donation_request/domain/entities/request_deta
 import 'package:donor_app/features/donation_request/presentation/logic/donation_request_cubit.dart';
 import 'package:donor_app/features/donation_request/presentation/logic/donation_request_state.dart';
 import 'package:donor_app/features/donation_request/presentation/widgets/critical_request_banner.dart';
-import 'package:donor_app/features/donation_request/presentation/widgets/donation_progress_card.dart';
 import 'package:donor_app/features/donation_request/presentation/widgets/hospital_location_card.dart';
 import 'package:donor_app/features/requests/presentation/logic/active_donation/active_donation_cubit.dart';
 import 'package:flutter/material.dart';
@@ -129,11 +128,6 @@ class RequestDetailsScreen extends StatelessWidget with SnackBarMixin {
           hospitalName: request.hospitalName,
           bloodType: request.requiredBloodType.label,
         ),
-        if (request.canAccept && canDonate) ...[
-          verticalSpace(15),
-          // TODO:: handle it
-          const DonationProgressCard(confirmedDonors: 2, totalDonors: 5),
-        ],
         verticalSpace(15),
         HospitalLocationCard(
           lat: request.hospitalLatitude,

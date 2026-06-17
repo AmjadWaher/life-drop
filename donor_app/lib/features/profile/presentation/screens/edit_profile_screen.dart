@@ -192,56 +192,64 @@ class _EditProfileScreenState extends State<EditProfileScreen>
         _handleUpdateResult(state);
       },
       builder: (context, state) {
-        return Scaffold(
-          body: GestureDetector(
-            onTap: () => FocusScope.of(context).unfocus(),
-            behavior: HitTestBehavior.opaque,
-            child: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
-                child: Column(
-                  children: [
-                    const EditProfileHeader(),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            verticalSpace(10),
-                            EditProfileForm(
-                              firstNameController: _firstNameController,
-                              lastNameController: _lastNameController,
-                              phoneNumberController: _phoneNumberController,
-                              selectedGovernorateId: _selectedGovernorateId,
-                              selectedDistrictId: _selectedDistrictId,
-                              selectedBloodType: _selectedBloodType,
-                            ),
-                            verticalSpace(24),
-                            Text(
-                              context.localizations.notifications_label
-                                  .toUpperCase(),
-                              style: context.textStyles.font12SecondaryBold
-                                  .copyWith(letterSpacing: 0.5),
-                            ),
-                            verticalSpace(12),
-                            NotificationTogglesSection(
-                              availableNotifier: _availableNotifier,
-                              criticalNotifier: _criticalNotifier,
-                              urgentNotifier: _urgentNotifier,
-                              normalNotifier: _normalNotifier,
-                            ),
-                            verticalSpace(36),
-                            SaveChangesButton(
-                              onPressed: _submitProfileUpdate,
-                              isLoading:
-                                  state.status == EditProfileStatus.loading,
-                            ),
-                            verticalSpace(24),
-                          ],
+        return PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) {
+            if (!didPop) {
+              context.pop<bool>(value: false);
+            }
+          },
+          child: Scaffold(
+            body: GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              behavior: HitTestBehavior.opaque,
+              child: SafeArea(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  child: Column(
+                    children: [
+                      const EditProfileHeader(),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              verticalSpace(10),
+                              EditProfileForm(
+                                firstNameController: _firstNameController,
+                                lastNameController: _lastNameController,
+                                phoneNumberController: _phoneNumberController,
+                                selectedGovernorateId: _selectedGovernorateId,
+                                selectedDistrictId: _selectedDistrictId,
+                                selectedBloodType: _selectedBloodType,
+                              ),
+                              verticalSpace(24),
+                              Text(
+                                context.localizations.notifications_label
+                                    .toUpperCase(),
+                                style: context.textStyles.font12SecondaryBold
+                                    .copyWith(letterSpacing: 0.5),
+                              ),
+                              verticalSpace(12),
+                              NotificationTogglesSection(
+                                availableNotifier: _availableNotifier,
+                                criticalNotifier: _criticalNotifier,
+                                urgentNotifier: _urgentNotifier,
+                                normalNotifier: _normalNotifier,
+                              ),
+                              verticalSpace(36),
+                              SaveChangesButton(
+                                onPressed: _submitProfileUpdate,
+                                isLoading:
+                                    state.status == EditProfileStatus.loading,
+                              ),
+                              verticalSpace(24),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
