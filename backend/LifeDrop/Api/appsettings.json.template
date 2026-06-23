@@ -20,17 +20,17 @@
     "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ]
   },
   "ConnectionStrings": {
-    "DefaultConnection": "Host=CHANGE_ME; Database=CHANGE_ME; Username=CHANGE_ME; Password=CHANGE_ME;",
+    "DefaultConnection": "Host=YOUR_HOST; Database=YOUR_DB; Username=YOUR_USER; Password=YOUR_PASSWORD; SSL Mode=Require;",
     "Redis": "localhost:6379"
   },
   "Jwt": {
-    "SecretKey": "CHANGE_ME",
+    "SecretKey": "REPLACE_WITH_YOUR_SECRET_KEY_MIN_32_CHARS",
     "Issuer": "LifeDrop.Api",
     "Audience": "LifeDrop.Client",
     "ExpirationInMinutes": 60,
     "RefreshTokenExpirationDays": 7
   },
-  "BootstrapSecret": "CHANGE_ME",
+  "BootstrapSecret": "REPLACE_WITH_YOUR_BOOTSTRAP_SECRET",
   "DonationSettings": {
     "CooldownDays": 90,
     "PointsPerDonation": 50,
@@ -38,15 +38,15 @@
     "AcceptanceTimeoutHours": 2
   },
   "EmailSettings": {
-    "SmtpServer": "CHANGE_ME",
+    "SmtpServer": "YOUR_SMTP_SERVER",
     "Port": 2525,
     "SenderName": "LifeDrop",
-    "SenderEmail": "CHANGE_ME",
-    "Username": "CHANGE_ME",
-    "Password": "CHANGE_ME"
+    "SenderEmail": "YOUR_EMAIL",
+    "Username": "YOUR_SMTP_USERNAME",
+    "Password": "YOUR_SMTP_PASSWORD"
   },
   "Firebase": {
-    "ServiceAccountJson": "CHANGE_ME"
+    "ServiceAccountJson": "{\"type\":\"service_account\",\"project_id\":\"YOUR_PROJECT_ID\",\"private_key\":\"YOUR_PRIVATE_KEY\"}"
   },
   "AllowedHosts": "*"
 }
