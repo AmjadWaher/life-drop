@@ -1,4 +1,6 @@
+# ═══════════════════════════════════════════
 # .NET Core / Build Artifacts
+# ═══════════════════════════════════════════
 **/bin/
 **/obj/
 **/packages/
@@ -13,18 +15,38 @@
 .env
 .env.*
 secrets.json
-firebase-key.json
 **/appsettings.Local.json
 **/appsettings.*.local.json
 **/appsettings.Secrets.json
 
-# Local Databases
-*.db
-*.sqlite
-*.db-shm
-*.db-wal
+# Environment files (may contain tokens, keys, passwords)
+.env
+.env.*
+!.env.example
+*.env.local
+*.env.production
 
-# IDE / Editors
+# HTTP test files (may contain JWT tokens, API keys)
+*.http
+*.rest
+
+# Docker sensitive files
+docker-compose.override.yml
+docker-compose.prod.yml
+
+# ═══════════════════════════════════════════
+# Infrastructure / Terraform / Deployment
+# ═══════════════════════════════════════════
+*.tfstate
+*.tfstate.*
+*.terraform*
+**/.terraform/
+crash.log
+crash.*.log
+
+# ═══════════════════════════════════════════
+# IDE / Editor Files
+# ═══════════════════════════════════════════
 .vs/
 .vscode/
 .idea/
@@ -38,8 +60,19 @@ firebase-key.json
 *.orig
 *_ReSharper.Caches/
 riderModule.iml
+.ionide/
 
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Visual Studio
+.vs/
+*.userprefs
+
+# ═══════════════════════════════════════════
 # OS generated files
+# ═══════════════════════════════════════════
 .DS_Store
 .DS_Store?
 ._*
@@ -47,14 +80,24 @@ riderModule.iml
 .Trashes
 ehthumbs.db
 Thumbs.db
+Desktop.ini
 
-# Logs / Coverage
+# ═══════════════════════════════════════════
+# Logs / Coverage / Temp
+# ═══════════════════════════════════════════
 *.log
 *.coverage
 *.coveragexml
 coverage/
+*.tmp
+*.temp
+*.bak
+*.old
+*~
 
-# AI / Agent Files (Do not push)
+# ═══════════════════════════════════════════
+# AI / Agent / Planning (local only)
+# ═══════════════════════════════════════════
 .agents/
 AGENTS.md
 .cursor/
@@ -66,14 +109,31 @@ opencode.json
 # Local planning/task notes
 tasks.md
 task.md
-docs/prd.md
 
 # Local git metadata backups
 .git_backup_*/
 
+# Template files (safe to commit)
+!**/appsettings.json.template
+!**/appsettings.json.example
+!*.example
+
+# Python / Scripts (not part of .NET build)
+# ═══════════════════════════════════════════
 *.py
-
 *.patch
+*.pyc
+__pycache__/
+*.egg-info/
+dist/
+build/
 
-*.md
-*.lscache
+# ═══════════════════════════════════════════
+# NuGet / Package Management
+# ═══════════════════════════════════════════
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nupkg
+**/project.lock.json
+**/project.assets.json
+**/packages.lock.json
